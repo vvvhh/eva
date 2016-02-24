@@ -335,14 +335,13 @@ function mostrarAgregar(){
 }
 
 /******/
-/*$(document).on('ready', function(){
+$(document).on('ready', function(){
 
-  getTodosFuentesConsultas();
+  getTodosCuestionarios();
 
   intNombre = document.querySelector("input[name='txtFuente']");
   intNombre.addEventListener("input", comprobarFuente);
-
-});*/
+});
 
 tblServicios.delegate('.glyphicon-edit', 'click', getCues);
 tblServicios.delegate('.glyphicon-trash', 'click', darBajaCues);
