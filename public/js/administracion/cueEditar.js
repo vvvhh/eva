@@ -14,7 +14,7 @@ var tblServicios   = $('#tblServicios'),
     tbodyServicios = $('#tbodyServicios');
 
 var txtNombreFuente = $('#txtNombreFuente'),
-    txtIdFuente = $('#txtIdFuente'),
+    txtCueId = $('#txtCueId'),
     formEditarServ= $('#formEditarServ'),
     txtActivo     = $('#txtActivo'),
     btnGuardar    = $('#btnGuardar'),
@@ -59,8 +59,10 @@ function darBajaCues(){
       alert('Error JSON ' + e);
     }
 
-    if ( res.status === 'OK' ){
+    if ( res.status == 'OK' ){
+      alert(res.message);
       getTodosCuestionarios();
+
     }
     else{
       alert(res.message);
@@ -75,7 +77,8 @@ function editarCues(){
       fecha:txtFechaA.val(),
       tema:txtTemaE.val(),
       nombre:txtNombreE.val(),
-      activo:txtActivo.val()
+      activo:txtActivo.val(),
+      i:txtCueId.val()
     },
     type: 'post',
         dataType:'json',
@@ -134,8 +137,9 @@ function getTodosCuestionarios(){
         tbodyServicios.append(
           '<tr>'+
             '<td >'+o.cueFechaAp+'</td>'+
-            '<td >'+o.cueNombre+'</td>'+
             '<td class="text-center">'+o.cueTema+'</td>'+
+            '<td >'+o.cueNombre+'</td>'+
+            '<td class="text-center">'+o.cueActivo+'</td>'+
             '<td class="text-center">'+
               '<span class="glyphicon glyphicon-edit text-primary" id="'+o.cueId+'" '+
               'style="cursor:pointer" title="Editar"></span>'+
@@ -185,7 +189,7 @@ function getCues(){
         txtFechaA.val(o.cueFechaAp);
         txtTemaE.val(o.cueTema);
         txtNombreE.val(o.cueNombre);
-        txtIdFuente.val(o.cueId);
+        txtCueId.val(o.cueId);
         formEditarServ.removeClass('hidden');
         tblServicios.addClass('hidden');
       i++;
@@ -300,48 +304,55 @@ function mostrarEditar(){
   tblServicios.removeClass('hidden');
   pnlInicio.addClass('hidden');
   getTodosCuestionarios();
-  formEditarServ-addClass('hidden');
+
   btnEditar.addClass('botonActivo');
   btnConsulta.addClass('botonNoactivo');
   btnAgregar.addClass('botonNoactivo');
+
   btnEditar.removeClass('botonNoactivo');
   btnConsulta.removeClass('botonActivo');
   btnAgregar.removeClass('botonActivo');
 }
+
 function mostrarConsulta(){
   pnlAgregar.addClass('hidden');
   pnlConsulta.removeClass('hidden');
   tblServicios.addClass('hidden');
   pnlInicio.addClass('hidden');
+  getCuestionarioConsultas();
+
   btnEditar.addClass('botonNoactivo');
   btnConsulta.addClass('botonActivo');
   btnAgregar.addClass('botonNoactivo');
-  btnEditar.removeClass('botonActivo');
-  btnConsulta.removeClass('botonNoactivo');
-  btnAgregar.removeClass('botonActivo');
-  getCuestionarioConsultas();
+
+  btnEditar.removeClass('botonNoactivo');
+  btnConsulta.removeClass('botonActivo');
+  btnAgregar.removeClass('botonNoactivo');
 }
+
 function mostrarAgregar(){
   pnlAgregar.removeClass('hidden');
   pnlConsulta.addClass('hidden');
   tblServicios.addClass('hidden');
   pnlInicio.addClass('hidden');
+
   btnEditar.addClass('botonNoactivo');
   btnConsulta.addClass('botonNoactivo');
   btnAgregar.addClass('botonActivo');
+
   btnEditar.removeClass('botonActivo');
   btnConsulta.removeClass('botonActivo');
   btnAgregar.removeClass('botonNoactivo');
 }
 
 /******/
-$(document).on('ready', function(){
+/*$(document).on('ready', function(){
 
   getTodosCuestionarios();
 
   intNombre = document.querySelector("input[name='txtFuente']");
   intNombre.addEventListener("input", comprobarFuente);
-});
+});*/
 
 tblServicios.delegate('.glyphicon-edit', 'click', getCues);
 tblServicios.delegate('.glyphicon-trash', 'click', darBajaCues);
