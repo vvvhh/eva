@@ -57,6 +57,15 @@
       </div>
 
       <div class="form-group">
+        <label for="txtNombreS" class="col-md-3 control-label">*Subtema: </label>
+        <div class="col-md-8">
+          <input id="txtTema" name="txtSubTema" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Nombre de la fuente de donde se obtendrá la noticia" required>
+          <p class="text-danger formatoTexto14" id="spnNombre"> </p>
+          <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
+        </div>
+      </div>
+
+      <div class="form-group">
         <label for="txtNombre" class="col-md-3 control-label">*Nombre: </label>
         <div class="col-md-8">
           <input id="txtNombre" name="txtNombre" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Nombre de la fuente de donde se obtendrá la noticia" required>

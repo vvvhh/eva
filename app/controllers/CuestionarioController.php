@@ -12,6 +12,7 @@ class CuestionarioController extends BaseController{
       $data = array(
         'fecha' => Input::get('fecha'),
         'tema' => Input::get('tema'),
+        'subtema' => Input::get('subtema'),
         'nombre' => Input::get('nombre')
       );
 
@@ -147,9 +148,9 @@ public function editarCues(){
 
       if(isset($token)) {
         $data = array(
-          'nombre' => Input::get('nombre'),
           'fecha' => Input::get('fecha'),
           'tema' => Input::get('tema'),
+          'nombre' => Input::get('nombre'),
           'activo' => Input::get('activo'),
           'i' => Input::get('i')
         );
@@ -175,10 +176,10 @@ public function editarCues(){
         else{
               $editar = cuestionarios::where('cueId', $data['i'])
                 ->update(array(
-                  'cueNombre' => $data['nombre'],
                   'cueFechaAp' => $data['fecha'],
-                  'cueTema' => $data['tema']
-                  
+                  'cueTema' => $data['tema'],
+                  'cueNombre' => $data['nombre'],
+                  'cueActivo' => $data['activo']
                 ));
 
               if ( $editar )

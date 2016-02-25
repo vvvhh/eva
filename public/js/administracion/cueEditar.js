@@ -25,6 +25,7 @@ var btnCancelarAg = $('#btnCancelarAg'),
     token = $('#token'),
     txtNombre = $('#txtNombre'),
     txtTema = $('#txtTema'),
+    txtSubTema = $('#txtSubTema'),
     txtFechaApl = $('#txtFechaApl'),
     btnGuardarAg =$('#btnGuardarAg'),
     txtFechaA =$('#txtFechaA'),
@@ -76,6 +77,7 @@ function editarCues(){
       token: token.val(),
       fecha:txtFechaA.val(),
       tema:txtTemaE.val(),
+      //tema:txtTemaE.val(),
       nombre:txtNombreE.val(),
       activo:txtActivo.val(),
       i:txtCueId.val()
@@ -133,6 +135,18 @@ function getTodosCuestionarios(){
     if ( res.status === 'OK' ){
        var i = 1;
       $.each(res.data, function(k,o){
+            if (activo === 1) {
+              '<td class="text-center">'+
+                '<span class="glyphicon glyphicon-ok text-primary" id="'+o.cueActivo+'" '+
+                'style="cursor:pointer" title="Editar"></span>'+
+              '</td>'+
+            }
+            else{
+              '<td class="text-center">'+
+                '<span class="glyphicon glyphicon-remove " id="'+o.cueActivo+'" '+
+                'style="cursor:pointer" title="Editar"></span>'+
+              '</td>'+
+            }
 
         tbodyServicios.append(
           '<tr>'+
@@ -203,7 +217,10 @@ function getCues(){
 function limpiar(){
   tblServicios.removeClass('hidden');
   formEditarServ.addClass('hidden');
-  txtNombreFuente.val('');
+  txtFechaA.val('');
+  txtTemaE.val('');
+  txtNombreE.val('');
+  txtActivo.val('');
 }
 
 /*******/
@@ -215,6 +232,7 @@ function ingresoCuestionario(){
       token: token.val(),
       fecha: txtFechaApl.val(),
       tema: txtTema.val(),
+      subtema: txtSubTema.val(),
       nombre: txtNombre.val()
     },
     type: 'post',
@@ -288,6 +306,7 @@ function getCuestionarioConsultas(){
             '<td >'+o.cueFechaAp+'</td>'+
             '<td >'+o.cueNombre+'</td>'+
             '<td class="text-center">'+o.cueTema+'</td>'+
+            '<td class="text-center">'+o.cueSubTema+'</td>'
           '</tr>'
       );
       i++;
@@ -326,7 +345,7 @@ function mostrarConsulta(){
   btnAgregar.addClass('botonNoactivo');
 
   btnEditar.removeClass('botonNoactivo');
-  btnConsulta.removeClass('botonActivo');
+  btnConsulta.removeClass('botonctivo');
   btnAgregar.removeClass('botonNoactivo');
 }
 
@@ -356,7 +375,7 @@ function mostrarAgregar(){
 
 tblServicios.delegate('.glyphicon-edit', 'click', getCues);
 tblServicios.delegate('.glyphicon-trash', 'click', darBajaCues);
-/*btnCancelar.on('click',limpiar);*/
+btnCancelar.on('click',limpiar);
 btnGuardar.on('click',editarCues);
 
 btnCancelarAg.on('click',cancelar);
