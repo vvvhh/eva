@@ -17,24 +17,29 @@
           &nbsp;Cuestionarios
         </h4>
       </strong></a>
-  <!--      <ul id="collapseSesiones" class="nav nav-sidebar colorNav collapse">
+       <ul id="collapseSesiones" class="nav nav-sidebar colorNav collapse">
           <li id="liAgregarSesion">
-              <a class="grisClaro " href="{{ URL::to('administracion/fueAgregar') }}">
-                <i class="fa fa-th-list"></i> Consulta fuente
+              <a class="grisClaro " href="{{ URL::to('administracion/cueEditar#form') }}">
+                <i class="fa fa-th-list"></i> Agregar
               </a>
           </li>
-          <li id="liEditarSesion">
-              <a class="grisClaro " href="{{ URL::to('administracion/fueEditar') }}">
-                <span class="glyphicon glyphicon-edit"></span> Editar fuente
+          <li id="liEditarSesio">
+              <a class="grisClaro " href="{{ URL::to('administracion/cueEditar') }}">
+                <span class="glyphicon glyphicon-edit"></span> Editar
               </a>
           </li>
-      </ul> -->
+          <li id="liEditarSesio">
+              <a class="grisClaro " href="{{ URL::to('administracion/cueEditar') }}">
+                <span class="glyphicon glyphicon-edit"></span> Consulta 
+              </a>
+          </li>
+      </ul>
     </li>
 
     <li class="header" data-toggle="collapse" data-target="#collapseMiembros">
-      <a class="grisClaro " style="cursor:pointer" ><!--<strong>
+      <a class="grisClaro " collapseAsignacion style="cursor:pointer"><!--<strong>
         <h4><i class="fa fa-users"></i>
-          &nbsp;Integrantes
+          &nbsp;Preguntas
         </h4>
       </strong>--></a>
         <!--<ul id="collapseMiembros" class="nav nav-sidebar colorNav collapse">
@@ -159,8 +164,5 @@
                 </li>
           </ul>-->
         </li>
-
-
-
       </ul>
     </div>

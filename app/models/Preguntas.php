@@ -2,15 +2,14 @@
 
 class Cuestionarios extends Eloquent
 {
-  protected $table = 'cuestionarios';
-  protected $primaryKey = 'cueId';
+  protected $table = 'preguntas';
+  protected $primaryKey = 'preId';
   public $timestamps = false;
   public $incrementing = true;
   protected $fillable = array(
     'cueId',
-    'cueFechaAp',
-    'cueTema',
-    'cueNombre',
-    'cueActivo'
+    'prePregunta',
+    'preCuestionario',
+    'preActivo'
   );
 }

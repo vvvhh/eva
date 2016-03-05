@@ -7,8 +7,8 @@ btnEditar=$('#btnEditar'),
 btnAgregar=$('#btnAgregar');
 
 var pnlAgregar=$('#pnlAgregar');
-    pnlConsulta=$('#pnlConsulta'),
-    pnlInicio=$('#pnlInicio');
+pnlConsulta=$('#pnlConsulta'),
+pnlInicio=$('#pnlInicio');
 
 var tblServicios   = $('#tblServicios'),
     tbodyServicios = $('#tbodyServicios');
@@ -27,19 +27,13 @@ var btnCancelarAg = $('#btnCancelarAg'),
     txtTema = $('#txtTema'),
     txtSubTema = $('#txtSubTema'),
     txtFechaApl = $('#txtFechaApl'),
-    txtFechaEla = $('#txtFechaEla'),
     btnGuardarAg =$('#btnGuardarAg'),
     txtFechaA =$('#txtFechaA'),
     txtTemaE =$('#txtTemaE'),
     txtNombreE =$('#txtNombreE');
-
-var spnNombre=$('#spnNombre'),
-    btnImprimir=$('#btnImprimir');
-
-var formselect = $('#formselect'),
-    formprea = $('#formprea'),
-    formpom = $('#formpom');
-
+/*var spnNombre=$('#spnNombre'),
+    
+    btnImprimir=$('#btnImprimir');*/
 /*Ide desde el icono editar de la tabla*/
 function darBajaCues(){
   var id = $(this).attr('id');  
@@ -83,7 +77,7 @@ function editarCues(){
       token: token.val(),
       fecha:txtFechaA.val(),
       tema:txtTemaE.val(),
-      subtema:txtSubTema.val(),
+      //tema:txtTemaE.val(),
       nombre:txtNombreE.val(),
       activo:txtActivo.val(),
       i:txtCueId.val()
@@ -104,7 +98,7 @@ function editarCues(){
     }
 
     tbodyServicios.html('');
-    if ( res.status == 'OK' ){
+    if ( res.status === 'OK' ){
       limpiar();
       getTodosCuestionarios();
       swal({
@@ -136,23 +130,30 @@ function getTodosCuestionarios(){
     }catch (e){
         alert('Error JSON ' + e);
     }
+
     tbodyServicios.html('');
-    if ( res.status == 'OK' ){
+    if ( res.status === 'OK' ){
        var i = 1;
       $.each(res.data, function(k,o){
-        if ( o.fueActivo == 1 ){
-          status = '<span class="glyphicon glyphicon-ok text-success" title="Activo"></span>';
-        }
-        else{
-          status = '<span class="glyphicon glyphicon-remove" title="Inactivo"></span>';
-        }
+            /*if (activo === 1) {
+              '<td class="text-center">'+
+                '<span class="glyphicon glyphicon-ok text-primary" id="'+o.cueActivo+'" '+
+                'style="cursor:pointer" title="Editar"></span>'+
+              '</td>'+
+            }
+            else{
+              '<td class="text-center">'+
+                '<span class="glyphicon glyphicon-remove " id="'+o.cueActivo+'" '+
+                'style="cursor:pointer" title="Editar"></span>'+
+              '</td>'+
+            }*/
+
         tbodyServicios.append(
           '<tr>'+
             '<td >'+o.cueFechaAp+'</td>'+
-            '<td >'+o.cueFechaEla+'</td>'+
             '<td class="text-center">'+o.cueTema+'</td>'+
             '<td >'+o.cueNombre+'</td>'+
-            '<td class="text-center">'+status+'</td>'+
+            '<td class="text-center">'+o.cueActivo+'</td>'+
             '<td class="text-center">'+
               '<span class="glyphicon glyphicon-edit text-primary" id="'+o.cueId+'" '+
               'style="cursor:pointer" title="Editar"></span>'+
@@ -195,7 +196,7 @@ function getCues(){
       alert('Error JSON ' + e);
     }
 
-    if ( res.status == 'OK' ){
+    if ( res.status === 'OK' ){
        var i = 1;
       $.each(res.data, function(k,o){
 
@@ -246,14 +247,12 @@ function ingresoCuestionario(){
 
     if ( resultado.status == 'OK' ){
       swal({
-        title: "Esta seguro q sus datos son correctos.",
-        text: "Verificar datos.",
+        title: "Cuestionario agregado.",
+        text: "Se agrego correctamente el cuestionario.",
+        timer: 2000,
         type: "success",
-        showConfirmButton: false,
+        showConfirmButton: true
       });
-      document.location=('./cueEditar#formselect')
-      form.addClass('hidden');
-      formselect.removeClass('hidden'); //mostrar formulario de opción multiple
     }
     else{
       alert(resultado.message);
@@ -294,16 +293,16 @@ function getCuestionarioConsultas(){
     }
 
     tbodyConsulta.html('');
-    if ( res.status == 'OK' ){
+    if ( res.status === 'OK' ){
        var i = 1;
       $.each(res.data, function(k,o){
 
         tbodyConsulta.append(
           '<tr>'+
-            '<td class="text-center">'+o.cueFechaAp+'</td>'+
-            '<td class="text-center">'+o.cueNombre+'</td>'+
+            '<td >'+o.cueFechaAp+'</td>'+
+            '<td >'+o.cueNombre+'</td>'+
             '<td class="text-center">'+o.cueTema+'</td>'+
-            //'<td class="text-center">'+o.cueSubTema+'</td>'´+ otro campo
+            //'<td class="text-center">'+o.cueSubTema+'</td>'  para nuevo campo
           '</tr>'
       );
       i++;
@@ -341,16 +340,12 @@ function mostrarConsulta(){
   btnConsulta.addClass('botonActivo');
   btnAgregar.addClass('botonNoactivo');
 
-  btnEditar.removeClass('botonActivo');
-  btnConsulta.removeClass('botonNoactivo');
-  btnAgregar.removeClass('botonActivo');
+  btnEditar.removeClass('botonNoactivo');
+  btnConsulta.removeClass('botonctivo');
+  btnAgregar.removeClass('botonNoactivo');
 }
 
 function mostrarAgregar(){
-  txtFechaApl.val('');
-  txtTema.val('');
-  txtSubTema.val('');
-  txtNombre.val('');
   pnlAgregar.removeClass('hidden');
   pnlConsulta.addClass('hidden');
   tblServicios.addClass('hidden');
@@ -363,17 +358,6 @@ function mostrarAgregar(){
   btnEditar.removeClass('botonActivo');
   btnConsulta.removeClass('botonActivo');
   btnAgregar.removeClass('botonNoactivo');
-}
-
-// fecha actual
-function fechaSys(){
-  var d = new Date(); 
-  document.write(d.getDate() + "/" +
-    (d.getMonth() +1) + "/" +
-    d.getFullYear(), ', '+
-    d.getHours(),':'+
-    d.getMinutes(),':'+
-    d.getSeconds());
 }
 
 /******/
