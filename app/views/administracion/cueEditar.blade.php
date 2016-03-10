@@ -19,7 +19,9 @@
     <center><h3><i class="fa fa-newspaper-o text-primary"></i> Agregar</h3></center>
     <br><br>
     <div class="col-md-4">
-      <button id="btnAgregar"  class="btn btn-block btn-md botonNoactivo"><i class="fa fa-plus-circle"></i> Agregar</button>
+      <a class="grisClaro" href="{{ URL::to('administracion/cueAgregar#pnlAgregar') }}">
+        <button id="btnAgregar" class="btn btn-block btn-md botonNoactivo"><i class="fa fa-plus-circle"></i> Agregar</button>
+      </a>
     </div>
     <div class="col-md-4">
       <button id="btnEditar"  class="btn btn-block btn-md botonNoactivo"><i class="fa fa-pencil-square-o"></i> Editar</button>
@@ -58,8 +60,6 @@
         <label for="txtNombreS" class="col-md-3 control-label">*Tema: </label>
         <div class="col-md-8">
           <SELECT id="selCombo" size=1 class="form-control grisObscuro">
-          <option value="1">Sí</option>
-          <option value="0">No</option>
           </SELECT>
           <p class="text-danger formatoTexto14" id="spnNombre"> </p>
           <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
@@ -301,7 +301,7 @@
 
       <div class="row">
       <div class="col-md-12">
-        <div class="" id="tblConsultas">
+        <div id="tblConsultas">
           <div class="row" >
             <div class="col-md-12" >
               <h2><span class="glyphicon glyphicon-edit text-primary"></span> Editar cuestionario</h2>

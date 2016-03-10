@@ -1,27 +1,74 @@
 <?php
-  class CuestionarioController extends BaseController{
+  class TemaController extends BaseController{
 
-    public function getActivoTemas(){
-      /*  if( !Sesion::isResponsable() ){
-          if( !Sesion::isAdmin() )
-          return Redirect::to('administracion/logout');
+public function temAgregarC(){ /**INGRESO Servicio**/
+      if( !Sesion::isAdmin() )
+      return Redirect::to('administracion/logout');
+
+    $token = Input::get('token');
+
+    if(isset($token)) {
+      $data = array(
+        'tema' => Input::get('tema'),
+      );
+
+     $validaciones = array('tema' => array('required','regex:/^([0-9a-zA-ñÑZáéíóúñÁÉÍÓÚ\-\s\,\.\?\¿\¡\!])+$/')
+     );
+
+     $validator = Validator::make($data , $validaciones);
+
+     if ($validator->fails()){
+        $respuesta;
+        $mensajes = $validator->messages();
+        foreach ($mensajes->all() as $mensaje){
+            $respuesta = $mensaje;
         }
-    */
-          $seleccionar = DB::select('SELECT * FROM temas WHERE temActivo=true;');
 
-          if ( count( $seleccionar ) > 0 )
-            $response = array(
-              'status' => 'OK',
-              'data' => $seleccionar,
-              'message' => 'Resultados obtenidos'
-            );
-          else
-            $response = array(
-              'status' => 'ERROR',
-              'message' => 'No se encontraron representantes registrados.'
-            );
-
-          return Response::json($response);
+          $response = array(
+            'status' => 'ERROR F',
+            'message' => $respuesta
+          );
       }
+      else{
+
+        $duplicado = temas::where('temTema',$data['tema'])
+          ->get()
+          ->toArray();
+
+          if ( count( $duplicado ) > 0 )
+            return Response::json(array(
+            'status' => 'Error',
+            'message' => 'Ya existe un tema con el mismo nombre, verifique'
+          ));
+          else{
+            $insert = Temas::insert(array(
+              'temTema' => trim($data['tema'])
+            ));
+
+              if ( $insert ){
+                $response = array(
+                  'status' => 'OK',
+                  'message' => 'Tema agregado correctamente.');
+
+              }
+              else
+                $response = array(
+                  'status' => 'ERROR',
+                  'message' => 'No se pudo realizar el registro, intente de nuevo'
+                );
+          }
+
+      }
+    }
+
+    else{
+      $response = array(
+        'status' => 'ERROR',
+        'message' => 'Vuelva a intentar en un momento'
+      );
+    }
+    return Response::json( $response );
+  }
+
   }
 ?>

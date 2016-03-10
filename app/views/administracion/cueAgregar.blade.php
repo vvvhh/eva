@@ -58,8 +58,6 @@
         <label for="txtNombreS" class="col-md-3 control-label">*Tema: </label>
         <div class="col-md-8">
           <SELECT id="selCombo" size=1 class="form-control grisObscuro">
-          <option value="1">Sí</option>
-          <option value="0">No</option>
           </SELECT>
           <p class="text-danger formatoTexto14" id="spnNombre"> </p>
           <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
@@ -301,7 +299,7 @@
 
       <div class="row">
       <div class="col-md-12">
-        <div class="" id="tblConsultas">
+        <div class="hidden" id="tblConsultas">
           <div class="row" >
             <div class="col-md-12" >
               <h2><span class="glyphicon glyphicon-edit text-primary"></span> Editar cuestionario</h2>

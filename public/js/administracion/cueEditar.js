@@ -232,7 +232,7 @@ function ingresoCuestionario(){
     data: {
       token: token.val(),
       fecha: txtFechaApl.val(),
-      tema: slctTema.val(),
+      tema: selCombo.val(),
       subtema: txtSubTema.val(),
       nombre: txtNombre.val()
     },

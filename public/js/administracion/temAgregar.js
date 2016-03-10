@@ -1,11 +1,15 @@
 //variables del select de temas
 var txtTema = $('#txtTema'),
 btnCancelarTem = $('#btnCancelarTem'),
-btnGuardarTem = $('#btnGuardarTem');
+btnGuardarTem = $('#btnGuardarTem'),
+token = $('#token');
 
 function temAgregar(){
+
+  console.log("teamAgregar");
+
   var editar = $.ajax({
-    url: 'temAgregar',
+    url: 'temAgregarC',
     data: {
       token: token.val(),
       tema: txtTema.val(),
@@ -25,13 +29,7 @@ function temAgregar(){
     }
 
     if ( resultado.status == 'OK' ){
-      swal({
-        title: "Esta seguro q sus datos son correctos.",
-        text: "Verificar datos.",
-        type: "success",
-        showNegativeButton: true,
-        showConfirmButton: true,
-      });
+    console.log("teamAgregar OK");  
       swal({
         title: "Guardado.",
         text: "Cuestionario guardado con éxito.",
@@ -39,10 +37,6 @@ function temAgregar(){
         showNegativeButton: true,
         showConfirmButton: true,
       });
-      //swal();
-      document.location=('./cueEditar')
-      pnlAgregar.addClass('hidden');
-      formselect.removeClass('hidden'); //mostrar formulario de opción multiple
     }
     else{
       alert(resultado.message);

@@ -61,9 +61,9 @@ Route::post('/repFuentePer', array('uses' => 'NoticiasController@repFuentePer'))
 			Route::get('/cueConsulta', function(){
 				return View::make('administracion.cueConsulta');
 			});
-			Route::get('/temAgregar', function(){
-				return View::make('administracion.temAgregar');
-			});
+			/*Route::get('/temAgregarc', function(){
+				return View::make('administracion.temAgregarc');
+			});*/
 			Route::get('/preCues', function(){
 				return View::make('administracion.preCues');
 			});
@@ -100,6 +100,10 @@ Route::post('/repFuentePer', array('uses' => 'NoticiasController@repFuentePer'))
 				return View::make('administracion.cueEditar');
 			});
 
+			Route::get('/temAgregar', function(){
+				return View::make('administracion.temAgregar');
+			});
+
 			Route::get('/previsualizar', function(){
 				return View::make('administracion.previsualizar');
 			});
@@ -131,6 +135,7 @@ Route::post('/repFuentePer', array('uses' => 'NoticiasController@repFuentePer'))
 			Route::post('/getCuestionarioConsultas', array('uses' => 'CuestionarioController@getCuestionarioConsultas'));
 			Route::post('/getCues', array('uses' => 'CuestionarioController@getCues'));
 			Route::get('/getTema', array('uses' => 'CuestionarioController@getTema'));
+			Route::post('/temAgregarC', array('uses' => 'TemaController@temAgregarC'));
 			Route::post('/editarCues', array('uses' => 'CuestionarioController@editarCues'));
 			Route::post('/preCues', array('uses' => 'CuestionarioController@preCues'));
 			Route::post('/darBajaCues', array('uses' => 'CuestionarioController@darBajaCues'));

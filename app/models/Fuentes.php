@@ -12,3 +12,4 @@ class Fuentes extends Eloquent
     'fueActivo'
   );
 }
+}

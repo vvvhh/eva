@@ -38,7 +38,6 @@ class CuestionarioController extends BaseController{
       else{
 
         $duplicado = cuestionarios::where('cueFechaAp',$data['fecha'])
-        ->where('cueTema',$data['tema'])
         ->where('cueNombre',$data['nombre'])
           ->get()
           ->toArray();
@@ -51,7 +50,6 @@ class CuestionarioController extends BaseController{
           else{
             $insert = cuestionarios::insert(array(
               'cueFechaAp' => trim($data['fecha']),
-              'cueTema' => trim($data['tema']),
               //'cueSubTema'=> $data['subTema'],
               'cueNombre' => trim($data['nombre'])
               //'cueTiempo'=> $data['tiempo'],
@@ -186,7 +184,7 @@ public function editarCues(){
               $editar = cuestionarios::where('cueId', $data['i'])
                 ->update(array(
                   'cueFechaAp' => $data['fecha'],
-                  'cueTema' => $data['tema'],
+                  //'cueTema' => $data['tema'],
                   //'cueSubTema'=> $data['subTema'],
                   'cueNombre' => $data['nombre'],
                   //'cueTiempo'=> $data['tiempo'],
