@@ -82,19 +82,6 @@
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="txtNombre" class="col-md-3 control-label">*Activo: </label>
-        <div class="col-md-8">
-          <SELECT id="txtActivo" size=1 class="form-control grisObscuro">
-            <option value="1">Sí</option>
-            <option value="0">No</option>
-          </SELECT>
-          <p class="text-danger formatoTexto14" id="spnNombre"> </p>
-          <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
-        </div>
-      </div>
-
-
       <center><button id="btnGuardarAg" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
       <button id="btnCancelarAg"  class="btn btn-danger"><i class="fa fa-times-circle"></i> Cancelar</button></center>
     </div>
@@ -234,7 +221,7 @@
     <!-- Panel editar -->
     <div class="row">
       <div class="col-md-10">
-        <div class="well transparenteClaro" id="formEditarServ">
+        <div class="well transparenteClaro hidden" id="formEditarServ">
           <div class="form-horizontal">
             <fieldset>
               <legend><span class="glyphicon glyphicon-edit text-primary"></span> Editar Cuestionario</legend>
@@ -290,30 +277,43 @@
 
 
 
-    <div class="row hidden" id="pnlConsulta">
+    <!--<div class="row" id="pnlConsulta">
       <div class="col-md-10 col-md-offset-1">
+          <div class="col-md-12">
+            <h2><i class="fa fa-th-list text-primary"></i> Cuestionarios del sistema</h2>
+            <div class="table-responsive">
+              <table class="table table-striped table-hover table-bordered">
+                <thead>
+                  <tr>
+                    <th class="col-md-1">Fecha de aplicaicón</th>
+                    <th class="col-md-3">Nombre del cuestionario</th>
+                    <th class="col-md-2 text-center">Tema</th>
+                  </tr>
+                </thead>
+                <tbody id="tbodyConsulta"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>-->
 
-          <div class="row">
-            <div class="col-md-12">
-              <h2><i class="fa fa-th-list text-primary"></i> Cuestionarios del sistema</h2>
-
-              <div class="row">
-                <div class="col-md-6">
-
-                </div>
-                <div class="col-md-2">
-                  <!--          <button id="btnEnviarA"  class="btn btn-info btn-block btn-md"><i class="fa fa-paper-plane"></i> Enviar por Correo</button>
-                -->
-                </div>
-              </div>
-
-              <div class="table-responsive" id="tblConculta">
+      <div class="row">
+      <div class="col-md-12">
+        <div id="tblConsultas">
+          <div class="row" >
+            <div class="col-md-12" >
+              <h2><span class="glyphicon glyphicon-edit text-primary"></span> Editar cuestionario</h2>
+              <div class="table-responsive" >
                 <table class="table table-striped table-hover table-bordered">
                   <thead>
                     <tr>
-                      <th class="col-md-1">Fecha de aplicaicón</th>
-                      <th class="col-md-3">Nombre del cuestionario</th>
-                      <th class="col-md-2 text-center">Tema</th>
+                      <th class="col-md-1 text-center">Fecha de elaboración</th>
+                      <th class="col-md-1 text-center">Fecha de aplicación</th>
+                      <th class="col-md-1 text-center">Tema</th>
+                      <th class="col-md-1 text-center">Nombre del custionario</th>
+                      <th class="col-md-1 text-center">Estado</th>
+                      <th class="col-md-1 text-center">Modificar</th>
+                      <th class="col-md-1 text-center">Eliminar</th>
                     </tr>
                   </thead>
                   <tbody id="tbodyConsulta"></tbody>
@@ -322,7 +322,7 @@
             </div>
           </div> <!-- /Tabla de servicios -->
         </div>
-      </div>
+        </div>
 
 
       <div class="row" id="pnlInicio">

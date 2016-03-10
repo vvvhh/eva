@@ -25,6 +25,7 @@ var btnCancelarAg = $('#btnCancelarAg'),
     token = $('#token'),
     txtNombre = $('#txtNombre'),
     slctTema = $('#slctTema'),
+    selCombo = $('#selCombo'),
     txtSubTema = $('#txtSubTema'),
     txtFechaApl = $('#txtFechaApl'),
     txtFechaEla = $('#txtFechaEla'),
@@ -148,8 +149,8 @@ function getTodosCuestionarios(){
         }
         tbodyServicios.append(
           '<tr>'+
-            '<td >'+o.cueFechaAp+'</td>'+
             '<td >'+o.cueFechaEla+'</td>'+
+            '<td >'+o.cueFechaAp+'</td>'+
             '<td >'+o.temTema+'</td>'+
             '<td >'+o.cueNombre+'</td>'+
             '<td class="text-center">'+status+'</td>'+
@@ -304,8 +305,6 @@ window.onload=function()
     document.getElementById('spnNombre').innerHTML = '<i class="fa fa-exclamation-circle"></i> Solo caracteres alfanumericos y @ . _ - ';
   }
 }*/
-
-//Función que optiene el tema de la bd y lo muestra en el select
 function getTema(){
   var datos = $.ajax({
     url: 'getTema',
@@ -352,7 +351,12 @@ function getCuestionarioConsultas(){
     if ( res.status == 'OK' ){
        var i = 1;
       $.each(res.data, function(k,o){
-
+      if ( o.cueActivo == 1 ){
+          status = '<span class="glyphicon glyphicon-ok text-success" title="Activo"></span>';
+        }
+        else{
+          status = '<span class="glyphicon glyphicon-remove" title="Inactivo"></span>';
+        }
         tbodyConsulta.append(
           '<tr>'+
             '<td >'+o.cueFechaEla+'</td>'+
@@ -439,12 +443,12 @@ function mostrarAgregar(){
 tblServicios.delegate('.glyphicon-edit', 'click', getCues);
 tblServicios.delegate('.glyphicon-trash', 'click', darBajaCues);
 btnCancelar.on('click',limpiar);
-btnGuardar.on('click', editarCues);
+btnGuardar.on('click',editarCues);
 
 btnCancelarAg.on('click',cancelar);
 btnGuardarAg.on('click',ingresoCuestionario);
 
 
-btnEditar.on('click', mostrarEditar);
-btnConsulta.on('click', mostrarConsulta);
-btnAgregar.on('click', mostrarAgregar);
+btnEditar.on('click',mostrarEditar);
+btnConsulta.on('click',mostrarConsulta);
+btnAgregar.on('click',mostrarAgregar);

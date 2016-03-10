@@ -1,5 +1,7 @@
 //variables del select de temas
-var txtTema = $('#txtTema');
+var txtTema = $('#txtTema'),
+btnCancelarTem = $('#btnCancelarTem'),
+btnGuardarTem = $('#btnGuardarTem');
 
 function temAgregar(){
   var editar = $.ajax({
@@ -47,9 +49,9 @@ function temAgregar(){
     }
 }
 
-function cancelar(){
+function temCancelar(){
   txtTema.val('');
 }
 
-btnCancelarTem.on('click',cancelar);
+btnCancelarTem.on('click',temCancelar);
 btnGuardarTem.on('click',temAgregar);

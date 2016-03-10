@@ -298,8 +298,6 @@ public function editarCues(){
       return Response::json($response);
   }
 
-
-
   public function getFuentesSesion(){
 
       $data = Input::all();
