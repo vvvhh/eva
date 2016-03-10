@@ -326,7 +326,24 @@ public function editarCues(){
       return Response::json($response);
   }
 
+public function getTema(){
+   $seleccionar = DB::select('SELECT * FROM temas WHERE temActivo=1');
 
+      if ( count( $seleccionar ) > 0 )
+        $response = array(
+          'status' => 'OK',
+          'data' => $seleccionar,
+          'message' => 'Resultados obtenidos'
+        );
+      else
+        $response = array(
+          'status' => 'ERROR',
+          'message' => 'No se encontraron temas registrados.'
+        );
 
+      return Response::json($response);
 
 }
+
+}
+

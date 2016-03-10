@@ -7,6 +7,7 @@ Route::post('/loginU', array('uses' => 'UsuarioController@loginU'));
 Route::post('/ingresoNoticia', array('uses' => 'NoticiasController@ingresoNoticia'));
 Route::post('/getNoticiasIngreso', array('uses' => 'NoticiasController@getNoticiasIngreso'));
 Route::post('/getFuentesSesion', array('uses' => 'CuestionarioController@getFuentesSesion'));
+Route::post('/getTodosTemas', array('uses' => 'CuestionarioController@getActivosTemas'));
 
 Route::post('/getNoticiasSesion', array('uses' => 'NoticiasController@getNoticiasSesion'));
 Route::post('/getNoticia', array('uses' => 'NoticiasController@getNoticia'));
@@ -54,6 +55,15 @@ Route::post('/repFuentePer', array('uses' => 'NoticiasController@repFuentePer'))
 			Route::get('/cueEditar', function(){
 				return View::make('administracion.cueEditar');
 			});
+			Route::get('/cueAgregar', function(){
+				return View::make('administracion.cueAgregar');
+			});
+			Route::get('/cueConsulta', function(){
+				return View::make('administracion.cueConsulta');
+			});
+			Route::get('/temAgregar', function(){
+				return View::make('administracion.temAgregar');
+			});
 			Route::get('/preCues', function(){
 				return View::make('administracion.preCues');
 			});
@@ -86,6 +96,10 @@ Route::post('/repFuentePer', array('uses' => 'NoticiasController@repFuentePer'))
 				return View::make('administracion.perAgregar');
 			});
 
+			Route::get('/temTema', function(){
+				return View::make('administracion.cueEditar');
+			});
+
 			Route::get('/previsualizar', function(){
 				return View::make('administracion.previsualizar');
 			});
@@ -116,6 +130,7 @@ Route::post('/repFuentePer', array('uses' => 'NoticiasController@repFuentePer'))
 			Route::post('/ingresoCuestionario', array('uses' => 'CuestionarioController@ingresoCuestionario'));
 			Route::post('/getCuestionarioConsultas', array('uses' => 'CuestionarioController@getCuestionarioConsultas'));
 			Route::post('/getCues', array('uses' => 'CuestionarioController@getCues'));
+			Route::get('/getTema', array('uses' => 'CuestionarioController@getTema'));
 			Route::post('/editarCues', array('uses' => 'CuestionarioController@editarCues'));
 			Route::post('/preCues', array('uses' => 'CuestionarioController@preCues'));
 			Route::post('/darBajaCues', array('uses' => 'CuestionarioController@darBajaCues'));

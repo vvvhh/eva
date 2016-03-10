@@ -24,13 +24,13 @@ var txtNombreFuente = $('#txtNombreFuente'),
 var btnCancelarAg = $('#btnCancelarAg'),
     token = $('#token'),
     txtNombre = $('#txtNombre'),
-    txtTema = $('#txtTema'),
+    slctTema = $('#slctTema'),
     txtSubTema = $('#txtSubTema'),
     txtFechaApl = $('#txtFechaApl'),
     txtFechaEla = $('#txtFechaEla'),
     btnGuardarAg =$('#btnGuardarAg'),
     txtFechaA =$('#txtFechaA'),
-    txtTemaE =$('#txtTemaE'),
+    slctTemaE =$('#slctTemaE'),
     txtNombreE =$('#txtNombreE');
 
 var spnNombre=$('#spnNombre'),
@@ -82,7 +82,7 @@ function editarCues(){
     data: {
       token: token.val(),
       fecha:txtFechaA.val(),
-      tema:txtTemaE.val(),
+      tema:slctTemaE.val(),
       subtema:txtSubTema.val(),
       nombre:txtNombreE.val(),
       activo:txtActivo.val(),
@@ -140,7 +140,7 @@ function getTodosCuestionarios(){
     if ( res.status == 'OK' ){
        var i = 1;
       $.each(res.data, function(k,o){
-        if ( o.fueActivo == 1 ){
+        if ( o.cueActivo == 1 ){
           status = '<span class="glyphicon glyphicon-ok text-success" title="Activo"></span>';
         }
         else{
@@ -150,16 +150,14 @@ function getTodosCuestionarios(){
           '<tr>'+
             '<td >'+o.cueFechaAp+'</td>'+
             '<td >'+o.cueFechaEla+'</td>'+
-            '<td class="text-center">'+o.cueTema+'</td>'+
+            '<td >'+o.temTema+'</td>'+
             '<td >'+o.cueNombre+'</td>'+
             '<td class="text-center">'+status+'</td>'+
             '<td class="text-center">'+
-              '<span class="glyphicon glyphicon-edit text-primary" id="'+o.cueId+'" '+
-              'style="cursor:pointer" title="Editar"></span>'+
+              '<span class="glyphicon glyphicon-edit text-primary"'+status+
             '</td>'+
             '<td class="text-center">'+
-              '<span class="glyphicon glyphicon-trash text-danger" id="'+o.cueId+'" '+
-              'style="cursor:pointer" title="Dar de baja"></span>'+
+              '<span class="glyphicon glyphicon-trash text-danger"'+status+
             '</td>'+
           '</tr>'
       );
@@ -200,11 +198,18 @@ function getCues(){
       $.each(res.data, function(k,o){
 
         txtFechaA.val(o.cueFechaAp);
-        txtTemaE.val(o.cueTema);
+        slctTemaE.val(o.temTema);
         txtNombreE.val(o.cueNombre);
         txtCueId.val(o.cueId);
         formEditarServ.removeClass('hidden');
         tblServicios.addClass('hidden');
+
+        selCombo.find('option').each(function(){
+        if ( o.temActivo == $(this).val() )
+        selCombo.val(o.temActivo);
+        });
+
+
       i++;
       });
     }else{
@@ -226,7 +231,7 @@ function ingresoCuestionario(){
     data: {
       token: token.val(),
       fecha: txtFechaApl.val(),
-      tema: txtTema.val(),
+      tema: slctTema.val(),
       subtema: txtSubTema.val(),
       nombre: txtNombre.val()
     },
@@ -249,10 +254,19 @@ function ingresoCuestionario(){
         title: "Esta seguro q sus datos son correctos.",
         text: "Verificar datos.",
         type: "success",
-        showConfirmButton: false,
+        showNegativeButton: true,
+        showConfirmButton: true,
       });
-      document.location=('./cueEditar#formselect')
-      form.addClass('hidden');
+      swal({
+        title: "Guardado.",
+        text: "Cuestionario guardado con éxito.",
+        type: "success",
+        showNegativeButton: true,
+        showConfirmButton: true,
+      });
+      //swal();
+      document.location=('./cueEditar')
+      pnlAgregar.addClass('hidden');
       formselect.removeClass('hidden'); //mostrar formulario de opción multiple
     }
     else{
@@ -262,6 +276,21 @@ function ingresoCuestionario(){
 
 function cancelar(){
   txtNombre.val('');
+}
+
+// fecha actual
+function date(){
+  dt = new Date();
+  m=((dt.getMonth()+1)>=10)? (dt.getMonth()+1) : '0' + (dt.getMonth()+1);  
+  d=((dt.getDate())>=10)? (dt.getDate()) : '0' + (dt.getDate());
+  a = dt.getFullYear();
+  document.getElementById('txtFechaEla').innerHTML=d+" - "+m+" - "+a;
+}
+
+window.onload=function()
+{
+  date();
+  getTema();
 }
 
 /*function comprobarFuente(e){
@@ -275,6 +304,32 @@ function cancelar(){
     document.getElementById('spnNombre').innerHTML = '<i class="fa fa-exclamation-circle"></i> Solo caracteres alfanumericos y @ . _ - ';
   }
 }*/
+
+//Función que optiene el tema de la bd y lo muestra en el select
+function getTema(){
+  var datos = $.ajax({
+    url: 'getTema',
+    type: 'get',
+        dataType:'json',
+        async:false
+    }).error(function(e){
+        alert('Ocurrio un error, intente de nuevo');
+    }).responseText;
+
+    var res;
+    try{
+        res = JSON.parse(datos);
+    }catch (e){
+        alert('Error JSON ' + e);
+    }
+    //selCombo.html('');
+      $.each(res.data, function(k,o){
+        selCombo.append(
+          '<option value="'+o.temId+'">'+o.temTema+'</option>'
+        );
+      });
+    document.getElementById('selCombo');
+}
 
 function getCuestionarioConsultas(){
   var datos = $.ajax({
@@ -300,10 +355,17 @@ function getCuestionarioConsultas(){
 
         tbodyConsulta.append(
           '<tr>'+
-            '<td class="text-center">'+o.cueFechaAp+'</td>'+
-            '<td class="text-center">'+o.cueNombre+'</td>'+
-            '<td class="text-center">'+o.cueTema+'</td>'+
-            //'<td class="text-center">'+o.cueSubTema+'</td>'´+ otro campo
+            '<td >'+o.cueFechaEla+'</td>'+
+            '<td >'+o.cueFechaAp+'</td>'+
+            '<td >'+o.temTema+'</td>'+
+            '<td >'+o.cueNombre+'</td>'+
+            '<td class="text-center">'+status+'</td>'+
+            '<td class="text-center">'+
+              '<span class="glyphicon glyphicon-edit text-primary"'+status+
+            '</td>'+
+            '<td class="text-center">'+
+              '<span class="glyphicon glyphicon-trash text-danger"'+status+
+            '</td>'+
           '</tr>'
       );
       i++;
@@ -348,7 +410,7 @@ function mostrarConsulta(){
 
 function mostrarAgregar(){
   txtFechaApl.val('');
-  txtTema.val('');
+  slctTema.val('');
   txtSubTema.val('');
   txtNombre.val('');
   pnlAgregar.removeClass('hidden');
@@ -365,17 +427,6 @@ function mostrarAgregar(){
   btnAgregar.removeClass('botonNoactivo');
 }
 
-// fecha actual
-function fechaSys(){
-  var d = new Date(); 
-  document.write(d.getDate() + "/" +
-    (d.getMonth() +1) + "/" +
-    d.getFullYear(), ', '+
-    d.getHours(),':'+
-    d.getMinutes(),':'+
-    d.getSeconds());
-}
-
 /******/
 /*$(document).on('ready', function(){
 
@@ -388,12 +439,12 @@ function fechaSys(){
 tblServicios.delegate('.glyphicon-edit', 'click', getCues);
 tblServicios.delegate('.glyphicon-trash', 'click', darBajaCues);
 btnCancelar.on('click',limpiar);
-btnGuardar.on('click',editarCues);
+btnGuardar.on('click', editarCues);
 
 btnCancelarAg.on('click',cancelar);
 btnGuardarAg.on('click',ingresoCuestionario);
 
 
-btnEditar.on('click',mostrarEditar);
-btnConsulta.on('click',mostrarConsulta);
-btnAgregar.on('click',mostrarAgregar);
+btnEditar.on('click', mostrarEditar);
+btnConsulta.on('click', mostrarConsulta);
+btnAgregar.on('click', mostrarAgregar);
