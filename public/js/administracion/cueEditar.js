@@ -139,8 +139,12 @@ function getTodosCuestionarios(){
     }
     tbodyServicios.html('');
     if ( res.status == 'OK' ){
-       var i = 1;
+       var i = 1,
+       b;
       $.each(res.data, function(k,o){
+        if (o.temId == o.cueId) {
+          b=o.temId;
+        }
         if ( o.cueActivo == 1 ){
           status = '<span class="glyphicon glyphicon-ok text-success" title="Activo"></span>';
         }
@@ -151,7 +155,7 @@ function getTodosCuestionarios(){
           '<tr>'+
             '<td >'+o.cueFechaEla+'</td>'+
             '<td >'+o.cueFechaAp+'</td>'+
-            '<td >'+o.temTema+'</td>'+
+            '<td >'+b+'</td>'+
             '<td >'+o.cueNombre+'</td>'+
             '<td class="text-center">'+status+'</td>'+
             '<td class="text-center">'+
@@ -256,17 +260,18 @@ function ingresoCuestionario(){
         text: "Verificar datos.",
         type: "success",
         showNegativeButton: true,
-        showConfirmButton: true,
+        showConfirmButton: true
       });
-      swal({
-        title: "Guardado.",
-        text: "Cuestionario guardado con éxito.",
-        type: "success",
-        showNegativeButton: true,
-        showConfirmButton: true,
-      });
-      //swal();
-      document.location=('./cueEditar')
+      function(){
+        swal({
+          title: "Guardado.",
+          text: "Datos generales guardados con exito.",
+          type: "success",
+          showNegativeButton: true,
+          showConfirmButton: true
+        });
+      }
+      document.location=('./cueAgregar#formselect')
       pnlAgregar.addClass('hidden');
       formselect.removeClass('hidden'); //mostrar formulario de opción multiple
     }
@@ -380,57 +385,6 @@ function getCuestionarioConsultas(){
     tblConsulta.removeClass('hidden');
 }
 
-function mostrarEditar(){
-  pnlAgregar.addClass('hidden');
-  pnlConsulta.addClass('hidden');
-  tblServicios.removeClass('hidden');
-  pnlInicio.addClass('hidden');
-  getTodosCuestionarios();
-
-  btnEditar.addClass('botonActivo');
-  btnConsulta.addClass('botonNoactivo');
-  btnAgregar.addClass('botonNoactivo');
-
-  btnEditar.removeClass('botonNoactivo');
-  btnConsulta.removeClass('botonActivo');
-  btnAgregar.removeClass('botonActivo');
-}
-
-function mostrarConsulta(){
-  pnlAgregar.addClass('hidden');
-  pnlConsulta.removeClass('hidden');
-  tblServicios.addClass('hidden');
-  pnlInicio.addClass('hidden');
-  getCuestionarioConsultas();
-
-  btnEditar.addClass('botonNoactivo');
-  btnConsulta.addClass('botonActivo');
-  btnAgregar.addClass('botonNoactivo');
-
-  btnEditar.removeClass('botonActivo');
-  btnConsulta.removeClass('botonNoactivo');
-  btnAgregar.removeClass('botonActivo');
-}
-
-function mostrarAgregar(){
-  txtFechaApl.val('');
-  slctTema.val('');
-  txtSubTema.val('');
-  txtNombre.val('');
-  pnlAgregar.removeClass('hidden');
-  pnlConsulta.addClass('hidden');
-  tblServicios.addClass('hidden');
-  pnlInicio.addClass('hidden');
-
-  btnEditar.addClass('botonNoactivo');
-  btnConsulta.addClass('botonNoactivo');
-  btnAgregar.addClass('botonActivo');
-
-  btnEditar.removeClass('botonActivo');
-  btnConsulta.removeClass('botonActivo');
-  btnAgregar.removeClass('botonNoactivo');
-}
-
 /******/
 /*$(document).on('ready', function(){
 
@@ -448,7 +402,64 @@ btnGuardar.on('click',editarCues);
 btnCancelarAg.on('click',cancelar);
 btnGuardarAg.on('click',ingresoCuestionario);
 
+//redirección de botones de inicio
+btnEditar.click(
+  function() {
+      getTodosCuestionarios();
 
-btnEditar.on('click',mostrarEditar);
-btnConsulta.on('click',mostrarConsulta);
-btnAgregar.on('click',mostrarAgregar);
+      btnEditar.addClass('botonActivo');
+      btnConsulta.addClass('botonNoactivo');
+      btnAgregar.addClass('botonNoactivo');
+
+      btnEditar.removeClass('botonNoactivo');
+      btnConsulta.removeClass('botonActivo');
+      btnAgregar.removeClass('botonActivo');
+    window.location.href = 'cueEditar#tblServicios';
+    return false;
+});
+
+btnConsulta.click(
+  function() {
+      getCuestionarioConsultas();
+
+      btnEditar.addClass('botonNoactivo');
+      btnConsulta.addClass('botonActivo');
+      btnAgregar.addClass('botonNoactivo');
+
+      btnEditar.removeClass('botonActivo');
+      btnConsulta.removeClass('botonNoactivo');
+      btnAgregar.removeClass('botonActivo');
+    window.location.href = 'cueConsulta#tblConsultas';
+    return false;
+});
+
+btnAgregar.click(
+  function() {
+      getTodosCuestionarios();
+
+      btnEditar.addClass('botonNoactivo');
+      btnConsulta.addClass('botonNoactivo');
+      btnAgregar.addClass('botonActivo');
+
+      btnEditar.removeClass('botonActivo');
+      btnConsulta.removeClass('botonActivo');
+      btnAgregar.removeClass('botonNoactivo');
+    window.location.href = 'cueAgregar#pnlAgregar';
+    return false;
+});
+
+//check para mostrar formulairos de preguntas
+chkAbierta.click(
+  function(){
+    if( chkDof.prop('checked') ) {            //    Si el checkDof esta checado 
+      formprea.removeClass('hidden')//Desactiva el otro check
+    }   
+  }
+)
+chkOpMul.click(
+  function(){
+    if( chkDof.prop('checked') ) {            //    Si el checkDof esta checado 
+      formpom.removeClass('hidden')//Desactiva el otro check
+    }   
+  }
+)
