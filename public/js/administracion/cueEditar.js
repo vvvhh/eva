@@ -262,15 +262,7 @@ function ingresoCuestionario(){
         showNegativeButton: true,
         showConfirmButton: true
       });
-      function(){
-        swal({
-          title: "Guardado.",
-          text: "Datos generales guardados con exito.",
-          type: "success",
-          showNegativeButton: true,
-          showConfirmButton: true
-        });
-      }
+      swal();
       document.location=('./cueAgregar#formselect')
       pnlAgregar.addClass('hidden');
       formselect.removeClass('hidden'); //mostrar formulario de opción multiple
@@ -278,6 +270,16 @@ function ingresoCuestionario(){
     else{
       alert(resultado.message);
     }
+}
+
+function swal(){
+  swal({
+        title: "Guardado.",
+        text: "Datos generales guardados con exito.",
+        type: "success",
+        showNegativeButton: true,
+        showConfirmButton: true
+      });
 }
 
 function cancelar(){
