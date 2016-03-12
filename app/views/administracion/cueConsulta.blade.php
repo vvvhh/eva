@@ -16,7 +16,7 @@
 <div>
   <div class="row">
     <center><h2><i class="fa fa-newspaper-o text-primary"></i> Cuestionarios</h2></center>
-    <!--center><h3><i class="fa fa-newspaper-o text-primary"></i> Agregar</h3></center-->
+    <center><h3><i class="fa fa-th-list text-primary"></i> Consulta</h3></center>
     <br><br>
     <div class="col-md-4">
       <button id="btnAgregar"  class="btn btn-block btn-md botonNoactivo"><i class="fa fa-plus-circle"></i> Agregar</button>
@@ -40,10 +40,11 @@
                   <th class="col-md-1 text-center">Fecha de elaboración</th>
                   <th class="col-md-1 text-center">Fecha de aplicación</th>
                   <th class="col-md-1 text-center">Tema</th>
+                  <th class="col-md-1 text-center">Sub Tema</th>
                   <th class="col-md-1 text-center">Nombre del custionario</th>
                   <th class="col-md-1 text-center">Estado</th>
                   <th class="col-md-1 text-center">Modificar</th>
-                  <th class="col-md-1 text-center">Eliminar</th>
+                  <th class="col-md-1 text-center">Dar de baja</th>
                 </tr>
               </thead>
               <tbody id="tbodyConsulta"></tbody>

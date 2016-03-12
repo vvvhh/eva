@@ -2,6 +2,7 @@
 var txtTema = $('#txtTema'),
 btnCancelarTem = $('#btnCancelarTem'),
 btnGuardarTem = $('#btnGuardarTem'),
+txtActivot = $('#txtActivot'),
 token = $('#token');
 
 function temAgregar(){
@@ -13,6 +14,7 @@ function temAgregar(){
     data: {
       token: token.val(),
       tema: txtTema.val(),
+      activo: txtActivot.val(),
     },
     type: 'post',
     dataType:'json',
@@ -32,9 +34,9 @@ function temAgregar(){
     console.log("teamAgregar OK");  
       swal({
         title: "Guardado.",
-        text: "Cuestionario guardado con éxito.",
+        text: "Tema guardado con éxito.",
         type: "success",
-        showNegativeButton: true,
+        showCancelButton: true,
         showConfirmButton: true,
       });
     }

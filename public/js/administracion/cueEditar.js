@@ -28,7 +28,7 @@ var btnCancelarAg = $('#btnCancelarAg'),
     selCombo = $('#selCombo'),
     txtSubTema = $('#txtSubTema'),
     txtFechaApl = $('#txtFechaApl'),
-    txtFechaEla = $('#txtFechaEla'),
+    FechaEla = $('#FechaEla'),
     btnGuardarAg =$('#btnGuardarAg'),
     txtFechaA =$('#txtFechaA'),
     slctTemaE =$('#slctTemaE'),
@@ -39,6 +39,7 @@ var spnNombre=$('#spnNombre'),
 
 var formselect = $('#formselect'),
     formprea = $('#formprea'),
+    //datosActivo = $('#datosActivo'),
     formpom = $('#formpom');
 
 /*Ide desde el icono editar de la tabla*/
@@ -111,9 +112,9 @@ function editarCues(){
       swal({
         title: "Edición de información correcta.",
         text: res.message,
-        timer: 2000,
         type: "success",
-        showConfirmButton: true
+        showConfirmButton: true,
+        showCancelButton: true
       });
     }
     else {
@@ -138,13 +139,10 @@ function getTodosCuestionarios(){
         alert('Error JSON ' + e);
     }
     tbodyServicios.html('');
+    var res;
     if ( res.status == 'OK' ){
-       var i = 1,
-       b;
+       var i = 1;
       $.each(res.data, function(k,o){
-        if (o.temId == o.cueId) {
-          b=o.temId;
-        }
         if ( o.cueActivo == 1 ){
           status = '<span class="glyphicon glyphicon-ok text-success" title="Activo"></span>';
         }
@@ -155,7 +153,8 @@ function getTodosCuestionarios(){
           '<tr>'+
             '<td >'+o.cueFechaEla+'</td>'+
             '<td >'+o.cueFechaAp+'</td>'+
-            '<td >'+b+'</td>'+
+            '<td >'+o.temTema+'</td>'+
+            '<td >'+o.cueSubTema+'</td>'+
             '<td >'+o.cueNombre+'</td>'+
             '<td class="text-center">'+status+'</td>'+
             '<td class="text-center">'+
@@ -204,15 +203,19 @@ function getCues(){
 
         txtFechaA.val(o.cueFechaAp);
         slctTemaE.val(o.temTema);
+        txtSubTema.val(o.cueSubTema);
         txtNombreE.val(o.cueNombre);
         txtCueId.val(o.cueId);
+        FechaEla.val(o.cueFechaEla);
         formEditarServ.removeClass('hidden');
         tblServicios.addClass('hidden');
 
-        selCombo.find('option').each(function(){
-        if ( o.temActivo == $(this).val() )
-        selCombo.val(o.temActivo);
-        });
+        selCombo.find('option').each(
+          function(){
+            if ( o.temActivo == $(this).val() )
+            selCombo.val(o.temActivo);
+          }
+        );
 
 
       i++;
@@ -236,6 +239,7 @@ function ingresoCuestionario(){
     data: {
       token: token.val(),
       fecha: txtFechaApl.val(),
+      fechaEla: FechaEla.val(),
       tema: selCombo.val(),
       subtema: txtSubTema.val(),
       nombre: txtNombre.val()
@@ -256,14 +260,14 @@ function ingresoCuestionario(){
 
     if ( resultado.status == 'OK' ){
       swal({
-        title: "Esta seguro q sus datos son correctos.",
+        title: "Esta seguro que sus datos son correctos.",
         text: "Verificar datos.",
         type: "success",
-        showNegativeButton: true,
+        showCancelButton: true,
         showConfirmButton: true
       });
       swal();
-      document.location=('./cueAgregar#formselect')
+      document.location=('./cueAgregar#formselect');
       pnlAgregar.addClass('hidden');
       formselect.removeClass('hidden'); //mostrar formulario de opción multiple
     }
@@ -272,7 +276,7 @@ function ingresoCuestionario(){
     }
 }
 
-function swal(){
+/*function swal(){
   swal({
         title: "Guardado.",
         text: "Datos generales guardados con exito.",
@@ -280,7 +284,7 @@ function swal(){
         showNegativeButton: true,
         showConfirmButton: true
       });
-}
+}*/
 
 function cancelar(){
   txtNombre.val('');
@@ -291,14 +295,15 @@ function date(){
   dt = new Date();
   m=((dt.getMonth()+1)>=10)? (dt.getMonth()+1) : '0' + (dt.getMonth()+1);  
   d=((dt.getDate())>=10)? (dt.getDate()) : '0' + (dt.getDate());
-  a = dt.getFullYear();
-  document.getElementById('txtFechaEla').innerHTML=d+" - "+m+" - "+a;
+  a= dt.getFullYear();
+  //document.getElementById('fechaEla').innerHTML=a+" - "+m+" - "+d;
 }
 
 window.onload=function()
 {
   date();
   getTema();
+  pnlAgregar.removeClass('hidden');
 }
 
 /*function comprobarFuente(e){
@@ -328,7 +333,7 @@ function getTema(){
     }catch (e){
         alert('Error JSON ' + e);
     }
-    //selCombo.html('');
+      selCombo.html('');
       $.each(res.data, function(k,o){
         selCombo.append(
           '<option value="'+o.temId+'">'+o.temTema+'</option>'
@@ -368,7 +373,8 @@ function getCuestionarioConsultas(){
           '<tr>'+
             '<td >'+o.cueFechaEla+'</td>'+
             '<td >'+o.cueFechaAp+'</td>'+
-            '<td >'+o.temTema+'</td>'+
+            '<td >'+o.temTema*'</td'+
+            '<td >'+o.cueSubTema+'</td>'+
             '<td >'+o.cueNombre+'</td>'+
             '<td class="text-center">'+status+'</td>'+
             '<td class="text-center">'+
@@ -395,14 +401,6 @@ function getCuestionarioConsultas(){
   intNombre = document.querySelector("input[name='txtFuente']");
   intNombre.addEventListener("input", comprobarFuente);
 });*/
-
-tblServicios.delegate('.glyphicon-edit', 'click', getCues);
-tblServicios.delegate('.glyphicon-trash', 'click', darBajaCues);
-btnCancelar.on('click',limpiar);
-btnGuardar.on('click',editarCues);
-
-btnCancelarAg.on('click',cancelar);
-btnGuardarAg.on('click',ingresoCuestionario);
 
 //redirección de botones de inicio
 btnEditar.click(
@@ -437,6 +435,8 @@ btnConsulta.click(
 
 btnAgregar.click(
   function() {
+      formselect.addClass('hidden');
+      pnlAgregar.removeClass('hidden');
       getTodosCuestionarios();
 
       btnEditar.addClass('botonNoactivo');
@@ -451,17 +451,42 @@ btnAgregar.click(
 });
 
 //check para mostrar formulairos de preguntas
-chkAbierta.click(
-  function(){
-    if( chkDof.prop('checked') ) {            //    Si el checkDof esta checado 
-      formprea.removeClass('hidden')//Desactiva el otro check
-    }   
-  }
-)
-chkOpMul.click(
-  function(){
-    if( chkDof.prop('checked') ) {            //    Si el checkDof esta checado 
-      formpom.removeClass('hidden')//Desactiva el otro check
-    }   
-  }
-)
+//------------------chkAbierta----------------------------------
+function chkA(form)
+{
+    if (chkAbierta.checked == true)
+    {
+    chkOpMul.disabled =true;
+    formprea.removeClass('hidden');
+    }
+
+    if (chkAbierta.checked == false)
+    {
+    chkOpMul.disabled =false;
+    formprea.addClass('hidden');
+    }
+}
+
+//------------------chkOpMul-------------------------------------
+function chkO(form)
+{
+    if (chkOpMul.checked == true)
+    {
+    chkAbierta.disabled =true;
+    formpom.removeClass('hidden');
+    }
+
+    if (chkOpMul.checked == false)
+    {
+    chkAbierta.disabled =false;
+    formpom.addClass('hidden');
+    }    
+}
+
+tblServicios.delegate('.glyphicon-edit', 'click', getCues);
+tblServicios.delegate('.glyphicon-trash', 'click', darBajaCues);
+btnCancelar.on('click',limpiar);
+btnGuardar.on('click',editarCues);
+
+btnCancelarAg.on('click',cancelar);
+btnGuardarAg.on('click',ingresoCuestionario);

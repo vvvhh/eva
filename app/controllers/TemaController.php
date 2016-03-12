@@ -42,7 +42,8 @@ public function temAgregarC(){ /**INGRESO Servicio**/
           ));
           else{
             $insert = Temas::insert(array(
-              'temTema' => trim($data['tema'])
+              'temTema' => trim($data['tema']),
+              'temActivo' => true
             ));
 
               if ( $insert ){

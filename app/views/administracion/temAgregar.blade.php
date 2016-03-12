@@ -15,7 +15,7 @@
 @section('content')
 <div>
   <div class="row">
-    <center><h2><i class="fa fa-newspaper-o text-primary"></i> Temas</h2></center>
+    <center><h2><i class="fa fa-text-width text-primary"></i> Temas</h2></center>
     <!--<br><br>
       <div class="col-md-4">
         <button id="btnConsulta" class="btn btn-block btn-md botonNoactivo"><i class="fa fa-th-list"></i> Consultar</button>
@@ -36,13 +36,23 @@
 
     <form class="form-horizontal" id="form" name="form" novalidate>
       <div class="form-group">
-        <label for="txtNombreS" class="col-md-3 control-label">*Tema: </label>
+        <label for="txtNombreS" class="col-md-4 control-label">Tema: </label>
         <div class="col-md-8">
           <input id="txtTema" name="txtTema" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Tema de donde se obtendrá la información" required>
           <p class="text-danger formatoTexto14" id="spnNombre"> </p>
           <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
         </div>
       </div>
+      <div class="form-group">
+        <label for="txtActivot" class="col-md-4 control-label">Activo:</label>
+        <div class="col-md-8">
+          <select name="" id="txtActivot" class="form-control input-sm">
+            <option value="1">Sí</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+      </div>
+
       <center>
         <button id="btnGuardarTem" class="btn btn-primary">
           <i class="fa fa-floppy-o"></i> Guardar

@@ -12,7 +12,7 @@ class CuestionarioController extends BaseController{
       $data = array(
         'fecha' => Input::get('fecha'),
         'tema' => Input::get('tema'),
-        //'subtema' => Input::get('subtema'),  para subtema
+        'subtema' => Input::get('subtema'),  //para subtema
         'nombre' => Input::get('nombre')
         //'tiempo' => Input::get('tiempo'),
         //'idResponsable' => Input::get('idResponsable'),
@@ -39,6 +39,7 @@ class CuestionarioController extends BaseController{
 
         $duplicado = cuestionarios::where('cueFechaAp',$data['fecha'])
         ->where('cueNombre',$data['nombre'])
+        ->where('cueSubTema',$data['subtema'])
           ->get()
           ->toArray();
 
@@ -50,7 +51,7 @@ class CuestionarioController extends BaseController{
           else{
             $insert = cuestionarios::insert(array(
               'cueFechaAp' => trim($data['fecha']),
-              //'cueSubTema'=> $data['subTema'],
+              'cueSubTema'=> trim($data['subtema']),
               'cueNombre' => trim($data['nombre'])
               //'cueTiempo'=> $data['tiempo'],
               //'cueSubTema'=> $data['subTema'],

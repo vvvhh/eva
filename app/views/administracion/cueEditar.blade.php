@@ -16,7 +16,7 @@
 <div>
   <div class="row">
     <center><h2><i class="fa fa-newspaper-o text-primary"></i> Cuestionarios</h2></center>
-    <center><h3><i class="fa fa-newspaper-o text-primary"></i> Agregar</h3></center>
+    <center><h3><i class="fa fa-pencil-square-o text-primary"></i> Editar</h3></center>
     <br><br>
     <div class="col-md-4">
         <button id="btnAgregar" class="btn btn-block btn-md botonNoactivo"><i class="fa fa-plus-circle"></i> Agregar</button>
@@ -41,6 +41,7 @@
               <th class="col-md-1 text-center">Fecha de elaboración</th>
               <th class="col-md-1 text-center">Fecha de aplicación</th>
               <th class="col-md-1 text-center">Tema</th>
+              <th class="col-md-1 text-center">Sub Tema</th>
               <th class="col-md-1 text-center">Nombre del custionario</th>
               <th class="col-md-1 text-center">Estado</th>
               <th class="col-md-1 text-center">Modificar</th>
@@ -57,7 +58,7 @@
 <!-- Panel editar -->
 <div class="row">
   <div class="col-md-10">
-    <div class="well transparenteClaro" id="formEditarServ">
+    <div class="well transparenteClaro hidden" id="formEditarServ">
       <div class="form-horizontal">
         <fieldset>
           <legend><span class="glyphicon glyphicon-edit text-primary"></span> Editar Cuestionario</legend>
