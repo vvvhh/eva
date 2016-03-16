@@ -13,7 +13,9 @@ class CuestionarioController extends BaseController{
         'fecha' => Input::get('fecha'),
         'tema' => Input::get('tema'),
         'subtema' => Input::get('subtema'),  //para subtema
-        'nombre' => Input::get('nombre')
+        'nombre' => Input::get('nombre'),
+        'fechaEla' => Input::get('fechaEla'),
+        'datosActivo' => Input::get('datosActivo')
         //'tiempo' => Input::get('tiempo'),
         //'idResponsable' => Input::get('idResponsable'),
       );
@@ -52,8 +54,9 @@ class CuestionarioController extends BaseController{
             $insert = cuestionarios::insert(array(
               'cueFechaAp' => trim($data['fecha']),
               'cueSubTema'=> trim($data['subtema']),
-              'cueNombre' => trim($data['nombre'])
-              //'cueTiempo'=> $data['tiempo'],
+              'cueNombre' => trim($data['nombre']),
+              'cueFechaEla'=> $data['fechaEla'],
+              'cueActivo' => $data['datosActivo']
               //'cueSubTema'=> $data['subTema'],
               //'cueResponsables'=> $data['idResponsable']
             ));
@@ -155,7 +158,7 @@ public function editarCues(){
         $data = array(
           'fecha' => Input::get('fecha'),
           'tema' => Input::get('tema'),
-          //'subTema' => Input::get('subTema'),
+          'subtema' => Input::get('subtema'),
           'nombre' => Input::get('nombre'),
           //'tiempo' => Input::get('tiempo'),
           'activo' => Input::get('activo'),

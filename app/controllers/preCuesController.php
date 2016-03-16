@@ -12,7 +12,7 @@ class CuestionarioController extends BaseController{
       $data = array(
         'fecha' => Input::get('fecha'),
         'tema' => Input::get('tema'),
-        //'subtema' => Input::get('subtema'),  para subtema
+        'subtema' => Input::get('subtema'),
         'nombre' => Input::get('nombre')
         //'tiempo' => Input::get('tiempo'),
         //'idResponsable' => Input::get('idResponsable'),
@@ -52,7 +52,7 @@ class CuestionarioController extends BaseController{
             $insert = cuestionarios::insert(array(
               'cueFechaAp' => trim($data['fecha']),
               'cueTema' => trim($data['tema']),
-              //'cueSubTema'=> $data['subTema'],
+              'cueSubTema'=> $data['subtema'],
               'cueNombre' => trim($data['nombre'])
               //'cueTiempo'=> $data['tiempo'],
               //'cueSubTema'=> $data['subTema'],

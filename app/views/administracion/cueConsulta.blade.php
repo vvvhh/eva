@@ -43,8 +43,6 @@
                   <th class="col-md-1 text-center">Sub Tema</th>
                   <th class="col-md-1 text-center">Nombre del custionario</th>
                   <th class="col-md-1 text-center">Estado</th>
-                  <th class="col-md-1 text-center">Modificar</th>
-                  <th class="col-md-1 text-center">Dar de baja</th>
                 </tr>
               </thead>
               <tbody id="tbodyConsulta"></tbody>

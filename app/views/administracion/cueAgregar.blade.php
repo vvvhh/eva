@@ -46,11 +46,19 @@
         </div>
       </div>
 
-      <div class="form-group" id="groupNueva2">
-        <label for="txtFechaInicio" class="col-md-3 control-label">*Fecha de elaboración: </label>
+      <div class="form-group">
+        <label for="txtFechaInicio" class="col-md-3 control-label"><br>*Fecha de elaboración: </label>
         <div class="col-md-5">
-          <div class="input-group date control-label" data-provide="datepicker" id="fechaEla">
-          <label for="txtFechaInicio" class="col-md-3 control-label">12/03/2016 </label>
+        <label for="txtFechaInicio" class=" control-label">*fecha tentativa: </label>
+          <div class="input-group date" data-provide="datepicker">
+            <input type="text" class="form-control" id="fechaEla" value="
+            <?php //Ejemplo curso PHP aprenderaprogramar.com
+            $time = time();
+            echo date("Y-m-d", $time);
+            ?>">
+            <div class="input-group-addon">
+              <i class="fa fa-calendar"></i>
+            </div>
           </div>
         </div>
       </div>
@@ -83,8 +91,8 @@
         </div>
       </div>
 
-      <div class="form-group hidden">
-        <label for="txtActivo" class="col-md-3 control-label">Activo:</label>
+      <div class="form-group">
+        <label class="col-md-3 control-label">Activo:</label>
         <div class="col-md-2">
           <select name="" id="datosActivo" class="form-control input-sm">
             <option value="1">Sí</option>

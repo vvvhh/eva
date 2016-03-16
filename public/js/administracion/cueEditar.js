@@ -28,7 +28,7 @@ var btnCancelarAg = $('#btnCancelarAg'),
     selCombo = $('#selCombo'),
     txtSubTema = $('#txtSubTema'),
     txtFechaApl = $('#txtFechaApl'),
-    FechaEla = $('#FechaEla'),
+    fechaEla = $('#fechaEla'),
     btnGuardarAg =$('#btnGuardarAg'),
     txtFechaA =$('#txtFechaA'),
     slctTemaE =$('#slctTemaE'),
@@ -39,7 +39,7 @@ var spnNombre=$('#spnNombre'),
 
 var formselect = $('#formselect'),
     formprea = $('#formprea'),
-    //datosActivo = $('#datosActivo'),
+    datosActivo = $('#datosActivo'),
     formpom = $('#formpom');
 
 /*Ide desde el icono editar de la tabla*/
@@ -206,7 +206,8 @@ function getCues(){
         txtSubTema.val(o.cueSubTema);
         txtNombreE.val(o.cueNombre);
         txtCueId.val(o.cueId);
-        FechaEla.val(o.cueFechaEla);
+        fechaEla.val(o.cueFechaEla);
+        datosActivo.val(o.cueActivo);
         formEditarServ.removeClass('hidden');
         tblServicios.addClass('hidden');
 
@@ -234,15 +235,17 @@ function limpiar(){
 /*******/
 
 function ingresoCuestionario(){
+  console.log(fechaEla.val());
   var editar = $.ajax({
     url: 'ingresoCuestionario',
     data: {
       token: token.val(),
       fecha: txtFechaApl.val(),
-      fechaEla: FechaEla.val(),
+      fechaEla: fechaEla.val(),
       tema: selCombo.val(),
       subtema: txtSubTema.val(),
-      nombre: txtNombre.val()
+      nombre: txtNombre.val(),
+      datosActivo: datosActivo.val()
     },
     type: 'post',
     dataType:'json',
@@ -274,6 +277,8 @@ function ingresoCuestionario(){
     else{
       alert(resultado.message);
     }
+
+
 }
 
 /*function swal(){
@@ -291,19 +296,20 @@ function cancelar(){
 }
 
 // fecha actual
-function date(){
+/*function date(){
   dt = new Date();
   m=((dt.getMonth()+1)>=10)? (dt.getMonth()+1) : '0' + (dt.getMonth()+1);  
   d=((dt.getDate())>=10)? (dt.getDate()) : '0' + (dt.getDate());
   a= dt.getFullYear();
-  //document.getElementById('fechaEla').innerHTML=a+" - "+m+" - "+d;
-}
+  document.getElementById('fechaEla').innerHTML=a+" - "+m+" - "+d;
+}*/
 
 window.onload=function()
 {
-  date();
+  //date();
   getTema();
   pnlAgregar.removeClass('hidden');
+  txtFechaApl.val('');
 }
 
 /*function comprobarFuente(e){
