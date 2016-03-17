@@ -1,36 +1,12 @@
 var btnAgregar = $('#btnAgregar'),
     btnCancelar = $('#btnCancelar'),
     token = $('#token');
+
 var txtDiasAgregar=$('#txtDiasAgregar'),
  token=$('#token'),
 tbodyConsulta=$('#tbodyConsulta');
 
-var btnAgregar=$('#btnAgregar'),
-    btnEditarM=$('#btnEditarM'),
-    btnConsulta=$('#btnConsulta');
-
-var txtFechaFin=$('#txtFechaFin'),
-txtFechaInicio=$('#txtFechaInicio'),
-pnlAgregar=$('#pnlAgregar'),
-pnlConsulta=$('#pnlConsulta'),
-tblServicios=$('#tblServicios');
-
-var btnGuardar =$('#btnGuardar');
-var tbodyPeriodos=$('#tbodyPeriodos'),
-tblPeriodos=$('#tblPeriodos');
-
-var txtFechaInicioE=$('#txtFechaInicioE'),
-txtFechaFinE=$('#txtFechaFinE'),
-btnCancelarE=$('#btnCancelarE'),
-btnEditar=$('#btnEditar'),
-idPeriodo=$('#idPeriodo'),
-btnEditar=$('#btnEditar'),
-pnlEditar=$('#pnlEditar'),
-pnlInicio=$('#pnlInicio'),
-btnEditar=$('#btnEditar'),
-txtActivo=$('#txtActivo');
-
-function getMostrarConsulta(){
+function getMostrarPreguntas(){
   var datos = $.ajax({
     url: 'getTodosPeriodos',
     type: 'post',
@@ -76,7 +52,7 @@ function getMostrarConsulta(){
     }
 
 
-function ingresoPeriodo(){
+function ingresaPregunta(){
   var editar = $.ajax({
     url: 'ingresoPeriodo',
     data: {
@@ -114,7 +90,7 @@ function ingresoPeriodo(){
 
 }
 
-function getTodosPeriodos(){
+function getTodasPreguntas(){
   var datos = $.ajax({
     url: 'getTodosPeriodos',
     type: 'post',
@@ -166,7 +142,7 @@ function getTodosPeriodos(){
     tbodyPeriodos.removeClass('hidden');
 }
 
-function seleccionarPeriodo(){
+function seleccionarPregunta(){
   tblServicios.addClass('hidden');
   pnlEditar.removeClass('hidden');
   var id = $(this).attr('id');
@@ -211,7 +187,7 @@ function seleccionarPeriodo(){
     }
 }
 
-function editarPeriodo(){
+function editarPeregunta(){
   var datos = $.ajax({
     url: 'editarPeriodo',
     data: {
@@ -246,7 +222,7 @@ function editarPeriodo(){
     getTodosPeriodos();
 }
 
-function darBajaPeriodo(){
+function darBajaPregunta(){
   var id = $(this).attr('id');
   var datos = $.ajax({
     url: 'darBajaPeriodo',
@@ -284,7 +260,7 @@ function cancelarE(){
 }
 
 
-function sumaFecha(days, fecha){
+/*function sumaFecha(days, fecha){
 
     fecha=new Date(fecha);
     day=fecha.getDate();
@@ -300,8 +276,7 @@ function sumaFecha(days, fecha){
 
     var fechaMod = year+"/"+month+"/"+day;
     return fechaMod;
-
-}
+}*/
 
 function mostrarEditar(){
   pnlAgregar.addClass('hidden');
@@ -342,7 +317,7 @@ function mostrarAgregar(){
   btnAgregar.removeClass('botonNoactivo');
 }
 
-function seleccionarPer(){
+/*function seleccionarPer(){
   var seleccionCheck = txtDiasAgregar.val();
   if (seleccionCheck == 100) {
 
@@ -366,7 +341,7 @@ txtFechaInicio.change( function() {
     txtFechaFin.val(txtFechaFinal);
 
   }
-})
+})*/
 
 btnCancelar.on('click',cancelar);
 btnGuardar.on('click',ingresoPeriodo);

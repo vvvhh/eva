@@ -109,7 +109,7 @@
     <!-- Inicio del formulairo para ingresar preguntas de opción múltiple y abiertas-->
     <div class="form-horizontal hidden" id="formselect" name="formSelect" novalidate>
       <h2><i class="fa fa-question-circle text-success"></i> Agregar Pregunta</h2>
-      <label for="txtNombreS" class=" control-label">¿Qué tipo de pregunta deseas capturar? </label>
+      <label for="txtNombreS" class=" control-label">¿De que tipo son las preguntas que desea capturar? </label>
         <div class="form-group">
           <div class="col-md-8">
             <p class="text-danger formatoTexto14" id="spnNombre"> </p>
@@ -117,16 +117,19 @@
             <input id="chkAbierta" type="checkbox" name="transporte"  value="1" onClick="chkA()">  Abierta 
             <br>
             <input id="chkOpMul" type="checkbox" name="transporte" value="1" onClick="chkO()">  Opción múltiple
+            <br>
+            <input id="chkMix" type="checkbox" name="transporte" value="1" onClick="chkO()">  Mixta
           </div>
         </div>
     </div>
 
-    <div class="form-group hidden">
-      <label for="selcanpre" class="col-md-4 control-label">Activo:</label>
+    <div class="form-group hidden" id="selPre">
+      <label for="selcanpre" class="col-md-4 control-label"> Cuantas preguntas desea agregar:</label>
       <div class="col-md-7">
-        <select name="" id="txtActivo" class="form-control input-sm">
-          <option value="1">Sí</option>
-          <option value="0">No</option>
+        <select name="" id="numPre" class="form-control input-sm">
+          <option value="2">3</option>
+          <option value="1">4</option>
+          <option value="0">5</option>
         </select>
       </div>
     </div>

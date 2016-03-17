@@ -24,14 +24,13 @@ var txtNombreFuente = $('#txtNombreFuente'),
 var btnCancelarAg = $('#btnCancelarAg'),
     token = $('#token'),
     txtNombre = $('#txtNombre'),
-    slctTema = $('#slctTema'),
     selCombo = $('#selCombo'),
     txtSubTema = $('#txtSubTema'),
     txtFechaApl = $('#txtFechaApl'),
     fechaEla = $('#fechaEla'),
     btnGuardarAg =$('#btnGuardarAg'),
     txtFechaA =$('#txtFechaA'),
-    slctTemaE =$('#slctTemaE'),
+    selComboE =$('#selComboE'),
     txtNombreE =$('#txtNombreE');
 
 var spnNombre=$('#spnNombre'),
@@ -44,14 +43,16 @@ var formselect = $('#formselect'),
 
 /*Ide desde el icono editar de la tabla*/
 function darBajaCues(){
-  var id = $(this).attr('id');  
-  if (id==="")
+  var id = $(this).attr('id'); 
+  var idt = $(this).attr('id');  
+  if (id==="" && idt==="")
     return false;
 
   var datos = $.ajax({
     url: 'darBajaCues',
     data: {
       i: id,
+      it: idt,
       token: token.val()
     },
     type: 'post',
@@ -84,7 +85,7 @@ function editarCues(){
     data: {
       token: token.val(),
       fecha:txtFechaA.val(),
-      tema:slctTemaE.val(),
+      tema:selComdoE.val(),
       subtema:txtSubTema.val(),
       nombre:txtNombreE.val(),
       activo:txtActivo.val(),
@@ -139,7 +140,7 @@ function getTodosCuestionarios(){
         alert('Error JSON ' + e);
     }
     tbodyServicios.html('');
-    var res;
+
     if ( res.status == 'OK' ){
        var i = 1;
       $.each(res.data, function(k,o){
@@ -202,10 +203,11 @@ function getCues(){
       $.each(res.data, function(k,o){
 
         txtFechaA.val(o.cueFechaAp);
-        slctTemaE.val(o.temTema);
+        selComboE.val(o.temTema);
         txtSubTema.val(o.cueSubTema);
         txtNombreE.val(o.cueNombre);
         txtCueId.val(o.cueId);
+        
         fechaEla.val(o.cueFechaEla);
         datosActivo.val(o.cueActivo);
         formEditarServ.removeClass('hidden');
@@ -310,6 +312,8 @@ window.onload=function()
   getTema();
   pnlAgregar.removeClass('hidden');
   txtFechaApl.val('');
+  txtSubTema.val('');
+  txtNombre.val('');
 }
 
 /*function comprobarFuente(e){
@@ -383,12 +387,6 @@ function getCuestionarioConsultas(){
             '<td >'+o.cueSubTema+'</td>'+
             '<td >'+o.cueNombre+'</td>'+
             '<td class="text-center">'+status+'</td>'+
-            '<td class="text-center">'+
-              '<span class="glyphicon glyphicon-edit text-primary"'+status+
-            '</td>'+
-            '<td class="text-center">'+
-              '<span class="glyphicon glyphicon-trash text-danger"'+status+
-            '</td>'+
           '</tr>'
       );
       i++;
@@ -463,13 +461,17 @@ function chkA(form)
     if (chkAbierta.checked == true)
     {
     chkOpMul.disabled =true;
+    chkMix.disabled =true;
     formprea.removeClass('hidden');
+    numPre.removeClass('hidden');
     }
 
     if (chkAbierta.checked == false)
     {
     chkOpMul.disabled =false;
+    chkMix.disabled =false;
     formprea.addClass('hidden');
+    numPre.addClass('hidden');
     }
 }
 
@@ -479,13 +481,37 @@ function chkO(form)
     if (chkOpMul.checked == true)
     {
     chkAbierta.disabled =true;
+    chkMix.disabled =true;
     formpom.removeClass('hidden');
+    numPre.removeClass('hidden');
     }
 
     if (chkOpMul.checked == false)
     {
     chkAbierta.disabled =false;
+    chkMix.disabled =false;
     formpom.addClass('hidden');
+    numPre.addClass('hidden');
+    }    
+}
+
+//------------------chkMix----------------------------------------
+function chkM(form)
+{
+    if (chkOpMul.checked == true)
+    {
+    chkAbierta.disabled =true;
+    chkOpMul.disabled =true;
+    formpom.removeClass('hidden');
+    numPre.removeClass('hidden');
+    }
+
+    if (chkOpMul.checked == false)
+    {
+    chkAbierta.disabled =false;
+    chkOpMul.disabled =false;
+    formpom.addClass('hidden');
+    numPre.addClass('hidden');
     }    
 }
 
@@ -496,3 +522,7 @@ btnGuardar.on('click',editarCues);
 
 btnCancelarAg.on('click',cancelar);
 btnGuardarAg.on('click',ingresoCuestionario);
+
+/*    CÓDIGO DE LAS PREGUNTAS PARA EDITAR Y GUARDAR     */
+var numPre;
+

@@ -118,7 +118,7 @@ class CuestionarioController extends BaseController{
             );
         }
         else{
-              $editar = cuestionarios::where('cueId', $data['id'])
+              $editar = DB::select('SELECT c.cueNombre, c.cueSubTema, c.cueFechaAp, c.cueFechaEla, c.cueActivo, t.temTema FROM cuestionarios c, temas t WHERE c.temId = t.temId');
                 ->update(array(
                   'cueActivo' => false
                 ));
@@ -186,10 +186,12 @@ public function editarCues(){
         }
         else{
               $editar = cuestionarios::where('cueId', $data['i'])
+              ->where('temId', $data['i'])
                 ->update(array(
                   'cueFechaAp' => $data['fecha'],
-                  //'cueTema' => $data['tema'],
-                  //'cueSubTema'=> $data['subTema'],
+                  'cueFechaEla' => $data['fechaEla'],
+                  'temTema' => $data['tema'],
+                  'cueSubTema'=> $data['subtema'],
                   'cueNombre' => $data['nombre'],
                   //'cueTiempo'=> $data['tiempo'],
                   'cueActivo' => $data['activo']
@@ -243,8 +245,9 @@ public function editarCues(){
   }
   /*****************/
   static public function getCuetionarioConsultas(){
-    $seleccionar = cuestionarios::get()
-      ->toArray();
+   /* $seleccionar = cuestionarios::get()
+      ->toArray();*/
+      $seleccionar = DB::select('SELECT c.cueNombre, c.cueSubTema, c.cueFechaAp, c.cueFechaEla, c.cueActivo, t.temTema FROM cuestionarios c, temas t WHERE c.temId = t.temId');
       return $seleccionar;
   }
 //     SECCION DE ACTIVO
@@ -281,9 +284,12 @@ public function editarCues(){
 
       $data = Input::all();
 
-      $seleccionar = cuestionarios::where('cueId',$data['i'])
+     /* $seleccionar = cuestionarios::where('cueId',$data['i'])
+      ->where('temId', $data['id'])
         ->get()
-        ->toArray();
+        ->toArray();*/
+
+        $seleccionar=DB::select('SELECT t.temTema c.cueNombre c.cueSubTema c.cueFechaAp c.cueFechaEla c.cueActivo FROM cuestionarios c, temas t WHERE ');
 
       if ( count( $seleccionar ) > 0 )
         $response = array(

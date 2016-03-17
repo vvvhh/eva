@@ -72,12 +72,12 @@
 
           <div class="form-group">
             <label for="txtNombreS" class="col-md-3 control-label">*Tema: </label>
-              <div class="col-md-8">
-                <SELECT id="selCombo" size=1 class="form-control grisObscuro">
-                </SELECT>
-                <p class="text-danger formatoTexto14" id="spnNombre"> </p>
-                <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
-              </div>
+            <div class="col-md-8" id="select">
+              <SELECT id="selComboE" size=1 class="form-control grisObscuro">
+              </SELECT>
+              <p class="text-danger formatoTexto14" id="spnNombre"> </p>
+              <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
+            </div>
           </div>
 
           <div class="form-group">
