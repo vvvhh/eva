@@ -25,7 +25,7 @@ var btnCancelarAg = $('#btnCancelarAg'),
     token = $('#token'),
     txtNombre = $('#txtNombre'),
     selCombo = $('#selCombo'),
-    txtSubTema = $('#txtSubTema'),
+    selComboSub = $('#selComboSub'),
     txtFechaApl = $('#txtFechaApl'),
     fechaEla = $('#fechaEla'),
     btnGuardarAg =$('#btnGuardarAg'),
@@ -39,7 +39,10 @@ var spnNombre=$('#spnNombre'),
 var formselect = $('#formselect'),
     formprea = $('#formprea'),
     datosActivo = $('#datosActivo'),
-    formpom = $('#formpom');
+    formpom = $('#formpom'),
+    selPre = $('#selPre');
+
+var numPre;
 
 /*Ide desde el icono editar de la tabla*/
 function darBajaCues(){
@@ -155,7 +158,7 @@ function getTodosCuestionarios(){
             '<td >'+o.cueFechaEla+'</td>'+
             '<td >'+o.cueFechaAp+'</td>'+
             '<td >'+o.temTema+'</td>'+
-            '<td >'+o.cueSubTema+'</td>'+
+            '<td >'+o.temSubTema+'</td>'+
             '<td >'+o.cueNombre+'</td>'+
             '<td class="text-center">'+status+'</td>'+
             '<td class="text-center">'+
@@ -204,7 +207,7 @@ function getCues(){
 
         txtFechaA.val(o.cueFechaAp);
         selComboE.val(o.temTema);
-        txtSubTema.val(o.cueSubTema);
+        selComboSubE.val(o.temSubTema);
         txtNombreE.val(o.cueNombre);
         txtCueId.val(o.cueId);
         
@@ -215,8 +218,15 @@ function getCues(){
 
         selCombo.find('option').each(
           function(){
-            if ( o.temActivo == $(this).val() )
-            selCombo.val(o.temActivo);
+            if ( o.temId == $(this).val() )
+            selCombo.val(o.temIdS);
+          }
+        );
+
+        selComboSub.find('option').each(
+          function(){
+            if ( o.temId == $(this).val() )
+            selComboSub.val(o.temId);
           }
         );
 
@@ -245,7 +255,7 @@ function ingresoCuestionario(){
       fecha: txtFechaApl.val(),
       fechaEla: fechaEla.val(),
       tema: selCombo.val(),
-      subtema: txtSubTema.val(),
+      subtema: selComboSub.val(),
       nombre: txtNombre.val(),
       datosActivo: datosActivo.val()
     },
@@ -272,9 +282,7 @@ function ingresoCuestionario(){
         showConfirmButton: true
       });
       swal();
-      document.location=('./cueAgregar#formselect');
-      pnlAgregar.addClass('hidden');
-      formselect.removeClass('hidden'); //mostrar formulario de opción multiple
+      numPreC.removeClass('hidden');
     }
     else{
       alert(resultado.message);
@@ -312,7 +320,6 @@ window.onload=function()
   getTema();
   pnlAgregar.removeClass('hidden');
   txtFechaApl.val('');
-  txtSubTema.val('');
   txtNombre.val('');
 }
 
@@ -350,6 +357,14 @@ function getTema(){
         );
       });
     document.getElementById('selCombo');
+
+      selComboSub.html('');
+      $.each(res.data, function(k,o){
+        selComboSub.append(
+          '<option value="'+o.temId+'">'+o.temTema+'</option>'
+        );
+      });
+    document.getElementById('selComboSub');
 }
 
 function getCuestionarioConsultas(){
@@ -384,7 +399,7 @@ function getCuestionarioConsultas(){
             '<td >'+o.cueFechaEla+'</td>'+
             '<td >'+o.cueFechaAp+'</td>'+
             '<td >'+o.temTema*'</td'+
-            '<td >'+o.cueSubTema+'</td>'+
+            '<td >'+o.temSubTema+'</td>'+
             '<td >'+o.cueNombre+'</td>'+
             '<td class="text-center">'+status+'</td>'+
           '</tr>'
@@ -454,6 +469,12 @@ btnAgregar.click(
     return false;
 });
 
+/*btnTema.click(
+  function() {
+    window.location.href = 'temAgregar';
+    return false;
+});*/
+
 //check para mostrar formulairos de preguntas
 //------------------chkAbierta----------------------------------
 function chkA(form)
@@ -483,7 +504,6 @@ function chkO(form)
     chkAbierta.disabled =true;
     chkMix.disabled =true;
     formpom.removeClass('hidden');
-    numPre.removeClass('hidden');
     }
 
     if (chkOpMul.checked == false)
@@ -491,26 +511,23 @@ function chkO(form)
     chkAbierta.disabled =false;
     chkMix.disabled =false;
     formpom.addClass('hidden');
-    numPre.addClass('hidden');
     }    
 }
 
 //------------------chkMix----------------------------------------
 function chkM(form)
 {
-    if (chkOpMul.checked == true)
+    if (chkMix.checked == true)
     {
-    chkAbierta.disabled =true;
-    chkOpMul.disabled =true;
-    formpom.removeClass('hidden');
-    numPre.removeClass('hidden');
+    chkAbierta.disabled = true;
+    chkOpMul.disabled = true;
+    numPre.removeClass('hidden')
     }
 
-    if (chkOpMul.checked == false)
+    if (chkMix.checked == false)
     {
     chkAbierta.disabled =false;
     chkOpMul.disabled =false;
-    formpom.addClass('hidden');
     numPre.addClass('hidden');
     }    
 }
@@ -524,5 +541,9 @@ btnCancelarAg.on('click',cancelar);
 btnGuardarAg.on('click',ingresoCuestionario);
 
 /*    CÓDIGO DE LAS PREGUNTAS PARA EDITAR Y GUARDAR     */
-var numPre;
+function Aceptar(){
+  formpom.addClass('hidden');
+  formprea.addClass('hidden');
+}
 
+btnAceptar.on('click',Aceptar);

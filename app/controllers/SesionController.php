@@ -38,7 +38,7 @@ class SesionController extends BaseController{
       }
       else{
 
-        $duplicado = Adm::where('admNombre',$data['nombre'])
+        $duplicado = admin::where('admNombre',$data['nombre'])
           ->where('admCorreo',$data['correo'])
           ->get()
           ->toArray();

@@ -14,6 +14,7 @@
 
 @section('content')
 <div>
+  <!--div class="row" id="botones" style="clear: both" BOTONES ESTÁTICOS-->
   <div class="row">
     <center><h2><i class="fa fa-newspaper-o text-primary"></i> Cuestionarios</h2></center>
     <center><h3><i class="fa fa-plus-circle text-primary"></i> Agregar</h3></center>
@@ -27,12 +28,16 @@
     <div class="col-md-4">
       <button id="btnConsulta" class="btn btn-block btn-md botonNoactivo"><i class="fa fa-th-list"></i> Consultar</button>
     </div>
+    <!--div class="col-md-3">
+      <button id="btnConsulta" class="btn btn-block btn-md botonNoactivo"><i class="fa fa-th-list"></i> Temas</button>
+    </div-->
   </div>
 </div>
 
 <div class="row">
   <div class="col-md-10">
-    <div class="form-horizontal hidden" id="pnlAgregar" name="form" novalidate>
+    <div class="form-horizontal hidden" id="pnlAgregar" name="form" 
+    novalidate>
     <h2><i class="fa fa-plus-circle text-primary"></i> Agregar datos generales de cuestionario</h2>
       <div class="form-group" id="groupNueva2">
         <label for="txtFechaInicio" class="col-md-3 control-label">*Fecha de aplicación: </label>
@@ -76,7 +81,8 @@
       <div class="form-group">
         <label for="txtSubTema" class="col-md-3 control-label">*Subtema: </label>
         <div class="col-md-8">
-          <input id="txtSubTema" name="txtSubTema" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*SubTema de donde se obtendrá la información" required>
+          <SELECT id="selComboSub" size=1 class="form-control grisObscuro">
+          </SELECT>
           <p class="text-danger formatoTexto14" id="spnNombre"> </p>
           <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
         </div>
@@ -106,6 +112,17 @@
     </div>
     <br><br>
 
+    <div class="form-group hidden" id="numPreC">
+      <label for="selcanpre" class="col-md-4 control-label"> Cuantas preguntas contendra el cuestionario:</label>
+      <div class="col-md-7">
+        <input id="btnNumPreC" type="text" class="form-control grisObscuro" pattern="1234567890"  placeholder="*Ingrese el número de preguntas que tendra su cuestionario" required> 
+      </div>
+      <div class="col-md-4">
+      <br>
+        <button id="btnAceptarC"  class="btn btn-block btn-md botonNoactivo"><i class="fa fa-plus-circle"></i> Aceptar</button>
+      </div>
+    </div>
+
     <!-- Inicio del formulairo para ingresar preguntas de opción múltiple y abiertas-->
     <div class="form-horizontal hidden" id="formselect" name="formSelect" novalidate>
       <h2><i class="fa fa-question-circle text-success"></i> Agregar Pregunta</h2>
@@ -118,21 +135,27 @@
             <br>
             <input id="chkOpMul" type="checkbox" name="transporte" value="1" onClick="chkO()">  Opción múltiple
             <br>
-            <input id="chkMix" type="checkbox" name="transporte" value="1" onClick="chkO()">  Mixta
+            <input id="chkMix" type="checkbox" name="transporte" value="1" onClick="chkM()">  Mixta
           </div>
         </div>
     </div>
 
-    <div class="form-group hidden" id="selPre">
+    <!--div class="form-group hidden" id="numPre">
       <label for="selcanpre" class="col-md-4 control-label"> Cuantas preguntas desea agregar:</label>
       <div class="col-md-7">
-        <select name="" id="numPre" class="form-control input-sm">
+        <select class="form-control input-sm">
+          <option value="0"></option>}
+          <option value="1">2</option>
           <option value="2">3</option>
-          <option value="1">4</option>
-          <option value="0">5</option>
+          <option value="3">4</option>
+          <option value="4">5</option>
         </select>
       </div>
-    </div>
+      <div class="col-md-4">
+      <br>
+        <button id="btnAceptar"  class="btn btn-block btn-md botonNoactivo"><i class="fa fa-plus-circle"></i> Aceptar</button>
+      </div>
+    </div-->
 
     <!-- formulario de preguntas con opción múltiple -->
     <div class="form-horizontal hidden" id="formpom" novalidate>
@@ -213,7 +236,7 @@
             <label for="txtNombreS" class="control-label">Capturar pregunta abierta: </label>
           </div>
           <div class="col-md-8">
-            <input id="txtopcion1" name="txtopcion1" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Ingrese pregunta" required>
+            <input id="txtAbierta" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Ingrese pregunta" required>
             <p class="text-danger formatoTexto14" id="spnNombre"> </p>
             <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
           </div>
@@ -242,6 +265,7 @@
 {{HTML::script('sweetAlert/sweetalert.min.js')}}
 {{HTML::script('js/administracion/cueEditar.js')}}
 {{HTML::script('js/administracion/temAgregar.js')}}
+{{HTML::script('js/administracion/preCues.js')}}
 
 {{HTML::script('datepicker/js/bootstrap-datepicker.js')}}
 @stop

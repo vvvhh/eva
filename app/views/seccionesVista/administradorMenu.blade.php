@@ -35,32 +35,27 @@
           </li>
       </ul>
     </li>
-
+<!--href="{{ URL::to('administracion/temAgregar') }}"-->
     <li class="header" data-toggle="collapse" data-target="#collapseAsignacion" >
-      <a class="grisClaro" collapseAsignacion href="{{ URL::to('administracion/temAgregar') }}" id="tem">
+      <a class="grisClaro" collapseAsignacion id="tem">
         <strong>
           <h4><i class="fa fa-text-width"></i>
-            &nbsp;Temas
+            &nbsp;Edición temática
           </h4>
         </strong>
       </a>
-      <!--<ul id="collapseAsignacion" class="nav nav-sidebar colorNav collapse">
+      <<ul id="collapseAsignacion" class="nav nav-sidebar colorNav collapse">
         <li id="liPeAgregar">
-            <a class="grisClaro" href="{{ URL::to('administracion/perAgregar') }}">
-              <i class="fa fa-calendar-o"></i> Períodos
+            <a class="grisClaro" href="{{ URL::to('administracion/temAgregar#tema') }}">
+              <i class="fa fa-calendar-o"></i> Temas
             </a>
         </li>
         <li id="liAsignacion">
-            <a class="grisClaro" href="{{ URL::to('administracion/asiAgregar') }}">
-              <i class="fa fa-calendar-times-o"></i> Fuentes y representantes
+            <a class="grisClaro" href="{{ URL::to('administracion/temAgregar#subtema') }}">
+              <i class="fa fa-calendar-times-o"></i> Subtemas
             </a>
         </li>
-           <li id="liAsigEquipo">
-            <a class="grisClaro" href="{{ URL::to('administracion/asiEquipos') }}">
-              <span class="glyphicon glyphicon-edit"></span> Creación de equipos
-            </a>
-        </li>
-      </ul>-->
+      </ul>
     </li>
   </ul>
 </div>

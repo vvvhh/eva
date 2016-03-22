@@ -39,9 +39,9 @@ class CuestionarioController extends BaseController{
       }
       else{
 
-        $duplicado = cuestionarios::where('cueFechaAp',$data['fecha'])
-        ->where('cueNombre',$data['nombre'])
-        ->where('cueSubTema',$data['subtema'])
+        $duplicado = cuestionarios::where('cueFechaEla',$data['fechaEla'])
+          ->where('cueFechaAp',$data['fecha'])
+          ->where('cueNombre',$data['nombre'])
           ->get()
           ->toArray();
 
@@ -53,7 +53,6 @@ class CuestionarioController extends BaseController{
           else{
             $insert = cuestionarios::insert(array(
               'cueFechaAp' => trim($data['fecha']),
-              'cueSubTema'=> trim($data['subtema']),
               'cueNombre' => trim($data['nombre']),
               'cueFechaEla'=> $data['fechaEla'],
               'cueActivo' => $data['datosActivo']
@@ -118,7 +117,7 @@ class CuestionarioController extends BaseController{
             );
         }
         else{
-              $editar = DB::select('SELECT c.cueNombre, c.cueSubTema, c.cueFechaAp, c.cueFechaEla, c.cueActivo, t.temTema FROM cuestionarios c, temas t WHERE c.temId = t.temId');
+              $editar = cuestionarios::where('cueId', $data['id']) 
                 ->update(array(
                   'cueActivo' => false
                 ));
@@ -191,7 +190,7 @@ public function editarCues(){
                   'cueFechaAp' => $data['fecha'],
                   'cueFechaEla' => $data['fechaEla'],
                   'temTema' => $data['tema'],
-                  'cueSubTema'=> $data['subtema'],
+                  'temSubTema'=> $data['subtema'],
                   'cueNombre' => $data['nombre'],
                   //'cueTiempo'=> $data['tiempo'],
                   'cueActivo' => $data['activo']
@@ -247,9 +246,10 @@ public function editarCues(){
   static public function getCuetionarioConsultas(){
    /* $seleccionar = cuestionarios::get()
       ->toArray();*/
-      $seleccionar = DB::select('SELECT c.cueNombre, c.cueSubTema, c.cueFechaAp, c.cueFechaEla, c.cueActivo, t.temTema FROM cuestionarios c, temas t WHERE c.temId = t.temId');
+      $seleccionar = DB::select('SELECT c.cueNombre, c.cueFechaAp, c.cueFechaEla, c.cueActivo,  t.temSubTema, t.temTema FROM cuestionarios c, temas t WHERE c.temId = t.temId');
       return $seleccionar;
   }
+
 //     SECCION DE ACTIVO
   public function getActivoFuentes(){
     if( !Sesion::isResponsable() ){
@@ -289,7 +289,7 @@ public function editarCues(){
         ->get()
         ->toArray();*/
 
-        $seleccionar=DB::select('SELECT t.temTema c.cueNombre c.cueSubTema c.cueFechaAp c.cueFechaEla c.cueActivo FROM cuestionarios c, temas t WHERE ');
+        $seleccionar=DB::select('SELECT t.temSubTema t.temTema c.cueNombre c.cueFechaAp c.cueFechaEla c.cueActivo FROM cuestionarios c, temas t WHERE ');
 
       if ( count( $seleccionar ) > 0 )
         $response = array(

@@ -1,19 +1,18 @@
 //variables del select de temas
 var txtTema = $('#txtTema'),
+txtSubTema = $('#txtSubTema'),
 btnCancelarTem = $('#btnCancelarTem'),
 btnGuardarTem = $('#btnGuardarTem'),
 txtActivot = $('#txtActivot'),
 token = $('#token');
 
 function temAgregar(){
-
-  console.log("teamAgregar");
-
   var editar = $.ajax({
-    url: 'temAgregarC',
+    url: 'temAgregar',
     data: {
       token: token.val(),
       tema: txtTema.val(),
+      subtema: txtSubTema.val(),
       activo: txtActivot.val(),
     },
     type: 'post',
@@ -30,11 +29,10 @@ function temAgregar(){
         alert('Error JSON ' + e);
     }
 
-    if ( resultado.status == 'OK' ){
-    console.log("teamAgregar OK");  
+    if ( resultado.status == 'OK' ){  
       swal({
         title: "Guardado.",
-        text: "Tema guardado con éxito.",
+        text: "Tema y Subtema guardados con éxito.",
         type: "success",
         showCancelButton: true,
         showConfirmButton: true,
@@ -45,9 +43,10 @@ function temAgregar(){
     }
 }
 
-function temCancelar(){
+function Cancelar(){
   txtTema.val('');
+  txtSubTema.val('');
 }
 
-btnCancelarTem.on('click',temCancelar);
+btnCancelarTem.on('click',Cancelar);
 btnGuardarTem.on('click',temAgregar);

@@ -207,3 +207,17 @@ html {
   background: #337ab7;
   color: #fff;
 }
+
+#botones {
+    width: 1200px;
+    margin: 0px auto;
+}
+
+#botones {
+    position: fixed;
+    overflow: hidden;
+    text-align: center;
+     margin-bottom: 10px;
+    width: 80%;
+    clear:both;
+}

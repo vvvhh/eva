@@ -21,6 +21,10 @@ Route::get('/', function(){
 	return View::make('inicio');
 });
 
+/*Route::get('/', function(){
+	return View::make('sesion');
+});*/
+
 Route::get('/inicio2', function(){
 	return View::make('inicio2');
 });
@@ -61,9 +65,11 @@ Route::post('/repFuentePer', array('uses' => 'NoticiasController@repFuentePer'))
 			Route::get('/cueConsulta', function(){
 				return View::make('administracion.cueConsulta');
 			});
-			/*Route::get('/temAgregarc', function(){
-				return View::make('administracion.temAgregarc');
-			});*/
+
+			Route::get('/temAgregar', function(){
+				return View::make('administracion.temAgregar');
+			});
+
 			Route::get('/preCues', function(){
 				return View::make('administracion.preCues');
 			});
@@ -100,10 +106,6 @@ Route::post('/repFuentePer', array('uses' => 'NoticiasController@repFuentePer'))
 				return View::make('administracion.cueEditar');
 			});
 
-			Route::get('/temAgregar', function(){
-				return View::make('administracion.temAgregar');
-			});
-
 			Route::get('/previsualizar', function(){
 				return View::make('administracion.previsualizar');
 			});
@@ -130,17 +132,15 @@ Route::post('/repFuentePer', array('uses' => 'NoticiasController@repFuentePer'))
 				return View::make('administracion.repRepresentante');
 			});
 
-
 			Route::post('/ingresoCuestionario', array('uses' => 'CuestionarioController@ingresoCuestionario'));
 			Route::post('/getCuestionarioConsultas', array('uses' => 'CuestionarioController@getCuestionarioConsultas'));
 			Route::post('/getCues', array('uses' => 'CuestionarioController@getCues'));
 			Route::get('/getTema', array('uses' => 'CuestionarioController@getTema'));
-			Route::post('/temAgregarC', array('uses' => 'TemaController@temAgregarC'));
+			Route::post('/temAgregar', array('uses' => 'TemaController@temAgregar'));
 			Route::post('/editarCues', array('uses' => 'CuestionarioController@editarCues'));
 			Route::post('/preCues', array('uses' => 'CuestionarioController@preCues'));
 			Route::post('/darBajaCues', array('uses' => 'CuestionarioController@darBajaCues'));
 			Route::get('/imprimirFuentes', array('uses' => 'PdfController@imprimirFuentes'));
-
 
 			Route::post('/ingresoResponsable', array('uses' => 'ResponsableController@ingresoResponsable'));
 			Route::post('/getTodosResponsables', array('uses' => 'ResponsableController@getTodosResponsables'));
