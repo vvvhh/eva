@@ -4,6 +4,7 @@ tbodyConsulta=$('#tbodyConsulta');
 
 var btnConsulta=$('#btnConsulta'),
 btnEditar=$('#btnEditar'),
+btnAgregarC=$('#btnAgregarC'),
 btnAgregar=$('#btnAgregar');
 
 var pnlAgregar=$('#pnlAgregar');
@@ -40,22 +41,21 @@ var formselect = $('#formselect'),
     formprea = $('#formprea'),
     datosActivo = $('#datosActivo'),
     formpom = $('#formpom'),
+    numPreC = $('#numPreC'),
     selPre = $('#selPre');
 
 var numPre;
 
 /*Ide desde el icono editar de la tabla*/
 function darBajaCues(){
-  var id = $(this).attr('id'); 
-  var idt = $(this).attr('id');  
-  if (id==="" && idt==="")
+  var id = $(this).attr('id');  
+  if (id==="")
     return false;
 
   var datos = $.ajax({
     url: 'darBajaCues',
     data: {
       i: id,
-      it: idt,
       token: token.val()
     },
     type: 'post',
@@ -162,10 +162,12 @@ function getTodosCuestionarios(){
             '<td >'+o.cueNombre+'</td>'+
             '<td class="text-center">'+status+'</td>'+
             '<td class="text-center">'+
-              '<span class="glyphicon glyphicon-edit text-primary"'+status+
+              '<span class="glyphicon glyphicon-edit text-primary" id="'+o.cueId+'" '+
+              'style="cursor:pointer" title="Editar"></span>'+
             '</td>'+
             '<td class="text-center">'+
-              '<span class="glyphicon glyphicon-trash text-danger"'+status+
+              '<span class="glyphicon glyphicon-trash text-danger" id="'+o.cueId+'" '+
+              'style="cursor:pointer" title="Dar de baja"></span>'+
             '</td>'+
           '</tr>'
       );
@@ -247,7 +249,6 @@ function limpiar(){
 /*******/
 
 function ingresoCuestionario(){
-  console.log(fechaEla.val());
   var editar = $.ajax({
     url: 'ingresoCuestionario',
     data: {
@@ -281,14 +282,18 @@ function ingresoCuestionario(){
         showCancelButton: true,
         showConfirmButton: true
       });
-      swal();
+      //swal();
+      limpiari();
       numPreC.removeClass('hidden');
     }
     else{
       alert(resultado.message);
     }
+}
 
-
+function limpiari() {
+    setTimeout('document.formulario.reset()',2000);
+    return false;
 }
 
 /*function swal(){
@@ -361,7 +366,7 @@ function getTema(){
       selComboSub.html('');
       $.each(res.data, function(k,o){
         selComboSub.append(
-          '<option value="'+o.temId+'">'+o.temTema+'</option>'
+          '<option value="'+o.temId+'">'+o.temSubTema+'</option>'
         );
       });
     document.getElementById('selComboSub');
@@ -398,7 +403,8 @@ function getCuestionarioConsultas(){
           '<tr>'+
             '<td >'+o.cueFechaEla+'</td>'+
             '<td >'+o.cueFechaAp+'</td>'+
-            '<td >'+o.temTema*'</td'+
+            '<td >'+o.temTema+'</td'+
+            '<td >'+ "" +'</td>'+
             '<td >'+o.temSubTema+'</td>'+
             '<td >'+o.cueNombre+'</td>'+
             '<td class="text-center">'+status+'</td>'+
@@ -521,7 +527,7 @@ function chkM(form)
     {
     chkAbierta.disabled = true;
     chkOpMul.disabled = true;
-    numPre.removeClass('hidden')
+    numPre.removeClass('hidden');
     }
 
     if (chkMix.checked == false)
@@ -539,11 +545,3 @@ btnGuardar.on('click',editarCues);
 
 btnCancelarAg.on('click',cancelar);
 btnGuardarAg.on('click',ingresoCuestionario);
-
-/*    CÓDIGO DE LAS PREGUNTAS PARA EDITAR Y GUARDAR     */
-function Aceptar(){
-  formpom.addClass('hidden');
-  formprea.addClass('hidden');
-}
-
-btnAceptar.on('click',Aceptar);

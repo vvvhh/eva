@@ -38,7 +38,7 @@
   <div class="col-md-10">
     <div class="form-horizontal hidden" id="pnlAgregar" name="form" 
     novalidate>
-    <h2><i class="fa fa-plus-circle text-primary"></i> Agregar datos generales de cuestionario</h2>
+    <h3><i class="fa fa-plus-circle text-primary"></i> Agregar datos generales de cuestionario</h3>
       <div class="form-group" id="groupNueva2">
         <label for="txtFechaInicio" class="col-md-3 control-label">*Fecha de aplicación: </label>
         <div class="col-md-5">
@@ -57,10 +57,10 @@
         <label for="txtFechaInicio" class=" control-label">*fecha tentativa: </label>
           <div class="input-group date" data-provide="datepicker">
             <input type="text" class="form-control" id="fechaEla" value="
-            <?php //Ejemplo curso PHP aprenderaprogramar.com
-            $time = time();
-            echo date("Y-m-d", $time);
-            ?>">
+<?php //Ejemplo curso PHP aprenderaprogramar.com
+$time = time();
+echo date("Y-m-d", $time);
+?>">
             <div class="input-group-addon">
               <i class="fa fa-calendar"></i>
             </div>
@@ -101,6 +101,7 @@
         <label class="col-md-3 control-label">Activo:</label>
         <div class="col-md-2">
           <select name="" id="datosActivo" class="form-control input-sm">
+            <option value="2"></option>
             <option value="1">Sí</option>
             <option value="0">No</option>
           </select>
@@ -113,19 +114,22 @@
     <br><br>
 
     <div class="form-group hidden" id="numPreC">
-      <label for="selcanpre" class="col-md-4 control-label"> Cuantas preguntas contendra el cuestionario:</label>
-      <div class="col-md-7">
-        <input id="btnNumPreC" type="text" class="form-control grisObscuro" pattern="1234567890"  placeholder="*Ingrese el número de preguntas que tendra su cuestionario" required> 
+
+      <label for="selcanpre" class="col-md-6 control-label"> Cuantas preguntas contendra el cuestionario:</label>
+      <div class="col-md-6">
+        <input id="txtNumPre" type="text" class="form-control grisObscuro" pattern="1234567890"  placeholder="*Ingrese el número de preguntas que tendra su cuestionario" required> 
+      </div>
+      <div class="col-md-4">
       </div>
       <div class="col-md-4">
       <br>
         <button id="btnAceptarC"  class="btn btn-block btn-md botonNoactivo"><i class="fa fa-plus-circle"></i> Aceptar</button>
       </div>
     </div>
-
+<br><br><br><br>
     <!-- Inicio del formulairo para ingresar preguntas de opción múltiple y abiertas-->
-    <div class="form-horizontal hidden" id="formselect" name="formSelect" novalidate>
-      <h2><i class="fa fa-question-circle text-success"></i> Agregar Pregunta</h2>
+    <div class="form-horizontal hidden" id="formselect" name="formselect" novalidate>
+      <h3><i class="fa fa-question-circle text-success"></i> Agregar Pregunta</h3>
       <label for="txtNombreS" class=" control-label">¿De que tipo son las preguntas que desea capturar? </label>
         <div class="form-group">
           <div class="col-md-8">
@@ -160,6 +164,7 @@
     <!-- formulario de preguntas con opción múltiple -->
     <div class="form-horizontal hidden" id="formpom" novalidate>
       <h2><i class="fa fa-plus-circle text-primary"></i> Agregar Pregunta</h2>
+      <input type="hidden" id="txtCueId" value="">
       <div class="form-group">
         <label for="txtNombreS" class=" control-label">Pregunta: </label>
         <br> 
