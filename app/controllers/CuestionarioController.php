@@ -53,9 +53,9 @@ class CuestionarioController extends BaseController{
           else{
             $insert = cuestionarios::insert(array(
               'cueFechaAp' => trim($data['fecha']),
+              'cueFechaEla'=> trim($data['fechaEla']),
               'cueNombre' => trim($data['nombre']),
-              'cueFechaEla'=> $data['fechaEla'],
-              'cueActivo' => $data['datosActivo']
+              'cueActivo' => trim($data['datosActivo'])
               //'cueSubTema'=> $data['subTema'],
               //'cueResponsables'=> $data['idResponsable']
             ));

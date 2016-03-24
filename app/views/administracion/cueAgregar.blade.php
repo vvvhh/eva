@@ -36,8 +36,7 @@
 
 <div class="row">
   <div class="col-md-10">
-    <div class="form-horizontal hidden" id="pnlAgregar" name="form" 
-    novalidate>
+    <div class="form-horizontal hidden" id="pnlAgregar" name="pnlAgregar" novalidate>
     <h3><i class="fa fa-plus-circle text-primary"></i> Agregar datos generales de cuestionario</h3>
       <div class="form-group" id="groupNueva2">
         <label for="txtFechaInicio" class="col-md-3 control-label">*Fecha de aplicación: </label>
@@ -114,7 +113,6 @@ echo date("Y-m-d", $time);
     <br><br>
 
     <div class="form-group hidden" id="numPreC">
-
       <label for="selcanpre" class="col-md-6 control-label"> Cuantas preguntas contendra el cuestionario:</label>
       <div class="col-md-6">
         <input id="txtNumPre" type="text" class="form-control grisObscuro" pattern="1234567890"  placeholder="*Ingrese el número de preguntas que tendra su cuestionario" required> 

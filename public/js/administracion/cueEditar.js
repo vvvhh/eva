@@ -283,17 +283,11 @@ function ingresoCuestionario(){
         showConfirmButton: true
       });
       //swal();
-      limpiari();
       numPreC.removeClass('hidden');
     }
     else{
       alert(resultado.message);
     }
-}
-
-function limpiari() {
-    setTimeout('document.formulario.reset()',2000);
-    return false;
 }
 
 /*function swal(){
@@ -527,14 +521,14 @@ function chkM(form)
     {
     chkAbierta.disabled = true;
     chkOpMul.disabled = true;
-    numPre.removeClass('hidden');
+    numPreC.removeClass('hidden');
     }
 
     if (chkMix.checked == false)
     {
     chkAbierta.disabled =false;
     chkOpMul.disabled =false;
-    numPre.addClass('hidden');
+    numPreC.addClass('hidden');
     }    
 }
 
