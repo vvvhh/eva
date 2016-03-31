@@ -13,40 +13,49 @@
 @stop
 
 @section('content')
-<div>
-  <!--div class="row" id="botones" style="clear: both" BOTONES ESTÁTICOS-->
-  <div class="row">
-    <center><h2><i class="fa fa-newspaper-o text-primary"></i> Cuestionarios</h2></center>
-    <center><h3><i class="fa fa-plus-circle text-primary"></i> Agregar</h3></center>
-    <br><br>
-    <div class="col-md-4">
-      <button id="btnAgregar"  class="btn btn-block btn-md botonNoactivo"><i class="fa fa-plus-circle"></i> Agregar</button>
-    </div>
-    <div class="col-md-4">
-      <button id="btnEditar"  class="btn btn-block btn-md botonNoactivo"><i class="fa fa-pencil-square-o"></i> Editar</button>
-    </div>
-    <div class="col-md-4">
-      <button id="btnConsulta" class="btn btn-block btn-md botonNoactivo"><i class="fa fa-th-list"></i> Consultar</button>
-    </div>
-    <!--div class="col-md-3">
-      <button id="btnConsulta" class="btn btn-block btn-md botonNoactivo"><i class="fa fa-th-list"></i> Temas</button>
-    </div-->
-  </div>
-</div>
 
+@include('administracion/btnAgEdCo')
 <div class="row">
   <div class="col-md-10">
-    <div class="form-horizontal hidden" id="pnlAgregar" name="pnlAgregar" novalidate>
+    <div class="form-horizontal" id="pnlAgregar" name="pnlAgregar" novalidate>
     <h3><i class="fa fa-plus-circle text-primary"></i> Agregar datos generales de cuestionario</h3>
-      <div class="form-group" id="groupNueva2">
-        <label for="txtFechaInicio" class="col-md-3 control-label">*Fecha de aplicación: </label>
-        <div class="col-md-5">
-          <div class="input-group date" data-provide="datepicker">
-            <input type="text" class="form-control" id="txtFechaApl">
-            <div class="input-group-addon">
-              <i class="fa fa-calendar"></i>
-            </div>
-          </div>
+      <div class="form-group">
+        <label for="txtNombreS" class="col-md-3 control-label">*Tema: </label>
+        <div class="col-md-7" id="select">
+          <SELECT id="selCombo" size=1 class="form-control grisObscuro">
+          </SELECT>
+          <p class="text-danger formatoTexto14" id="spnNombre"> </p>
+          <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
+        </div>
+          <button id="btnTema" class="btn btn-primary col-md-2"><i class="fa fa-plus-circle"></i> Agregar tema</button>
+      </div>
+
+
+      <div class="form-group">
+        <label for="txtSubTema" class="col-md-3 control-label">*Subtema: </label>
+        <div class="col-md-7">
+          <SELECT id="selComboSub" size=1 class="form-control grisObscuro">
+          </SELECT>
+          <p class="text-danger formatoTexto14" id="spnNombre"> </p>
+          <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="txtNombre" class="col-md-3 control-label">*Nombre: </label>
+        <div class="col-md-7">
+          <input id="txtNombre" name="txtNombre" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Nombre que tendra el cuestionario" required>
+          <p class="text-danger formatoTexto14" id="spnNombre"> </p>
+          <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
+        </div>
+      </div>
+
+      <div class="form-group hidden">
+        <label class="col-md-3 control-label">Activo:</label>
+        <div class="col-md-2">
+          <select name="" id="datosActivo" class="form-control input-sm">
+            <option value="1">Sí</option>
+          </select>
         </div>
       </div>
 
@@ -67,43 +76,15 @@ echo date("Y-m-d", $time);
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="txtNombreS" class="col-md-3 control-label">*Tema: </label>
-        <div class="col-md-8" id="select">
-          <SELECT id="selCombo" size=1 class="form-control grisObscuro">
-          </SELECT>
-          <p class="text-danger formatoTexto14" id="spnNombre"> </p>
-          <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="txtSubTema" class="col-md-3 control-label">*Subtema: </label>
-        <div class="col-md-8">
-          <SELECT id="selComboSub" size=1 class="form-control grisObscuro">
-          </SELECT>
-          <p class="text-danger formatoTexto14" id="spnNombre"> </p>
-          <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="txtNombre" class="col-md-3 control-label">*Nombre: </label>
-        <div class="col-md-8">
-          <input id="txtNombre" name="txtNombre" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Nombre que tendra el cuestionario" required>
-          <p class="text-danger formatoTexto14" id="spnNombre"> </p>
-          <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label class="col-md-3 control-label">Activo:</label>
-        <div class="col-md-2">
-          <select name="" id="datosActivo" class="form-control input-sm">
-            <option value="2"></option>
-            <option value="1">Sí</option>
-            <option value="0">No</option>
-          </select>
+      <div class="form-group" id="groupNueva2">
+        <label for="txtFechaInicio" class="col-md-3 control-label">*Fecha de aplicación: </label>
+        <div class="col-md-5">
+          <div class="input-group date" data-provide="datepicker">
+            <input type="text" class="form-control" id="txtFechaApl">
+            <div class="input-group-addon">
+              <i class="fa fa-calendar"></i>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -135,9 +116,9 @@ echo date("Y-m-d", $time);
             <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
             <input id="chkAbierta" type="checkbox" name="transporte"  value="1" onClick="chkA()">  Abierta 
             <br>
-            <input id="chkOpMul" type="checkbox" name="transporte" value="1" onClick="chkO()">  Opción múltiple
+            <input id="chkOpMul" type="checkbox" name="transporte" value="2" onClick="chkO()">  Opción múltiple
             <br>
-            <input id="chkMix" type="checkbox" name="transporte" value="1" onClick="chkM()">  Mixta
+            <input id="chkMix" type="checkbox" name="transporte" value="3" onClick="chkM()">  Mixta
           </div>
         </div>
     </div>
@@ -166,7 +147,8 @@ echo date("Y-m-d", $time);
       <div class="form-group">
         <label for="txtNombreS" class=" control-label">Pregunta: </label>
         <br> 
-        <input id="txtpreg" name="txtpreg" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Ingrese pregunta" required>
+        <input id="txtPreg" name="txtPreg" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Ingrese pregunta" required>
+        <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
         <br><br>
 
         <div class="form-group">
@@ -227,8 +209,8 @@ echo date("Y-m-d", $time);
           <p class="text-danger formatoTexto14" id="spnNombre"> </p>
           <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
         </div>
-      <center><button id="btnGuardarAg" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
-      <button id="btnCancelarAg"  class="btn btn-danger"><i class="fa fa-times-circle"></i> Cancelar</button></center><br>
+      <center><button id="btnGuardarPre" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
+      <button id="btnCancelarPre"  class="btn btn-danger"><i class="fa fa-times-circle"></i> Cancelar</button></center><br>
       </div>
     </div>
 

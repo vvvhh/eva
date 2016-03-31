@@ -1,8 +1,8 @@
 <?php
 
-class CuestionarioController extends BaseController{
+class preCuesController extends BaseController{
 
-  public function ingresoCuestionario(){ /**INGRESO Servicio**/
+  public function agregarPre(){ /**INGRESO Servicio**/
       if( !Sesion::isAdmin() )
       return Redirect::to('administracion/logout');
 
@@ -10,15 +10,12 @@ class CuestionarioController extends BaseController{
 
     if(isset($token)) {
       $data = array(
-        'fecha' => Input::get('fecha'),
-        'tema' => Input::get('tema'),
-        'subtema' => Input::get('subtema'),
-        'nombre' => Input::get('nombre')
+        'pregunta' => Input::get('pregunta')
         //'tiempo' => Input::get('tiempo'),
         //'idResponsable' => Input::get('idResponsable'),
       );
 
-     $validaciones = array('nombre' => array('required','regex:/^([0-9a-zA-ñÑZáéíóúñÁÉÍÓÚ\-\s\,\.\?\¿\¡\!])+$/')
+     $validaciones = array('pregunta' => array('required','regex:/^([0-9a-zA-ñÑZáéíóúñÁÉÍÓÚ\-\s\,\.\?\¿\¡\!])+$/')
      );
 
      $validator = Validator::make($data , $validaciones);
@@ -37,9 +34,7 @@ class CuestionarioController extends BaseController{
       }
       else{
 
-        $duplicado = cuestionarios::where('cueFechaAp',$data['fecha'])
-        ->where('cueTema',$data['tema'])
-        ->where('cueNombre',$data['nombre'])
+        $duplicado = preguntas::where('prePregunta',$data['pregunta'])
           ->get()
           ->toArray();
 
@@ -49,11 +44,8 @@ class CuestionarioController extends BaseController{
             'message' => 'Ya existe un cuestionario con el mismo nombre, verifique'
           ));
           else{
-            $insert = cuestionarios::insert(array(
-              'cueFechaAp' => trim($data['fecha']),
-              'cueTema' => trim($data['tema']),
-              'cueSubTema'=> $data['subtema'],
-              'cueNombre' => trim($data['nombre'])
+            $insert = preguntas::insert(array(
+              'prePregunta' => trim($data['pregunta'])
               //'cueTiempo'=> $data['tiempo'],
               //'cueSubTema'=> $data['subTema'],
               //'cueResponsables'=> $data['idResponsable']
@@ -62,7 +54,7 @@ class CuestionarioController extends BaseController{
               if ( $insert ){
                 $response = array(
                   'status' => 'OK',
-                  'message' => 'Cuestionario agregado correctamente.');
+                  'message' => 'Pregunta agregada correctamente.');
 
               }
               else

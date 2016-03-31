@@ -13,7 +13,7 @@
 @stop
 
 @section('content')
-<div>
+<!--<div>
   <div class="row">
     <center><h2><i class="fa fa-newspaper-o text-primary"></i> Cuestionarios</h2></center>
     <center><h3><i class="fa fa-th-list text-primary"></i> Consulta</h3></center>
@@ -28,7 +28,8 @@
       <button id="btnConsulta" class="btn btn-block btn-md botonNoactivo"><i class="fa fa-th-list"></i> Consultar</button>
     </div>
   </div>
-</div>
+</div>-->
+@include('administracion/btnAgEdCo')
     <div class="row">
       <div class="col-md-12">
         <div id="tblConsultas">

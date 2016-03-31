@@ -1,4 +1,3 @@
-
 var tblConsulta=$('#tblConsulta'),
 tbodyConsulta=$('#tbodyConsulta');
 
@@ -427,12 +426,6 @@ btnEditar.click(
       getTodosCuestionarios();
 
       btnEditar.addClass('botonActivo');
-      btnConsulta.addClass('botonNoactivo');
-      btnAgregar.addClass('botonNoactivo');
-
-      btnEditar.removeClass('botonNoactivo');
-      btnConsulta.removeClass('botonActivo');
-      btnAgregar.removeClass('botonActivo');
     window.location.href = 'cueEditar#tblServicios';
     return false;
 });
@@ -454,8 +447,6 @@ btnConsulta.click(
 
 btnAgregar.click(
   function() {
-      formselect.addClass('hidden');
-      pnlAgregar.removeClass('hidden');
       getTodosCuestionarios();
 
       btnEditar.addClass('botonNoactivo');

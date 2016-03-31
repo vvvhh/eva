@@ -1,6 +1,6 @@
 <?php
 
-class Cuestionarios extends Eloquent
+class preguntas extends Eloquent
 {
   protected $table = 'preguntas';
   protected $primaryKey = 'preId';

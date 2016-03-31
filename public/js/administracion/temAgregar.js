@@ -4,7 +4,8 @@ txtSubTema = $('#txtSubTema'),
 btnCancelarTem = $('#btnCancelarTem'),
 btnGuardarTem = $('#btnGuardarTem'),
 txtActivot = $('#txtActivot'),
-token = $('#token');
+token = $('#token'),
+btnTema = $('#btnTema');
 
 function temAgregar(){
   var editar = $.ajax({
@@ -48,5 +49,10 @@ function Cancelar(){
   txtSubTema.val('');
 }
 
+function rediTem(){
+  window.location.href = 'temAgregar';
+}
+
 btnCancelarTem.on('click',Cancelar);
 btnGuardarTem.on('click',temAgregar);
+btnTema.on('click',rediTem);
