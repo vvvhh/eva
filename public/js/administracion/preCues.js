@@ -1,5 +1,6 @@
 var btnAceptarC = $('#btnAceptarC'),
 	txtNumPre = $('#txtNumPre'),
+  preAc = $('#preAc'),
 	txtPreg = $('#txtPreg'),
 	btnGuardarPre = $('#btnGuardarPre');
 	//formselect = $;
@@ -29,7 +30,8 @@ function agregarPre() {
     url: 'agregarPre',
     data: {
       token: token.val(),
-      pregunta: txtPreg.val()
+      pregunta: txtPreg.val(),
+      preActiva: preAc.val()
 
     },
     type: 'post',

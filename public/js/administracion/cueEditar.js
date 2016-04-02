@@ -247,6 +247,70 @@ function limpiar(){
   formEditarServ.addClass('hidden');
 }
 
+/* Inicio de funcion par apoder visuzalizar el cuestionario completo*/
+function getCuesT(){
+  var id = $(this).attr('id');
+  if (id==="")
+    return false;
+
+  var datos = $.ajax({
+    url: 'getCues',
+    data: {
+      i: id
+    },
+    type: 'post',
+    dataType:'json',
+    async:false
+  }).error(function(e){
+    alert('Ocurrio un error, intente de nuevo');
+  }).responseText;
+
+  var res;
+  try{
+      res = JSON.parse(datos);
+      }catch(e){
+      alert('Error JSON ' + e);
+    }
+
+    if ( res.status == 'OK' ){
+       var i = 1;
+      $.each(res.data, function(k,o){
+
+        txtFechaA.val(o.cueFechaAp);
+        selComboE.val(o.temTema);
+        selComboSubE.val(o.temSubTema);
+        txtNombreE.val(o.cueNombre);
+        txtCueId.val(o.cueId);
+        
+        fechaEla.val(o.cueFechaEla);
+        datosActivo.val(o.cueActivo);
+        formEditarServ.removeClass('hidden');
+        tblServicios.addClass('hidden');
+
+        selCombo.find('option').each(
+          function(){
+            if ( o.temId == $(this).val() )
+            selCombo.val(o.temIdS);
+          }
+        );
+
+        selComboSub.find('option').each(
+          function(){
+            if ( o.temId == $(this).val() )
+            selComboSub.val(o.temId);
+          }
+        );
+
+
+      i++;
+      });
+    }else{
+      tbodyServicios.html('<tr><td colspan="8" class="center"><h3>'+ res.message +'</h3></td></tr>');
+    }
+    tbodyServicios.removeClass('hidden');
+}
+/* fin de función para ver el cuestionario */
+
 /*******/
 
 function ingresoCuestionario(){
@@ -403,6 +467,7 @@ function getCuestionarioConsultas(){
             '<td >'+o.temSubTema+'</td>'+
             '<td >'+o.cueNombre+'</td>'+
             '<td class="text-center">'+status+'</td>'+
+            '<td class="text-center">'+status+'</td>'+
           '</tr>'
       );
       i++;
@@ -530,6 +595,7 @@ function chkM(form)
     }    
 }
 
+tbodyConsulta.delegate('.glyphicon-ok', 'click', getCuesT);
 tblServicios.delegate('.glyphicon-edit', 'click', getCues);
 tblServicios.delegate('.glyphicon-trash', 'click', darBajaCues);
 btnCancelar.on('click',limpiar);

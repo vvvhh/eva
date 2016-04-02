@@ -155,7 +155,16 @@ echo date("Y-m-d", $time);
         <br> 
         <input id="txtPreg" name="txtPreg" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Ingrese pregunta" required>
         <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
-        <center><button id="btnInRes" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Ingresar respuestas</button></center>
+        <div class="form-group hidden">
+        <label class="col-md-3 control-label">Activo:</label>
+        <div class="col-md-2">
+          <select name="" id="preAc" class="form-control input-sm">
+            <option value="1" selected>Sí</option>
+          </select>
+        </div>
+      </div>
+        <br><br>
+        <center><button id="btnGuardarPre" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Ingresar respuestas</button></center>
         <br><br>
 
         <div id="pnlRes" class="form-group hidden">
@@ -216,7 +225,7 @@ echo date("Y-m-d", $time);
           <p class="text-danger formatoTexto14" id="spnNombre"> </p>
           <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
       </div>
-      <center><button id="btnGuardarPre" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
+      <center><button id="btnGuardarRes" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
       <button id="btnCancelarPre"  class="btn btn-danger"><i class="fa fa-times-circle"></i> Cancelar</button></center><br>
       </div>
     </div>

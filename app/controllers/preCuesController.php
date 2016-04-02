@@ -10,13 +10,13 @@ class preCuesController extends BaseController{
 
     if(isset($token)) {
       $data = array(
-        'pregunta' => Input::get('pregunta')
+        'pregunta' => Input::get('pregunta'),
+        'preActiva' => Input::get('preActiva')
         //'tiempo' => Input::get('tiempo'),
         //'idResponsable' => Input::get('idResponsable'),
       );
 
-     $validaciones = array('pregunta' => array('required','regex:/^([a-zA-ñÑZáéíóúñÁÉÍÓÚ\-\s\,\.])+$/')
-     );
+     $validaciones = array('pregunta' => array('required','regex:/^([a-zA-ñÑZáéíóúñÁÉÍÓÚ\-\_\s\,\.\:\;\¿\?\¡\!])+$/'));
 
      $validator = Validator::make($data , $validaciones);
 
@@ -41,11 +41,12 @@ class preCuesController extends BaseController{
           if ( count( $duplicado ) > 0 )
             return Response::json(array(
             'status' => 'Error',
-            'message' => 'Ya existe un cuestionario con el mismo nombre, verifique'
+            'message' => 'Ya existe esta pregunta, verifique'
           ));
           else{
             $insert = preguntas::insert(array(
-              'prePregunta' => trim($data['pregunta'])
+              'prePregunta' => trim($data['pregunta']),
+              'preActivo' => trim($data['preActiva'])
               //'cueTiempo'=> $data['tiempo'],
               //'cueSubTema'=> $data['subTema'],
               //'cueResponsables'=> $data['idResponsable']

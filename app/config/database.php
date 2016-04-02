@@ -56,7 +56,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'evaluacion',
+			'database'  => 'evaluaciones',
 			/*'database'  => 'VHCBD',*/
 			'username'  => 'root',
 			'password'  => '',
