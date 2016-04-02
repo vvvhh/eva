@@ -41,9 +41,11 @@ var formselect = $('#formselect'),
     datosActivo = $('#datosActivo'),
     formpom = $('#formpom'),
     numPreC = $('#numPreC'),
-    selPre = $('#selPre');
+    selPre = $('#selPre'),
+    btnCaFe = $('#btnCaFe'),
+    calendario = $('#calendario');
 
-var numPre;
+/*var numPre;*/
 
 /*Ide desde el icono editar de la tabla*/
 function darBajaCues(){
@@ -460,6 +462,11 @@ btnAgregar.click(
     return false;
 });
 
+btnCaFe.click(
+function (){
+  calendario.removeClass('hidden');
+});
+
 /*btnTema.click(
   function() {
     window.location.href = 'temAgregar';
@@ -475,7 +482,7 @@ function chkA(form)
     chkOpMul.disabled =true;
     chkMix.disabled =true;
     formprea.removeClass('hidden');
-    numPre.removeClass('hidden');
+    numPreC.removeClass('hidden');
     }
 
     if (chkAbierta.checked == false)
@@ -483,7 +490,7 @@ function chkA(form)
     chkOpMul.disabled =false;
     chkMix.disabled =false;
     formprea.addClass('hidden');
-    numPre.addClass('hidden');
+    numPreC.addClass('hidden');
     }
 }
 

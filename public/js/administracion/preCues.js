@@ -18,11 +18,13 @@ function agregarPre() {
 	chkAbierta.disabled = false;
 	chkOpMul.disabled = false;
 	chkMix.disabled = false;
-	//If para gregar pregunntas 
-	/*if (i <= txtNumPre) {
-		numPreC.removeClass('hidden');
-		i++
-	}*/
+
+	//ciclo para gregar pregunntas 
+  for (var i = 0; i < txtNumPre; i++) {
+  if (txtNumPre>=preNum) {
+    } 
+  }
+
   var editar = $.ajax({
     url: 'agregarPre',
     data: {
@@ -68,4 +70,4 @@ function Aceptar(){
 
 
 btnAceptarC.on('click',cicloPre);
-btnGuardarPre.on('click',agregarPre)
+btnGuardarPre.on('click',agregarPre);
