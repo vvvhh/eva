@@ -167,12 +167,28 @@ echo date("Y-m-d", $time);
         <br><br>
         <center><button id="btnGuardarPre" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Ingresar respuestas</button></center>
         <br><br>
+        <form name="sendmail" method="get" action="" class="form-group hidden" id="pnlRes"> 
+          ¿Cuantas respuestas contendra tu pregunta?:
+          <select name="numObject" onChange="howMany(this.form)"> 
+            <option value="1" selected> 1 </option> 
+            <option value="2"> 2 </option> 
+            <option value="3"> 3 </option> 
+            <option value="4"> 4 </option> 
+            <option value="5"> 5 </option> 
+          </select> 
+          <P>
+          <table> 
+          <label for="txtNombreS" class=" control-label">Ingrese respuestas</label>
+            <tr>
+              <td id="myemailtextbox"><i> Respuesta: </i> <input type="text" name="email"><br></td>
+            </tr>
+          </table> 
+        </form> 
 
-      <div id="pnlRes" class="form-group hidden">
+      <!--div id="pnlRes" class="form-group hidden">
             <div class="col-md-8">
               <label for="txtNombreS" class=" control-label">Ingrese respuestas</label>
             </div>
-            
             <div class="col-md-3">
               <label for="txtNombreS" class=" control-label"> Indique la opción correcta</label>
               <p class="text-danger formatoTexto14" id="spnNombre"> </p>
@@ -244,7 +260,7 @@ echo date("Y-m-d", $time);
       <button id="btnCancelarPre"  class="btn btn-danger"><i class="fa fa-times-circle"></i> Cancelar</button></center><br>
       </div>
     </div>
-    </div>
+    </div-->
 
       <div class="row" id="pnlInicio">
         <div class="col-md-12" align="center">

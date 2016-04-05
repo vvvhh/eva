@@ -18,6 +18,7 @@ function agregarPre() {
 	// body...
 	pnlRes.removeClass('hidden');
   txtPreg.html ('');
+
 	//ciclo para gregar pregunntas 
   for (var i = 0; i < txtNumPre; i++) {
   if (txtNumPre>=preNum) {
@@ -68,6 +69,23 @@ function Aceptar(){
   formprea.addClass('hidden');
 }
 
+//Select para elegir el numero de respuestas de la pregunta
+function howMany(form){ 
+    var numObj = parseInt(form.numObject.value); 
+    var html = '';
+    var container = document.getElementById('myemailtextbox');
+
+        if (numObj > 0) { 
+            for(i=1; i<=numObj; i++) { 
+               html += '<I> Respuesta' + i + ':</I> <input "text" name="email' + i +'"><br>'; 
+            } 
+        } else { 
+               html += '<I> Respuesta' + i + ':</I> <input type="text" name="email"><br>'; 
+        } 
+
+container.innerHTML = html;
+
+} 
 
 btnAceptarC.on('click',cicloPre);
 btnGuardarPre.on('click',agregarPre);
