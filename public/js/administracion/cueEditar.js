@@ -11,6 +11,7 @@ var pnlAgregar=$('#pnlAgregar');
     pnlInicio=$('#pnlInicio');
 
 var tblServicios   = $('#tblServicios'),
+    tblCues = $('#tblCues'),
     tbodyServicios = $('#tbodyServicios');
 
 var txtNombreFuente = $('#txtNombreFuente'),
@@ -211,14 +212,6 @@ function getCues(){
         txtFechaA.val(o.cueFechaAp);
         selComboE.val(o.temTema);
         selComboSubE.val(o.temSubTema);
-        txtNombreE.val(o.cueNombre);
-        txtCueId.val(o.cueId);
-        
-        fechaEla.val(o.cueFechaEla);
-        datosActivo.val(o.cueActivo);
-        formEditarServ.removeClass('hidden');
-        tblServicios.addClass('hidden');
-
         selCombo.find('option').each(
           function(){
             if ( o.temId == $(this).val() )
@@ -232,8 +225,13 @@ function getCues(){
             selComboSub.val(o.temId);
           }
         );
-
-
+        txtNombreE.val(o.cueNombre);
+        txtCueId.val(o.cueId);
+        
+        fechaEla.val(o.cueFechaEla);
+        datosActivo.val(o.cueActivo);
+        formEditarServ.removeClass('hidden');
+        tblServicios.addClass('hidden');
       i++;
       });
     }else{
@@ -249,65 +247,48 @@ function limpiar(){
 
 /* Inicio de funcion par apoder visuzalizar el cuestionario completo*/
 function getCuesT(){
-  var id = $(this).attr('id');
-  if (id==="")
-    return false;
-
   var datos = $.ajax({
-    url: 'getCues',
-    data: {
-      i: id
-    },
+    url: 'getCuesT',
     type: 'post',
-    dataType:'json',
-    async:false
-  }).error(function(e){
-    alert('Ocurrio un error, intente de nuevo');
-  }).responseText;
+        dataType:'json',
+        async:false
+    }).error(function(e){
+        alert('Ocurrio un error, intente de nuevo');
+    }).responseText;
 
-  var res;
-  try{
-      res = JSON.parse(datos);
-      }catch(e){
-      alert('Error JSON ' + e);
+    var res;
+    try{
+        res = JSON.parse(datos);
+    }catch (e){
+        alert('Error JSON ' + e);
     }
 
+    tbodyConsulta.html('');
     if ( res.status == 'OK' ){
        var i = 1;
       $.each(res.data, function(k,o){
-
-        txtFechaA.val(o.cueFechaAp);
-        selComboE.val(o.temTema);
-        selComboSubE.val(o.temSubTema);
-        txtNombreE.val(o.cueNombre);
-        txtCueId.val(o.cueId);
-        
-        fechaEla.val(o.cueFechaEla);
-        datosActivo.val(o.cueActivo);
-        formEditarServ.removeClass('hidden');
-        tblServicios.addClass('hidden');
-
-        selCombo.find('option').each(
-          function(){
-            if ( o.temId == $(this).val() )
-            selCombo.val(o.temIdS);
-          }
-        );
-
-        selComboSub.find('option').each(
-          function(){
-            if ( o.temId == $(this).val() )
-            selComboSub.val(o.temId);
-          }
-        );
-
-
+      if ( o.cueActivo == 1 ){
+          status = '<span class="glyphicon glyphicon-ok text-success" title="Activo"></span>';
+          vista = '<span class="glyphicons glyphicons-eye-open" title="Vista"></span>';
+        }
+        else{
+          status = '<span class="glyphicon glyphicon-remove" title="Inactivo"></span>';
+          vista = '<span class="glyphicon glyphicons-eye-close" title="NoVista"></span>';
+        }
+        tbodyConsulta.append(
+          '<tr>'+
+            '<td >'+o.temTema+'</td'+
+            '<td >'+ "" +'</td>'+
+            '<td >'+o.temSubTema+'</td>'+
+            '<td >'+o.cueNombre+'</td>'+
+          '</tr>'
+      );
       i++;
       });
     }else{
-      tbodyServicios.html('<tr><td colspan="8" class="center"><h3>'+ res.message +'</h3></td></tr>');
+      tbodyConsulta.html('<tr><td colspan="8" class="center"><h3>'+ res.message +'</h3></td></tr>');
     }
-    tbodyServicios.removeClass('hidden');
+    tblConsulta.removeClass('hidden');
 }
 /* fin de función para ver el cuestionario */
 
@@ -454,9 +435,11 @@ function getCuestionarioConsultas(){
       $.each(res.data, function(k,o){
       if ( o.cueActivo == 1 ){
           status = '<span class="glyphicon glyphicon-ok text-success" title="Activo"></span>';
+          vista = '<span class="glyphicons glyphicons-eye-open" title="Vista"></span>';
         }
         else{
           status = '<span class="glyphicon glyphicon-remove" title="Inactivo"></span>';
+          vista = '<span class="glyphicon glyphicons-eye-close" title="NoVista"></span>';
         }
         tbodyConsulta.append(
           '<tr>'+
@@ -467,7 +450,11 @@ function getCuestionarioConsultas(){
             '<td >'+o.temSubTema+'</td>'+
             '<td >'+o.cueNombre+'</td>'+
             '<td class="text-center">'+status+'</td>'+
-            '<td class="text-center">'+status+'</td>'+
+            '<td class="text-center">'+
+              '<span class="glyphicon glyphicon-edit text-primary" id="'+o.cueId+'" '+
+              'style="cursor:pointer" title="Editar"></span>'+
+            '</td>'+
+
           '</tr>'
       );
       i++;
@@ -595,7 +582,7 @@ function chkM(form)
     }    
 }
 
-tbodyConsulta.delegate('.glyphicon-ok', 'click', getCuesT);
+tblCues.delegate('.glyphicons-edit', 'click', getCuesT);
 tblServicios.delegate('.glyphicon-edit', 'click', getCues);
 tblServicios.delegate('.glyphicon-trash', 'click', darBajaCues);
 btnCancelar.on('click',limpiar);

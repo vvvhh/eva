@@ -64,29 +64,80 @@
           <legend><span class="glyphicon glyphicon-edit text-primary"></span> Editar Cuestionario</legend>
           <input type="hidden" id="txtCueId" value="">
           <div class="form-group">
-            <label for="txtNombreFuente" class="col-md-4 control-label">Fecha de Aplicación:</label>
-            <div class="col-md-7">
-              <input type="text" class="form-control input-sm" id="txtFechaA" placeholder="Ingrese fecha de aplicacion" maxlength="55">
+        <label for="txtNombreS" class="col-md-3 control-label">*Tema: </label>
+        <div class="col-md-7" id="select">
+          <SELECT id="selCombo" size=1 class="form-control grisObscuro">
+          </SELECT>
+          <p class="text-danger formatoTexto14" id="spnNombre"> </p>
+          <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
+        </div>
+          <button id="btnTema" class="btn btn-primary col-md-2"><i class="fa fa-plus-circle"></i> Agregar tema</button>
+      </div>
+
+
+      <div class="form-group">
+        <label for="txtSubTema" class="col-md-3 control-label">*Subtema: </label>
+        <div class="col-md-7">
+          <SELECT id="selComboSub" size=1 class="form-control grisObscuro">
+          </SELECT>
+          <p class="text-danger formatoTexto14" id="spnNombre"> </p>
+          <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="txtNombre" class="col-md-3 control-label">*Nombre: </label>
+        <div class="col-md-7">
+          <input id="txtNombre" name="txtNombre" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Nombre que tendra el cuestionario" required>
+          <p class="text-danger formatoTexto14" id="spnNombre"> </p>
+          <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
+        </div>
+      </div>
+
+      <div class="form-group hidden">
+        <label for="txtActivot" class="col-md-3 control-label">Activo:</label>
+        <div class="col-md-3">
+          <select name="" id="datosActivo" class="form-control input-sm">
+            <option value="1">Sí</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="txtFechaInicio" class="col-md-3 control-label"><br>*Fecha de elaboración: </label>
+        <div class="col-md-6">
+        <label for="txtFechaInicio" class=" control-label">*Fecha Actual: </label>
+          <div class="input-group date" data-provide="datepicker">
+            <input type="text" class="form-control" id="fechaEla" value="
+<?php //Ejemplo curso PHP aprenderaprogramar.com
+$time = time();
+echo date("Y-m-d", $time);
+?>" disabled>
+            <div  id="calendario" class="input-group-addon hidden">
+              <i class="fa fa-calendar"></i>
             </div>
           </div>
+        </div>
+        <div class=" col-md-3">
+          <center>
+          <label for="txtFechaInicio" class=" control-label">Desea cambiar la fecha</label>
+            <button id="btnCaFe" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Cambiar</button>
+          </center>
+        </div>
+      </div>
 
-          <div class="form-group">
-            <label for="txtNombreS" class="col-md-3 control-label">*Tema: </label>
-            <div class="col-md-8" id="select">
-              <SELECT id="selComboE" size=1 class="form-control grisObscuro">
-              </SELECT>
-              <p class="text-danger formatoTexto14" id="spnNombre"> </p>
-              <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
+      <div class="form-group" id="groupNueva2">
+        <label for="txtFechaInicio" class="col-md-3 control-label">*Fecha de aplicación: </label>
+        <div class="col-md-5">
+          <div class="input-group date" data-provide="datepicker">
+            <input type="text" class="form-control" id="txtFechaApl">
+            <div class="input-group-addon">
+              <i class="fa fa-calendar"></i>
             </div>
           </div>
-
-          <div class="form-group">
-            <label for="txtNombreFuente" class="col-md-4 control-label">Nombre del Cuestionario:</label>
-            <div class="col-md-7">
-              <input type="text" class="form-control input-sm" id="txtNombreE" placeholder="Ingrese nombre del cuestionario" maxlength="55">
-            </div>
-          </div>
-
+        </div>
+      </div>
           <div class="form-group">
             <label for="txtActivo" class="col-md-4 control-label">Activo:</label>
             <div class="col-md-7">
@@ -118,8 +169,6 @@
 
   </div>  <!--/columna10 contenido-->
 </div>
-
-
 
 @stop
 

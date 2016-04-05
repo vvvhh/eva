@@ -52,7 +52,7 @@
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group hidden">
         <label for="txtActivot" class="col-md-3 control-label">Activo:</label>
         <div class="col-md-8">
           <select name="" id="txtActivot" class="form-control input-sm">

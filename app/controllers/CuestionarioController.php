@@ -250,6 +250,36 @@ public function editarCues(){
       return $seleccionar;
   }
 
+//tabla para mostrar cuestionario completo
+public function getCuesT(){
+    if( !Sesion::isResponsable() ){
+      if( !Sesion::isAdmin() )
+      return Redirect::to('administracion/logout');
+    }
+
+      $seleccionar=CuestionarioController::getCueT();
+
+      if ( count( $seleccionar ) > 0 )
+        $response = array(
+          'status' => 'OK',
+          'data' => $seleccionar,
+          'message' => 'Resultados obtenidos'
+        );
+      else
+        $response = array(
+          'status' => 'ERROR',
+          'message' => 'No se encontraron fuentes registradas.'
+        );
+
+      return Response::json($response);
+  }
+  /*****************/
+  static public function getCueT(){
+   /* $seleccionar = cuestionarios::get()
+      ->toArray();*/
+      $seleccionar = DB::select('SELECT c.cueNombre, t.temSubTema, t.temTema, p.prePregunta FROM cuestionarios c, temas t, preguntas p WHERE c.temId = t.temId AND c.cueId = p.preCuestionario ');
+      return $seleccionar;
+  }
 //     SECCION DE ACTIVO
   public function getActivoFuentes(){
     if( !Sesion::isResponsable() ){

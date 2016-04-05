@@ -54,6 +54,26 @@
         </div><!-- /Tabla de servicios -->
       </div>
 
+      <div class="col-md-12">
+        <div id="tblConsultasCue hidden">
+          <h2><span class="glyphicon glyphicon-edit text-primary"></span> Consultar datos generales de Cuestionarios</h2>
+          <input type="hidden" id="txtCueId" value="">
+          <div class="table-responsive" >
+            <table class="table table-striped table-hover table-bordered">
+              <thead>
+                <tr>
+                  <th class="col-md-5 text-center">Tema</th>
+                  <th class="col-md-5 text-center">Sub Tema</th>
+                  <th class="col-md-5 text-center">Nombre del custionario</th>
+                  <th class="col-md-12 text-center">Cuestionario</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyConsultaCue"></tbody>
+            </table>
+          </div>
+        </div><!-- /Tabla de servicios -->
+      </div>
+
 
       <div class="row" id="pnlInicio">
         <div class="col-md-12" align="center">

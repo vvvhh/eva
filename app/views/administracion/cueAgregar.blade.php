@@ -51,10 +51,11 @@
       </div>
 
       <div class="form-group hidden">
-        <label class="col-md-3 control-label">Activo:</label>
-        <div class="col-md-2">
+        <label for="txtActivot" class="col-md-3 control-label">Activo:</label>
+        <div class="col-md-3">
           <select name="" id="datosActivo" class="form-control input-sm">
             <option value="1">Sí</option>
+            <option value="0">No</option>
           </select>
         </div>
       </div>
@@ -167,23 +168,24 @@ echo date("Y-m-d", $time);
         <center><button id="btnGuardarPre" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Ingresar respuestas</button></center>
         <br><br>
 
-        <div id="pnlRes" class="form-group hidden">
+      <div id="pnlRes" class="form-group hidden">
             <div class="col-md-8">
               <label for="txtNombreS" class=" control-label">Ingrese respuestas</label>
             </div>
+            
             <div class="col-md-3">
               <label for="txtNombreS" class=" control-label"> Indique la opción correcta</label>
               <p class="text-danger formatoTexto14" id="spnNombre"> </p>
               <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
             </div>
-        </div>
 
         <div class="form-group">
           <div class="col-md-8">
             <input id="txtopcion1" name="txtopcion1" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Ingrese pregunta" required> 
           </div>
-          <div class="col-md-3">
-            <input type="checkbox" name="respuesta1" value="1"><label for="txtNombreS" class="control-label">-->Correcta</label>
+          <div class="col-md-4">
+            <input type="checkbox" class="col-md-2" name="respuesta1" id="respuesta1" value="1">
+            <label for="txtNombreS" class="col-md-2 control-label">Correcta</label>
             <p class="text-danger formatoTexto14" id="spnNombre"> </p>
             <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
           </div>
@@ -191,10 +193,10 @@ echo date("Y-m-d", $time);
           
         <div class="form-group">
           <div class="col-md-8">
-            <input id="txtopcion1" name="txtopcion1" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Ingrese pregunta" required> 
+            <input id="txtopcion2" name="txtopcion1" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Ingrese pregunta" required> 
           </div>
-          <div class="col-md-3">
-            <input type="checkbox" name="respuesta1" value="1"><label for="txtNombreS" class=" control-label">  Correcta</label>
+          <div class="col-md-4">
+            <input type="checkbox" class="col-md-2" name="respuesta2" id="respuesta2" value="1"><label for="txtNombreS" class="col-md-2 control-label">  Correcta</label>
             <p class="text-danger formatoTexto14" id="spnNombre"> </p>
             <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
           </div>
@@ -202,10 +204,11 @@ echo date("Y-m-d", $time);
 
         <div class="form-group">
           <div class="col-md-8">
-            <input id="txtopcion1" name="txtopcion1" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Ingrese pregunta" required> 
+            <input id="txtopcion3" name="txtopcion1" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Ingrese pregunta" required> 
           </div>
-          <div class="col-md-3">
-            <input type="checkbox" name="respuesta1" value="1"><label for="txtNombreS" class=" control-label">  Correcta</label>
+          <div class="col-md-4">
+            <input type="checkbox" class="col-md-2" name="respuesta3" id="respuesta3" value="1">
+            <label for="txtNombreS" class="col-md-2 control-label">Correcta</label>
             <p class="text-danger formatoTexto14" id="spnNombre"> </p>
             <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
           </div>
@@ -213,10 +216,23 @@ echo date("Y-m-d", $time);
 
         <div class="form-group">
           <div class="col-md-8">
-            <input id="txtopcion1" name="txtopcion1" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Ingrese pregunta" required> 
+            <input id="txtopcion4" name="txtopcion1" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Ingrese pregunta" required> 
           </div>
-          <div class="col-md-3">
-            <input type="checkbox" name="respuesta1" value="1"><label for="txtNombreS" class=" control-label"> Correcta</label>
+          <div class="col-md-4">
+            <input type="checkbox" class="col-md-2" name="respuesta4" id="respuesta4" value="1">
+            <label for="txtNombreS" class="col-md-2 control-label">Correcta</label>
+            <p class="text-danger formatoTexto14" id="spnNombre"> </p>
+            <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-8">
+            <input id="txtopcion5" name="txtopcion1" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Ingrese pregunta" required> 
+          </div>
+          <div class="col-md-4">
+            <input type="checkbox" class="col-md-2" name="respuesta5" id="respuesta5" value="1">
+            <label for="txtNombreS" class="col-md-2 control-label">Correcta</label>
             <p class="text-danger formatoTexto14" id="spnNombre"> </p>
             <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
           </div>
@@ -224,10 +240,10 @@ echo date("Y-m-d", $time);
 
           <p class="text-danger formatoTexto14" id="spnNombre"> </p>
           <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
-      </div>
       <center><button id="btnGuardarRes" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
       <button id="btnCancelarPre"  class="btn btn-danger"><i class="fa fa-times-circle"></i> Cancelar</button></center><br>
       </div>
+    </div>
     </div>
 
       <div class="row" id="pnlInicio">

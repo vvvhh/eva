@@ -2,7 +2,8 @@ var btnAceptarC = $('#btnAceptarC'),
 	txtNumPre = $('#txtNumPre'),
   preAc = $('#preAc'),
 	txtPreg = $('#txtPreg'),
-	btnGuardarPre = $('#btnGuardarPre');
+	btnGuardarPre = $('#btnGuardarPre'),
+  pnlRes = $('#pnlRes');
 	//formselect = $;
 
 function cicloPre() {
@@ -15,11 +16,8 @@ function cicloPre() {
 
 function agregarPre() {
 	// body...
-	formselect.removeClass('hidden');
-	chkAbierta.disabled = false;
-	chkOpMul.disabled = false;
-	chkMix.disabled = false;
-
+	pnlRes.removeClass('hidden');
+  txtPreg.html ('');
 	//ciclo para gregar pregunntas 
   for (var i = 0; i < txtNumPre; i++) {
   if (txtNumPre>=preNum) {
