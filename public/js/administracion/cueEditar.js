@@ -25,6 +25,8 @@ var txtNombreFuente = $('#txtNombreFuente'),
 var btnCancelarAg = $('#btnCancelarAg'),
     token = $('#token'),
     txtNombre = $('#txtNombre'),
+    selComboInicio = $('#selComboInicio'),
+    selComboInicioSub = $('#selComboInicioSub'),
     Combo = $('#Combo'),
     selCombo = $('#selCombo'),
     selComboSub = $('#selComboSub'),
@@ -34,7 +36,7 @@ var btnCancelarAg = $('#btnCancelarAg'),
     txtFechaA =$('#txtFechaA'),
     selComboE =$('#selComboE'),
     txtNombreE =$('#txtNombreE');
-
+var tbodyConsultaCue=$('#tbodyConsultaCue');
 var spnNombre=$('#spnNombre'),
     btnImprimir=$('#btnImprimir');
 
@@ -45,7 +47,8 @@ var formselect = $('#formselect'),
     numPreC = $('#numPreC'),
     selPre = $('#selPre'),
     btnCaFe = $('#btnCaFe'),
-    calendario = $('#calendario');
+    calendario = $('#calendario'),
+    temSel = $('#temSel');
 
 /*var numPre;*/
 
@@ -211,8 +214,8 @@ function getCues(){
       $.each(res.data, function(k,o){
 
         txtFechaA.val(o.cueFechaAp);
-        selComboE.val(o.temTema);
-        selComboSubE.val(o.temSubTema);
+        selCombo.val(o.temTema);
+        selComboSub.val(o.temSubTema);
         selCombo.find('option').each(
           function(){
             if ( o.temId == $(this).val() )
@@ -226,6 +229,29 @@ function getCues(){
             selComboSub.val(o.temId);
           }
         );
+
+        selComboInicio.find('option').each(
+          function(){
+            if ( o.temId == $(this).val() )
+            selComboInicio.val(o.temId);
+          }
+        );
+        //obtención de selección del select
+        var posicion=document.getElementById('selComboInicio').value; //posicion
+        alert(document.getElementById('temSel').options[posicion].text);
+        document.getElementById('temSel').innerHTML= posicion.text; //valor asignado al id sleccionado
+
+        selComboInicioSub.find('option').each(
+          function(){
+            if ( o.temId == $(this).val() )
+            selComboInicioSub.val(o.temId);
+          }
+        );
+        //obtención de selección del select
+        /*var posicion=document.getElementById('selComboInicioSub').value; //posicion
+        alert(document.getElementById('temSel').options[posicion].text);
+        document.getElementById('temSel').innerHTML= posicion.text; //valor asignado al id sleccionado*/
+
         txtNombreE.val(o.cueNombre);
         txtCueId.val(o.cueId);
         
@@ -248,6 +274,7 @@ function limpiar(){
 
 /* Inicio de funcion par apoder visuzalizar el cuestionario completo*/
 function vista(){
+  
   tblServicios.addClass('hidden');
   var datos = $.ajax({
     url: 'vista',
@@ -288,9 +315,11 @@ function vista(){
       i++;
       });
     }else{
-      tbodyCue.html('<tr><td colspan="8" class="center"><h3>'+ res.message +'</h3></td></tr>');
+      tbodyConsultaCue.html('<tr><td colspan="8" class="center"><h3>'+ res.message +'</h3></td></tr>');
     }
     tblCue.removeClass('hidden');
+    
+    //alert("alert");
 }
 /* fin de función para ver el cuestionario */
 
@@ -434,14 +463,25 @@ function getTema(){
       });
     document.getElementById('selComboSub');
 
-    Combo.html('');
+      selComboInicio.html('');
       $.each(res.data, function(k,o){
-        selComboSub.append(
+        selComboInicio.append(
+
+          '<option value="'+o.temId+'">'+o.temTema+'</option>'
+        );
+      });
+
+      selComboInicioSub.html('');
+      $.each(res.data, function(k,o){
+        selComboInicioSub.append(
 
           '<option value="'+o.temId+'">'+o.temSubTema+'</option>'
         );
       });
-    document.getElementById('selComboSub');
+    /*//obtención de selección del select
+        var posicion=document.getElementById('selComboInicio').value; //posicion
+        alert(document.getElementById('temSel').options[posicion].text);
+        document.getElementById('temSel').innerHTML= posicion.text; //valor asignado al id sleccionado*/
 }
 
 function getCuestionarioConsultas(){
@@ -631,7 +671,7 @@ function chkM(form)
     }    
 }
 
-tblCue.delegate('.glyphicon-eye-open', 'click', vista);
+tblCue.delegate('.glyphicon-edit', 'click', vista);
 tblServicios.delegate('.glyphicon-edit', 'click', getCues);
 tblServicios.delegate('.glyphicon-trash', 'click', darBajaCues);
 btnCancelar.on('click',limpiar);

@@ -19,46 +19,64 @@
 <div class="row">
   <div class="col-md-10">
     <div class="form-horizontal" id="pnlAgregar" name="pnlAgregar" novalidate>
+      <div id="lbltm" class="hidden">
+        <label for="txtNombreS" class="col-md-3 control-label">*Tema: </label><label id="temSel"></label>
+      </div>
+    <div class="" id="tema">
     <h3><i class="fa fa-plus-circle text-primary"></i> Agregar datos generales de cuestionario</h3>
-     <h4> Antes de pulsar el botón "SI" o "NO" dirijase al apartado de consulta para verificar si ya existe el tema que necesita</h4>
+     <h4> Antes de pulsar el botón "SI" o "NO" dirijase al siguiente listado para verificar si ya existe el tema que necesita</h4>
      <br>
-     <div id="ComboInicio" class="form-group">
-        <label for="txtNombreS" class="col-md-3 control-label">*Tema: </label>
-        <div class="col-md-7" id="select">
-          <SELECT id="Combo" size=1 class="form-control grisObscuro">
-          </SELECT>
-          <p class="text-danger formatoTexto14" id="spnNombre"> </p>
-          <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
+      <div id="ComboInicio" class="form-group">
+          <div class="col-md-3"></div>
+            <div class="col-md-7" id="select">
+              <SELECT id="selComboInicio" size=1 class="form-control grisObscuro">
+              </SELECT>
+              <p class="text-danger formatoTexto14" id="spnNombre"> </p>
+              <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
+            </div>
+          </div>
+        <div class="form-group">
+        <label for="txtNombreS" class="col-md-3 control-label">El Tema existe: </label>
+        <div class="col-md-7">
+            <button id="btnTemaSiEx" class="btn btn-primary">Sí</button>
+            <button id="btnTemaNoEx" class="btn btn-primary">No</button>
         </div>
-      </div>
-      <div class="form-group">
-      <label for="txtNombreS" class="col-md-3 control-label">El Tema existe: </label>
-      <div class="col-md-7">
-          <button id="btnTemaSiEx" class="btn btn-primary">Sí</button>
-          <button id="btnTemaNoEx" class="btn btn-primary">No</button>
-      </div>
-        <br><br>
-      <div id="Combo" class="form-group hidden">
-        <label for="txtNombreS" class="col-md-3 control-label">*Tema: </label>
-        <div class="col-md-7" id="select">
-          <SELECT id="selCombo" size=1 class="form-control grisObscuro">
-          </SELECT>
-          <p class="text-danger formatoTexto14" id="spnNombre"> </p>
-          <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
+          <br><br>
+        <div id="Combo" class="form-group hidden">
+          <label for="txtNombreS" class="col-md-3 control-label">*Tema: </label>
+          <div class="col-md-7" id="select">
+            <SELECT id="selCombo" size=1 class="form-control grisObscuro">
+            </SELECT>
+            <p class="text-danger formatoTexto14" id="spnNombre"> </p>
+            <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
+          </div>
         </div>
-      </div>
           <!--button id="btnTema" class="btn btn-primary col-md-2"><i class="fa fa-plus-circle"></i> Agregar tema</button-->
       </div>
 
+    <div class="hidden" id="lblSub">
+      <label for="txtNombreS" class="col-md-3 control-label">*Subtema: </label><label id="temSel"></label>
+    </div>
 
-      <div id="subtema" class="form-group hidden">
+    <div id="subtema" class="form-group hidden">
       <h4> Antes de pulsar el botón "SI" o "NO" dirijase al apartado de consulta para verificar si ya existe el subtema que necesita</h4>
+      <div id="ComboInicio" class="form-group">
+        <br><br>
+        <div class="col-md-3"></div>
+        <div class="col-md-7" id="select">
+          <SELECT id="selComboInicioSub" size=1 class="form-control grisObscuro">
+          </SELECT>
+          <p class="text-danger formatoTexto14" id="spnNombre"> </p>
+          <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
+        </div>
+      </div>
       <div class="form-group">
         <label for="txtNombreS" class="col-md-3 control-label">El Subtema existe: </label>
         <div class="col-md-7">
             <button id="btnTemaSiExsub" class="btn btn-primary">Sí</button>
             <button id="btnTemaNoExsub" class="btn btn-primary">No</button>
         </div>
+        <br><br>
         <div id="subCombo" class="hidden">
           <label for="txtSubTema" class="col-md-3 control-label">*Subtema: </label>
           <div class="col-md-7">

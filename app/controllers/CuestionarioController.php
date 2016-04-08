@@ -246,7 +246,7 @@ public function editarCues(){
   static public function getCuetionarioConsultas(){
    /* $seleccionar = cuestionarios::get()
       ->toArray();*/
-      $seleccionar = DB::select('SELECT c.cueNombre, c.cueFechaAp, c.cueFechaEla, c.cueActivo,  t.temSubTema, t.temTema FROM cuestionarios c, temas t WHERE c.temId = t.temId');
+      $seleccionar = DB::select('SELECT c.cueId, c.cueNombre, c.cueFechaAp, c.cueFechaEla, c.cueActivo, t.temId,  t.temSubTema, t.temTema FROM cuestionarios c, temas t WHERE c.temId = t.temId');
       return $seleccionar;
   }
 
@@ -319,7 +319,7 @@ public function getCuesT(){
         ->get()
         ->toArray();*/
 
-        $seleccionar=DB::select('SELECT t.temSubTema t.temTema c.cueNombre c.cueFechaAp c.cueFechaEla c.cueActivo FROM cuestionarios c, temas t WHERE ');
+        $seleccionar=DB::select('SELECT t.temSubTema, t.temTema, c.cueNombre, c.cueFechaAp, c.cueFechaEla, c.cueActivo FROM cuestionarios c, temas t WHERE c.temId = t.temId');
 
       if ( count( $seleccionar ) > 0 )
         $response = array(

@@ -33,7 +33,7 @@
 @include('administracion/btnAgEdCo')
     <div class="row">
       <div class="col-md-12">
-        <div id="tblConsultas">
+        <div id="tblCue">
           <h2><span class="glyphicon glyphicon-edit text-primary"></span> Consultar datos generales de Cuestionarios</h2>
           <input type="hidden" id="txtCueId" value="">
           <div class="table-responsive" >
@@ -56,7 +56,7 @@
       </div>
 
       <div class="col-md-12">
-        <div id="tblConsultasCue" class="hidden">
+        <div id="tblConsultas" class="hidden">
           <h2><span class="glyphicon glyphicon-edit text-primary"></span> Consultar datos generales de Cuestionarios</h2>
           <input type="hidden" id="txtCueId" value="">
           <div class="table-responsive" >

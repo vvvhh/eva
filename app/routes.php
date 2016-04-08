@@ -106,6 +106,10 @@ Route::post('/repFuentePer', array('uses' => 'NoticiasController@repFuentePer'))
 				return View::make('administracion.cueEditar');
 			});
 
+			Route::get('/vista', function(){
+				return View::make('administracion.cueConsulta');
+			});
+
 			Route::get('/previsualizar', function(){
 				return View::make('administracion.previsualizar');
 			});
