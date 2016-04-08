@@ -55,9 +55,10 @@ function agregarPre() {
         showCancelButton: true,
         showConfirmButton: true
       });
+      document.getElementsByTagName('slctRes').value = 0;
       //swal();
       //numPreC.removeClass('hidden');
-    }
+   }
     else{
       alert(resultado.message);
     }
@@ -77,11 +78,11 @@ function howMany(form){
 
         if (numObj > 0) { 
             for(i=1; i<=numObj; i++) { 
-               html += '<I> Respuesta' + i + ':</I> <input "text" name="email' + i +'"><br>'; 
+               html += '<I> Respuesta ' + i + ':</I> <input "text" name="email' + i +'">    <input type="checkbox" name="transporte"  value="1"><br><br>'; 
             } 
-        } else { 
-               html += '<I> Respuesta' + i + ':</I> <input type="text" name="email"><br>'; 
-        } 
+        } /*else { 
+               html += '<I> Respuesta ' + i + ':</I> <input type="text" name="email"><input type="checkbox" name="transporte"  value="1"><br><br>'; 
+        }*/
 
 container.innerHTML = html;
 

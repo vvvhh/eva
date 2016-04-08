@@ -11,7 +11,7 @@ var pnlAgregar=$('#pnlAgregar');
     pnlInicio=$('#pnlInicio');
 
 var tblServicios   = $('#tblServicios'),
-    tblCues = $('#tblCues'),
+    tblCue = $('#tblCue'),
     tbodyServicios = $('#tbodyServicios');
 
 var txtNombreFuente = $('#txtNombreFuente'),
@@ -25,6 +25,7 @@ var txtNombreFuente = $('#txtNombreFuente'),
 var btnCancelarAg = $('#btnCancelarAg'),
     token = $('#token'),
     txtNombre = $('#txtNombre'),
+    Combo = $('#Combo'),
     selCombo = $('#selCombo'),
     selComboSub = $('#selComboSub'),
     txtFechaApl = $('#txtFechaApl'),
@@ -90,8 +91,8 @@ function editarCues(){
     data: {
       token: token.val(),
       fecha:txtFechaA.val(),
-      tema:selComdoE.val(),
-      subtema:txtSubTema.val(),
+      tema:selComdo.val(),
+      subtema:selComboSub.val(),
       nombre:txtNombreE.val(),
       activo:txtActivo.val(),
       i:txtCueId.val()
@@ -246,9 +247,10 @@ function limpiar(){
 }
 
 /* Inicio de funcion par apoder visuzalizar el cuestionario completo*/
-function getCuesT(){
+function vista(){
+  tblServicios.addClass('hidden');
   var datos = $.ajax({
-    url: 'getCuesT',
+    url: 'vista',
     type: 'post',
         dataType:'json',
         async:false
@@ -263,17 +265,16 @@ function getCuesT(){
         alert('Error JSON ' + e);
     }
 
-    tbodyConsulta.html('');
+    tbodyConsulta.addClass('hidden');
+    tblCue.removeClass('hidden');
     if ( res.status == 'OK' ){
        var i = 1;
       $.each(res.data, function(k,o){
       if ( o.cueActivo == 1 ){
           status = '<span class="glyphicon glyphicon-ok text-success" title="Activo"></span>';
-          vista = '<span class="glyphicons glyphicons-eye-open" title="Vista"></span>';
         }
         else{
           status = '<span class="glyphicon glyphicon-remove" title="Inactivo"></span>';
-          vista = '<span class="glyphicon glyphicons-eye-close" title="NoVista"></span>';
         }
         tbodyConsulta.append(
           '<tr>'+
@@ -281,14 +282,15 @@ function getCuesT(){
             '<td >'+ "" +'</td>'+
             '<td >'+o.temSubTema+'</td>'+
             '<td >'+o.cueNombre+'</td>'+
+            '<td >'+o.prePregunta+'</td>'+
           '</tr>'
       );
       i++;
       });
     }else{
-      tbodyConsulta.html('<tr><td colspan="8" class="center"><h3>'+ res.message +'</h3></td></tr>');
+      tbodyCue.html('<tr><td colspan="8" class="center"><h3>'+ res.message +'</h3></td></tr>');
     }
-    tblConsulta.removeClass('hidden');
+    tblCue.removeClass('hidden');
 }
 /* fin de función para ver el cuestionario */
 
@@ -322,14 +324,29 @@ function ingresoCuestionario(){
 
     if ( resultado.status == 'OK' ){
       swal({
-        title: "Esta seguro que sus datos son correctos.",
-        text: "Verificar datos.",
-        type: "success",
+        title: '¿Está seguro que desea agregar los datos generales?',
+        text: "¡Verificar datos!",
+        type: 'info',
         showCancelButton: true,
-        showConfirmButton: true
-      });
-      //swal();
-      numPreC.removeClass('hidden');
+        closeOnConfirm: false
+      },
+      function(isConfirm) {
+        if (isConfirm) {
+          swal(
+            '¡Guardado!',
+            'Datos guardados con exito.',
+            'success'
+          );
+        numPreC.removeClass('hidden');
+        //txtNumPre.html('');
+        chkAbierta.checked == false;
+        chkOpMul.checked == false;
+        chkMix.checked == false;
+        }
+        /*else{
+          location.reload(true);
+        }*/
+      })
     }
     else{
       alert(resultado.message);
@@ -364,8 +381,13 @@ window.onload=function()
   //date();
   getTema();
   pnlAgregar.removeClass('hidden');
+  pnlAgregar;
+  tblServicios.removeClass('hidden');
   txtFechaApl.val('');
   txtNombre.val('');
+  tbodyConsulta;
+  tbodyServicios;
+  //document.getElementById("Combo").disabled = true;
 }
 
 /*function comprobarFuente(e){
@@ -406,6 +428,16 @@ function getTema(){
       selComboSub.html('');
       $.each(res.data, function(k,o){
         selComboSub.append(
+
+          '<option value="'+o.temId+'">'+o.temSubTema+'</option>'
+        );
+      });
+    document.getElementById('selComboSub');
+
+    Combo.html('');
+      $.each(res.data, function(k,o){
+        selComboSub.append(
+
           '<option value="'+o.temId+'">'+o.temSubTema+'</option>'
         );
       });
@@ -435,11 +467,9 @@ function getCuestionarioConsultas(){
       $.each(res.data, function(k,o){
       if ( o.cueActivo == 1 ){
           status = '<span class="glyphicon glyphicon-ok text-success" title="Activo"></span>';
-          vista = '<span class="glyphicons glyphicons-eye-open" title="Vista"></span>';
         }
         else{
           status = '<span class="glyphicon glyphicon-remove" title="Inactivo"></span>';
-          vista = '<span class="glyphicon glyphicons-eye-close" title="NoVista"></span>';
         }
         tbodyConsulta.append(
           '<tr>'+
@@ -475,18 +505,23 @@ function getCuestionarioConsultas(){
 });*/
 
 //redirección de botones de inicio
-btnEditar.click(
-  function() {
+function editar() {
       getTodosCuestionarios();
 
       btnEditar.addClass('botonActivo');
-    window.location.href = 'cueEditar#tblServicios';
-    return false;
-});
+      btnConsulta.addClass('botonNoactivo');
+      btnAgregar.addClass('botonNoactivo');
 
-btnConsulta.click(
-  function() {
+      btnEditar.removeClass('botonNoactivo');
+      btnConsulta.removeClass('botonActivo');
+      btnAgregar.removeClass('botonActivo');
+    window.location = 'cueEditar#tblServicios';
+}
+
+function consulta() {
       getCuestionarioConsultas();
+      tblConsulta.removeClass('hidden');
+      pnlAgregar.addClass('hidden');
 
       btnEditar.addClass('botonNoactivo');
       btnConsulta.addClass('botonActivo');
@@ -495,13 +530,13 @@ btnConsulta.click(
       btnEditar.removeClass('botonActivo');
       btnConsulta.removeClass('botonNoactivo');
       btnAgregar.removeClass('botonActivo');
-    window.location.href = 'cueConsulta#tblConsultas';
-    return false;
-});
+    window.location = 'cueConsulta#tblConsulta';
+}
 
-btnAgregar.click(
-  function() {
+function agregar() {
       getTodosCuestionarios();
+      pnlAgregar.removeClass('hidden');
+      tblConsulta.addClass('hidden');
 
       btnEditar.addClass('botonNoactivo');
       btnConsulta.addClass('botonNoactivo');
@@ -510,13 +545,27 @@ btnAgregar.click(
       btnEditar.removeClass('botonActivo');
       btnConsulta.removeClass('botonActivo');
       btnAgregar.removeClass('botonNoactivo');
-    window.location.href = 'cueAgregar#pnlAgregar';
-    return false;
-});
+    window.location = 'cueAgregar#pnlAgregar';
+}
+
+btnEditar.on('click',editar);
+btnConsulta.on('click',consulta);
+btnAgregar.on('click',agregar);
 
 btnCaFe.click(
 function (){
-  calendario.removeClass('hidden');
+  swal({
+        title: '¡Agregar tema!',
+        text: "¿Está seguro que no desea agregar un tema nuevo?",
+        type: 'info',
+        showCancelButton: true,
+        closeOnConfirm: false
+      },
+      function(isConfirm) {
+        if (isConfirm) {
+          calendario.removeClass('hidden');
+        }
+  });
 });
 
 /*btnTema.click(
@@ -582,7 +631,7 @@ function chkM(form)
     }    
 }
 
-tblCues.delegate('.glyphicons-edit', 'click', getCuesT);
+tblCue.delegate('.glyphicon-eye-open', 'click', vista);
 tblServicios.delegate('.glyphicon-edit', 'click', getCues);
 tblServicios.delegate('.glyphicon-trash', 'click', darBajaCues);
 btnCancelar.on('click',limpiar);

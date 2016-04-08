@@ -56,11 +56,11 @@ Route::post('/repFuentePer', array('uses' => 'NoticiasController@repFuentePer'))
 			Route::get('/fueAgregar', function(){
 				return View::make('administracion.fueAgregar');
 			});
-			Route::get('/cueEditar', function(){
-				return View::make('administracion.cueEditar');
-			});
 			Route::get('/cueAgregar', function(){
 				return View::make('administracion.cueAgregar');
+			});
+			Route::get('/cueEditar', function(){
+				return View::make('administracion.cueEditar');
 			});
 			Route::get('/cueConsulta', function(){
 				return View::make('administracion.cueConsulta');

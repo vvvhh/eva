@@ -13,6 +13,7 @@
 @stop
 
 @section('content')
+<!-- botones originales -->
 <!--<div>
   <div class="row">
     <center><h2><i class="fa fa-newspaper-o text-primary"></i> Cuestionarios</h2></center>
@@ -55,7 +56,7 @@
       </div>
 
       <div class="col-md-12">
-        <div id="tblConsultasCue hidden">
+        <div id="tblConsultasCue" class="hidden">
           <h2><span class="glyphicon glyphicon-edit text-primary"></span> Consultar datos generales de Cuestionarios</h2>
           <input type="hidden" id="txtCueId" value="">
           <div class="table-responsive" >
