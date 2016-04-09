@@ -15,7 +15,14 @@ btnTemaNoExsub = $('#btnTemaNoExsub'),
 Combo = $('#Combo'),
 subCombo = $('#subCombo'),
 subtema = $('#subtema'),
-dg = $('#dg');
+dg = $('#dg'),
+tema = $('#tema'),
+pnl1 = $('#pnl1'),
+temAceptar = $('#temAceptar'),
+subAceptar = $('#subAceptar'),
+lbltm = $('#lbltm'),
+lblSub = $('#lblSub'),
+botones =$('#botones');
 
 function temAgregar(){
   var editar = $.ajax({
@@ -100,7 +107,7 @@ function habilitar(){
 function existe(){
   swal({
         title: '¡Tema existente!',
-        text: "¿Está seguro que existe el tema que necesita si no estas seguro  favor de verificarlo en la parte de consulta?",
+        text: "¿Está seguro que es el tema que desea?",
         type: 'info',
         showCancelButton: true,
         closeOnConfirm: false
@@ -111,36 +118,25 @@ function existe(){
             '¡Continuar!',
             'success'
           );
+          tema.removeClass('hidden');
           Combo.removeClass('hidden');
           document.getElementById("selCombo").disabled = false;
-          document.getElementById('selCombo').size=10;
           subtema.removeClass('hidden');
         }
   });
 }
 
 function noexiste(){
-  swal({
-        title: '¡Continuar!',
-        text: "Será redireccionado al formulario para agregar un nuevo tema",
-        type: 'info',
-        showCancelButton: true,
-        closeOnConfirm: true
-      },
-      function(isConfirm) {
-        if (isConfirm) {
-          window.location.href = 'temAgregar';
-          document.getElementById("selCombo").disabled = true;
-          document.getElementById('selCombo').size=1;
-        }
-  });
+  window.location.href = 'temAgregar';
+  document.getElementById("selCombo").disabled = true;
+  document.getElementById('selCombo').size=1;
 }
 
 //subtema
 function existesub(){
   swal({
         title: '¡Subtema existente!',
-        text: "¿Está seguro que existe el subtema que necesita si no estas seguro favor de verificarlo en la parte de consulta?",
+        text: "¿Está seguro que es el subtema que desea?",
         type: 'info',
         showCancelButton: true,
         closeOnConfirm: false
@@ -153,27 +149,26 @@ function existesub(){
           );
           subCombo.removeClass('hidden');
           document.getElementById("selComboSub").disabled = false;
-          document.getElementById('selComboSub').size=10;
-          dg.removeClass('hidden')
+          dg.removeClass('hidden');
+          botones.removeClass('hidden');
         }
   });
 }
 
 function noexistesub(){
-  swal({
-        title: '¡Continuar!',
-        text: "Será redireccionado al formulario para agregar un nuevo subtema",
-        type: 'info',
-        showCancelButton: true,
-        closeOnConfirm: true
-      },
-      function(isConfirm) {
-        if (isConfirm) {
-          window.location.href = 'temAgregar';
-          document.getElementById("selCombo").disabled = true;
-          document.getElementById('selCombo').size=1;
-        }
-  });
+  window.location.href = 'temAgregar';
+  document.getElementById("selCombo").disabled = true;
+  document.getElementById('selCombo').size=1;
+}
+
+function aceptado(){
+  pnl1.addClass('hidden');
+  lbltm.removeClass('hidden');
+}
+
+function sub(){
+  subtema.addClass('hidden');
+  lblSub.removeClass('hidden');
 }
 
 btnCancelarTem.on('click',Cancelar);
@@ -185,3 +180,5 @@ btnTemaSiEx.on('click',existe);
 btnTemaNoEx.on('click',noexiste);
 btnTemaSiExsub.on('click',existesub);
 btnTemaNoExsub.on('click',noexistesub);
+temAceptar.on('click',aceptado);
+subAceptar.on('click',sub);

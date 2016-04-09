@@ -48,7 +48,9 @@ var formselect = $('#formselect'),
     selPre = $('#selPre'),
     btnCaFe = $('#btnCaFe'),
     calendario = $('#calendario'),
-    temSel = $('#temSel');
+    temSel = $('#temSel'),
+    subSel = $('#subSel'),
+    pnl1 = $('pnl1');
 
 /*var numPre;*/
 
@@ -229,28 +231,6 @@ function getCues(){
             selComboSub.val(o.temId);
           }
         );
-
-        selComboInicio.find('option').each(
-          function(){
-            if ( o.temId == $(this).val() )
-            selComboInicio.val(o.temId);
-          }
-        );
-        //obtención de selección del select
-        var posicion=document.getElementById('selComboInicio').value; //posicion
-        alert(document.getElementById('temSel').options[posicion].text);
-        document.getElementById('temSel').innerHTML= posicion.text; //valor asignado al id sleccionado
-
-        selComboInicioSub.find('option').each(
-          function(){
-            if ( o.temId == $(this).val() )
-            selComboInicioSub.val(o.temId);
-          }
-        );
-        //obtención de selección del select
-        /*var posicion=document.getElementById('selComboInicioSub').value; //posicion
-        alert(document.getElementById('temSel').options[posicion].text);
-        document.getElementById('temSel').innerHTML= posicion.text; //valor asignado al id sleccionado*/
 
         txtNombreE.val(o.cueNombre);
         txtCueId.val(o.cueId);
@@ -470,6 +450,7 @@ function getTema(){
           '<option value="'+o.temId+'">'+o.temTema+'</option>'
         );
       });
+    document.getElementById('selComboInicio');
 
       selComboInicioSub.html('');
       $.each(res.data, function(k,o){
@@ -478,10 +459,7 @@ function getTema(){
           '<option value="'+o.temId+'">'+o.temSubTema+'</option>'
         );
       });
-    /*//obtención de selección del select
-        var posicion=document.getElementById('selComboInicio').value; //posicion
-        alert(document.getElementById('temSel').options[posicion].text);
-        document.getElementById('temSel').innerHTML= posicion.text; //valor asignado al id sleccionado*/
+    document.getElementById('selComboIinicioSub');
 }
 
 function getCuestionarioConsultas(){
@@ -574,6 +552,7 @@ function consulta() {
 }
 
 function agregar() {
+      pnl1.removeClass('hidden');
       getTodosCuestionarios();
       pnlAgregar.removeClass('hidden');
       tblConsulta.addClass('hidden');
@@ -596,7 +575,7 @@ btnCaFe.click(
 function (){
   swal({
         title: '¡Agregar tema!',
-        text: "¿Está seguro que no desea agregar un tema nuevo?",
+        text: "¿Está seguro que no desea cambiar la fecha?",
         type: 'info',
         showCancelButton: true,
         closeOnConfirm: false
@@ -671,11 +650,105 @@ function chkM(form)
     }    
 }
 
+function mt(){
+  var id = $(this).attr('id');
+  if (id==="")
+    return false;
+
+  var datos = $.ajax({
+    url: 'getCues',
+    data: {
+      i: id
+    },
+    type: 'post',
+    dataType:'json',
+    async:false
+  }).error(function(e){
+    alert('Ocurrio un error, intente de nuevo');
+  }).responseText;
+
+  var res;
+  try{
+      res = JSON.parse(datos);
+      }catch(e){
+      alert('Error JSON ' + e);
+    }
+
+    if ( res.status == 'OK' ){
+       var i = 1;
+      $.each(res.data, function(k,o){
+
+        selCombo.find('option').each(
+          function(){
+            if ( o.temTema == $(this).val() )
+            selCombo.val(o.temTema);
+          }
+        );
+        //obtención de selección del select
+        var combo = document.getElementById('selCombo');
+        var mitexto = $("#selCombo option:selected").text()
+        document.getElementById('temSel').innerHTML= mitexto; //valor asignado al id sleccionado
+      i++;
+      });
+    }else{
+      tbodyServicios.html('<tr><td colspan="8" class="center"><h3>'+ res.message +'</h3></td></tr>');
+    }
+    tbodyServicios.removeClass('hidden');
+}
+
+function ms(){
+  var id = $(this).attr('id');
+  if (id==="")
+    return false;
+
+  var datos = $.ajax({
+    url: 'getCues',
+    data: {
+      i: id
+    },
+    type: 'post',
+    dataType:'json',
+    async:false
+  }).error(function(e){
+    alert('Ocurrio un error, intente de nuevo');
+  }).responseText;
+
+  var res;
+  try{
+      res = JSON.parse(datos);
+      }catch(e){
+      alert('Error JSON ' + e);
+    }
+
+    if ( res.status == 'OK' ){
+       var i = 1;
+      $.each(res.data, function(k,o){
+
+        selComboSub.find('option').each(
+          function(){
+            if ( o.temSubTema == $(this).val() )
+            selComboSub.val(o.temSubTema);
+          }
+        );
+        //obtención de selección del select
+        var combo = document.getElementById('selComboSub');
+        var mitexto = $("#selComboSub option:selected").text()
+        document.getElementById('subSel').innerHTML= mitexto; //valor asignado al id sleccionado
+      i++;
+      });
+    }else{
+      tbodyServicios.html('<tr><td colspan="8" class="center"><h3>'+ res.message +'</h3></td></tr>');
+    }
+    tbodyServicios.removeClass('hidden');
+}
+
 tblCue.delegate('.glyphicon-edit', 'click', vista);
 tblServicios.delegate('.glyphicon-edit', 'click', getCues);
 tblServicios.delegate('.glyphicon-trash', 'click', darBajaCues);
 btnCancelar.on('click',limpiar);
 btnGuardar.on('click',editarCues);
+selCombo.on('click',mt);
+selComboSub.on('click',ms);
 
 btnCancelarAg.on('click',cancelar);
 btnGuardarAg.on('click',ingresoCuestionario);
