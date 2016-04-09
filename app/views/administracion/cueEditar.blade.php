@@ -1,6 +1,6 @@
 <div class="row" >
   <div class="col-md-12" >
-    <div class="" id="tblServicios" class="hidden">
+    <div id="tblServicios" class="hidden">
       <h2><span class="glyphicon glyphicon-edit text-primary"></span> Editar cuestionario</h2>
       <div class="table-responsive" >
         <table class="table table-striped table-hover table-bordered">
