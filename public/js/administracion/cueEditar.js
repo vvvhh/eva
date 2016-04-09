@@ -1,4 +1,5 @@
-var tblConsulta=$('#tblConsulta'),
+var tblConsultas=$('#tblConsultas'),
+tblConsulta=$('#tblConsulta'),
 tbodyConsulta=$('#tbodyConsulta');
 
 var btnConsulta=$('#btnConsulta'),
@@ -50,8 +51,13 @@ var formselect = $('#formselect'),
     calendario = $('#calendario'),
     temSel = $('#temSel'),
     subSel = $('#subSel'),
-    pnl1 = $('pnl1');
-
+    pnl1 = $('#pnl1'),
+    lbl1 = $('#lbl1'),
+    lbl2 = $('#lbl2'),
+    lbl3 = $('#lbl3'),
+    label1 = $('#label1'),
+    label2 = $('#label2'),
+    label3 = $('#label3');
 /*var numPre;*/
 
 /*Ide desde el icono editar de la tabla*/
@@ -389,14 +395,13 @@ window.onload=function()
 {
   //date();
   getTema();
-  pnlAgregar.removeClass('hidden');
+  //pnlAgregar.removeClass('hidden');
   pnlAgregar;
-  tblServicios.removeClass('hidden');
   txtFechaApl.val('');
   txtNombre.val('');
-  tbodyConsulta;
-  tbodyServicios;
-  //document.getElementById("Combo").disabled = true;
+  tblServicios.addClass('hidden');
+  //tblConsulta.addClass('hidden');
+  tblCue.addClass('hidden');
 }
 
 /*function comprobarFuente(e){
@@ -524,7 +529,13 @@ function getCuestionarioConsultas(){
 
 //redirección de botones de inicio
 function editar() {
+      pnlAgregar.addClass('hidden');
+      tblServicios.removeClass('hidden');
+      tblConsulta.addClass('hidden');
       getTodosCuestionarios();
+      lbl1.addClass('hidden');
+      lbl2.removeClass('hidden');
+      lbl3.addClass('hidden');
 
       btnEditar.addClass('botonActivo');
       btnConsulta.addClass('botonNoactivo');
@@ -533,13 +544,16 @@ function editar() {
       btnEditar.removeClass('botonNoactivo');
       btnConsulta.removeClass('botonActivo');
       btnAgregar.removeClass('botonActivo');
-    window.location = 'cueEditar#tblServicios';
 }
 
 function consulta() {
       getCuestionarioConsultas();
-      tblConsulta.removeClass('hidden');
+      tblConsultas.removeClass('hidden');
       pnlAgregar.addClass('hidden');
+      tblServicios.addClass('hidden');
+      lbl1.addClass('hidden');
+      lbl2.addClass('hidden');
+      lbl3.removeClass('hidden');
 
       btnEditar.addClass('botonNoactivo');
       btnConsulta.addClass('botonActivo');
@@ -548,14 +562,17 @@ function consulta() {
       btnEditar.removeClass('botonActivo');
       btnConsulta.removeClass('botonNoactivo');
       btnAgregar.removeClass('botonActivo');
-    window.location = 'cueConsulta#tblConsulta';
 }
 
 function agregar() {
       pnl1.removeClass('hidden');
       getTodosCuestionarios();
       pnlAgregar.removeClass('hidden');
-      tblConsulta.addClass('hidden');
+      tblServicios.addClass('hidden');
+      tblConsultas.addClass('hidden');
+      lbl1.removeClass('hidden');
+      lbl2.addClass('hidden');
+      lbl3.addClass('hidden');
 
       btnEditar.addClass('botonNoactivo');
       btnConsulta.addClass('botonNoactivo');
@@ -564,12 +581,14 @@ function agregar() {
       btnEditar.removeClass('botonActivo');
       btnConsulta.removeClass('botonActivo');
       btnAgregar.removeClass('botonNoactivo');
-    window.location = 'cueAgregar#pnlAgregar';
 }
 
 btnEditar.on('click',editar);
 btnConsulta.on('click',consulta);
 btnAgregar.on('click',agregar);
+label1.on('click',agregar);
+label2.on('click',editar);
+label3.on('click',consulta);
 
 btnCaFe.click(
 function (){

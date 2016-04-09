@@ -255,6 +255,9 @@
   </div>
 </div>
 
+@include('administracion/cueEditar')
+@include('administracion/cueConsulta')
+
 @stop
 
 @section('js')

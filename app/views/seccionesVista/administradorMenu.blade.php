@@ -19,17 +19,17 @@
       </strong></a>
         <ul id="collapseMiembros" class="nav nav-sidebar colorNav collapse">
           <li id="liAgregar"><!-- href="{{ URL::to('administracion/cueAgregar#pnlAgregar') }}" -->
-              <a class="grisClaro" href="{{ URL::to('administracion/cueAgregar#pnlAgregar') }}">
+              <a class="grisClaro" href="{{ URL::to('administracion/cueAgregar') }}" id="label1">
                 <i class="fa fa-plus-circle"></i> Agregar
               </a>
           </li>
           <li id="liEditarRe">
-              <a class="grisClaro" href="{{ URL::to('administracion/cueEditar#tblServicios') }}">
+              <a class="grisClaro" href="{{ URL::to('administracion/cueAgregar') }}" id="label2">
                 <i class="fa fa-pencil-square-o"></i> Editar
               </a>
           </li>
           <li id="liEditarEqu">
-              <a class="grisClaro" href="{{ URL::to('administracion/cueConsulta#tblConsultas') }}">
+              <a class="grisClaro" href="{{ URL::to('administracion/cueAgregar') }}" id="label3">
                 <i class="fa fa-th-list"></i> Consultar
               </a>
           </li>
