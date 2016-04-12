@@ -186,11 +186,12 @@ public function editarCues(){
         else{
               $editar = cuestionarios::where('cueId', $data['i'])
               ->where('temId', $data['i'])
+              ->where('subId', $data['i'])
                 ->update(array(
                   'cueFechaAp' => $data['fecha'],
                   'cueFechaEla' => $data['fechaEla'],
                   'temTema' => $data['tema'],
-                  'temSubTema'=> $data['subtema'],
+                  'subTema'=> $data['subtema'],
                   'cueNombre' => $data['nombre'],
                   //'cueTiempo'=> $data['tiempo'],
                   'cueActivo' => $data['activo']
@@ -246,7 +247,7 @@ public function editarCues(){
   static public function getCuetionarioConsultas(){
    /* $seleccionar = cuestionarios::get()
       ->toArray();*/
-      $seleccionar = DB::select('SELECT c.cueId, c.cueNombre, c.cueFechaAp, c.cueFechaEla, c.cueActivo, t.temId,  t.temSubTema, t.temTema FROM cuestionarios c, temas t WHERE c.temId = t.temId');
+      $seleccionar = DB::select('SELECT c.cueId, c.cueNombre, c.cueFechaAp, c.cueFechaEla, c.cueActivo, t.temId,  s.subTema, t.temTema FROM cuestionarios c, temas t, subtema s WHERE c.temId = t.temId AND t.subtemaId = s.subId');
       return $seleccionar;
   }
 
@@ -319,7 +320,7 @@ public function getCuesT(){
         ->get()
         ->toArray();*/
 
-        $seleccionar=DB::select('SELECT t.temSubTema, t.temTema, c.cueNombre, c.cueFechaAp, c.cueFechaEla, c.cueActivo FROM cuestionarios c, temas t WHERE c.temId = t.temId');
+        $seleccionar=DB::select('SELECT s.subTema, t.temTema, c.cueNombre, c.cueFechaAp, c.cueFechaEla, c.cueActivo FROM cuestionarios c, temas t, subTema s WHERE c.temId = t.temId AND t.subtemaId = s.subId');
 
       if ( count( $seleccionar ) > 0 )
         $response = array(
@@ -364,6 +365,25 @@ public function getCuesT(){
 
 public function getTema(){
    $seleccionar = DB::select('SELECT * FROM temas WHERE temActivo=1');
+
+      if ( count( $seleccionar ) > 0 )
+        $response = array(
+          'status' => 'OK',
+          'data' => $seleccionar,
+          'message' => 'Resultados obtenidos'
+        );
+      else
+        $response = array(
+          'status' => 'ERROR',
+          'message' => 'No se encontraron temas registrados.'
+        );
+
+      return Response::json($response);
+
+}
+
+public function getSubtema(){
+   $seleccionar = DB::select('SELECT * FROM subtema WHERE subActivo=1');
 
       if ( count( $seleccionar ) > 0 )
         $response = array(

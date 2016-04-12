@@ -37,25 +37,25 @@
     </li>
 <!--href="{{ URL::to('administracion/temAgregar') }}"-->
     <li class="header" data-toggle="collapse" data-target="#collapseAsignacion" >
-      <a class="grisClaro" collapseAsignacion id="tem" href="{{ URL::to('administracion/temAgregar') }}">
+      <a class="grisClaro" collapseAsignacion id="tem">
         <strong>
           <h4><i class="fa fa-text-width"></i>
             &nbsp;Edición temática
           </h4>
         </strong>
       </a>
-      <!--<ul id="collapseAsignacion" class="nav nav-sidebar colorNav collapse">
+      <ul id="collapseAsignacion" class="nav nav-sidebar colorNav collapse">
         <li id="liPeAgregar">
-            <a class="grisClaro" href="{{ URL::to('administracion/temAgregar#tema') }}">
-              <i class="fa fa-calendar-o"></i> Temas
+            <a class="grisClaro" href="{{ URL::to('administracion/temAgregar#tema') }}" id="label4">
+              <i class="fa fa-calendar-o"></i> Tema
             </a>
         </li>
         <li id="liAsignacion">
-            <a class="grisClaro" href="{{ URL::to('administracion/temAgregar#subtema') }}">
-              <i class="fa fa-calendar-times-o"></i> Subtemas
+            <a class="grisClaro" href="{{ URL::to('administracion/temAgregar#subtema') }}" id="label5">
+              <i class="fa fa-calendar-times-o"></i> Subtema
             </a>
         </li>
-      </ul>-->
+      </ul>
     </li>
   </ul>
 </div>

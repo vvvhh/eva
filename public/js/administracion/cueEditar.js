@@ -402,6 +402,7 @@ window.onload=function()
   tblServicios.addClass('hidden');
   //tblConsulta.addClass('hidden');
   tblCue.addClass('hidden');
+  document.getElementById("selCombo").disabled = false;
 }
 
 /*function comprobarFuente(e){
@@ -447,24 +448,6 @@ function getTema(){
         );
       });
     document.getElementById('selComboSub');
-
-      selComboInicio.html('');
-      $.each(res.data, function(k,o){
-        selComboInicio.append(
-
-          '<option value="'+o.temId+'">'+o.temTema+'</option>'
-        );
-      });
-    document.getElementById('selComboInicio');
-
-      selComboInicioSub.html('');
-      $.each(res.data, function(k,o){
-        selComboInicioSub.append(
-
-          '<option value="'+o.temId+'">'+o.temSubTema+'</option>'
-        );
-      });
-    document.getElementById('selComboIinicioSub');
 }
 
 function getCuestionarioConsultas(){
@@ -605,12 +588,6 @@ function (){
         }
   });
 });
-
-/*btnTema.click(
-  function() {
-    window.location.href = 'temAgregar';
-    return false;
-});*/
 
 //check para mostrar formulairos de preguntas
 //------------------chkAbierta----------------------------------

@@ -12,3 +12,18 @@ class Temas extends Eloquent
     'temActivo'
   );
 }
+
+class Subtema extends Eloquent
+{
+  protected $table = 'subtema';
+  protected $primaryKey = 'subId';
+  public $timestamps = false;
+  public $incrementing = true;
+  protected $fillable = array(
+    'subId',
+    'subTema',
+    'subActivo'
+  );
+}
+
+?>

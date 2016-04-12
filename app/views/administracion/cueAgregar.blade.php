@@ -19,55 +19,51 @@
 <div class="row">
   <div class="col-md-10">
     <div class="form-horizontal" id="pnlAgregar" name="pnlAgregar" novalidate>
-    <div id="lbltm" class="hidden">
-        <label for="txtNombreS" class="control-label">*Tema: </label><label id="temSel"></label>
+      <div id="lbltm" class="hidden">
+          <label for="txtNombreS" class="control-label">Tema: </label><label id="temSel"></label>
       </div>
-    <div id="pnl1" class="hidden">
-      <h3><i class="fa fa-plus-circle text-primary"></i> Agregar datos generales de cuestionario</h3>
-       <h4> Antes de pulsar el botón "SI" o "NO" dirijase al siguiente listado para verificar si ya existe el tema que necesita</h4>
-       <br>
-        <div id="ComboInicio" class="form-group">
-            <label for="txtNombreS" class="col-md-3 control-label">El Tema existe: </label>
-              <div class="col-md-7" id="select">
-                <SELECT id="selComboInicio" size=1 class="form-control grisObscuro">
-                </SELECT>
-                <p class="text-danger formatoTexto14" id="spnNombre"> </p>
-                <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
+      <div id="pnl1" class="hidden">
+        <h3><i class="fa fa-plus-circle text-primary"></i> Agregar datos generales del cuestionario</h3>
+        <br>
+        <div class="col-md-3"></div>
+        <h5 class="col-md-8">*Por favor verifique en el siguiente listado si el tema del cuestionario a ingresar existe.</h5>
+          <div id="ComboInicio" class="form-group">
+              <label for="txtNombreS" class="col-md-3 control-label">Temas existentes: </label>
+                <div class="col-md-9" id="select">
+                  <SELECT id="selCombo" size=1 class="form-control grisObscuro">
+                  </SELECT>
+                  <p class="text-danger formatoTexto14" id="spnNombre"> </p>
+                  <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <div class="col-md-9">
-                  <button id="btnTemaSiEx" class="btn btn-primary">Sí</button>
-                  <button id="btnTemaNoEx" class="btn btn-primary">No</button>
+              <div class="form-group">
+                    <center><button id="btnTemaSiEx" class="btn btn-primary">Aceptar</button>
+                    <button id="btnTemaNoEx" class="btn btn-primary">Agregar</button></center>
+              <br><br>
               </div>
-            <br><br>
-            </div>
-            <div id="Combo" class="form-group hidden">
-              <label for="txtNombreS" class="col-md-3 control-label">*Tema: </label>
-              <div class="col-md-7" id="select">
-                <SELECT id="selCombo" size=1 class="form-control grisObscuro">
-                </SELECT>
-                <br>
-                <button id="temAceptar" class="btn btn-primary">Aceptar</button>
-                <p class="text-danger formatoTexto14" id="spnNombre"> </p>
-                <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
+              <div id="Combo" class="form-group hidden">
+              <h5 class="col-md-12"> El tema que eselecciono sera el tema de su cuestionario.</h5>
+                <div class="col-md-12" id="select">
+                  <button id="temAceptar" class="btn btn-primary">Aceptar</button>
+                  <button id="btnTema" class="btn btn-primary col-md-2"><i class="fa fa-plus-circle"></i> Agregar tema</button>
+                  <p class="text-danger formatoTexto14" id="spnNombre"> </p>
+                  <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
+                </div>
               </div>
-            </div>
-            <!--button id="btnTema" class="btn btn-primary col-md-2"><i class="fa fa-plus-circle"></i> Agregar tema</button-->
-        </div>
-    </div>
+          </div>
+      </div>
 
     <div class="hidden" id="lblSub">
-      <label for="txtNombreS" class="control-label">*Subtema: </label><label id="subSel"></label>
+      <label for="txtNombreS" class="control-label">Subtema: </label><label id="subSel"></label>
     </div>
 
     <div id="subtema" class="form-group hidden">
-      <h4> Antes de pulsar el botón "SI" o "NO" dirijase al apartado de consulta para verificar si ya existe el subtema que necesita</h4>
+      <center><h4>Verifique si el Subtema existe, en caso de no existir debera agregarlo</h4></center>
       <div id="ComboInicio" class="form-group">
         <br><br>
-        <label for="txtNombreS" class="col-md-3 control-label">El Subtema existe: </label>
+        <label for="txtNombreS" class="col-md-3 control-label">Subtemas existentes: </label>
         <div class="col-md-7" id="select">
-          <SELECT id="selComboInicioSub" size=1 class="form-control grisObscuro">
+          <SELECT id="selComboSub" size=1 class="form-control grisObscuro">
           </SELECT>
           <p class="text-danger formatoTexto14" id="spnNombre"> </p>
           <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
@@ -75,15 +71,13 @@
       </div>
       <div class="form-group">
         <div class="col-md-12">
-            <button id="btnTemaSiExsub" class="btn btn-primary">Sí</button>
-            <button id="btnTemaNoExsub" class="btn btn-primary">No</button>
+            <button id="btnTemaSiExsub" class="btn btn-primary">Aceptar</button>
+            <button id="btnTemaNoExsub" class="btn btn-primary">Agregar</button>
         </div>
         <div id="subCombo" class="hidden">
         <br><br><br>
-          <label for="txtSubTema" class="col-md-3 control-label">*Subtema: </label>
-          <div class="col-md-7">
-            <SELECT id="selComboSub" size=1 class="form-control grisObscuro">
-            </SELECT>
+          <label for="txtSubTema" class="col-md-12 control-label">El Subtema seleccionado sera usado para el cuestionaio a ingresar</label>
+          <div class="col-md-12">
             <br>
             <button id="subAceptar" class="btn btn-primary">Aceptar</button>
             <p class="text-danger formatoTexto14" id="spnNombre"> </p>
@@ -133,8 +127,7 @@
             <label for="txtFechaInicio" class=" control-label">*Cambiar la fecha</label>
               <button id="btnCaFe" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Cambiar</button>
             </center>
-            <center><button id="btnGuardarAg" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
-          <button id="btnCancelarAg"  class="btn btn-danger"><i class="fa fa-times-circle"></i> Cancelar</button></center>
+            <br>
           </div>
         </div>
 
@@ -147,12 +140,19 @@
                 <i class="fa fa-calendar"></i>
               </div>
             </div>
+            <br>
+              <center>
+                <button id="btnGuardarAg" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
+                <button id="btnCancelarAg"  class="btn btn-danger"><i class="fa fa-times-circle"></i> Cancelar</button>
+              </center>
           </div>
         </div>
       </div>
-      <br><br>
 
+<!-- Inserción de preguntas -->
+  <div class="col-md-12">
     <div class="form-group hidden" id="numPreC">
+    <br><br>
       <label for="selcanpre" class="col-md-6 control-label"> Cuantas preguntas contendra el cuestionario:</label>
       <div class="col-md-6">
         <input id="txtNumPre" type="text" class="form-control grisObscuro" pattern="1234567890"  placeholder="*Ingrese el número de preguntas que tendra su cuestionario" required> 
@@ -164,7 +164,7 @@
         <button id="btnAceptarC"  class="btn btn-block btn-md botonNoactivo"><i class="fa fa-plus-circle"></i> Aceptar</button>
       </div>
     </div>
-<br><br><br><br>
+      <br><br><br><br>
     <!-- Inicio del formulairo para ingresar preguntas de opción múltiple y abiertas-->
     <div class="form-horizontal hidden" id="formselect" name="formselect" novalidate>
       <h3><i class="fa fa-question-circle text-success"></i> Agregar Pregunta</h3>
@@ -214,29 +214,28 @@
           </select> 
           <P>
           <table> 
-          <label for="txtNombreS" class=" control-label">Ingrese respuestas</label>
-          <br><br>
-            <tr>
-              <td id="myemailtextbox"><i> Respuesta: </i> <input type="text" name="email"><br><br></td>
-            </tr>
+            <label for="txtNombreS" class=" control-label">Ingrese respuestas</label>
+            <br><br>
+              <tr>
+                <td id="myemailtextbox"><i> Respuesta: </i> <textarea name="comentarios" rows="8" cols="100"></textarea><br><br></td>
+              </tr>
           </table> 
-
-        <p class="text-danger formatoTexto14" id="spnNombre"> </p>
-        <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
-        <center>
-          <button id="btnGuardarRes" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
-          <button id="btnCancelarPre"  class="btn btn-danger"><i class="fa fa-times-circle"></i> Cancelar</button>
-        </center>
+          <p class="text-danger formatoTexto14" id="spnNombre"> </p>
+          <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
+          <center>
+            <button id="btnGuardarRes" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
+            <button id="btnCancelarPre"  class="btn btn-danger"><i class="fa fa-times-circle"></i> Cancelar</button>
+          </center>
         </form>
 
-      <div class="row" id="pnlInicio">
-        <div class="col-md-12" align="center">
+        <div class="row" id="pnlInicio">
+          <div class="col-md-12" align="center">
+          </div>
         </div>
-      </div>
 
-    <input type="hidden" name="_token" id="_token" value="<?php echo csrf_token(); ?>">
-  </div>  <!--/columna10 contenido-->
-<!-- Formulairo de preguntas abiertas-->
+        <input type="hidden" name="_token" id="_token" value="<?php echo csrf_token(); ?>">
+    </div>  <!--/columna10 contenido-->
+      <!-- Formulairo de preguntas abiertas-->
     <div class="form-horizontal hidden" id="formprea" novalidate>
       <div class="form-group">
           <div class="col-md-8">
@@ -253,7 +252,6 @@
       <button id="btnCancelarAg"  class="btn btn-danger"><i class="fa fa-times-circle"></i> Cancelar</button></center>
     </div><!-- fin de formulairo de preguntas de opción múltiple -->
   </div>
-</div>
 
 @include('administracion/cueEditar')
 @include('administracion/cueConsulta')
