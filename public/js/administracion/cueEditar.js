@@ -172,7 +172,7 @@ function getTodosCuestionarios(){
             '<td >'+o.cueFechaEla+'</td>'+
             '<td >'+o.cueFechaAp+'</td>'+
             '<td >'+o.temTema+'</td>'+
-            '<td >'+o.temSubTema+'</td>'+
+            '<td >'+o.subTema+'</td>'+
             '<td >'+o.cueNombre+'</td>'+
             '<td class="text-center">'+status+'</td>'+
             '<td class="text-center">'+
@@ -223,18 +223,20 @@ function getCues(){
 
         txtFechaA.val(o.cueFechaAp);
         selCombo.val(o.temTema);
-        selComboSub.val(o.temSubTema);
+
         selCombo.find('option').each(
           function(){
             if ( o.temId == $(this).val() )
-            selCombo.val(o.temIdS);
+            selCombo.val(o.temId);
           }
         );
 
+        selComboSub.val(o.subTema);
+
         selComboSub.find('option').each(
           function(){
-            if ( o.temId == $(this).val() )
-            selComboSub.val(o.temId);
+            if ( o.subId == $(this).val() )
+            selComboSub.val(o.subId);
           }
         );
 
@@ -293,7 +295,7 @@ function vista(){
           '<tr>'+
             '<td >'+o.temTema+'</td'+
             '<td >'+ "" +'</td>'+
-            '<td >'+o.temSubTema+'</td>'+
+            '<td >'+o.subTema+'</td>'+
             '<td >'+o.cueNombre+'</td>'+
             '<td >'+o.prePregunta+'</td>'+
           '</tr>'
@@ -439,12 +441,29 @@ function getTema(){
         );
       });
     document.getElementById('selCombo');
+}
 
+function getSubtema(){
+  var datos = $.ajax({
+    url: 'getSubtema',
+    type: 'get',
+        dataType:'json',
+        async:false
+    }).error(function(e){
+        alert('Ocurrio un error, intente de nuevo');
+    }).responseText;
+
+    var res;
+    try{
+        res = JSON.parse(datos);
+    }catch (e){
+        alert('Error JSON ' + e);
+    }
       selComboSub.html('');
       $.each(res.data, function(k,o){
         selComboSub.append(
 
-          '<option value="'+o.temId+'">'+o.temSubTema+'</option>'
+          '<option value="'+o.subId+'">'+o.subTema+'</option>'
         );
       });
     document.getElementById('selComboSub');
@@ -483,7 +502,7 @@ function getCuestionarioConsultas(){
             '<td >'+o.cueFechaAp+'</td>'+
             '<td >'+o.temTema+'</td'+
             '<td >'+ "" +'</td>'+
-            '<td >'+o.temSubTema+'</td>'+
+            '<td >'+o.subTema+'</td>'+
             '<td >'+o.cueNombre+'</td>'+
             '<td class="text-center">'+status+'</td>'+
             '<td class="text-center">'+
@@ -556,6 +575,7 @@ function agregar() {
       lbl1.removeClass('hidden');
       lbl2.addClass('hidden');
       lbl3.addClass('hidden');
+      formEditarServ.addClass('hidden');
 
       btnEditar.addClass('botonNoactivo');
       btnConsulta.addClass('botonNoactivo');

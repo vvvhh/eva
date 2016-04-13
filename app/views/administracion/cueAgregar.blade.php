@@ -26,7 +26,7 @@
         <h3><i class="fa fa-plus-circle text-primary"></i> Agregar datos generales del cuestionario</h3>
         <br>
         <div class="col-md-3"></div>
-        <h5 class="col-md-8">*Por favor verifique en el siguiente listado si el tema del cuestionario a ingresar existe.</h5>
+        <h5 class="col-md-8">Por favor verifique en el siguiente listado si el tema del cuestionario a ingresar existe.</h5>
           <div id="ComboInicio" class="form-group">
               <label for="txtNombreS" class="col-md-3 control-label">Temas existentes: </label>
                 <div class="col-md-9" id="select">
@@ -42,10 +42,9 @@
               <br><br>
               </div>
               <div id="Combo" class="form-group hidden">
-              <h5 class="col-md-12"> El tema que eselecciono sera el tema de su cuestionario.</h5>
+              <h5 class="col-md-12"> El tema que selecciono sera el tema de su cuestionario.</h5>
                 <div class="col-md-12" id="select">
                   <button id="temAceptar" class="btn btn-primary">Aceptar</button>
-                  <button id="btnTema" class="btn btn-primary col-md-2"><i class="fa fa-plus-circle"></i> Agregar tema</button>
                   <p class="text-danger formatoTexto14" id="spnNombre"> </p>
                   <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
                 </div>
@@ -58,7 +57,8 @@
     </div>
 
     <div id="subtema" class="form-group hidden">
-      <center><h4>Verifique si el Subtema existe, en caso de no existir debera agregarlo</h4></center>
+      <div class="col-md-3"></div>
+        <h5 class="col-md-8">Por favor verifique en el siguiente listado si el subtema del cuestionario a ingresar existe.</h5>
       <div id="ComboInicio" class="form-group">
         <br><br>
         <label for="txtNombreS" class="col-md-3 control-label">Subtemas existentes: </label>
@@ -76,7 +76,7 @@
         </div>
         <div id="subCombo" class="hidden">
         <br><br><br>
-          <label for="txtSubTema" class="col-md-12 control-label">El Subtema seleccionado sera usado para el cuestionaio a ingresar</label>
+          <h5 class="col-md-12"> El tema que selecciono sera el tema de su cuestionario.</h5>
           <div class="col-md-12">
             <br>
             <button id="subAceptar" class="btn btn-primary">Aceptar</button>

@@ -186,7 +186,7 @@ public function editarCues(){
         else{
               $editar = cuestionarios::where('cueId', $data['i'])
               ->where('temId', $data['i'])
-              ->where('subId', $data['i'])
+              ->where('subtemaId', $data['i'])
                 ->update(array(
                   'cueFechaAp' => $data['fecha'],
                   'cueFechaEla' => $data['fechaEla'],
@@ -320,7 +320,7 @@ public function getCuesT(){
         ->get()
         ->toArray();*/
 
-        $seleccionar=DB::select('SELECT s.subTema, t.temTema, c.cueNombre, c.cueFechaAp, c.cueFechaEla, c.cueActivo FROM cuestionarios c, temas t, subTema s WHERE c.temId = t.temId AND t.subtemaId = s.subId');
+        $seleccionar=DB::select('SELECT s.subTema, t.temTema, c.cueNombre, c.cueFechaAp, c.cueFechaEla, c.cueActivo FROM cuestionarios c, temas t, subtema s WHERE c.temId = t.temId AND t.subtemaId = s.subId');
 
       if ( count( $seleccionar ) > 0 )
         $response = array(
