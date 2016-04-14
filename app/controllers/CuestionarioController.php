@@ -186,12 +186,12 @@ public function editarCues(){
         else{
               $editar = cuestionarios::where('cueId', $data['i'])
               ->where('temId', $data['i'])
-              ->where('subtemaId', $data['i'])
+              //->where('subId', $data['i'])
                 ->update(array(
                   'cueFechaAp' => $data['fecha'],
                   'cueFechaEla' => $data['fechaEla'],
                   'temTema' => $data['tema'],
-                  'subTema'=> $data['subtema'],
+                  //'subTema'=> $data['subtema'],
                   'cueNombre' => $data['nombre'],
                   //'cueTiempo'=> $data['tiempo'],
                   'cueActivo' => $data['activo']

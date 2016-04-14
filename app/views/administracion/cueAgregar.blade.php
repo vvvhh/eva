@@ -39,12 +39,12 @@
               <div class="form-group">
                     <center><button id="btnTemaSiEx" class="btn btn-primary">Aceptar</button>
                     <button id="btnTemaNoEx" class="btn btn-primary">Agregar</button></center>
-              <br><br>
+              <br>
               </div>
               <div id="Combo" class="form-group hidden">
-              <h5 class="col-md-12"> El tema que selecciono sera el tema de su cuestionario.</h5>
+              <center><h5 class="col-md-12"> El tema que selecciono sera el tema de su cuestionario.</h5></center>
                 <div class="col-md-12" id="select">
-                  <button id="temAceptar" class="btn btn-primary">Aceptar</button>
+                  <center><button id="temAceptar" class="btn btn-primary">Aceptar</button></center>
                   <p class="text-danger formatoTexto14" id="spnNombre"> </p>
                   <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
                 </div>
@@ -71,20 +71,26 @@
       </div>
       <div class="form-group">
         <div class="col-md-12">
-            <button id="btnTemaSiExsub" class="btn btn-primary">Aceptar</button>
-            <button id="btnTemaNoExsub" class="btn btn-primary">Agregar</button>
+            <center><button id="btnTemaSiExsub" class="btn btn-primary">Aceptar</button>
+            <button id="btnTemaNoExsub" class="btn btn-primary">Agregar</button></center>
         </div>
         <div id="subCombo" class="hidden">
         <br><br><br>
-          <h5 class="col-md-12"> El tema que selecciono sera el tema de su cuestionario.</h5>
+          <center><h5 class="col-md-12"> El tema que selecciono sera el tema de su cuestionario.</h5></center>
           <div class="col-md-12">
             <br>
-            <button id="subAceptar" class="btn btn-primary">Aceptar</button>
+            <center><button id="subAceptar" class="btn btn-primary">Aceptar</button></center>
             <p class="text-danger formatoTexto14" id="spnNombre"> </p>
             <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="hidden" id="lblDg">
+      <label for="txtNombreS" class="control-label">Nombre: </label><label id="lblNombre"></label><br>
+      <label for="txtNombreS" class="control-label">Fecha de elaboración: </label><label id="lblFechaE"></label><br>
+      <label for="txtNombreS" class="control-label">Fecha de aplicación: </label><label id="lblFechaA"></label>
     </div>
 
       <div id="dg" class="hidden">
@@ -110,7 +116,6 @@
         <div class="form-group">
           <label for="txtFechaInicio" class="col-md-3 control-label"><br>*Fecha de elaboración: </label>
           <div class="col-md-6">
-          <label for="txtFechaInicio" class=" control-label">*Fecha Actual: </label>
             <div class="input-group date" data-provide="datepicker">
               <input type="text" class="form-control" id="fechaEla" value="
   <?php //Ejemplo curso PHP aprenderaprogramar.com

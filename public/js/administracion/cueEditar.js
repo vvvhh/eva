@@ -1,63 +1,26 @@
-var tblConsultas=$('#tblConsultas'),
-tblConsulta=$('#tblConsulta'),
-tbodyConsulta=$('#tbodyConsulta');
+var tblConsultas=$('#tblConsultas'),tblConsulta=$('#tblConsulta'),tbodyConsulta=$('#tbodyConsulta');
 
-var btnConsulta=$('#btnConsulta'),
-btnEditar=$('#btnEditar'),
-btnAgregarC=$('#btnAgregarC'),
-btnAgregar=$('#btnAgregar');
+var btnConsulta=$('#btnConsulta'),btnEditar=$('#btnEditar'),btnAgregarC=$('#btnAgregarC'),btnAgregar=$('#btnAgregar');
 
-var pnlAgregar=$('#pnlAgregar');
-    pnlConsulta=$('#pnlConsulta'),
-    pnlInicio=$('#pnlInicio');
+var pnlAgregar=$('#pnlAgregar'),pnlConsulta=$('#pnlConsulta'),pnlInicio=$('#pnlInicio');
 
-var tblServicios   = $('#tblServicios'),
-    tblCue = $('#tblCue'),
-    tbodyServicios = $('#tbodyServicios');
+var tblServicios   = $('#tblServicios'),tblCue = $('#tblCue'),tbodyServicios = $('#tbodyServicios');
 
-var txtNombreFuente = $('#txtNombreFuente'),
-    txtCueId = $('#txtCueId'),
-    formEditarServ= $('#formEditarServ'),
-    txtActivo     = $('#txtActivo'),
-    btnGuardar    = $('#btnGuardar'),
-    btnCancelar   = $('#btnCancelar'),
-    token         = $('#_token');
+var txtNombreFuente = $('#txtNombreFuente'),txtCueId = $('#txtCueId'),formEditarServ= $('#formEditarServ'),
+    txtActivo = $('#txtActivo'),btnGuardar = $('#btnGuardar'),btnCancelar = $('#btnCancelar'),token = $('#_token');
 
-var btnCancelarAg = $('#btnCancelarAg'),
-    token = $('#token'),
-    txtNombre = $('#txtNombre'),
-    selComboInicio = $('#selComboInicio'),
-    selComboInicioSub = $('#selComboInicioSub'),
-    Combo = $('#Combo'),
-    selCombo = $('#selCombo'),
-    selComboSub = $('#selComboSub'),
-    txtFechaApl = $('#txtFechaApl'),
-    fechaEla = $('#fechaEla'),
-    btnGuardarAg =$('#btnGuardarAg'),
-    txtFechaA =$('#txtFechaA'),
-    selComboE =$('#selComboE'),
-    txtNombreE =$('#txtNombreE');
-var tbodyConsultaCue=$('#tbodyConsultaCue');
-var spnNombre=$('#spnNombre'),
-    btnImprimir=$('#btnImprimir');
+var btnCancelarAg = $('#btnCancelarAg'),token = $('#token'),txtNombre = $('#txtNombre'),selComboInicio = $('#selComboInicio'),
+    selComboInicioSub = $('#selComboInicioSub'),Combo = $('#Combo'),selCombo = $('#selCombo'),selComboSub = $('#selComboSub'),
+    txtFechaApl = $('#txtFechaApl'),fechaEla = $('#fechaEla'),btnGuardarAg =$('#btnGuardarAg'),txtFechaA =$('#txtFechaA'),
+    selComboE =$('#selComboE'),txtNombreE =$('#txtNombreE'),tbodyConsultaCue=$('#tbodyConsultaCue');
+var spnNombre=$('#spnNombre'),btnImprimir=$('#btnImprimir');
 
-var formselect = $('#formselect'),
-    formprea = $('#formprea'),
-    datosActivo = $('#datosActivo'),
-    formpom = $('#formpom'),
-    numPreC = $('#numPreC'),
-    selPre = $('#selPre'),
-    btnCaFe = $('#btnCaFe'),
-    calendario = $('#calendario'),
-    temSel = $('#temSel'),
-    subSel = $('#subSel'),
-    pnl1 = $('#pnl1'),
-    lbl1 = $('#lbl1'),
-    lbl2 = $('#lbl2'),
-    lbl3 = $('#lbl3'),
-    label1 = $('#label1'),
-    label2 = $('#label2'),
-    label3 = $('#label3');
+var formselect = $('#formselect'),formprea = $('#formprea'),datosActivo = $('#datosActivo'),formpom = $('#formpom'),
+    numPreC = $('#numPreC'),selPre = $('#selPre'),btnCaFe = $('#btnCaFe'),calendario = $('#calendario'),
+    temSel = $('#temSel'),subSel = $('#subSel'),pnl1 = $('#pnl1'),lbl1 = $('#lbl1'),lbl2 = $('#lbl2'),
+    lbl3 = $('#lbl3'),label1 = $('#label1'),label2 = $('#label2'),label3 = $('#label3');
+
+var dg = $('#dg'),lblDg = $('#lblDg'),lblNombre = $('#lblNombre');
 /*var numPre;*/
 
 /*Ide desde el icono editar de la tabla*/
@@ -108,7 +71,7 @@ function editarCues(){
       activo:txtActivo.val(),
       i:txtCueId.val()
     },
-    type: 'post',
+    type: 'get',
         dataType:'json',
         async:false
     }).error(function(e){
@@ -354,6 +317,9 @@ function ingresoCuestionario(){
             'Datos guardados con exito.',
             'success'
           );
+        dg.addClass('hidden');
+        lblDg.removeClass('hidden');
+        lblNombre.val('nombre');
         numPreC.removeClass('hidden');
         //txtNumPre.html('');
         chkAbierta.checked == false;
@@ -421,6 +387,7 @@ window.onload=function()
 function getTema(){
   var datos = $.ajax({
     url: 'getTema',
+    //url: 'getSubtema',
     type: 'get',
         dataType:'json',
         async:false
@@ -441,11 +408,10 @@ function getTema(){
         );
       });
     document.getElementById('selCombo');
-}
 
-function getSubtema(){
-  var datos = $.ajax({
+var datos = $.ajax({
     url: 'getSubtema',
+    //url: 'getSubtema',
     type: 'get',
         dataType:'json',
         async:false
@@ -462,7 +428,6 @@ function getSubtema(){
       selComboSub.html('');
       $.each(res.data, function(k,o){
         selComboSub.append(
-
           '<option value="'+o.subId+'">'+o.subTema+'</option>'
         );
       });
@@ -742,8 +707,54 @@ function ms(){
 
         selComboSub.find('option').each(
           function(){
-            if ( o.temSubTema == $(this).val() )
-            selComboSub.val(o.temSubTema);
+            if ( o.subTema == $(this).val() )
+            selComboSub.val(o.subTema);
+          }
+        );
+        //obtención de selección del select
+        var combo = document.getElementById('selComboSub');
+        var mitexto = $("#selComboSub option:selected").text()
+        document.getElementById('subSel').innerHTML= mitexto; //valor asignado al id sleccionado
+      i++;
+      });
+    }else{
+      tbodyServicios.html('<tr><td colspan="8" class="center"><h3>'+ res.message +'</h3></td></tr>');
+    }
+    tbodyServicios.removeClass('hidden');
+}
+
+function mn(){
+  var id = $(this).attr('id');
+  if (id==="")
+    return false;
+
+  var datos = $.ajax({
+    url: 'getCues',
+    data: {
+      i: id
+    },
+    type: 'post',
+    dataType:'json',
+    async:false
+  }).error(function(e){
+    alert('Ocurrio un error, intente de nuevo');
+  }).responseText;
+
+  var res;
+  try{
+      res = JSON.parse(datos);
+      }catch(e){
+      alert('Error JSON ' + e);
+    }
+
+    if ( res.status == 'OK' ){
+       var i = 1;
+      $.each(res.data, function(k,o){
+
+        selComboSub.find('option').each(
+          function(){
+            if ( o.subTema == $(this).val() )
+            selComboSub.val(o.subTema);
           }
         );
         //obtención de selección del select

@@ -79,7 +79,7 @@ function howMany(form){
         if (numObj > 0) { 
             for(i=1; i<=numObj; i++) { 
                //html += '<I> Respuesta ' + i + ':</I> <input "text" size=100,10 name="email' + i +'">    <input type="checkbox" name="transporte"  value="1"><br><br>'; 
-               html += '<i> Respuesta ' + i + ':</i> <textarea name="comentarios" rows="8" cols="100"></textarea> <br>';
+               html += '<i> Respuesta ' + i + ':</i> <textarea name="comentarios" rows="8" cols="100"></textarea> <input type="checkbox" name="transporte"  value="1"><br>';
             } 
         } /*else { 
                html += '<I> Respuesta ' + i + ':</I> <input type="text" name="email"><input type="checkbox" name="transporte"  value="1"><br><br>'; 
