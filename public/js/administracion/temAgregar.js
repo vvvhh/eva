@@ -11,7 +11,7 @@ var txtTema = $('#txtTema'),txtSubTema = $('#txtSubTema'),txtActivos = $('#txtAc
     dg = $('#dg'),tema = $('#tema'),pnl1 = $('#pnl1'),temAceptar = $('#temAceptar'),
     subAceptar = $('#subAceptar'),lbltm = $('#lbltm'),lblSub = $('#lblSub'),
     botones =$('#botones'),label4 = $('#label4'),label5 = $('#label5'),
-    mosTem = $('#mosTem'),mosSub = $('#mosSub');
+    mosTem = $('#mosTem'),mosSub = $('#mosSub'),lblNombre = $('#lblNombre');
 
 function temAgregar(){
   var editar = $.ajax({
@@ -37,12 +37,21 @@ function temAgregar(){
 
     if ( resultado.status == 'OK' ){  
       swal({
-        title: "Guardado.",
-        text: "Tema guardado con éxito.",
-        type: "success",
+        title: '¡Tema Agregado!',
+        text: "El Tema fue agragdo con exito",
+        type: 'info',
         showCancelButton: true,
-        showConfirmButton: true,
-      });
+        closeOnConfirm: false
+      },
+      function(isConfirm) {
+        if (isConfirm) {
+          window.location.href = 'cueAgregar#tema';
+          pnl1.addClass('hidden');
+          document.getElementById('lblNombre').innerHTML= txtTema.val();
+          lblNombre.removeClass('hidden');
+          subtema.removeClass('hidden');
+        }
+  });
     }
     else{
       alert(resultado.message);
@@ -73,11 +82,21 @@ function subAgregar(){
 
     if ( resultado.status == 'OK' ){  
       swal({
-        title: "Guardado.",
-        text: "Subtema guardado con éxito.",
+        title: '¡Subtema Agregado!',
+        text: "El subtema fue agragdo con exito",
+        type: 'info',
         showCancelButton: true,
-        showConfirmButton: true,
-      });
+        closeOnConfirm: true
+      },
+      function(isConfirm) {
+        if (isConfirm) {
+          window.location.href = 'cueAgregar#tema';
+          pnl1.addClass('hidden');
+          document.getElementById('lblNombre').innerHTML= txtSubTema.val();
+          lblNombre.removeClass('hidden');
+
+        }
+  });
     }
     else{
       alert(resultado.message);
@@ -100,8 +119,6 @@ function rediTem(){
       function(isConfirm) {
         if (isConfirm) {
           window.location.href = 'temAgregar#tema';
-          document.getElementById("selCombo").disabled = true;
-          document.getElementById('selCombo').size=1;
         }
   });
 }
@@ -141,7 +158,6 @@ function existe(){
           );
           tema.removeClass('hidden');
           Combo.removeClass('hidden');
-          document.getElementById("selCombo").disabled = false;
           //subtema.removeClass('hidden');
         }
   });

@@ -33,7 +33,7 @@
                   <th class="col-md-5 text-center">Tema</th>
                   <th class="col-md-5 text-center">Sub Tema</th>
                   <th class="col-md-5 text-center">Nombre del custionario</th>
-                  <th class="col-md-12 text-center">Cuestionario</th>
+                  <th class="col-md-12 text-center">Preguntas</th>
                 </tr>
               </thead>
               <tbody id="tbodyConsultaCue"></tbody>

@@ -20,7 +20,7 @@ var formselect = $('#formselect'),formprea = $('#formprea'),datosActivo = $('#da
     temSel = $('#temSel'),subSel = $('#subSel'),pnl1 = $('#pnl1'),lbl1 = $('#lbl1'),lbl2 = $('#lbl2'),
     lbl3 = $('#lbl3'),label1 = $('#label1'),label2 = $('#label2'),label3 = $('#label3');
 
-var dg = $('#dg'),lblDg = $('#lblDg'),lblNombre = $('#lblNombre');
+var dg = $('#dg'),lblDg = $('#lblDg'),lblNombre = $('#lblNombre'),lblFechaE = $('#lblFechaE'),lblFechaA = $('#lblFechaA');
 /*var numPre;*/
 
 /*Ide desde el icono editar de la tabla*/
@@ -203,7 +203,7 @@ function getCues(){
           }
         );
 
-        txtNombreE.val(o.cueNombre);
+        txtNombre.val(o.cueNombre);
         txtCueId.val(o.cueId);
         
         fechaEla.val(o.cueFechaEla);
@@ -224,12 +224,12 @@ function limpiar(){
 }
 
 /* Inicio de funcion par apoder visuzalizar el cuestionario completo*/
-function vista(){
+function getCuesT(){
   
   tblServicios.addClass('hidden');
   var datos = $.ajax({
-    url: 'vista',
-    type: 'post',
+    url: 'getCuesT',
+    type: 'get',
         dataType:'json',
         async:false
     }).error(function(e){
@@ -248,12 +248,6 @@ function vista(){
     if ( res.status == 'OK' ){
        var i = 1;
       $.each(res.data, function(k,o){
-      if ( o.cueActivo == 1 ){
-          status = '<span class="glyphicon glyphicon-ok text-success" title="Activo"></span>';
-        }
-        else{
-          status = '<span class="glyphicon glyphicon-remove" title="Inactivo"></span>';
-        }
         tbodyConsulta.append(
           '<tr>'+
             '<td >'+o.temTema+'</td'+
@@ -268,6 +262,7 @@ function vista(){
     }else{
       tbodyConsultaCue.html('<tr><td colspan="8" class="center"><h3>'+ res.message +'</h3></td></tr>');
     }
+    tblConsultas.addClass('hidden');
     tblCue.removeClass('hidden');
     
     //alert("alert");
@@ -319,7 +314,9 @@ function ingresoCuestionario(){
           );
         dg.addClass('hidden');
         lblDg.removeClass('hidden');
-        lblNombre.val('nombre');
+        document.getElementById('lblNombre').innerHTML= txtNombre.val();
+        document.getElementById('lblFechaE').innerHTML= fechaEla.val();
+        document.getElementById('lblFechaA').innerHTML= txtFechaApl.val();
         numPreC.removeClass('hidden');
         //txtNumPre.html('');
         chkAbierta.checked == false;
@@ -370,7 +367,6 @@ window.onload=function()
   tblServicios.addClass('hidden');
   //tblConsulta.addClass('hidden');
   tblCue.addClass('hidden');
-  document.getElementById("selCombo").disabled = false;
 }
 
 /*function comprobarFuente(e){
@@ -387,7 +383,6 @@ window.onload=function()
 function getTema(){
   var datos = $.ajax({
     url: 'getTema',
-    //url: 'getSubtema',
     type: 'get',
         dataType:'json',
         async:false
@@ -411,7 +406,6 @@ function getTema(){
 
 var datos = $.ajax({
     url: 'getSubtema',
-    //url: 'getSubtema',
     type: 'get',
         dataType:'json',
         async:false
@@ -503,6 +497,7 @@ function editar() {
       lbl1.addClass('hidden');
       lbl2.removeClass('hidden');
       lbl3.addClass('hidden');
+      formEditarServ.addClass('hidden');
 
       btnEditar.addClass('botonActivo');
       btnConsulta.addClass('botonNoactivo');
@@ -521,6 +516,7 @@ function consulta() {
       lbl1.addClass('hidden');
       lbl2.addClass('hidden');
       lbl3.removeClass('hidden');
+      formEditarServ.addClass('hidden');
 
       btnEditar.addClass('botonNoactivo');
       btnConsulta.addClass('botonActivo');
@@ -541,6 +537,7 @@ function agregar() {
       lbl2.addClass('hidden');
       lbl3.addClass('hidden');
       formEditarServ.addClass('hidden');
+
 
       btnEditar.addClass('botonNoactivo');
       btnConsulta.addClass('botonNoactivo');
@@ -769,7 +766,7 @@ function mn(){
     tbodyServicios.removeClass('hidden');
 }
 
-tblCue.delegate('.glyphicon-edit', 'click', vista);
+tblConsultas.delegate('.glyphicon-edit', 'click', getCuesT);
 tblServicios.delegate('.glyphicon-edit', 'click', getCues);
 tblServicios.delegate('.glyphicon-trash', 'click', darBajaCues);
 btnCancelar.on('click',limpiar);

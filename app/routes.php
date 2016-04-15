@@ -110,9 +110,9 @@ Route::post('/repFuentePer', array('uses' => 'NoticiasController@repFuentePer'))
 				return View::make('administracion.cueEditar');
 			});
 
-			Route::get('/vista', function(){
+			/*Route::get('/vista', function(){
 				return View::make('administracion.cueConsulta');
-			});
+			});*/
 
 			Route::get('/previsualizar', function(){
 				return View::make('administracion.previsualizar');
@@ -144,6 +144,7 @@ Route::post('/repFuentePer', array('uses' => 'NoticiasController@repFuentePer'))
 			Route::post('/agregarPre', array('uses' => 'preCuesController@agregarPre'));
 			Route::post('/getCuestionarioConsultas', array('uses' => 'CuestionarioController@getCuestionarioConsultas'));
 			Route::post('/getCues', array('uses' => 'CuestionarioController@getCues'));
+			Route::get('/getCuesT', array('uses' => 'CuestionarioController@getCueT'));
 			Route::get('/getTema', array('uses' => 'CuestionarioController@getTema'));
 			Route::get('/getSubtema', array('uses' => 'CuestionarioController@getSubtema'));
 			Route::post('/temAgregar', array('uses' => 'TemaController@temAgregar'));

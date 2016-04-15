@@ -247,7 +247,7 @@ public function editarCues(){
   static public function getCuetionarioConsultas(){
    /* $seleccionar = cuestionarios::get()
       ->toArray();*/
-      $seleccionar = DB::select('SELECT c.cueId, c.cueNombre, c.cueFechaAp, c.cueFechaEla, c.cueActivo, t.temId,  s.subTema, t.temTema FROM cuestionarios c, temas t, subtema s WHERE c.temId = t.temId AND t.subtemaId = s.subId');
+      $seleccionar = DB::select('SELECT c.cueId, c.cueNombre, c.cueFechaAp, c.cueFechaEla, c.cueActivo, t.temId,  s.subId, s.subTema, t.temTema FROM cuestionarios c, temas t, subtema s WHERE c.temId = t.temId AND t.subtemaId = s.subId');
       return $seleccionar;
   }
 
@@ -278,7 +278,7 @@ public function getCuesT(){
   static public function getCueT(){
    /* $seleccionar = cuestionarios::get()
       ->toArray();*/
-      $seleccionar = DB::select('SELECT c.cueNombre, t.temSubTema, t.temTema, p.prePregunta FROM cuestionarios c, temas t, preguntas p WHERE c.temId = t.temId AND c.cueId = p.preCuestionario ');
+      $seleccionar = DB::select('SELECT c.cueId, c.cueNombre, s.subId, s.subTema, t.temId, t.temTema, p.prePregunta FROM cuestionarios c, temas t, subtema s, preguntas p WHERE c.temId = t.temId AND t.subtemaId = s.subId ');
       return $seleccionar;
   }
 //     SECCION DE ACTIVO
