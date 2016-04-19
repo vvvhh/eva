@@ -1,13 +1,16 @@
-var btnAceptarC = $('#btnAceptarC'),
-	txtNumPre = $('#txtNumPre'),
-  preAc = $('#preAc'),
-	txtPreg = $('#txtPreg'),
-	btnGuardarPre = $('#btnGuardarPre'),
-  pnlRes = $('#pnlRes');
+var btnAceptarC = $('#btnAceptarC'),txtNumPre = $('#txtNumPre'),preAc = $('#preAc'),txtPreg = $('#txtPreg'),
+	btnGuardarPre = $('#btnGuardarPre'),pnlRes = $('#pnlRes'),agPreNum = $('#agPreNum'),numPreC = $('#numPreC'),
+  agPre = $('#agPre'),chkAbierta = $('#chkAbierta'),chkMix = $('#chkMix'),chkOpMul = $('#chkOpMul');
 	//formselect = $;
 
 function cicloPre() {
 	// body...
+  var q=txtNumPre.val();
+  document.getElementById('agPreNum').innerHTML= q;
+  numPreC.addClass('hidden');
+  agPre.removeClass('hidden');
+  //txtNumPre.val('');
+  //ciclo para gregar pregunntas 
 	formselect.removeClass('hidden');
 	chkAbierta.disabled = false;
 	chkOpMul.disabled = false;
@@ -17,14 +20,7 @@ function cicloPre() {
 function agregarPre() {
 	// body...
 	pnlRes.removeClass('hidden');
-  txtPreg.html ('');
-
-	//ciclo para gregar pregunntas 
-  for (var i = 0; i < txtNumPre; i++) {
-  if (txtNumPre>=preNum) {
-    } 
-  }
-
+  txtPreg.html('');
   var editar = $.ajax({
     url: 'agregarPre',
     data: {

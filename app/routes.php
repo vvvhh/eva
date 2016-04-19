@@ -147,6 +147,7 @@ Route::post('/repFuentePer', array('uses' => 'NoticiasController@repFuentePer'))
 			Route::get('/getCuesT', array('uses' => 'CuestionarioController@getCueT'));
 			Route::get('/getTema', array('uses' => 'CuestionarioController@getTema'));
 			Route::get('/getSubtema', array('uses' => 'CuestionarioController@getSubtema'));
+			Route::get('/getTipo', array('uses' => 'CuestionarioController@getTipo'));
 			Route::post('/temAgregar', array('uses' => 'TemaController@temAgregar'));
 			Route::post('/subAgregar', array('uses' => 'TemaController@subAgregar'));
 			Route::post('/editarCues', array('uses' => 'CuestionarioController@editarCues'));

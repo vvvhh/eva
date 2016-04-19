@@ -2,7 +2,7 @@
   <div class="col-md-12" >
     <div id="tblServicios" class="hidden">
       <h2><span class="glyphicon glyphicon-edit text-primary"></span> Editar cuestionario</h2>
-      <div class="table-responsive" >
+      <div class="table-responsive col-md-12" >
         <table class="table table-striped table-hover table-bordered">
           <thead>
             <tr>
@@ -25,7 +25,7 @@
 
 <!-- Panel editar -->
 <div class="row">
-  <div class="col-md-10" class="hidden">
+  <div class="col-md-12" class="hidden">
     <div class="well transparenteClaro hidden" id="formEditarServ">
       <div class="form-horizontal">
         <fieldset>
@@ -39,9 +39,7 @@
           <p class="text-danger formatoTexto14" id="spnNombre"> </p>
           <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
         </div>
-          <button id="btnTema" class="btn btn-primary col-md-2"><i class="fa fa-plus-circle"></i> Agregar tema</button>
       </div>
-
 
       <div class="form-group">
         <label for="txtSubTema" class="col-md-3 control-label">*Subtema: </label>
@@ -62,41 +60,24 @@
         </div>
       </div>
 
-      <div class="form-group hidden">
-        <label for="txtActivot" class="col-md-3 control-label">Activo:</label>
-        <div class="col-md-3">
-          <select name="" id="datosActivo" class="form-control input-sm">
-            <option value="1">Sí</option>
-            <option value="0">No</option>
-          </select>
-        </div>
-      </div>
-
       <div class="form-group">
-        <label for="txtFechaInicio" class="col-md-3 control-label"><br>*Fecha de elaboración: </label>
+        <label for="txtFechaInicio" class="col-md-3 control-label"><br>Fecha de elaboración: </label>
         <div class="col-md-6">
-        <label for="txtFechaInicio" class=" control-label">*Fecha Actual: </label>
           <div class="input-group date" data-provide="datepicker">
             <input type="text" class="form-control" id="fechaEla" value="
 <?php //Ejemplo curso PHP aprenderaprogramar.com
 $time = time();
 echo date("Y-m-d", $time);
-?>" disabled>
-            <div  id="calendario" class="input-group-addon hidden">
+?>">
+            <div  id="calendario" class="input-group-addon">
               <i class="fa fa-calendar"></i>
             </div>
           </div>
         </div>
-        <div class=" col-md-3">
-          <center>
-          <label for="txtFechaInicio" class=" control-label">Desea cambiar la fecha</label>
-            <button id="btnCaFe" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Cambiar</button>
-          </center>
-        </div>
       </div>
 
       <div class="form-group" id="groupNueva2">
-        <label for="txtFechaInicio" class="col-md-3 control-label">*Fecha de aplicación: </label>
+        <label for="txtFechaInicio" class="col-md-3 control-label">Fecha de aplicación: </label>
         <div class="col-md-5">
           <div class="input-group date" data-provide="datepicker">
             <input type="text" class="form-control" id="txtFechaApl">

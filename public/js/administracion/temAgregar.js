@@ -5,13 +5,14 @@ var txtTema = $('#txtTema'),txtSubTema = $('#txtSubTema'),txtActivos = $('#txtAc
     txtActivot = $('#txtActivot'),btnTema = $('#btnTema'),btnTemas = $('#btnTemas'),
     btnSubtemas = $('#btnSubtemas'),btnTemaSi = $('#btnTemaSi'),btnTemaNo = $('#btnTemaNo'),
     btnTemaSiEx = $('#btnTemaSiEx'),btnTemaNoEx = $('#btnTemaNoEx'),
-    btnTemaSiExsub = $('#btnTemaSiExsub'),btnTemaNoExsub = $('#btnTemaNoExsub'),
+    btnTemaSiExsub = $('#btnTemaSiExsub'),btnTemaNoExsub = $('#btnTemaNoExsub'),btnTipo = $('#btnTipo'),
     token = $('#token'),
     Combo = $('#Combo'),subCombo = $('#subCombo'),subtema = $('#subtema'),
     dg = $('#dg'),tema = $('#tema'),pnl1 = $('#pnl1'),temAceptar = $('#temAceptar'),
     subAceptar = $('#subAceptar'),lbltm = $('#lbltm'),lblSub = $('#lblSub'),
     botones =$('#botones'),label4 = $('#label4'),label5 = $('#label5'),
-    mosTem = $('#mosTem'),mosSub = $('#mosSub'),lblNombre = $('#lblNombre');
+    mosTem = $('#mosTem'),mosSub = $('#mosSub'),lblNombre = $('#lblNombre'),formselect = $('#formselect'),
+    tipoPre = $('#tipoPre'),formopm = $('#formopm');
 
 function temAgregar(){
   var editar = $.ajax({
@@ -41,7 +42,6 @@ function temAgregar(){
         text: "El Tema fue agragdo con exito",
         type: 'info',
         showCancelButton: true,
-        closeOnConfirm: false
       },
       function(isConfirm) {
         if (isConfirm) {
@@ -86,11 +86,10 @@ function subAgregar(){
         text: "El subtema fue agragdo con exito",
         type: 'info',
         showCancelButton: true,
-        closeOnConfirm: true
       },
       function(isConfirm) {
         if (isConfirm) {
-          window.location.href = 'cueAgregar#tema';
+          window.location.href = 'cueAgregar#subtema';
           pnl1.addClass('hidden');
           document.getElementById('lblNombre').innerHTML= txtSubTema.val();
           lblNombre.removeClass('hidden');
@@ -235,6 +234,12 @@ function subTema() {
       btnSubtemas.removeClass('botonNoactivo');
 }
 
+function tipo(){
+  formselect.addClass('hidden');
+  tipoPre.removeClass('hidden');
+  formopm.removeClass('hidden');
+}
+
 label4.on('click',Tema);
 label5.on('click',subTema);
 btnTemas.on('click',Tema);
@@ -253,3 +258,4 @@ btnTemaSiExsub.on('click',existesub);
 btnTemaNoExsub.on('click',noexistesub);
 temAceptar.on('click',aceptado);
 subAceptar.on('click',sub);
+btnTipo.on('click',tipo);

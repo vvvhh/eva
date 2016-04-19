@@ -18,8 +18,9 @@
 
 <div class="row">
   <div class="col-md-10">
-    <div class="form-horizontal" id="pnlAgregar" name="pnlAgregar" novalidate>
+    <div class="form-horizontal" id="pnlAgregar" name="pnlAgregar" class="hidden" novalidate>
       <div id="lbltm" class="hidden">
+          <h3><i class="fa fa-plus-circle text-primary"></i> Agregar datos generales del cuestionario</h3>
           <label for="txtNombreS" class="control-label">Tema: </label><label id="temSel"></label>
       </div>
       <div id="pnl1" class="hidden">
@@ -88,9 +89,9 @@
     </div>
 
     <div class="hidden" id="lblDg">
-      <label for="txtNombreS" class="control-label">Nombre: </label><label id="lblNombre"></label><br>
-      <label for="txtNombreS" class="control-label">Fecha de elaboración: </label><label id="lblFechaE"></label><br>
-      <label for="txtNombreS" class="control-label">Fecha de aplicación: </label><label id="lblFechaA"></label>
+      <label class="control-label">Nombre del cuestionario: </label><label id="lblNombre"></label><br>
+      <label class="control-label">Fecha de elaboración: </label><label id="lblFechaE"></label><br>
+      <label class="control-label">Fecha de aplicación: </label><label id="lblFechaA"></label>
     </div>
 
       <div id="dg" class="hidden">
@@ -114,7 +115,7 @@
         </div>
 
         <div class="form-group">
-          <label for="txtFechaInicio" class="col-md-3 control-label"><br>*Fecha de elaboración: </label>
+          <label for="txtFechaInicio" class="col-md-3 control-label"><br>*La fecha de elaboración es la fecha actual: </label>
           <div class="col-md-6">
             <div class="input-group date" data-provide="datepicker">
               <input type="text" class="form-control" id="fechaEla" value="
@@ -137,7 +138,7 @@
         </div>
 
         <div class="form-group" id="groupNueva2">
-          <label for="txtFechaInicio" class="col-md-3 control-label">*Fecha de aplicación: </label>
+          <label for="txtFechaInicio" class="col-md-3 control-label">*Elija la fecha de aplicación: </label>
           <div class="col-md-5">
             <div class="input-group date" data-provide="datepicker">
               <input type="text" class="form-control" id="txtFechaApl">
@@ -155,9 +156,13 @@
       </div>
 
 <!-- Inserción de preguntas -->
-  <div class="col-md-12">
+    <div class="hidden" id="agPre">
+      <label for="txtNombreS" class="control-label">Número de preguntas del cuestionario: </label><label id="agPreNum"></label><br>
+    </div>
+
+    <div class="col-md-12">
     <div class="form-group hidden" id="numPreC">
-    <br><br>
+      <br><br>
       <label for="selcanpre" class="col-md-6 control-label"> Cuantas preguntas contendra el cuestionario:</label>
       <div class="col-md-6">
         <input id="txtNumPre" type="text" class="form-control grisObscuro" pattern="1234567890"  placeholder="*Ingrese el número de preguntas que tendra su cuestionario" required> 
@@ -169,26 +174,27 @@
         <button id="btnAceptarC"  class="btn btn-block btn-md botonNoactivo"><i class="fa fa-plus-circle"></i> Aceptar</button>
       </div>
     </div>
-      <br><br><br><br>
+      <br><br>
     <!-- Inicio del formulairo para ingresar preguntas de opción múltiple y abiertas-->
+    <div class="hidden" id="tipoPre">
+      <label for="txtNombreS" class="control-label">Tipo de preguntas: </label><label id="tipoPreEle"></label><br>
+    </div>
+
     <div class="form-horizontal hidden" id="formselect" name="formselect" novalidate>
       <h3><i class="fa fa-question-circle text-success"></i> Agregar Pregunta</h3>
       <label for="txtNombreS" class=" control-label">¿De que tipo son las preguntas que desea capturar? </label>
         <div class="form-group">
-          <div class="col-md-8">
+          <div class="col-md-7" id="select">
+            <SELECT id="selTipo" size=1 class="form-control grisObscuro"></SELECT>
             <p class="text-danger formatoTexto14" id="spnNombre"> </p>
             <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
-            <input id="chkAbierta" type="checkbox" name="transporte"  value="1" onClick="chkA()">  Abierta 
-            <br>
-            <input id="chkOpMul" type="checkbox" name="transporte" value="2" onClick="chkO()">  Opción múltiple
-            <br>
-            <input id="chkMix" type="checkbox" name="transporte" value="3" onClick="chkM()">  Mixta
           </div>
+        <button id="btnTipo" class="btn btn-block btn-md botonNoactivo"><i class="fa fa-plus-circle"></i> Aceptar</button>
         </div>
     </div>
 
     <!-- formulario de preguntas con opción múltiple -->
-    <div class="form-horizontal hidden" id="formpom" novalidate>
+    <div class="form-horizontal hidden" id="formopm" novalidate>
       <h2><i class="fa fa-plus-circle text-primary"></i> Agregar Pregunta</h2>
       <input type="hidden" id="txtCueId" value="">
       <div class="form-group">

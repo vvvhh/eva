@@ -10,6 +10,7 @@ class preguntas extends Eloquent
     'cueId',
     'prePregunta',
     'preCuestionario',
-    'preActivo'
+    'preActivo',
+    'preTipo'
   );
 }

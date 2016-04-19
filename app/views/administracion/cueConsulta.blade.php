@@ -13,7 +13,6 @@
                   <th class="col-md-1 text-center">Sub Tema</th>
                   <th class="col-md-1 text-center">Nombre del custionario</th>
                   <th class="col-md-1 text-center">Estado</th>
-                  <th class="col-md-1 text-center">Visualizar</th>
                 </tr>
               </thead>
               <tbody id="tbodyConsulta"></tbody>
@@ -21,27 +20,6 @@
           </div>
         </div><!-- /Tabla de servicios -->
       </div>
-
-      <div class="col-md-12">
-        <div id="tblCue" class="hidden">
-          <h2><span class="glyphicon glyphicon-edit text-primary"></span> Consultar datos generales de Cuestionarios</h2>
-          <input type="hidden" id="txtCueId" value="">
-          <div class="table-responsive" >
-            <table class="table table-striped table-hover table-bordered">
-              <thead>
-                <tr>
-                  <th class="col-md-5 text-center">Tema</th>
-                  <th class="col-md-5 text-center">Sub Tema</th>
-                  <th class="col-md-5 text-center">Nombre del custionario</th>
-                  <th class="col-md-12 text-center">Preguntas</th>
-                </tr>
-              </thead>
-              <tbody id="tbodyConsultaCue"></tbody>
-            </table>
-          </div>
-        </div><!-- /Tabla de servicios -->
-      </div>
-
 
       <div class="row" id="pnlInicio">
         <div class="col-md-12" align="center">
