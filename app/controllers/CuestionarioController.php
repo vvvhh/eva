@@ -52,6 +52,7 @@ class CuestionarioController extends BaseController{
           ));
           else{
             $insert = cuestionarios::insert(array(
+              //'cueTema' => trim($data['tema']),
               'cueFechaAp' => trim($data['fecha']),
               'cueFechaEla'=> trim($data['fechaEla']),
               'cueNombre' => trim($data['nombre']),
@@ -238,7 +239,7 @@ public function editarCues(){
       else
         $response = array(
           'status' => 'ERROR',
-          'message' => 'No se encontraron fuentes registradas.'
+          'message' => 'No se encontraron cuestionario registrados.'
         );
 
       return Response::json($response);
@@ -247,7 +248,7 @@ public function editarCues(){
   static public function getCuetionarioConsultas(){
    /* $seleccionar = cuestionarios::get()
       ->toArray();*/
-       $seleccionar = DB::select('SELECT c.cueId, c.cueNombre, c.cueFechaAp, c.cueFechaEla, c.cueActivo, t.temId, t.temTema, s.subId, s.subTema FROM cuestionarios c, temas t, subtema s WHERE c.temId = t.temId AND t.subtemaId = s.subId');
+       $seleccionar = DB::select('SELECT c.cueId, c.cueNombre, c.cueFechaAp, c.cueFechaEla, c.cueActivo, t.temId, t.temTema, s.subId, s.subTema FROM cuestionarios c, temas t, subtema s WHERE c.cueTema = t.temId AND t.subtemaId = s.subId');
       return $seleccionar;
   }
 
@@ -278,7 +279,7 @@ public function getCuesT(){
   static public function getCueT(){
    /* $seleccionar = cuestionarios::get()
       ->toArray();*/
-      $seleccionar = DB::select('SELECT c.cueId, c.cueNombre, s.subId, s.subTema, t.temId, t.temTema, p.prePregunta FROM cuestionarios c, temas t, subtema s, preguntas p WHERE c.temId = t.temId AND t.subtemaId = s.subId ');
+      $seleccionar = DB::select('SELECT c.cueId, c.cueNombre, c.cueTema, s.subId, s.subTema, t.temId, t.temTema, p.prePregunta FROM cuestionarios c, temas t, subtema s, preguntas p WHERE c.cueTema = t.temId AND t.subtemaId = s.subId ');
       return $seleccionar;
   }
 //     SECCION DE ACTIVO
@@ -320,7 +321,7 @@ public function getCuesT(){
         ->get()
         ->toArray();*/
 
-        $seleccionar=DB::select('SELECT s.subId, s.subTema, t.temId, t.temTema, c.cueId, c.cueNombre, c.cueFechaAp, c.cueFechaEla, c.cueActivo FROM cuestionarios c, temas t, subtema s WHERE c.temId = t.temId AND t.subtemaId = s.subId');
+        $seleccionar=DB::select('SELECT s.subId, s.subTema, t.temId, t.temTema, c.cueId, c.cueNombre, c.cueFechaAp, c.cueFechaEla, c.cueActivo, c.cueTema FROM cuestionarios c, temas t, subtema s WHERE c.cueTema = t.temId AND t.subtemaId = s.subId');
 
       if ( count( $seleccionar ) > 0 )
         $response = array(
@@ -364,7 +365,7 @@ public function getCuesT(){
   }
 
 public function getTema(){
-   $seleccionar = DB::select('SELECT * FROM temas WHERE temActivo=1');
+   $seleccionar = DB::select('SELECT temTema FROM temas WHERE temActivo=1');
 
       if ( count( $seleccionar ) > 0 )
         $response = array(
@@ -383,7 +384,7 @@ public function getTema(){
 }
 
 public function getSubtema(){
-   $seleccionar = DB::select('SELECT * FROM subtema WHERE subActivo=1');
+   $seleccionar = DB::select('SELECT subTema FROM subtema WHERE subActivo=1');
 
       if ( count( $seleccionar ) > 0 )
         $response = array(
@@ -394,7 +395,7 @@ public function getSubtema(){
       else
         $response = array(
           'status' => 'ERROR',
-          'message' => 'No se encontraron temas registrados.'
+          'message' => 'No se encontraron subtemas registrados.'
         );
 
       return Response::json($response);
@@ -402,7 +403,7 @@ public function getSubtema(){
 }
 
 public function getTipo(){
-   $seleccionar = DB::select('SELECT * FROM tipos');
+   $seleccionar = DB::select('SELECT preTipos FROM tipos');
 
       if ( count( $seleccionar ) > 0 )
         $response = array(
@@ -413,7 +414,7 @@ public function getTipo(){
       else
         $response = array(
           'status' => 'ERROR',
-          'message' => 'No se encontraron temas registrados.'
+          'message' => 'No se encontraron tipos registrados.'
         );
 
       return Response::json($response);

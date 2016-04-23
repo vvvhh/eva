@@ -16,7 +16,7 @@ class preCuesController extends BaseController{
         //'idResponsable' => Input::get('idResponsable'),
       );
 
-     $validaciones = array('pregunta' => array('required','regex:/^([a-zA-ñÑZáéíóúñÁÉÍÓÚ\-\_\s\,\.\:\;\¿\?\¡\!])+$/0123456789'));
+     $validaciones = array('pregunta' => array('required','regex:/^([a-zA-ñÑZáéíóúñÁÉÍÓÚ\-\_\s\,\.\:\;\¿\?\¡\!])+$/'));
 
      $validator = Validator::make($data , $validaciones);
 

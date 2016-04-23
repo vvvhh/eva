@@ -12,7 +12,7 @@ var txtTema = $('#txtTema'),txtSubTema = $('#txtSubTema'),txtActivos = $('#txtAc
     subAceptar = $('#subAceptar'),lbltm = $('#lbltm'),lblSub = $('#lblSub'),
     botones =$('#botones'),label4 = $('#label4'),label5 = $('#label5'),
     mosTem = $('#mosTem'),mosSub = $('#mosSub'),lblNombre = $('#lblNombre'),formselect = $('#formselect'),
-    tipoPre = $('#tipoPre'),formopm = $('#formopm');
+    tipoPre = $('#tipoPre'),formopm = $('#formopm'),slctRes = $('#slctRes');
 
 function temAgregar(){
   var editar = $.ajax({
@@ -125,7 +125,7 @@ function rediTem(){
 function habilitar(){
   swal({
         title: '¡Agregar tema!',
-        text: "¿Está seguro que no desea agregar un tema nuevo?",
+        text: "¿Está seguro que desea agregar un tema nuevo?",
         type: 'info',
         showCancelButton: true,
         closeOnConfirm: true
@@ -153,11 +153,13 @@ function existe(){
       function(isConfirm) {
         if (isConfirm) {
           swal(
-            '¡Continuar!'
+            'Este tema será utilizado para su cuestionario'
           );
           tema.removeClass('hidden');
-          Combo.removeClass('hidden');
-          //subtema.removeClass('hidden');
+          //Combo.removeClass('hidden');
+          subtema.removeClass('hidden');
+          pnl1.addClass('hidden');
+          lbltm.removeClass('hidden');
         }
   });
 }
@@ -179,12 +181,14 @@ function existesub(){
       function(isConfirm) {
         if (isConfirm) {
           swal(
-            '¡Continuar!',
-            'success'
+            'El subtema que selecciono sera el de su cuestionario.'
           );
-          subCombo.removeClass('hidden');
+          //subCombo.removeClass('hidden');
           document.getElementById("selComboSub").disabled = false;
-          botones.removeClass('hidden');
+          //botones.removeClass('hidden');
+          subtema.addClass('hidden');
+          lblSub.removeClass('hidden');
+          dg.removeClass('hidden');
         }
   });
 }
@@ -238,6 +242,8 @@ function tipo(){
   formselect.addClass('hidden');
   tipoPre.removeClass('hidden');
   formopm.removeClass('hidden');
+  txtPreg.html('');
+  slctRes.val(0)
 }
 
 label4.on('click',Tema);

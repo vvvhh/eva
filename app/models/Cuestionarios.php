@@ -9,8 +9,11 @@ class Cuestionarios extends Eloquent
   protected $fillable = array(
     'cueId',
     'cueFechaAp',
-    'cueTema',
+    'cueFechaEla',
     'cueNombre',
-    'cueActivo'
+    'cueTiempo',
+    'cueActivo',
+    'cueResponsables',
+    'cueTema'
   );
 }

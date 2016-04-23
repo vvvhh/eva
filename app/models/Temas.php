@@ -9,7 +9,8 @@ class Temas extends Eloquent
   protected $fillable = array(
     'temId',
     'temTema',
-    'temActivo'
+    'temActivo',
+    'subtemaId'
   );
 }
 ?>

@@ -1,7 +1,9 @@
 var btnAceptarC = $('#btnAceptarC'),txtNumPre = $('#txtNumPre'),preAc = $('#preAc'),txtPreg = $('#txtPreg'),
 	btnGuardarPre = $('#btnGuardarPre'),pnlRes = $('#pnlRes'),agPreNum = $('#agPreNum'),numPreC = $('#numPreC'),
   agPre = $('#agPre'),chkAbierta = $('#chkAbierta'),chkMix = $('#chkMix'),chkOpMul = $('#chkOpMul');
-	//formselect = $;
+
+var txtA = $('#txtA'),txtB = $('#txtB'),txtC = $('#txtC'),txtD = $('#txtD'),txtE = $('#txtE'),resA = $('#resA'),
+    resB = $('#resB'),resC = $('#resC'),resD = $('#resD'),resE = $('#resE');
 
 function cicloPre() {
 	// body...
@@ -15,6 +17,12 @@ function cicloPre() {
 	chkAbierta.disabled = false;
 	chkOpMul.disabled = false;
 	chkMix.disabled = false;
+  var i = 0;
+    do {
+        //document.write(i + " ");
+
+        i++;
+    } while (i < q);
 }
 
 function agregarPre() {
@@ -44,13 +52,6 @@ function agregarPre() {
     }
 
     if ( resultado.status == 'OK' ){
-      swal({
-        title: "Esta seguro que sus datos son correctos.",
-        text: "Verificar datos.",
-        type: "success",
-        showCancelButton: true,
-        showConfirmButton: true
-      });
       document.getElementsByTagName('slctRes').value = 0;
       //swal();
       //numPreC.removeClass('hidden');
@@ -68,21 +69,49 @@ function Aceptar(){
 
 //Select para elegir el numero de respuestas de la pregunta
 function howMany(form){ 
-    var numObj = parseInt(form.numObject.value); 
-    var html = '';
-    var container = document.getElementById('myemailtextbox');
+  var combo = document.getElementById('slctRes');
+  var mitexto = $("#slctRes option:selected").text()
+  document.getElementById('res').innerHTML= mitexto;
+  if (mitexto > 0 && mitexto < 2) {
+    //resA.removeClass('checked');
+    txtA.removeClass('hidden');
+    txtB.addClass('hidden');
+    txtC.addClass('hidden');
+    txtD.addClass('hidden');
+    txtE.addClass('hidden');
+  }
 
-        if (numObj > 0) { 
-            for(i=1; i<=numObj; i++) { 
-               //html += '<I> Respuesta ' + i + ':</I> <input "text" size=100,10 name="email' + i +'">    <input type="checkbox" name="transporte"  value="1"><br><br>'; 
-               html += '<i> Respuesta ' + i + ':</i> <textarea name="comentarios" rows="8" cols="100"></textarea> <input type="checkbox" name="transporte"  value="1"><br>';
-            } 
-        } /*else { 
-               html += '<I> Respuesta ' + i + ':</I> <input type="text" name="email"><input type="checkbox" name="transporte"  value="1"><br><br>'; 
-        }*/
+  if (mitexto > 1 && mitexto < 3) {
+    txtA.removeClass('hidden');
+    txtB.removeClass('hidden');
+    txtC.addClass('hidden');
+    txtD.addClass('hidden');
+    txtE.addClass('hidden');
+  }
 
-container.innerHTML = html;
+  if (mitexto > 2 && mitexto < 4) {
+    txtA.removeClass('hidden');
+    txtB.removeClass('hidden');
+    txtC.removeClass('hidden');
+    txtD.addClass('hidden');
+    txtE.addClass('hidden');
+  }
 
+  if (mitexto > 3 && mitexto < 5) {
+    txtA.removeClass('hidden');
+    txtB.removeClass('hidden');
+    txtC.removeClass('hidden');
+    txtD.removeClass('hidden');
+    txtE.addClass('hidden');
+  }
+
+  if (mitexto > 4 && mitexto < 6) {
+    txtA.removeClass('hidden');
+    txtB.removeClass('hidden');
+    txtC.removeClass('hidden');
+    txtD.removeClass('hidden');
+    txtE.removeClass('hidden');
+  }
 } 
 
 btnAceptarC.on('click',cicloPre);
