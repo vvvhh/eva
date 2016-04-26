@@ -14,6 +14,6 @@ class Cuestionarios extends Eloquent
     'cueTiempo',
     'cueActivo',
     'cueResponsables',
-    'cueTema'
+    'cueSubtema'
   );
 }

@@ -25,8 +25,8 @@
       </div>
       <div id="pnl1" class="hidden">
         <h3><i class="fa fa-plus-circle text-primary"></i> Datos generales del cuestionario</h3>
-        <br>
-        <h5>Por favor verifique en el siguiente listado si el tema del cuestionario a ingresar existe, si existe seleccionelo y presione el boton Aceptar <button class="btn btn-primary disabled">Aceptar</button>, en caso contrario presione el boton Agregar <button class="btn btn-primary disabled">Agregar</button> para agregar un tema nuevo.</h5>
+        <h4><b>Definición del Tema</b></h4>
+        <h5>Por favor verifique en el siguiente listado si el tema del cuestionario a ingresar existe, si existe seleccionelo y presione el boton <button class="btn btn-primary disabled">Aceptar</button>, en caso contrario presione el boton <button class="btn btn-primary disabled">Agregar</button> para agregar un tema nuevo.</h5>
           <div id="ComboInicio" class="form-group">
               <label for="txtNombreS" class="col-md-3 control-label">Temas existentes: </label>
                 <div class="col-md-9" id="select">
@@ -57,7 +57,8 @@
     </div>
 
     <div id="subtema" class="form-group hidden">
-        <h5>Por favor verifique en el siguiente listado si el subtema del cuestionario a ingresar existe, si existe seleccionelo y presione el boton Aceptar <button class="btn btn-primary disabled">Aceptar</button>, en caso contrario presione el boton Agregar <button class="btn btn-primary disabled">Agregar</button> para agregar un subtema nuevo.</h5>
+        <h4><b>Definición del Subtema</b></h4>
+        <h5>Por favor verifique en el siguiente listado si el subtema del cuestionario a ingresar existe, si existe seleccionelo y presione el boton <button class="btn btn-primary disabled">Aceptar</button>, en caso contrario presione el boton <button class="btn btn-primary disabled">Agregar</button> para agregar un subtema nuevo.</h5>
       <div id="ComboInicio" class="form-group">
         <br><br>
         <label for="txtNombreS" class="col-md-3 control-label">Subtemas existentes: </label>
@@ -92,13 +93,15 @@
       <label class="control-label">Fecha de aplicación:&nbsp;&nbsp;</label><label id="lblFechaA"></label>
     </div>
 
-    <div id="dg" class="hidden">
+    <div id="Nombre" class="hidden">
         <div class="form-group">
           <label for="txtNombre" class="col-md-3 control-label">*Nombre: </label>
           <div class="col-md-7">
             <input id="txtNombre" name="txtNombre" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Nombre que tendra el cuestionario" required>
             <p class="text-danger formatoTexto14" id="spnNombre"> </p>
             <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
+            <center><button id="btnGrdNmb" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button></center>
+            <br>
           </div>
         </div>
 
@@ -111,32 +114,45 @@
           </select>
         </div>
       </div>
+    </div>
 
+  <div id="FechaEla" class="hidden">
       <div class="form-group">
         <label for="txtFechaInicio" class="col-md-3 control-label">*La fecha de elaboración es la fecha actual: </label>
-        <div class="col-md-6">
+        <div class="col-md-2">
           <div class="input-group date" data-provide="datepicker">
             <input type="text" class="form-control" id="fechaEla" value="
 <?php //Ejemplo curso PHP aprenderaprogramar.com
 $time = time();
-echo date("Y-m-d", $time);
+echo date("Y/m/d", $time);
 ?>" disabled>
             <div  id="calendario" class="input-group-addon hidden">
               <i class="fa fa-calendar"></i>
             </div>
           </div>
         </div>
+        <div class="col-md-2"></div>
+      </div>
+      <div class="form-group">
         <div class=" col-md-3">
           <center>
-          <label for="txtFechaInicio" class=" control-label">*Cambiar la fecha</label>
-            <button id="btnCaFe" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Cambiar</button>
+            <button id="btnCaFe" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Cambiar Fecha</button>
           </center>
+          <br>
         </div>
       </div>
-        <br>
       <div class="form-group">
-        <label for="txtFechaInicio" class="col-md-3 control-label"><br>*Elija fecha de aplicaión: </label>
-        <div class="col-md-6">
+        <div class=" col-md-12">
+          <br>
+          <center><button id="btnGrdNmb" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button></center>
+        </div>
+      </div>
+    </div>
+
+    <div id="FechaApl" class="hidden">
+      <div class="form-group">
+        <label for="txtFechaInicio" class="col-md-3 control-label">*Elija fecha de aplicaión: </label>
+        <div class="col-md-2">
           <div class="input-group date" data-provide="datepicker">
             <input type="text" class="form-control" id="txtFechaApl">
             <div class="input-group-addon">
@@ -145,14 +161,23 @@ echo date("Y-m-d", $time);
           </div>
           <br>
         </div>
-        <div class=" col-md-3">
-          <center>
-            <button id="btnGuardarAg" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
-            <button id="btnCancelarAg"  class="btn btn-danger"><i class="fa fa-times-circle"></i> Cancelar</button>
-          </center>
+        <div class="form-group">
+        <div class=" col-md-12">
+          <br>
+          <center><button id="btnGrdNmb" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button></center>
+          <br>
         </div>
       </div>
-  </div>
+      </div>
+        <div class="form-group">
+          <div class=" col-md-12">
+            <center>
+              <button id="btnGuardarAg" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
+              <button id="btnCancelarAg"  class="btn btn-danger"><i class="fa fa-times-circle"></i> Cancelar</button>
+            </center>
+          </div>
+        </div>
+    </div>
 
 <!-- Inserción de preguntas -->
   <div class="hidden" id="agPre">

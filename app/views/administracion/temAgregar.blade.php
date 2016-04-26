@@ -72,6 +72,13 @@
   <div class="col-md-10">
     <br>
     <form class="form-horizontal hidden" id="subtema" name="form" novalidate>
+    <label for="txtNombreS" class="col-md-3 control-label">Temas existentes: </label>
+      <div class="col-md-9" id="select">
+        <SELECT id="selTema" size=1 class="form-control grisObscuro">
+        </SELECT>
+        <p class="text-danger formatoTexto14" id="spnNombre"> </p>
+        <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
+      </div>
       <div class="form-group">
         <label class="col-md-3 control-label">Subtema: </label>
         <div class="col-md-8">

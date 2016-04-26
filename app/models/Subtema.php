@@ -8,7 +8,8 @@ class subtema extends Eloquent
   public $incrementing = true;
   protected $fillable = array(
     'subId',
-    'subTema',
-    'subActivo'
+    'subSubtema',
+    'subActivo',
+    'subTema'
   );
 }

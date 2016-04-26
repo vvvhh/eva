@@ -71,7 +71,7 @@ function Aceptar(){
 function howMany(form){ 
   var combo = document.getElementById('slctRes');
   var mitexto = $("#slctRes option:selected").text()
-  document.getElementById('res').innerHTML= mitexto;
+  //document.getElementById('res').innerHTML= mitexto;
   if (mitexto > 0 && mitexto < 2) {
     //resA.removeClass('checked');
     txtA.removeClass('hidden');

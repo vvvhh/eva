@@ -21,7 +21,8 @@ var formselect = $('#formselect'),formprea = $('#formprea'),datosActivo = $('#da
     lbl3 = $('#lbl3'),label1 = $('#label1'),label2 = $('#label2'),label3 = $('#label3');
 
 var dg = $('#dg'),lblDg = $('#lblDg'),lblNombre = $('#lblNombre'),lblFechaE = $('#lblFechaE'),lblFechaA = $('#lblFechaA'),
-    selTipo = $('#selTipo'), agPre = $('#agPre'),tipoPreEle = $('#tipoPreEle'),lbltm = $('#lbltm'),tipoPre = $('#tipoPre');
+    selTipo = $('#selTipo'), agPre = $('#agPre'),tipoPreEle = $('#tipoPreEle'),lbltm = $('#lbltm'),tipoPre = $('#tipoPre'),
+    btnGrdNmb = $('#btnGrdNmb'),Nombre = $('#Nombre'),Fechas = ('#FechaEla'),FechaApl = $('#FechasApl');
 /*var numPre;*/
 
 /*Ide desde el icono editar de la tabla*/
@@ -313,7 +314,9 @@ function ingresoCuestionario(){
             'Datos guardados con exito.',
             'success'
           );
-        dg.addClass('hidden');
+        Nombre.addClass('hidden');
+        FechaEla.addClass('hidden');
+        FechaApl.addClass('hidden');
         lblDg.removeClass('hidden');
         document.getElementById('lblNombre').innerHTML= txtNombre.val();
         document.getElementById('lblFechaE').innerHTML= fechaEla.val();
@@ -331,42 +334,49 @@ function ingresoCuestionario(){
     }
 }
 
-/*function swal(){
-  swal({
-        title: "Guardado.",
-        text: "Datos generales guardados con exito.",
-        type: "success",
-        showNegativeButton: true,
-        showConfirmButton: true
-      });
-}*/
-
 function cancelar(){
   txtNombre.val('');
+    swal({
+        title: '¡Cancelar!',
+        text: "¿Está seguro que desea cancelar la captura?",
+        type: 'info',
+        showCancelButton: true,
+        closeOnConfirm: false
+      },
+      function(isConfirm) {
+        if (isConfirm) {
+          swal2();
+          document.getElementById("selComboSub").disabled = false;
+          subtema.addClass('hidden');
+          lblSub.removeClass('hidden');
+          Nombre.removeClass('hidden');
+          Fechas.removeClass('hidden');
+        }
+  });
 }
 
-// fecha actual
-/*function date(){
-  dt = new Date();
-  m=((dt.getMonth()+1)>=10)? (dt.getMonth()+1) : '0' + (dt.getMonth()+1);  
-  d=((dt.getDate())>=10)? (dt.getDate()) : '0' + (dt.getDate());
-  a= dt.getFullYear();
-  document.getElementById('fechaEla').innerHTML=a+" - "+m+" - "+d;
-}*/
+function swal2(){
+  swal({
+    title: '¡Captura cancelada!',
+    type: 'error'
+  })
+  location.reload();
+}
 
 window.onload=function()
 {
   getTema();
-  //pnlAgregar.removeClass('hidden');
   pnlAgregar;
   txtFechaApl.val('');
   txtNombre.val('');
   tblServicios.addClass('hidden');
-  //tblConsulta.addClass('hidden');
+  
   tblCue.addClass('hidden');
-  /*btnEditar.removeClass('disabled');
+  btnEditar.removeClass('disabled');
   btnAgregar.removeClass('disabled');
-  btnConsulta.removeClass('disabled');*/
+  btnConsulta.removeClass('disabled');
+
+  document.getElementById('txtNombre').disabled = false;
 }
 
 /*function comprobarFuente(e){
@@ -423,7 +433,7 @@ var datos = $.ajax({
       selComboSub.html('');
       $.each(res.data, function(k,o){
         selComboSub.append(
-          '<option value="'+o.subId+'">'+o.subTema+'</option>'
+          '<option value="'+o.subId+'">'+o.subSubtema+'</option>'
         );
       });
     document.getElementById('selComboSub');
@@ -532,10 +542,6 @@ function editar() {
       btnEditar.removeClass('botonNoactivo');
       btnConsulta.removeClass('botonActivo');
       btnAgregar.removeClass('botonActivo');
-
-      /*btnEditar.addClass('disabled');
-      btnAgregar.addClass('disabled');
-      btnConsulta.addClass('disabled');*/
 }
 
 function consulta() {
@@ -585,6 +591,10 @@ function agregar() {
       btnEditar.removeClass('botonActivo');
       btnConsulta.removeClass('botonActivo');
       btnAgregar.removeClass('botonNoactivo');
+
+      btnEditar.addClass('disabled');
+      btnAgregar.removeClass('disabled');
+      btnConsulta.addClass('disabled');
 }
 
 btnEditar.on('click',editar);
@@ -666,151 +676,37 @@ function chkM(form)
     }    
 }
 
-function mt(){
-  var id = $(this).attr('id');
-  if (id==="")
-    return false;
-
-  var datos = $.ajax({
-    url: 'getCues',
-    data: {
-      i: id
-    },
-    type: 'post',
-    dataType:'json',
-    async:false
-  }).error(function(e){
-    alert('Ocurrio un error, intente de nuevo');
-  }).responseText;
-
-  var res;
-  try{
-      res = JSON.parse(datos);
-      }catch(e){
-      alert('Error JSON ' + e);
-    }
-
-    if ( res.status == 'OK' ){
-       var i = 1;
-      $.each(res.data, function(k,o){
-
-        selCombo.find('option').each(
-          function(){
-            if ( o.temTema == $(this).val() )
-            selCombo.val(o.temTema);
-          }
-        );
-        //obtención de selección del select
-        var combo = document.getElementById('selCombo');
-        var mitexto = $("#selCombo option:selected").text()
-        document.getElementById('temSel').innerHTML= mitexto; //valor asignado al id sleccionado
-      i++;
-      });
-    }else{
-      tbodyServicios.html('<tr><td colspan="8" class="center"><h3>'+ res.message +'</h3></td></tr>');
-    }
-    tbodyServicios.removeClass('hidden');
+function mtipo(){//obtención de selección del select
+  var combo = document.getElementById('selTipo');
+  var mitexto = $("#selTipo option:selected").text()
+  document.getElementById('tipoPreEle').innerHTML= mitexto; //valor asignado al id sleccionado
 }
 
-function ms(){
-  var id = $(this).attr('id');
-  if (id==="")
-    return false;
-
-  var datos = $.ajax({
-    url: 'getCues',
-    data: {
-      i: id
-    },
-    type: 'post',
-    dataType:'json',
-    async:false
-  }).error(function(e){
-    alert('Ocurrio un error, intente de nuevo');
-  }).responseText;
-
-  var res;
-  try{
-      res = JSON.parse(datos);
-      }catch(e){
-      alert('Error JSON ' + e);
-    }
-
-    if ( res.status == 'OK' ){
-       var i = 1;
-      $.each(res.data, function(k,o){
-
-        selComboSub.find('option').each(
-          function(){
-            if ( o.subTema == $(this).val() )
-            selComboSub.val(o.subTema);
-          }
-        );
-        //obtención de selección del select
-        var combo = document.getElementById('selComboSub');
-        var mitexto = $("#selComboSub option:selected").text()
-        document.getElementById('subSel').innerHTML= mitexto; //valor asignado al id sleccionado
-      i++;
-      });
-    }else{
-      tbodyServicios.html('<tr><td colspan="8" class="center"><h3>'+ res.message +'</h3></td></tr>');
-    }
-    tbodyServicios.removeClass('hidden');
-}
-
-function mtipo(){
-  var id = $(this).attr('id');
-  if (id==="")
-    return false;
-
-  var datos = $.ajax({
-    url: 'getCues',
-    data: {
-      i: id
-    },
-    type: 'post',
-    dataType:'json',
-    async:false
-  }).error(function(e){
-    alert('Ocurrio un error, intente de nuevo');
-  }).responseText;
-
-  var res;
-  try{
-      res = JSON.parse(datos);
-      }catch(e){
-      alert('Error JSON ' + e);
-    }
-
-    if ( res.status == 'OK' ){
-       var i = 1;
-      $.each(res.data, function(k,o){
-
-        selTipo.find('option').each(
-          function(){
-            if ( o.preTipos == $(this).val() )
-            selComboSub.val(o.preTipos);
-          }
-        );
-        //obtención de selección del select
-        var combo = document.getElementById('selTipo');
-        var mitexto = $("#selTipo option:selected").text()
-        document.getElementById('tipoPreEle').innerHTML= mitexto; //valor asignado al id sleccionado
-      i++;
-      });
-    }else{
-      tbodyServicios.html('<tr><td colspan="8" class="center"><h3>'+ res.message +'</h3></td></tr>');
-    }
-    tbodyServicios.removeClass('hidden');
+function mostrarTema(){
+    swal({
+        title: '¡Nombre Ingresado!',
+        text: "¿Está seguro que es el nombre que ingresar?",
+        type: 'info',
+        showCancelButton: true,
+        closeOnConfirm: false
+      },
+      function(isConfirm) {
+        if (isConfirm) {
+          swal(
+            'El nombre a sido Guardado.'
+          );
+          document.getElementById("txtNombre").disabled = true;
+        }
+  });
 }
 
 tblServicios.delegate('.glyphicon-edit', 'click', getCues);
 tblServicios.delegate('.glyphicon-trash', 'click', darBajaCues);
 btnCancelar.on('click',limpiar);
 btnGuardar.on('click',editarCues);
-selCombo.on('click',mt);
-selComboSub.on('click',ms);
 selTipo.on('click',mtipo);
 
 btnCancelarAg.on('click',cancelar);
 btnGuardarAg.on('click',ingresoCuestionario);
+
+btnGrdNmb.on('click',mostrarTema);

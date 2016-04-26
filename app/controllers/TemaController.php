@@ -69,6 +69,32 @@
       return Response::json( $response );
     }
 
+/****_______________________________Obtener tema para combo_______________________________*****/
+  public function getTema(){
+    if( !Sesion::isResponsable() ){
+      if( !Sesion::isAdmin() )
+      return Redirect::to('administracion/logout');
+    }
+
+      $data = Input::all();
+
+      $seleccionar=DB::select('SELECT temId, temTema FROM temas WHERE temActivo=1');
+
+      if ( count( $seleccionar ) > 0 )
+        $response = array(
+          'status' => 'OK',
+          'data' => $seleccionar,
+          'message' => 'Resultados obtenidos'
+        );
+      else
+        $response = array(
+          'status' => 'ERROR',
+          'message' => 'No se encontraron cuestionarios registradas.'
+        );
+
+      return Response::json($response);
+  }
+
 // --------------------------------  SUBTEMAS  --------------------------------- //
 public function subAgregar(){ /**INGRESO Subtema**/
         if( !Sesion::isAdmin() )
@@ -111,7 +137,7 @@ public function subAgregar(){ /**INGRESO Subtema**/
 
             else{
               $insert = subtema::insert(array(
-                'subTema' => trim($data['subtema']),
+                'subSubtema' => trim($data['subtema']),
                 'subActivo' => true
               ));
 

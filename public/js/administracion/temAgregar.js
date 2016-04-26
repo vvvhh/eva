@@ -12,7 +12,8 @@ var txtTema = $('#txtTema'),txtSubTema = $('#txtSubTema'),txtActivos = $('#txtAc
     subAceptar = $('#subAceptar'),lbltm = $('#lbltm'),lblSub = $('#lblSub'),
     botones =$('#botones'),label4 = $('#label4'),label5 = $('#label5'),
     mosTem = $('#mosTem'),mosSub = $('#mosSub'),lblNombre = $('#lblNombre'),formselect = $('#formselect'),
-    tipoPre = $('#tipoPre'),formopm = $('#formopm'),slctRes = $('#slctRes');
+    tipoPre = $('#tipoPre'),formopm = $('#formopm'),slctRes = $('#slctRes'), Nombre = $('#Nombre'),
+    FechaEla = $('#FechaEla'),FechaApl = $('#FechaApl'),selTema = $('#selTema');
 
 function temAgregar(){
   var editar = $.ajax({
@@ -45,9 +46,8 @@ function temAgregar(){
       },
       function(isConfirm) {
         if (isConfirm) {
-          window.location.href = 'cueAgregar#tema';
           pnl1.addClass('hidden');
-          document.getElementById('lblNombre').innerHTML= txtTema.val();
+          txtTema.val('');
           lblNombre.removeClass('hidden');
           subtema.removeClass('hidden');
         }
@@ -64,6 +64,7 @@ function subAgregar(){
     data: {
       token: token.val(),
       subtema: txtSubTema.val(),
+
       activo: txtActivos.val(),
     },
     type: 'post',
@@ -89,9 +90,8 @@ function subAgregar(){
       },
       function(isConfirm) {
         if (isConfirm) {
-          window.location.href = 'cueAgregar#subtema';
           pnl1.addClass('hidden');
-          document.getElementById('lblNombre').innerHTML= txtSubTema.val();
+          txtSubTema.val('');
           lblNombre.removeClass('hidden');
 
         }
@@ -129,17 +129,7 @@ function habilitar(){
         type: 'info',
         showCancelButton: true,
         closeOnConfirm: true
-      },
-      function(isConfirm) {
-        if (isConfirm) {
-          /*swal(
-            '¡Continuar!',
-            'success'
-          );*/
-          document.getElementById("selCombo").disabled = false;
-          //expand(selCombo);
-        }
-  });
+      });
 }
 
 function existe(){
@@ -156,12 +146,17 @@ function existe(){
             'Este tema será utilizado para su cuestionario'
           );
           tema.removeClass('hidden');
-          //Combo.removeClass('hidden');
           subtema.removeClass('hidden');
           pnl1.addClass('hidden');
           lbltm.removeClass('hidden');
         }
   });
+    console.log("mt");
+    //obtención de selección del select
+        var combo = document.getElementById('selCombo');
+        var mitexto = $("#selCombo option:selected").text();
+        console.log("tema"+mitexto);
+        document.getElementById('temSel').innerHTML= mitexto; //valor asignado al id sleccionado
 }
 
 function noexiste(){
@@ -183,14 +178,19 @@ function existesub(){
           swal(
             'El subtema que selecciono sera el de su cuestionario.'
           );
-          //subCombo.removeClass('hidden');
           document.getElementById("selComboSub").disabled = false;
-          //botones.removeClass('hidden');
           subtema.addClass('hidden');
           lblSub.removeClass('hidden');
-          dg.removeClass('hidden');
+          Nombre.removeClass('hidden');
+          FechaEla.removeClass('hidden');
+          FechaApl.removeClass('hidden');
         }
   });
+  //obtención de selección del select
+  var combo = document.getElementById('selComboSub');
+  var mitexto = $("#selComboSub option:selected").text();
+  console.log("tema "+mitexto);
+  document.getElementById('subSel').innerHTML= mitexto; //valor asignado al id sleccionado
 }
 
 function noexistesub(){
@@ -236,6 +236,7 @@ function subTema() {
 
       btnTemas.removeClass('botonActivo');
       btnSubtemas.removeClass('botonNoactivo');
+      
 }
 
 function tipo(){
@@ -244,6 +245,50 @@ function tipo(){
   formopm.removeClass('hidden');
   txtPreg.html('');
   slctRes.val(0)
+}
+
+function getTema(){
+  var id = $(this).attr('id');
+  if (id==="")
+    return false;
+
+  var datos = $.ajax({
+    url: 'getTema',
+    data: {
+      i: id
+    },
+    type: 'post',
+    dataType:'json',
+    async:false
+  }).error(function(e){
+    alert('Ocurrio un error, intente de nuevo');
+  }).responseText;
+
+  var res;
+  try{
+      res = JSON.parse(datos);
+      }catch(e){
+      alert('Error JSON ' + e);
+    }
+
+    if ( res.status == 'OK' ){
+       var i = 1;
+      $.each(res.data, function(k,o){
+
+        selTema.val(o.temTema);
+
+        selTema.find('option').each(
+          function(){
+            if ( o.cueTema == $(this).val() )
+            selTema.val(o.cueTema);
+          }
+        );
+      i++;
+      });
+    }else{
+      tbodyServicios.html('<tr><td colspan="8" class="center"><h3>'+ res.message +'</h3></td></tr>');
+    }
+    tbodyServicios.removeClass('hidden');
 }
 
 label4.on('click',Tema);
