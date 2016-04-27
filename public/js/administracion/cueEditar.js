@@ -279,7 +279,7 @@ function ingresoCuestionario(){
     data: {
       token: token.val(),
       fecha: txtFechaApl.val(),
-      fechaEla: fechaEla.val(),
+      //fechaEla: fechaEla.val(),
       tema: selCombo.val(),
       subtema: selComboSub.val(),
       nombre: txtNombre.val(),
@@ -319,7 +319,7 @@ function ingresoCuestionario(){
         FechaApl.addClass('hidden');
         lblDg.removeClass('hidden');
         document.getElementById('lblNombre').innerHTML= txtNombre.val();
-        document.getElementById('lblFechaE').innerHTML= fechaEla.val();
+        //document.getElementById('lblFechaE').innerHTML= fechaEla.val();
         document.getElementById('lblFechaA').innerHTML= txtFechaApl.val();
         numPreC.removeClass('hidden');
         txtNumPre.html('');
@@ -369,6 +369,7 @@ window.onload=function()
   pnlAgregar;
   txtFechaApl.val('');
   txtNombre.val('');
+  txtNumPre.html('');
   tblServicios.addClass('hidden');
   
   tblCue.addClass('hidden');
@@ -377,6 +378,7 @@ window.onload=function()
   btnConsulta.removeClass('disabled');
 
   document.getElementById('txtNombre').disabled = false;
+  document.getElementById('txtFechaApl').disabled = false;
 }
 
 /*function comprobarFuente(e){
@@ -592,9 +594,9 @@ function agregar() {
       btnConsulta.removeClass('botonActivo');
       btnAgregar.removeClass('botonNoactivo');
 
-      btnEditar.addClass('disabled');
+      /*btnEditar.addClass('disabled');
       btnAgregar.removeClass('disabled');
-      btnConsulta.addClass('disabled');
+      btnConsulta.addClass('disabled');*/
 }
 
 btnEditar.on('click',editar);
@@ -682,24 +684,6 @@ function mtipo(){//obtención de selección del select
   document.getElementById('tipoPreEle').innerHTML= mitexto; //valor asignado al id sleccionado
 }
 
-function mostrarTema(){
-    swal({
-        title: '¡Nombre Ingresado!',
-        text: "¿Está seguro que es el nombre que ingresar?",
-        type: 'info',
-        showCancelButton: true,
-        closeOnConfirm: false
-      },
-      function(isConfirm) {
-        if (isConfirm) {
-          swal(
-            'El nombre a sido Guardado.'
-          );
-          document.getElementById("txtNombre").disabled = true;
-        }
-  });
-}
-
 tblServicios.delegate('.glyphicon-edit', 'click', getCues);
 tblServicios.delegate('.glyphicon-trash', 'click', darBajaCues);
 btnCancelar.on('click',limpiar);
@@ -708,5 +692,3 @@ selTipo.on('click',mtipo);
 
 btnCancelarAg.on('click',cancelar);
 btnGuardarAg.on('click',ingresoCuestionario);
-
-btnGrdNmb.on('click',mostrarTema);

@@ -124,7 +124,7 @@
             <input type="text" class="form-control" id="fechaEla" value="
 <?php //Ejemplo curso PHP aprenderaprogramar.com
 $time = time();
-echo date("Y/m/d", $time);
+echo date("Y-m-d", $time);
 ?>" disabled>
             <div  id="calendario" class="input-group-addon hidden">
               <i class="fa fa-calendar"></i>
@@ -144,7 +144,7 @@ echo date("Y/m/d", $time);
       <div class="form-group">
         <div class=" col-md-12">
           <br>
-          <center><button id="btnGrdNmb" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button></center>
+          <center><button id="btnGrdFchEl" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button></center>
         </div>
       </div>
     </div>
@@ -164,7 +164,7 @@ echo date("Y/m/d", $time);
         <div class="form-group">
         <div class=" col-md-12">
           <br>
-          <center><button id="btnGrdNmb" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button></center>
+          <center><button id="btnGrdFchAp" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button></center>
           <br>
         </div>
       </div>
@@ -226,8 +226,8 @@ echo date("Y/m/d", $time);
           <table class="table table-striped table-hover table-bordered">
             <thead>
               <tr>
-                <th class="col-md-10 text-center">Pregunta</th>
-                <th class="col-md-2 text-center">Respuesta Correcta</th>
+                <th class="col-md-11 text-center">Pregunta</th>
+                <th class="col-md-1 text-center">Respuesta Correcta</th>
               </tr>
             </thead>
             <tbody id="tbodyConsulta">
@@ -245,7 +245,7 @@ echo date("Y/m/d", $time);
                   </div>
                 </td>
                 <td>
-                  <input id="txtOp" name="txtPreg" type="text" class="form-control grisObscuro col-md-6" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Ingrese pregunta" required>
+                  <input id="txtOp" name="txtOp" type="text" class="form-control grisObscuro col-md-6" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+" disabled>
                 </td>
               </tr>
             </tbody>
@@ -277,27 +277,32 @@ echo date("Y/m/d", $time);
             <tr id="txtA" class="hidden">
               <td><i>A: </i></td>
               <td><textarea rows="6" cols="100"></textarea></td>
-              <td><input type="checkbox" id="resA" required></td>
+              <td><input type="radio" id="resA1"required><span class="glyphicon glyphicon-ok text-success"></span>
+              <input type="radio" id="resA2" required><span class="glyphicon glyphicon-remove text-danger" title="Inactivo"></span></td>
             </tr>
             <tr id="txtB" class="hidden">
               <td><i>B: </i></td>
               <td><textarea rows="6" cols="100"></textarea></td>
-              <td><input type="checkbox" id="resB" required></td>
+              <td><input type="radio" id="resB1"required><span class="glyphicon glyphicon-ok text-success"></span>
+              <input type="radio" id="resB2" required><span class="glyphicon glyphicon-remove text-danger" title="Inactivo"></span></td>
             </tr>
             <tr id="txtC" class="hidden">
               <td><i>C: </i></td>
               <td><textarea rows="6" cols="100"></textarea></td>
-              <td><input type="checkbox" id="resC" required></td>
+              <td><input type="radio" id="resC1"required><span class="glyphicon glyphicon-ok text-success"></span>
+              <input type="radio" id="resC2" required><span class="glyphicon glyphicon-remove text-danger" title="Inactivo"></span></td>
             </tr>
             <tr id="txtD" class="hidden">
               <td><i>D: </i></td>
               <td><textarea rows="6" cols="100"></textarea></td>
-              <td><input type="checkbox" id="resD" required></td>
+              <td><input type="radio" id="resD1"required><span class="glyphicon glyphicon-ok text-success"></span>
+              <input type="radio" id="resD2" required><span class="glyphicon glyphicon-remove text-danger" title="Inactivo"></span></td>
             </tr>
             <tr id="txtE" class="hidden">
               <td><i>E: </i></td>
               <td><textarea rows="6" cols="100"></textarea></td>
-              <td><input type="checkbox" id="resE" required></td>
+              <td><input type="radio" id="resE1"required><span class="glyphicon glyphicon-ok text-success"></span>
+              <input type="radio" id="resE2" required><span class="glyphicon glyphicon-remove text-danger" title="Inactivo"></span></td>
             </tr>
         </table> 
         <p class="text-danger formatoTexto14" id="spnNombre"> </p>
@@ -344,6 +349,7 @@ echo date("Y/m/d", $time);
 {{HTML::script('js/administracion/temAgregar.js')}}
 {{HTML::script('js/administracion/preCues.js')}}
 {{HTML::script('js/administracion/resPre.js')}}
+{{HTML::script('js/administracion/botonesAgregar.js')}}
 
 {{HTML::script('datepicker/js/bootstrap-datepicker.js')}}
 @stop

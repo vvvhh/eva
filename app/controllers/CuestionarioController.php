@@ -384,7 +384,7 @@ public function getTema(){
 }
 
 public function getSubtema(){
-   $seleccionar = DB::select('SELECT subId, subSubtema FROM subtema WHERE subActivo=1');
+   $seleccionar = DB::select('SELECT s.subId, s.subSubtema, s.subTema, t.temId  FROM subtema s, temas t WHERE temId = subTema');
 
       if ( count( $seleccionar ) > 0 )
         $response = array(

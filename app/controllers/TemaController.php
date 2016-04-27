@@ -70,7 +70,7 @@
     }
 
 /****_______________________________Obtener tema para combo_______________________________*****/
-  public function getTema(){
+  public function mostrarTema(){
     if( !Sesion::isResponsable() ){
       if( !Sesion::isAdmin() )
       return Redirect::to('administracion/logout');
@@ -89,7 +89,7 @@
       else
         $response = array(
           'status' => 'ERROR',
-          'message' => 'No se encontraron cuestionarios registradas.'
+          'message' => 'No se encontraron temas registrados.'
         );
 
       return Response::json($response);
@@ -104,6 +104,7 @@ public function subAgregar(){ /**INGRESO Subtema**/
 
       if(isset($token)) {
         $data = array(
+          'tema' => Input::get('tema'),
           'subtema' => Input::get('subtema'),
         );
 
@@ -137,6 +138,7 @@ public function subAgregar(){ /**INGRESO Subtema**/
 
             else{
               $insert = subtema::insert(array(
+                'subTema' => trim($data['tema']),
                 'subSubtema' => trim($data['subtema']),
                 'subActivo' => true
               ));
@@ -163,6 +165,31 @@ public function subAgregar(){ /**INGRESO Subtema**/
       }
       return Response::json( $response );
     }
+
+public function getSubtema(){
+    if( !Sesion::isResponsable() ){
+      if( !Sesion::isAdmin() )
+      return Redirect::to('administracion/logout');
+    }
+
+      $data = Input::all();
+
+      $seleccionar=DB::select('SELECT * FROM subtema WHERE subTema = temId');
+
+      if ( count( $seleccionar ) > 0 )
+        $response = array(
+          'status' => 'OK',
+          'data' => $seleccionar,
+          'message' => 'Resultados obtenidos'
+        );
+      else
+        $response = array(
+          'status' => 'ERROR',
+          'message' => 'No se encontraron subtemas registrados.'
+        );
+
+      return Response::json($response);
+  }
 
   }
 ?>

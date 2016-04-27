@@ -63,8 +63,8 @@ function subAgregar(){
     url: 'subAgregar',
     data: {
       token: token.val(),
+      tema: selTema.val(),
       subtema: txtSubTema.val(),
-
       activo: txtActivos.val(),
     },
     type: 'post',
@@ -151,12 +151,11 @@ function existe(){
           lbltm.removeClass('hidden');
         }
   });
-    console.log("mt");
     //obtención de selección del select
-        var combo = document.getElementById('selCombo');
-        var mitexto = $("#selCombo option:selected").text();
-        console.log("tema"+mitexto);
-        document.getElementById('temSel').innerHTML= mitexto; //valor asignado al id sleccionado
+    var combo = document.getElementById('selCombo');
+    var mitexto = $("#selCombo option:selected").text();
+    console.log("tema"+mitexto);
+    document.getElementById('temSel').innerHTML= mitexto; //valor asignado al id sleccionado
 }
 
 function noexiste(){
@@ -189,14 +188,11 @@ function existesub(){
   //obtención de selección del select
   var combo = document.getElementById('selComboSub');
   var mitexto = $("#selComboSub option:selected").text();
-  console.log("tema "+mitexto);
   document.getElementById('subSel').innerHTML= mitexto; //valor asignado al id sleccionado
 }
 
 function noexistesub(){
   window.location.href = 'temAgregar';
-  document.getElementById("selCombo").disabled = true;
-  document.getElementById('selCombo').size=1;
 }
 
 function aceptado(){
@@ -236,6 +232,20 @@ function subTema() {
 
       btnTemas.removeClass('botonActivo');
       btnSubtemas.removeClass('botonNoactivo');
+
+      mostrarTema();
+
+      /*selTema.find('option').each(
+          function(){
+            if ( o.cueTema == $(this).val() )
+            selTema.val(o.cueTema);
+          }
+        );*/
+      //obtención de selección del select
+      var combo = document.getElementById('selTema');
+      var mitexto = $("#selTema option:selected").text();
+      console.log("hola");
+      //document.getElementById('subSel').innerHTML= mitexto; //valor asignado al id sleccionado
       
 }
 
@@ -244,52 +254,35 @@ function tipo(){
   tipoPre.removeClass('hidden');
   formopm.removeClass('hidden');
   txtPreg.html('');
-  slctRes.val(0)
+  slctRes.val(0);
 }
 
-function getTema(){
-  var id = $(this).attr('id');
-  if (id==="")
-    return false;
-
+function mostrarTema(){
+  console.log("mostrarTema");
   var datos = $.ajax({
-    url: 'getTema',
-    data: {
-      i: id
-    },
-    type: 'post',
-    dataType:'json',
-    async:false
-  }).error(function(e){
-    alert('Ocurrio un error, intente de nuevo');
-  }).responseText;
+    url: 'mostrarTema',
+    type: 'get',
+        dataType:'json',
+        async:false
+    }).error(function(e){
+        alert('Ocurrio un error, intente de nuevo');
+    }).responseText;
 
-  var res;
-  try{
-      res = JSON.parse(datos);
-      }catch(e){
-      alert('Error JSON ' + e);
+    var res;
+    try{
+        res = JSON.parse(datos);
+    }catch (e){
+        alert('Error JSON ' + e);
     }
-
-    if ( res.status == 'OK' ){
-       var i = 1;
+      selTema.html('');
       $.each(res.data, function(k,o){
-
-        selTema.val(o.temTema);
-
-        selTema.find('option').each(
-          function(){
-            if ( o.cueTema == $(this).val() )
-            selTema.val(o.cueTema);
-          }
+        selTema.append(
+          '<option value="'+o.temId+'">'+o.temTema+'</option>'
         );
-      i++;
       });
-    }else{
-      tbodyServicios.html('<tr><td colspan="8" class="center"><h3>'+ res.message +'</h3></td></tr>');
-    }
-    tbodyServicios.removeClass('hidden');
+    document.getElementById('selTema');
 }
+
 
 label4.on('click',Tema);
 label5.on('click',subTema);
