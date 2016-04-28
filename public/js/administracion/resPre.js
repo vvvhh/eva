@@ -1,57 +1,69 @@
-//variables del select de temas
-var txtopcion1 = $('#txtopcion1'),
-btnCancelarTem = $('#btnCancelarTem'),
-btnGuardarTem = $('#btnGuardarTem'),
-txtActivot = $('#txtActivot'),
-token = $('#token'),
-btnTema = $('#btnTema');
+var resA1 = $('#resA1'),resA2 = $('#resA2');
 
-function temAgregar(){
-  var editar = $.ajax({
-    url: 'temAgregar',
-    data: {
-      token: token.val(),
-      tema: txtTema.val(),
-      subtema: txtSubTema.val(),
-      activo: txtActivot.val(),
-    },
-    type: 'post',
-    dataType:'json',
-      async:false
-    }).error(function(e){
-        alert('Ocurrio un error, intente de nuevo');
-    }).responseText;
-
-    var resultado;
-    try{
-      resultado = JSON.parse(editar);
-    }catch (e){
-        alert('Error JSON ' + e);
-    }
-
-    if ( resultado.status == 'OK' ){  
-      swal({
-        title: "Guardado.",
-        text: "Tema y Subtema guardados con éxito.",
-        type: "success",
-        showCancelButton: true,
-        showConfirmButton: true,
-      });
-    }
-    else{
-      alert(resultado.message);
-    }
+function porRango(){
+  if( resA1.prop('checked') ) {
+   resA2.prop('checked', false);    
+  }
 }
 
-function Cancelar(){
-  txtTema.val('');
-  txtSubTema.val('');
+function porPeriodo(){
+  if( resA2.prop('checked') ) {
+    resA1.prop('checked', false);    
+  }
 }
 
-function rediTem(){
-  window.location.href = 'temAgregar';
+function porRango(){
+  if( resA1.prop('checked') ) {
+   resA2.prop('checked', false);    
+  }
 }
 
-btnCancelarTem.on('click',Cancelar);
-btnGuardarTem.on('click',temAgregar);
-btnTema.on('click',rediTem);
+function porPeriodo(){
+  if( resA2.prop('checked') ) {
+    resA1.prop('checked', false);    
+  }
+}
+function porRango(){
+  if( resA1.prop('checked') ) {
+   resA2.prop('checked', false);    
+  }
+}
+
+function porPeriodo(){
+  if( resA2.prop('checked') ) {
+    resA1.prop('checked', false);    
+  }
+}
+function porRango(){
+  if( resA1.prop('checked') ) {
+   resA2.prop('checked', false);    
+  }
+}
+
+function porPeriodo(){
+  if( resA2.prop('checked') ) {
+    resA1.prop('checked', false);    
+  }
+}
+function porRango(){
+  if( resA1.prop('checked') ) {
+   resA2.prop('checked', false);    
+  }
+}
+
+function porPeriodo(){
+  if( resA2.prop('checked') ) {
+    resA1.prop('checked', false);    
+  }
+}
+
+resA1.on('click',porRango);
+resA2.on('click',porPeriodo);
+resA1.on('click',porRango);
+resA2.on('click',porPeriodo);
+resA1.on('click',porRango);
+resA2.on('click',porPeriodo);
+resA1.on('click',porRango);
+resA2.on('click',porPeriodo);
+resA1.on('click',porRango);
+resA2.on('click',porPeriodo);

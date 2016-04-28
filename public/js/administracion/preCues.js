@@ -2,8 +2,9 @@ var btnAceptarC = $('#btnAceptarC'),txtNumPre = $('#txtNumPre'),preAc = $('#preA
 	btnGuardarPre = $('#btnGuardarPre'),pnlRes = $('#pnlRes'),agPreNum = $('#agPreNum'),numPreC = $('#numPreC'),
   agPre = $('#agPre'),chkAbierta = $('#chkAbierta'),chkMix = $('#chkMix'),chkOpMul = $('#chkOpMul');
 
-var txtA = $('#txtA'),txtB = $('#txtB'),txtC = $('#txtC'),txtD = $('#txtD'),txtE = $('#txtE'),resA = $('#resA'),
-    resB = $('#resB'),resC = $('#resC'),resD = $('#resD'),resE = $('#resE');
+var txtA = $('#txtA'),txtB = $('#txtB'),txtC = $('#txtC'),txtD = $('#txtD'),txtE = $('#txtE'),resA1 = $('#resA1'),
+    resA2 = $('#resA2'),resB = $('#resB'),resC = $('#resC'),resD = $('#resD'),resE = $('#resE'),formopm = $('#formopm')
+    btnModificarPre = $('#btnModificarPre'),btnIngresarRes = $('#btnIngresarRes');
 
 function cicloPre() {
 	// body...
@@ -11,31 +12,27 @@ function cicloPre() {
   document.getElementById('agPreNum').innerHTML= q;
   numPreC.addClass('hidden');
   agPre.removeClass('hidden');
-  //txtNumPre.val('');
+  txtNumPre.val('');
   //ciclo para gregar pregunntas 
-	formselect.removeClass('hidden');
-	chkAbierta.disabled = false;
-	chkOpMul.disabled = false;
-	chkMix.disabled = false;
-  var i = 0;
+	formopm.removeClass('hidden');
+  /*var i = 0;
     do {
         //document.write(i + " ");
 
         i++;
-    } while (i < q);
+    } while (i < q);*/
 }
 
 function agregarPre() {
 	// body...
-	pnlRes.removeClass('hidden');
-  txtPreg.html('');
+  pnlRes.removeClass('hidden');
+  //document.getElementById('txtPreg').disabled = true;
   var editar = $.ajax({
     url: 'agregarPre',
     data: {
       token: token.val(),
       pregunta: txtPreg.val(),
       preActiva: preAc.val()
-
     },
     type: 'post',
     dataType:'json',
@@ -52,6 +49,14 @@ function agregarPre() {
     }
 
     if ( resultado.status == 'OK' ){
+      /*swal({
+        title: '¡Guardar Pregunta!',
+        text: "¿Está seguro que desea guardar la pregunta?",
+        type: 'info',
+        showCancelButton: true,
+        closeOnConfirm: false
+      });*/
+      alert("swal");
       document.getElementsByTagName('slctRes').value = 0;
       //swal();
       //numPreC.removeClass('hidden');
@@ -112,7 +117,18 @@ function howMany(form){
     txtD.removeClass('hidden');
     txtE.removeClass('hidden');
   }
-} 
+}
+
+function modPre(){
+  document.getElementById('txtPreg').disabled = false;
+}
+
+function btnIngresarRes(){
+  pnlRes.removeClass('hidden');
+  //txtPreg.html('');
+}
 
 btnAceptarC.on('click',cicloPre);
 btnGuardarPre.on('click',agregarPre);
+btnModificarPre.on('click',modPre);
+btnIngresarRes.on('click',btnIngresarRes);

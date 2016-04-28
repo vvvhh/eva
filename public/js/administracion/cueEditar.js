@@ -9,9 +9,9 @@ var tblServicios   = $('#tblServicios'),tblCue = $('#tblCue'),tbodyServicios = $
 var txtNombreFuente = $('#txtNombreFuente'),txtCueId = $('#txtCueId'),formEditarServ= $('#formEditarServ'),
     txtActivo = $('#txtActivo'),btnGuardar = $('#btnGuardar'),btnCancelar = $('#btnCancelar'),token = $('#_token');
 
-var btnCancelarAg = $('#btnCancelarAg'),token = $('#token'),txtNombre = $('#txtNombre'),selComboInicio = $('#selComboInicio'),
+var token = $('#token'),txtNombre = $('#txtNombre'),selComboInicio = $('#selComboInicio'),
     selComboInicioSub = $('#selComboInicioSub'),Combo = $('#Combo'),selCombo = $('#selCombo'),selComboSub = $('#selComboSub'),
-    txtFechaApl = $('#txtFechaApl'),fechaEla = $('#fechaEla'),btnGuardarAg =$('#btnGuardarAg'),txtFechaA =$('#txtFechaA'),
+    txtFechaApl = $('#txtFechaApl'),txtFechaEla = $('#txtFechaEla'),btnGuardarAg =$('#btnGuardarAg'),txtFechaA =$('#txtFechaA'),
     selComboE =$('#selComboE'),txtNombreE =$('#txtNombreE'),tbodyConsultaCue=$('#tbodyConsultaCue');
 var spnNombre=$('#spnNombre'),btnImprimir=$('#btnImprimir');
 
@@ -208,7 +208,7 @@ function getCues(){
         txtNombre.val(o.cueNombre);
         txtCueId.val(o.cueId);
         
-        fechaEla.val(o.cueFechaEla);
+        txtFechaEla.val(o.cueFechaEla);
         datosActivo.val(o.cueActivo);
         formEditarServ.removeClass('hidden');
         tblServicios.addClass('hidden');
@@ -279,7 +279,7 @@ function ingresoCuestionario(){
     data: {
       token: token.val(),
       fecha: txtFechaApl.val(),
-      //fechaEla: fechaEla.val(),
+      fechaEla: txtFechaEla.val(),
       tema: selCombo.val(),
       subtema: selComboSub.val(),
       nombre: txtNombre.val(),
@@ -319,9 +319,9 @@ function ingresoCuestionario(){
         FechaApl.addClass('hidden');
         lblDg.removeClass('hidden');
         document.getElementById('lblNombre').innerHTML= txtNombre.val();
-        //document.getElementById('lblFechaE').innerHTML= fechaEla.val();
+        document.getElementById('lblFechaE').innerHTML= txtFechaEla.val();
         document.getElementById('lblFechaA').innerHTML= txtFechaApl.val();
-        numPreC.removeClass('hidden');
+        formselect.removeClass('hidden');
         txtNumPre.html('');
         }
         /*else{
@@ -334,40 +334,12 @@ function ingresoCuestionario(){
     }
 }
 
-function cancelar(){
-  txtNombre.val('');
-    swal({
-        title: '¡Cancelar!',
-        text: "¿Está seguro que desea cancelar la captura?",
-        type: 'info',
-        showCancelButton: true,
-        closeOnConfirm: false
-      },
-      function(isConfirm) {
-        if (isConfirm) {
-          swal2();
-          document.getElementById("selComboSub").disabled = false;
-          subtema.addClass('hidden');
-          lblSub.removeClass('hidden');
-          Nombre.removeClass('hidden');
-          Fechas.removeClass('hidden');
-        }
-  });
-}
-
-function swal2(){
-  swal({
-    title: '¡Captura cancelada!',
-    type: 'error'
-  })
-  location.reload();
-}
-
 window.onload=function()
 {
   getTema();
   pnlAgregar;
   txtFechaApl.val('');
+  txtFechaEla.val('');
   txtNombre.val('');
   txtNumPre.html('');
   tblServicios.addClass('hidden');
@@ -377,8 +349,25 @@ window.onload=function()
   btnAgregar.removeClass('disabled');
   btnConsulta.removeClass('disabled');
 
+  document.getElementById('resA1').checked = false;
+  document.getElementById('resA2').checked = false;
+  document.getElementById('resB1').checked = false;
+  document.getElementById('resB2').checked = false;
+  document.getElementById('resC1').checked = false;
+  document.getElementById('resC2').checked = false;
+  document.getElementById('resD1').checked = false;
+  document.getElementById('resD2').checked = false;
+  document.getElementById('resE1').checked = false;
+  document.getElementById('resE2').checked = false;
+
   document.getElementById('txtNombre').disabled = false;
   document.getElementById('txtFechaApl').disabled = false;
+  document.getElementById('txtFechaEla').disabled = false;
+  document.getElementById('txtNumPre').val = "";
+
+  document.getElementById('btnGrdNmb').disabled = false;
+  document.getElementById('btnGrdFchEl').disabled = false;
+  document.getElementById('btnGrdFchAp').disabled = false;
 }
 
 /*function comprobarFuente(e){
@@ -678,17 +667,9 @@ function chkM(form)
     }    
 }
 
-function mtipo(){//obtención de selección del select
-  var combo = document.getElementById('selTipo');
-  var mitexto = $("#selTipo option:selected").text()
-  document.getElementById('tipoPreEle').innerHTML= mitexto; //valor asignado al id sleccionado
-}
-
 tblServicios.delegate('.glyphicon-edit', 'click', getCues);
 tblServicios.delegate('.glyphicon-trash', 'click', darBajaCues);
 btnCancelar.on('click',limpiar);
 btnGuardar.on('click',editarCues);
-selTipo.on('click',mtipo);
 
-btnCancelarAg.on('click',cancelar);
 btnGuardarAg.on('click',ingresoCuestionario);

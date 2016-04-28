@@ -13,7 +13,7 @@ var txtTema = $('#txtTema'),txtSubTema = $('#txtSubTema'),txtActivos = $('#txtAc
     botones =$('#botones'),label4 = $('#label4'),label5 = $('#label5'),
     mosTem = $('#mosTem'),mosSub = $('#mosSub'),lblNombre = $('#lblNombre'),formselect = $('#formselect'),
     tipoPre = $('#tipoPre'),formopm = $('#formopm'),slctRes = $('#slctRes'), Nombre = $('#Nombre'),
-    FechaEla = $('#FechaEla'),FechaApl = $('#FechaApl'),selTema = $('#selTema');
+    FechaEla = $('#FechaEla'),FechaApl = $('#FechaApl'),selTema = $('#selTema'),numPreC = $('#numPreC');
 
 function temAgregar(){
   var editar = $.ajax({
@@ -252,9 +252,12 @@ function subTema() {
 function tipo(){
   formselect.addClass('hidden');
   tipoPre.removeClass('hidden');
-  formopm.removeClass('hidden');
+  numPreC.removeClass('hidden');
   txtPreg.html('');
   slctRes.val(0);
+  var combo = document.getElementById('selTipo');
+  var mitexto = $("#selTipo option:selected").text()
+  document.getElementById('tipoPreEle').innerHTML= mitexto; //valor asignado al id sleccionado
 }
 
 function mostrarTema(){
