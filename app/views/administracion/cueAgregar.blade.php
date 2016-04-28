@@ -121,14 +121,9 @@
         <label for="txtFechaInicio" class="col-md-3 control-label">*Elija fecha de elaboración: </label>
         <div class="col-md-2">
           <div class="input-group date" data-provide="datepicker">
-            <input type="text" class="form-control" id="txtFechaEla" value="">
-<!-- Código para obtener fecha del sistema-->
-<!--<?php //Ejemplo curso PHP aprenderaprogramar.com
-//$time = time();
-//echo date("Y-m-d", $time);
-?>-->
+            <input type="text" class="form-control" id="txtFechaEla">
             <div  id="calendario" class="input-group-addon">
-              <i class="fa fa-calendar" id="fE"></i>
+              <i class="fa fa-calendar"></i>
             </div>
           </div>
         </div>
@@ -165,7 +160,7 @@
         <div class="form-group">
           <div class=" col-md-12">
             <center>
-            <h4 class="hidden" id="infoCom"><--Información completada, los datos estan listos para ser insertados en la base de datos.--></h4>
+            <h4 class="hidden" id="infoCom">Información completada, los datos estan listos para ser insertados en la base de datos.</h4>
               <button id="btnModificarAg" class="btn btn-warning hidden"><i class="fa fa-pencil-square-o"></i> Modificar</button>
               <button id="btnGuardarAg" class="btn btn-primary hidden"><i class="fa fa-floppy-o"></i> Guardar Definitivo</button>
               <button id="btnCancelarAg"  class="btn btn-danger hidden"><i class="fa fa-times-circle"></i> Cancelar</button>
@@ -215,7 +210,7 @@
   </div>
 
   <!-- formulario de preguntas con opción múltiple -->
-  <div class="form-horizontal hidden" id="formopm" novalidate>
+  <div class="form-horizontal " id="formopm" novalidate>
     <h2><i class="fa fa-plus-circle text-primary"></i> Agregar Pregunta</h2>
     <input type="hidden" id="txtCueId" value="">
     <div class="form-group">
@@ -249,7 +244,11 @@
           </table>
         </div>
       <br> 
-       <center><button id="btnGuardarPre" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Ingresar respuestas</button></center>
+       <center>
+        <button id="btnGuardarPre" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar Pregunta</button>
+        <button id="btnModificarPre" class="btn btn-warning hidden"><i class="fa fa-floppy-o"></i> Modificar Pregunta</button>
+        <button id="btnIngresarRes" class="btn btn-success hidden"><i class="fa fa-floppy-o"></i> Ingresar respuestas</button>
+      </center>
       <br><br>
       <form name="sendmail" method="get" class="form-group hidden" id="pnlRes"> 
         ¿Cuantas respuestas contendra tu pregunta?:

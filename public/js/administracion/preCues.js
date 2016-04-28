@@ -25,8 +25,7 @@ function cicloPre() {
 
 function agregarPre() {
 	// body...
-  pnlRes.removeClass('hidden');
-  //document.getElementById('txtPreg').disabled = true;
+  //pnlRes.removeClass('hidden');
   var editar = $.ajax({
     url: 'agregarPre',
     data: {
@@ -49,14 +48,16 @@ function agregarPre() {
     }
 
     if ( resultado.status == 'OK' ){
-      /*swal({
+      swal({
         title: '¡Guardar Pregunta!',
         text: "¿Está seguro que desea guardar la pregunta?",
         type: 'info',
         showCancelButton: true,
         closeOnConfirm: false
-      });*/
-      alert("swal");
+      });
+      btnIngresarRes.removeClass('hidden');
+      btnModificarPre.removeClass('hidden');
+      document.getElementById('txtPreg').disabled = true;
       document.getElementsByTagName('slctRes').value = 0;
       //swal();
       //numPreC.removeClass('hidden');

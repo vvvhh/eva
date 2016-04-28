@@ -1,6 +1,6 @@
 var btnGrdFchEl = $('#btnGrdFchEl'), btnGrdFchAp = $('#btnGrdFchAp'),valor=sessionStorage.getItem("visita"),
     btnModificarAg = $('#btnModificarAg'), btnGuardarAg = $('#btnGuardarAg'), btnCancelarAg = $('#btnCancelarAg')
-    infoCom = $('#infoCom'),pnlAgregar = $('#pnlAgregar');
+    infoCom = $('#infoCom'),pnlAgregar = $('#pnlAgregar'), pnlRes = $('#pnlRes');
 
 function mostrarTema(){
   sessionStorage.setItem("visita", "1");

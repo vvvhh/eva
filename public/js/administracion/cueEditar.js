@@ -22,7 +22,7 @@ var formselect = $('#formselect'),formprea = $('#formprea'),datosActivo = $('#da
 
 var dg = $('#dg'),lblDg = $('#lblDg'),lblNombre = $('#lblNombre'),lblFechaE = $('#lblFechaE'),lblFechaA = $('#lblFechaA'),
     selTipo = $('#selTipo'), agPre = $('#agPre'),tipoPreEle = $('#tipoPreEle'),lbltm = $('#lbltm'),tipoPre = $('#tipoPre'),
-    btnGrdNmb = $('#btnGrdNmb'),Nombre = $('#Nombre'),Fechas = ('#FechaEla'),FechaApl = $('#FechasApl');
+    btnGrdNmb = $('#btnGrdNmb'),Nombre = $('#Nombre'),Fechas = ('#FechaEla'),FechaApl = $('#FechasApl'),btnIngresarRes = $('#btnIngresarRes');
 /*var numPre;*/
 
 /*Ide desde el icono editar de la tabla*/
@@ -343,6 +343,7 @@ window.onload=function()
   txtNombre.val('');
   txtNumPre.html('');
   tblServicios.addClass('hidden');
+  txtPreg.val('');
   
   tblCue.addClass('hidden');
   btnEditar.removeClass('disabled');
@@ -363,11 +364,12 @@ window.onload=function()
   document.getElementById('txtNombre').disabled = false;
   document.getElementById('txtFechaApl').disabled = false;
   document.getElementById('txtFechaEla').disabled = false;
-  document.getElementById('txtNumPre').val = "";
+  //document.getElementById('txtNumPre').val = "";
 
   document.getElementById('btnGrdNmb').disabled = false;
   document.getElementById('btnGrdFchEl').disabled = false;
   document.getElementById('btnGrdFchAp').disabled = false;
+  document.getElementById('txtPreg').disabled = false;
 }
 
 /*function comprobarFuente(e){
@@ -667,9 +669,15 @@ function chkM(form)
     }    
 }
 
+function ingresar(){
+  // body...
+  pnlRes.removeClass('hidden');
+}
+
 tblServicios.delegate('.glyphicon-edit', 'click', getCues);
 tblServicios.delegate('.glyphicon-trash', 'click', darBajaCues);
 btnCancelar.on('click',limpiar);
 btnGuardar.on('click',editarCues);
 
 btnGuardarAg.on('click',ingresoCuestionario);
+btnIngresarRes.on('click',ingresar);
