@@ -13,7 +13,8 @@ var txtTema = $('#txtTema'),txtSubTema = $('#txtSubTema'),txtActivos = $('#txtAc
     botones =$('#botones'),label4 = $('#label4'),label5 = $('#label5'),
     mosTem = $('#mosTem'),mosSub = $('#mosSub'),lblNombre = $('#lblNombre'),formselect = $('#formselect'),
     tipoPre = $('#tipoPre'),formopm = $('#formopm'),slctRes = $('#slctRes'), Nombre = $('#Nombre'),
-    FechaEla = $('#FechaEla'),FechaApl = $('#FechaApl'),selTema = $('#selTema'),numPreC = $('#numPreC');
+    FechaEla = $('#FechaEla'),FechaApl = $('#FechaApl'),selTema = $('#selTema'),numPreC = $('#numPreC'),
+    btnRegresarTem = $('#btnRegresarTem');
 
 function temAgregar(){
   var editar = $.ajax({
@@ -149,6 +150,7 @@ function existe(){
           subtema.removeClass('hidden');
           pnl1.addClass('hidden');
           lbltm.removeClass('hidden');
+          btnRegresarTem.removeClass('hidden');
         }
   });
     //obtención de selección del select
@@ -183,6 +185,8 @@ function existesub(){
           Nombre.removeClass('hidden');
           FechaEla.removeClass('hidden');
           FechaApl.removeClass('hidden');
+          btnRegresarTem.addClass('hidden');
+          btnRegresarSub.removeClass('hidden');
         }
   });
   //obtención de selección del select
@@ -251,8 +255,10 @@ function subTema() {
 
 function tipo(){
   formselect.addClass('hidden');
+  btnDg.addClass('hidden');
   tipoPre.removeClass('hidden');
   numPreC.removeClass('hidden');
+  btnRegresarTipo.removeClass('hidden');
   txtPreg.html('');
   slctRes.val(0);
   var combo = document.getElementById('selTipo');

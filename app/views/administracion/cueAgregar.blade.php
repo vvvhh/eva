@@ -22,11 +22,13 @@
       <div id="lbltm" class="hidden">
           <h3><i class="fa fa-plus-circle text-primary"></i> Datos generales del cuestionario</h3>
           <label for="txtNombreS" class="control-label">Tema:&nbsp;&nbsp;</label><label id="temSel"></label>
+          <br>
+          <button id="btnRegresarTem" class="btn btn-success hidden"><i class="fa fa-chevron-left" aria-hidden="true"></i> Regresar</button>
       </div>
       <div id="pnl1" class="hidden">
         <h3><i class="fa fa-plus-circle text-primary"></i> Datos generales del cuestionario</h3>
         <h4><b>Definición del Tema</b></h4>
-        <h5>Por favor verifique en el siguiente listado si el tema del cuestionario a ingresar existe, si existe seleccionelo y presione el boton <button class="btn btn-primary disabled">Aceptar</button>, en caso contrario presione el boton <button class="btn btn-primary disabled">Agregar</button> para agregar un tema nuevo.</h5>
+        <h5>Por favor verifique en el siguiente listado si el tema del cuestionario a ingresar existe, si existe seleccionelo y presione el boton <button class="btn-primary disabled">Aceptar</button>, en caso contrario presione el boton <button class="btn-primary disabled">Agregar</button> para adicionar un tema nuevo.</h5>
           <div id="ComboInicio" class="form-group">
               <label for="txtNombreS" class="col-md-3 control-label">Temas existentes: </label>
                 <div class="col-md-9" id="select">
@@ -38,7 +40,7 @@
               </div>
               <div class="form-group">
                     <center><button id="btnTemaSiEx" class="btn btn-primary">Aceptar</button>
-                    <button id="btnTemaNoEx" class="btn btn-primary">Agregar</button></center>
+                    <button id="btnTemaNoEx" class="btn btn-warning">Agregar</button></center>
               <br>
               </div>
               <div id="Combo" class="form-group hidden">
@@ -54,11 +56,13 @@
 
     <div class="hidden" id="lblSub">
       <label for="txtNombreS" class="control-label">Subtema:&nbsp;&nbsp;</label><label id="subSel"></label>
+      <br>
+      <button id="btnRegresarSub" class="btn btn-success hidden"><i class="fa fa-chevron-left" aria-hidden="true"></i> Regresar</button>
     </div>
 
     <div id="subtema" class="form-group hidden">
         <h4><b>Definición del Subtema</b></h4>
-        <h5>Por favor verifique en el siguiente listado si el subtema del cuestionario a ingresar existe, si existe seleccionelo y presione el boton <button class="btn btn-primary disabled">Aceptar</button>, en caso contrario presione el boton <button class="btn btn-primary disabled">Agregar</button> para agregar un subtema nuevo.</h5>
+        <h5>Por favor verifique en el siguiente listado si el subtema del cuestionario a ingresar existe, si existe seleccionelo y presione el boton <button class="btn-primary disabled">Aceptar</button>, en caso contrario presione el boton <button class="btn-primary disabled">Agregar</button> para añadir un subtema nuevo.</h5>
       <div id="ComboInicio" class="form-group">
         <br><br>
         <label for="txtNombreS" class="col-md-3 control-label">Subtemas existentes: </label>
@@ -72,7 +76,7 @@
       <div class="form-group">
         <div class="col-md-12">
             <center><button id="btnTemaSiExsub" class="btn btn-primary">Aceptar</button>
-            <button id="btnTemaNoExsub" class="btn btn-primary">Agregar</button></center>
+            <button id="btnTemaNoExsub" class="btn btn-warning">Agregar</button></center>
         </div>
         <div id="subCombo" class="hidden">
         <br><br><br>
@@ -91,6 +95,8 @@
       <label class="control-label">Nombre del cuestionario:&nbsp;&nbsp;</label><label id="lblNombre"></label><br>
       <label class="control-label">Fecha de elaboración:&nbsp;&nbsp;</label><label id="lblFechaE"></label><br>
       <label class="control-label">Fecha de aplicación:&nbsp;&nbsp;</label><label id="lblFechaA"></label>
+      <br>
+      <button id="btnDg" class="btn btn-success hidden"><i class="fa fa-chevron-left" aria-hidden="true"></i> Regresar</button>
     </div>
 
     <div id="Nombre" class="hidden">
@@ -172,9 +178,11 @@
 <!-- Inserción de preguntas -->
   <div class="hidden" id="tipoPre">
     <label for="txtNombreS" class="control-label">Tipo de preguntas:&nbsp;&nbsp;</label><label id="tipoPreEle"></label><br>
+    <button id="btnRegresarTipo" class="btn btn-success hidden"><i class="fa fa-chevron-left" aria-hidden="true"></i> Regresar</button>
   </div>
   <div class="hidden" id="agPre">
     <label for="txtNombreS" class="control-label">Número de preguntas del cuestionario:&nbsp;&nbsp;</label><label id="agPreNum"></label><br>
+    <button id="btnRegresarNumero" class="btn btn-success hidden"><i class="fa fa-chevron-left" aria-hidden="true"></i> Regresar</button>
   </div>
 
   <!-- Inicio del formulairo para ingresar preguntas de opción múltiple y abiertas-->
@@ -182,12 +190,17 @@
     <h3><i class="fa fa-question-circle text-success"></i> Agregar Pregunta</h3>
     <label for="txtNombreS" class=" control-label">¿De que tipo son las preguntas que desea capturar? </label>
       <div class="form-group">
-        <div class="col-md-7" id="select">
+        <div class="col-md-5" id="select">
           <SELECT id="selTipo" size=1 class="form-control grisObscuro"></SELECT>
           <p class="text-danger formatoTexto14" id="spnNombre"> </p>
           <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
         </div>
-      <button id="btnTipo" class="btn-md botonNoactivo col-md-3"><i class="fa fa-plus-circle"></i> Aceptar</button>
+        <br><br><br>
+        <div class="col-md-4">
+          <center>
+            <button id="btnTipo" class="btn btn-block btn-md botonNoactivo"><i class="fa fa-plus-circle"></i> Aceptar</button>
+          </center>
+        </div>
       </div>
   </div>
     <br><br>
@@ -237,7 +250,11 @@
                   </div>
                 </td>
                 <td>
-                  <input id="txtOp" name="txtOp" type="text" class="form-control grisObscuro col-md-1 hidden" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+" disabled>
+                  <input id="txtOpA" name="txtOp" type="text" class="form-control grisObscuro col-md-1 hidden" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+">
+                  <input id="txtOpB" name="txtOp" type="text" class="form-control grisObscuro col-md-1 hidden" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+">
+                  <input id="txtOpC" name="txtOp" type="text" class="form-control grisObscuro col-md-1 hidden" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+">
+                  <input id="txtOpD" name="txtOp" type="text" class="form-control grisObscuro col-md-1 hidden" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+">
+                  <input id="txtOpE" name="txtOp" type="text" class="form-control grisObscuro col-md-1 hidden" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+">
                 </td>
               </tr>
             </tbody>
@@ -250,7 +267,7 @@
         <button id="btnIngresarRes" class="btn btn-success hidden"><i class="fa fa-floppy-o"></i> Ingresar respuestas</button>
       </center>
       <br><br>
-      <form name="sendmail" method="get" class="form-group hidden" id="pnlRes"> 
+      <form name="sendmail" method="get" class="form-group " id="pnlRes"> 
         ¿Cuantas respuestas contendra tu pregunta?:
         <select name="numObject" onChange="howMany(this.form)" id="slctRes"> 
           <option value="0" selected>  </option> 
@@ -270,7 +287,7 @@
             </tr>
           </thead>
           <br>
-            <tr id="txtA" class="">
+            <tr id="txtA" class="hidden">
               <td><i>A: </i></td>
               <td><textarea rows="6" cols="100"></textarea></td>
               <td><input type="checkbox" value="resA1" id="resA1"><span class="glyphicon glyphicon-ok text-success" ></span>
@@ -279,26 +296,26 @@
             <tr id="txtB" class="hidden">
               <td><i>B: </i></td>
               <td><textarea rows="6" cols="100"></textarea></td>
-              <td><input type="checkbox" id="resB1"><span class="glyphicon glyphicon-ok text-success"></span>
-              <input type="checkbox" id="resB2" ><span class="glyphicon glyphicon-remove text-danger" title="Inactivo"></span></td>
+              <td><input type="checkbox" value="resB1" id="resB1"><span class="glyphicon glyphicon-ok text-success"></span>
+              <input type="checkbox" value="resB2" id="resB2" ><span class="glyphicon glyphicon-remove text-danger"></span></td>
             </tr>
             <tr id="txtC" class="hidden">
               <td><i>C: </i></td>
               <td><textarea rows="6" cols="100"></textarea></td>
-              <td><input type="checkbox" id="resC1"><span class="glyphicon glyphicon-ok text-success"></span>
-              <input type="checkbox" id="resC2"><span class="glyphicon glyphicon-remove text-danger" title="Inactivo"></span></td>
+              <td><input type="checkbox" value="resC1" id="resC1"><span class="glyphicon glyphicon-ok text-success"></span>
+              <input type="checkbox" value="resC2" id="resC2"><span class="glyphicon glyphicon-remove text-danger"></span></td>
             </tr>
             <tr id="txtD" class="hidden">
               <td><i>D: </i></td>
               <td><textarea rows="6" cols="100"></textarea></td>
-              <td><input type="checkbox" id="resD1"><span class="glyphicon glyphicon-ok text-success"></span>
-              <input type="checkbox" id="resD2"><span class="glyphicon glyphicon-remove text-danger" title="Inactivo"></span></td>
+              <td><input type="checkbox" value="resD1" id="resD1"><span class="glyphicon glyphicon-ok text-success"></span>
+              <input type="checkbox" value="resD2" id="resD2"><span class="glyphicon glyphicon-remove text-danger"></span></td>
             </tr>
             <tr id="txtE" class="hidden">
               <td><i>E: </i></td>
               <td><textarea rows="6" cols="100"></textarea></td>
-              <td><input type="checkbox" id="resE1"><span class="glyphicon glyphicon-ok text-success"></span>
-              <input type="checkbox" id="resE2"><span class="glyphicon glyphicon-remove text-danger" title="Inactivo"></span></td>
+              <td><input type="checkbox" value="resE1" id="resE1"><span class="glyphicon glyphicon-ok text-success"></span>
+              <input type="checkbox" value="resE2" id="resE2"><span class="glyphicon glyphicon-remove text-danger"></span></td>
             </tr>
         </table> 
         <p class="text-danger formatoTexto14" id="spnNombre"> </p>

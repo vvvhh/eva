@@ -1,6 +1,8 @@
-var btnGrdFchEl = $('#btnGrdFchEl'), btnGrdFchAp = $('#btnGrdFchAp'),valor=sessionStorage.getItem("visita"),
-    btnModificarAg = $('#btnModificarAg'), btnGuardarAg = $('#btnGuardarAg'), btnCancelarAg = $('#btnCancelarAg')
-    infoCom = $('#infoCom'),pnlAgregar = $('#pnlAgregar'), pnlRes = $('#pnlRes');
+var btnGrdFchEl = $('#btnGrdFchEl'),btnGrdFchAp = $('#btnGrdFchAp'),valor=sessionStorage.getItem("visita"),
+    btnModificarAg = $('#btnModificarAg'),btnGuardarAg = $('#btnGuardarAg'),btnCancelarAg = $('#btnCancelarAg'),
+    infoCom = $('#infoCom'),pnlAgregar = $('#pnlAgregar'),pnlRes = $('#pnlRes'),btnRegresarTem = $('#btnRegresarTem'),
+    btnRegresarSub = $('#btnRegresarSub'),btnDg = $('#btnDg'),btnRegresarTipo = $('#btnRegresarTipo'),
+    btnRegresarNumero = $('#btnRegresarNumero');
 
 function mostrarTema(){
   sessionStorage.setItem("visita", "1");
@@ -131,8 +133,53 @@ function cancelar(){
   });
 }
 
+function regresar(){
+  pnl1.removeClass('hidden');
+  lbltm.addClass('hidden');
+  btnRegresarTem.addClass('hidden');
+  subtema.addClass('hidden');
+}
+
+function regresarSub(){
+  Nombre.addClass('hidden');
+  FechaEla.addClass('hidden');
+  FechaApl.addClass('hidden');
+  btnRegresarSub.addClass('hidden');
+  subtema.removeClass('hidden');
+  btnRegresarTem.removeClass('hidden');
+  lblSub.addClass('hidden');
+}
+
+function Dg(){
+  formselect.addClass('hidden');
+  lblDg.addClass('hidden');
+  Nombre.removeClass('hidden');
+  FechaEla.removeClass('hidden');
+  FechaApl.removeClass('hidden');
+  btnRegresarSub.removeClass('hidden');
+}
+
+function regresarTipo(){
+  numPreC.addClass('hidden');
+  tipoPre.addClass('hidden');
+  formselect.removeClass('hidden');
+  btnDg.removeClass('hidden');
+}
+
+function regresarNumero (){
+  formopm.addClass('hidden');
+  agPre.addClass('hidden');
+  numPreC.removeClass('hidden');
+  btnRegresarTipo.removeClass('hidden');
+}
+
 btnGrdNmb.on('click',mostrarTema);
 btnGrdFchEl.on('click',fechaEla);
 btnGrdFchAp.on('click',fechaApl);
 btnModificarAg.on('click',modificar);
 btnCancelarAg.on('click',cancelar);
+btnRegresarTem.on('click',regresar);
+btnRegresarSub.on('click',regresarSub);
+btnDg.on ('click',Dg);
+btnRegresarTipo.on('click',regresarTipo);
+btnRegresarNumero.on('click',regresarNumero);

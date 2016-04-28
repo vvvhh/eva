@@ -11,6 +11,8 @@ function cicloPre() {
   var q=txtNumPre.val();
   document.getElementById('agPreNum').innerHTML= q;
   numPreC.addClass('hidden');
+  btnRegresarTipo.addClass('hidden');
+  btnRegresarNumero.removeClass('hidden');
   agPre.removeClass('hidden');
   txtNumPre.val('');
   //ciclo para gregar pregunntas 
@@ -25,7 +27,6 @@ function cicloPre() {
 
 function agregarPre() {
 	// body...
-  //pnlRes.removeClass('hidden');
   var editar = $.ajax({
     url: 'agregarPre',
     data: {
@@ -59,8 +60,6 @@ function agregarPre() {
       btnModificarPre.removeClass('hidden');
       document.getElementById('txtPreg').disabled = true;
       document.getElementsByTagName('slctRes').value = 0;
-      //swal();
-      //numPreC.removeClass('hidden');
    }
     else{
       alert(resultado.message);
@@ -76,8 +75,17 @@ function Aceptar(){
 //Select para elegir el numero de respuestas de la pregunta
 function howMany(form){ 
   var combo = document.getElementById('slctRes');
-  var mitexto = $("#slctRes option:selected").text()
+  var mitexto = $("#slctRes option:selected").text();
   //document.getElementById('res').innerHTML= mitexto;
+  if (mitexto == 0) {
+    //resA.removeClass('checked');
+    txtA.addClass('hidden');
+    txtB.addClass('hidden');
+    txtC.addClass('hidden');
+    txtD.addClass('hidden');
+    txtE.addClass('hidden');
+  }
+
   if (mitexto > 0 && mitexto < 2) {
     //resA.removeClass('checked');
     txtA.removeClass('hidden');
@@ -121,10 +129,12 @@ function howMany(form){
 }
 
 function modPre(){
+  btnModificarPre.addClass('hidden');
+  btnIngresarRes.addClass('hidden');
   document.getElementById('txtPreg').disabled = false;
 }
 
-function btnIngresarRes(){
+function btnIngresarResFun(){
   pnlRes.removeClass('hidden');
   //txtPreg.html('');
 }
@@ -132,4 +142,4 @@ function btnIngresarRes(){
 btnAceptarC.on('click',cicloPre);
 btnGuardarPre.on('click',agregarPre);
 btnModificarPre.on('click',modPre);
-btnIngresarRes.on('click',btnIngresarRes);
+btnIngresarRes.on('click',btnIngresarResFun);

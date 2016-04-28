@@ -317,7 +317,9 @@ function ingresoCuestionario(){
         Nombre.addClass('hidden');
         FechaEla.addClass('hidden');
         FechaApl.addClass('hidden');
+        btnRegresarSub.addClass('hidden');
         lblDg.removeClass('hidden');
+        btnDg.removeClass('hidden');
         document.getElementById('lblNombre').innerHTML= txtNombre.val();
         document.getElementById('lblFechaE').innerHTML= txtFechaEla.val();
         document.getElementById('lblFechaA').innerHTML= txtFechaApl.val();
