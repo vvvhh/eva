@@ -1,6 +1,6 @@
 var resA1 = $('#resA1'),resA2 = $('#resA2');
 
-function porRango(){
+function porRango1(){
   if( resA1.prop('checked') ) {
    resA2.prop('checked', false);    
   }
