@@ -1,22 +1,20 @@
-var tblConsultas=$('#tblConsultas'),tblConsulta=$('#tblConsulta'),tbodyConsulta=$('#tbodyConsulta');
+var tblConsultas=$('#tblConsultas'),tbodyConsulta=$('#tbodyConsulta');
 
-var btnConsulta=$('#btnConsulta'),btnEditar=$('#btnEditar'),btnAgregarC=$('#btnAgregarC'),btnAgregar=$('#btnAgregar');
+var btnConsulta =$('#btnConsulta'),btnEditar = $('#btnEditar'),btnAgregarC = $('#btnAgregarC'),btnAgregar=$('#btnAgregar');
 
-var pnlAgregar=$('#pnlAgregar'),pnlConsulta=$('#pnlConsulta'),pnlInicio=$('#pnlInicio');
+var pnlAgregar =$('#pnlAgregar'),pnlConsulta = $('#pnlConsulta'),pnlInicio = $('#pnlInicio');
 
-var tblServicios   = $('#tblServicios'),tblCue = $('#tblCue'),tbodyServicios = $('#tbodyServicios');
+var tblServicios = $('#tblServicios'),tblCue = $('#tblCue'),tbodyServicios = $('#tbodyServicios');
 
 var txtNombreFuente = $('#txtNombreFuente'),txtCueId = $('#txtCueId'),formEditarServ= $('#formEditarServ'),
     txtActivo = $('#txtActivo'),btnGuardar = $('#btnGuardar'),btnCancelar = $('#btnCancelar'),token = $('#_token');
 
-var token = $('#token'),txtNombre = $('#txtNombre'),selComboInicio = $('#selComboInicio'),
-    selComboInicioSub = $('#selComboInicioSub'),Combo = $('#Combo'),selCombo = $('#selCombo'),selComboSub = $('#selComboSub'),
+var token = $('#token'),txtNombre = $('#txtNombre'),selCombo = $('#selCombo'),selComboSub = $('#selComboSub'),
     txtFechaApl = $('#txtFechaApl'),txtFechaEla = $('#txtFechaEla'),btnGuardarAg =$('#btnGuardarAg'),txtFechaA =$('#txtFechaA'),
-    selComboE =$('#selComboE'),txtNombreE =$('#txtNombreE'),tbodyConsultaCue=$('#tbodyConsultaCue');
-var spnNombre=$('#spnNombre'),btnImprimir=$('#btnImprimir');
+    tbodyConsultaCue=$('#tbodyConsultaCue');
 
 var formselect = $('#formselect'),formprea = $('#formprea'),datosActivo = $('#datosActivo'),formpom = $('#formpom'),
-    numPreC = $('#numPreC'),selPre = $('#selPre'),btnCaFe = $('#btnCaFe'),calendario = $('#calendario'),
+    numPreC = $('#numPreC'),selPre = $('#selPre'),btnCaFe = $('#btnCaFe'),
     temSel = $('#temSel'),subSel = $('#subSel'),pnl1 = $('#pnl1'),lbl1 = $('#lbl1'),lbl2 = $('#lbl2'),
     lbl3 = $('#lbl3'),label1 = $('#label1'),label2 = $('#label2'),label3 = $('#label3');
 
@@ -266,8 +264,6 @@ function getCuesT(){
     }
     tblConsultas.addClass('hidden');
     tblCue.removeClass('hidden');
-    
-    //alert("alert");
 }
 /* fin de función para ver el cuestionario */
 
@@ -366,25 +362,12 @@ window.onload=function()
   document.getElementById('txtNombre').disabled = false;
   document.getElementById('txtFechaApl').disabled = false;
   document.getElementById('txtFechaEla').disabled = false;
-  //document.getElementById('txtNumPre').val = "";
 
   document.getElementById('btnGrdNmb').disabled = false;
   document.getElementById('btnGrdFchEl').disabled = false;
   document.getElementById('btnGrdFchAp').disabled = false;
   document.getElementById('txtPreg').disabled = false;
 }
-
-/*function comprobarFuente(e){
-  var elem = e.target;
-  if (elem.validity.valid) {
-    document.getElementById('spnNombre').innerHTML = "";
-    elem.style.background='#FFFFFF';
-  }
-  else {
-    elem.style.background='#FFDDDD';
-    document.getElementById('spnNombre').innerHTML = '<i class="fa fa-exclamation-circle"></i> Solo caracteres alfanumericos y @ . _ - ';
-  }
-}*/
 
 function getTema(){
   var datos = $.ajax({
@@ -475,7 +458,6 @@ function getCuestionarioConsultas(){
     }
 
     tbodyConsulta.html('');
-    tblConsulta.removeClass('hidden');
     if ( res.status == 'OK' ){
        var i = 1;
       $.each(res.data, function(k,o){
@@ -503,15 +485,6 @@ function getCuestionarioConsultas(){
     }
     tblConsulta.removeClass('hidden');
 }
-
-/******/
-/*$(document).on('ready', function(){
-
-  getTodosCuestionarios();
-
-  intNombre = document.querySelector("input[name='txtFuente']");
-  intNombre.addEventListener("input", comprobarFuente);
-});*/
 
 //redirección de botones de inicio
 function editar() {
@@ -586,18 +559,7 @@ function agregar() {
       btnEditar.removeClass('botonActivo');
       btnConsulta.removeClass('botonActivo');
       btnAgregar.removeClass('botonNoactivo');
-
-      /*btnEditar.addClass('disabled');
-      btnAgregar.removeClass('disabled');
-      btnConsulta.addClass('disabled');*/
 }
-
-btnEditar.on('click',editar);
-btnConsulta.on('click',consulta);
-btnAgregar.on('click',agregar);
-label1.on('click',agregar);
-label2.on('click',editar);
-label3.on('click',consulta);
 
 btnCaFe.click(
 function (){
@@ -614,67 +576,17 @@ function (){
   });
 });
 
-//check para mostrar formulairos de preguntas
-//------------------chkAbierta----------------------------------
-function chkA(form)
-{
-    if (chkAbierta.checked == true)
-    {
-    chkOpMul.disabled =true;
-    chkMix.disabled =true;
-    formprea.removeClass('hidden');
-    numPreC.removeClass('hidden');
-    }
-
-    if (chkAbierta.checked == false)
-    {
-    chkOpMul.disabled =false;
-    chkMix.disabled =false;
-    formprea.addClass('hidden');
-    numPreC.addClass('hidden');
-    }
-}
-
-//------------------chkOpMul-------------------------------------
-function chkO(form)
-{
-    if (chkOpMul.checked == true)
-    {
-    chkAbierta.disabled =true;
-    chkMix.disabled =true;
-    formpom.removeClass('hidden');
-    }
-
-    if (chkOpMul.checked == false)
-    {
-    chkAbierta.disabled =false;
-    chkMix.disabled =false;
-    formpom.addClass('hidden');
-    }    
-}
-
-//------------------chkMix----------------------------------------
-function chkM(form)
-{
-    if (chkMix.checked == true)
-    {
-    chkAbierta.disabled = true;
-    chkOpMul.disabled = true;
-    numPreC.removeClass('hidden');
-    }
-
-    if (chkMix.checked == false)
-    {
-    chkAbierta.disabled =false;
-    chkOpMul.disabled =false;
-    numPreC.addClass('hidden');
-    }    
-}
-
 function ingresar(){
   // body...
   pnlRes.removeClass('hidden');
 }
+
+btnEditar.on('click',editar);
+btnConsulta.on('click',consulta);
+btnAgregar.on('click',agregar);
+label1.on('click',agregar);
+label2.on('click',editar);
+label3.on('click',consulta);
 
 tblServicios.delegate('.glyphicon-edit', 'click', getCues);
 tblServicios.delegate('.glyphicon-trash', 'click', darBajaCues);

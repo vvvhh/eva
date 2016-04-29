@@ -15,14 +15,15 @@ function cicloPre() {
   btnRegresarNumero.removeClass('hidden');
   agPre.removeClass('hidden');
   txtNumPre.val('');
+  formopm.removeClass('hidden');
   //ciclo para gregar pregunntas 
-	formopm.removeClass('hidden');
-  /*var i = 0;
+  var i = 0;
     do {
         //document.write(i + " ");
+        
 
         i++;
-    } while (i < q);*/
+    } while (i < q);
 }
 
 function agregarPre() {

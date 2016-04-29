@@ -7,7 +7,7 @@ var txtTema = $('#txtTema'),txtSubTema = $('#txtSubTema'),txtActivos = $('#txtAc
     btnTemaSiEx = $('#btnTemaSiEx'),btnTemaNoEx = $('#btnTemaNoEx'),
     btnTemaSiExsub = $('#btnTemaSiExsub'),btnTemaNoExsub = $('#btnTemaNoExsub'),btnTipo = $('#btnTipo'),
     token = $('#token'),
-    Combo = $('#Combo'),subCombo = $('#subCombo'),subtema = $('#subtema'),
+    Combo = $('#Combo'),subCombo = $('#subCombo'),subtema = $('#subtema'),subtemaAg = $('#subtemaAg'),
     dg = $('#dg'),tema = $('#tema'),pnl1 = $('#pnl1'),temAceptar = $('#temAceptar'),
     subAceptar = $('#subAceptar'),lbltm = $('#lbltm'),lblSub = $('#lblSub'),
     botones =$('#botones'),label4 = $('#label4'),label5 = $('#label5'),
@@ -103,9 +103,14 @@ function subAgregar(){
     }
 }
 
-function Cancelar(){
-  txtTema.val('');
-  txtSubTema.val('');
+function cancelarTem(){
+  tema.addClass('hidden');
+  pnl1.removeClass('hidden');
+}
+
+function cancelarSub(){
+  subtemaAg.addClass('hidden');
+  subtema.removeClass('hidden');
 }
 
 function rediTem(){
@@ -161,8 +166,9 @@ function existe(){
 }
 
 function noexiste(){
-  window.location.href = 'temAgregar';
-  document.getElementById('selCombo').size=1;
+  pnl1.addClass('hidden');
+  mosTem.removeClass('hidden');
+  tema.removeClass('hidden');
 }
 
 //subtema
@@ -238,13 +244,6 @@ function subTema() {
       btnSubtemas.removeClass('botonNoactivo');
 
       mostrarTema();
-
-      /*selTema.find('option').each(
-          function(){
-            if ( o.cueTema == $(this).val() )
-            selTema.val(o.cueTema);
-          }
-        );*/
       //obtención de selección del select
       var combo = document.getElementById('selTema');
       var mitexto = $("#selTema option:selected").text();
@@ -297,11 +296,11 @@ label4.on('click',Tema);
 label5.on('click',subTema);
 btnTemas.on('click',Tema);
 btnSubtemas.on('click',subTema);
-btnCancelarSub.on('click',Cancelar);
+btnCancelarSub.on('click',cancelarSub);
 btnGuardarSub.on('click',subAgregar);
-
-btnCancelarTem.on('click',Cancelar);
+btnCancelarTem.on('click',cancelarTem);
 btnGuardarTem.on('click',temAgregar);
+
 btnTema.on('click',rediTem);
 btnTemaSi.on('click',rediTem);
 btnTemaNo.on('click',habilitar);

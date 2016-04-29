@@ -25,7 +25,46 @@
           <br>
           <button id="btnRegresarTem" class="btn btn-success hidden"><i class="fa fa-chevron-left" aria-hidden="true"></i> Regresar</button>
       </div>
-      <div id="pnl1" class="hidden">
+
+      <!--________________________Sección para agregar un tema nuevo desde agregar________________________-->
+       <center><h2 id="mosTem" class="hidden"><i class="fa fa-plus-circle text-primary"></i>Agregar Tema</h2></center>
+      <div class="row">
+        <div class="col-md-10">
+          <br>
+          <form class="form-horizontal hidden" id="tema" name="form" novalidate>
+            <div class="form-group">
+              <label for="txtNombreS" class="col-md-3 control-label">Tema: </label>
+              <div class="col-md-8">
+                <input id="txtTema" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Tema de donde se obtendrá la información" required>
+                <p class="text-danger formatoTexto14" id="spnNombre"> </p>
+                <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
+              </div>
+            </div>
+
+            <div class="form-group hidden">
+              <label for="txtActivot" class="col-md-3 control-label">Activo:</label>
+              <div class="col-md-8">
+                <select name="" id="txtActivot" class="form-control input-sm">
+                  <option value="1">Sí</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+            </div>
+
+            <center>
+              <button id="btnGuardarTem" class="btn btn-primary">
+                <i class="fa fa-floppy-o"></i> Guardar
+              </button>
+              <button id="btnCancelarTem"  class="btn btn-danger">
+                <i class="fa fa-times-circle"></i> Cancelar
+              </button>
+            </center>
+          </form>
+        </div>
+      </div>
+      <!--____________________Termina Sección para agregar un tema nuevo desde agregar____________________-->
+
+      <div id="pnl1" class="">
         <h3><i class="fa fa-plus-circle text-primary"></i> Datos generales del cuestionario</h3>
         <h4><b>Definición del Tema</b></h4>
         <h5>Por favor verifique en el siguiente listado si el tema del cuestionario a ingresar existe, si existe seleccionelo y presione el boton <button class="btn-primary disabled">Aceptar</button>, en caso contrario presione el boton <button class="btn-primary disabled">Agregar</button> para adicionar un tema nuevo.</h5>
@@ -53,6 +92,41 @@
               </div>
           </div>
       </div>
+
+<div class="row">
+  <div class="col-md-10">
+    <br>
+    <form class="form-horizontal hidden" id="subtemaAg" name="form" novalidate>
+      <div class="form-group">
+        <label class="col-md-3 control-label">Subtema: </label>
+        <div class="col-md-8">
+          <input id="txtSubTema" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Subtema de donde se obtendrá la información" required>
+          <p class="text-danger formatoTexto14" id="spnNombre"> </p>
+          <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
+        </div>
+      </div>
+
+      <div class="form-group hidden">
+        <label for="txtActivos" class="col-md-3 control-label">Activo:</label>
+        <div class="col-md-8">
+          <select name="" id="txtActivos" class="form-control input-sm">
+            <option value="1">Sí</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+      </div>
+
+      <center>
+        <button id="btnGuardarSub" class="btn btn-primary">
+          <i class="fa fa-floppy-o"></i> Guardar
+        </button>
+        <button id="btnCancelarSub"  class="btn btn-danger">
+          <i class="fa fa-times-circle"></i> Cancelar
+        </button>
+      </center>
+    </form>
+  </div>
+</div>
 
     <div class="hidden" id="lblSub">
       <label for="txtNombreS" class="control-label">Subtema:&nbsp;&nbsp;</label><label id="subSel"></label>
@@ -223,7 +297,7 @@
   </div>
 
   <!-- formulario de preguntas con opción múltiple -->
-  <div class="form-horizontal " id="formopm" novalidate>
+  <div class="form-horizontal hidden" id="formopm" novalidate>
     <h2><i class="fa fa-plus-circle text-primary"></i> Agregar Pregunta</h2>
     <input type="hidden" id="txtCueId" value="">
     <div class="form-group">
