@@ -569,21 +569,6 @@ function agregar() {
       btnAgregar.removeClass('botonNoactivo');
 }
 
-btnCaFe.click(
-function (){
-  swal({
-        title: '¡Agregar tema!',
-        text: "¿Está seguro que no desea cambiar la fecha?",
-        type: 'info',
-        showCancelButton: true,
-      },
-      function(isConfirm) {
-        if (isConfirm) {
-          calendario.removeClass('hidden');
-        }
-  });
-});
-
 function ingresar(){
   // body...
   pnlRes.removeClass('hidden');
@@ -622,10 +607,15 @@ function ingresoTemAg(){
       },
       function(isConfirm) {
         if (isConfirm) {
-          txtTema.val('');
+          recargarSel();
+          temaAg.addClass('hidden');
+          mosTem.addClass('hidden');
+          document.getElementById('temSel').innerHTML = txtTema.val();
+          lbltm.removeClass('hidden');
+          subtema.removeClass('hidden');s
         }
   });
-    }
+    
     else{
       alert(resultado.message);
     }

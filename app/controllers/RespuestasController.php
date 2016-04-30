@@ -20,8 +20,6 @@ class RespuestasController extends BaseController{
         'resAc4' => Input::get('resAc4'),
         'respuesta5' => Input::get('pregunta5'),
         'resAc5' => Input::get('resAc5')
-        //'tiempo' => Input::get('tiempo'),
-        //'idResponsable' => Input::get('idResponsable'),
       );
 
      $validaciones = array('respuesta' => array('required','regex:/^([a-zA-ñÑZáéíóúñÁÉÍÓÚ\-\_\s\,\.\:\;\¿\?\¡\!])+$/'));
@@ -53,7 +51,7 @@ class RespuestasController extends BaseController{
           if ( count( $duplicado ) > 0 )
             return Response::json(array(
             'status' => 'Error',
-            'message' => 'Ya existe esta pregunta, verifique'
+            'message' => 'Ya existen estas respuestas, verifique'
           ));
           else{
             $insert = preguntas::insert(array(
@@ -67,15 +65,12 @@ class RespuestasController extends BaseController{
               'resActivo' => trim($data['preActiva4']),
               'resRespuesta' => trim($data['pregunta5']),
               'resActivo' => trim($data['preActiva5'])
-              //'cueTiempo'=> $data['tiempo'],
-              //'cueSubTema'=> $data['subTema'],
-              //'cueResponsables'=> $data['idResponsable']
             ));
 
               if ( $insert ){
                 $response = array(
                   'status' => 'OK',
-                  'message' => 'Pregunta agregada correctamente.');
+                  'message' => 'Respuestas agregadas correctamente.');
 
               }
               else
@@ -96,63 +91,3 @@ class RespuestasController extends BaseController{
     }
     return Response::json( $response );
   }
-
- /**DAR BAJA SERVICIO*/
-  public function darBajaCues(){   
-    if( !Sesion::isResponsable() ){
-      if( !Sesion::isAdmin() )
-      return Redirect::to('administracion/logout');
-    }
-
-      $token = Input::get('token');
-
-      if(isset($token)) {
-        $data = array(
-          'id' => Input::get('i')
-        );
-
-       $validaciones = array('id' => array('required', 'alpha_num')
-       );
-
-       $validator = Validator::make($data , $validaciones);
-
-       if ($validator->fails()){
-          $respuesta;
-          $mensajes = $validator->messages();
-          foreach ($mensajes->all() as $mensaje){
-              $respuesta = $mensaje;
-          }
-
-            $response = array(
-              'status' => 'ERROR',
-              'message' => $respuesta
-            );
-        }
-        else{
-              $editar = cuestionarios::where('cueId', $data['id'])
-                ->update(array(
-                  'cueActivo' => false
-                ));
-
-              if ( $editar )
-                $response = array(
-                  'status' => 'OK',
-                  'message' => 'Fuente actualizado'
-                  );
-              else
-                $response = array (
-                  'status' => 'ERROR',
-                  'message' => 'No se puede actualizar la fuente, intente de nuevo'
-                  );
-            }
-      }
-
-      else{
-        $response = array(
-          'status' => 'ERROR',
-          'message' => 'Vuelva a intentar en un momento'
-        );
-      }
-      return Response::json( $response );
-  }
-}

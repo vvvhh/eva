@@ -2,8 +2,8 @@
 
 class respuestas extends Eloquent
 {
-  protected $table = 'preguntas';
-  protected $primaryKey = 'preId';
+  protected $table = 'respuestas';
+  protected $primaryKey = 'resId';
   public $timestamps = false;
   public $incrementing = true;
   protected $fillable = array(

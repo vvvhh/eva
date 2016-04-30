@@ -1,7 +1,8 @@
 var resA1 = $('#resA1'),resA2 = $('#resA2'),resB1 = $('#resB1'),resB2 = $('#resB2'),resC1 = $('#resC1'),resC2 = $('#resC2'),
     resD1 = $('#resD1'),resD2 = $('#resD2'),resE1 = $('#resE1'),resE2 = $('#resE2'),col2 = $('#col2'),txtOpA = $('#txtOpA'),
-    txtOpB = $('#txtOpB'),txtOpC = $('#txtOpC'),txtOpD = $('#txtOpD'),txtOpE = $('#txtOpE'),
-    btnSigPre = $('#btnSigPre');
+    txtOpB = $('#txtOpB'),txtOpC = $('#txtOpC'),txtOpD = $('#txtOpD'),txtOpE = $('#txtOpE'),btnSigPre = $('#btnSigPre'),
+    txtA = $('#txtA'),txtB = $('#txtB'),txtC = $('#txtC'),txtD = $('#txtD'),txtE = $('#txtE'),resAc1 = $('#resAc1'),
+    resAc2 = $('#resAc2'),resAc3 = $('#resAc3'),resAc4 = $('#resAc4'),resAc5 = $('#resAc5');
 
 function agregarRes() {
     // body...
@@ -42,11 +43,68 @@ function agregarRes() {
         showCancelButton: true,
         closeOnConfirm: true
       });
-      formopm.removeClass('hidden');
+      //formopm.removeClass('hidden');
+      console.log('formopm.removeClass');
    }
     else{
       alert(resultado.message);
     }
+}
+
+//Select para elegir el numero de respuestas de la pregunta
+function howMany(form){ 
+  var combo = document.getElementById('slctRes');
+  var mitexto = $("#slctRes option:selected").text();
+  //document.getElementById('res').innerHTML= mitexto;
+  if (mitexto == 0) {
+    //resA.removeClass('checked');
+    txtA.addClass('hidden');
+    txtB.addClass('hidden');
+    txtC.addClass('hidden');
+    txtD.addClass('hidden');
+    txtE.addClass('hidden');
+  }
+
+  if (mitexto > 0 && mitexto < 2) {
+    //resA.removeClass('checked');
+    txtA.removeClass('hidden');
+    txtB.addClass('hidden');
+    txtC.addClass('hidden');
+    txtD.addClass('hidden');
+    txtE.addClass('hidden');
+  }
+
+  if (mitexto > 1 && mitexto < 3) {
+    txtA.removeClass('hidden');
+    txtB.removeClass('hidden');
+    txtC.addClass('hidden');
+    txtD.addClass('hidden');
+    txtE.addClass('hidden');
+  }
+
+  if (mitexto > 2 && mitexto < 4) {
+    txtA.removeClass('hidden');
+    txtB.removeClass('hidden');
+    txtC.removeClass('hidden');
+    txtD.addClass('hidden');
+    txtE.addClass('hidden');
+  }
+
+  if (mitexto > 3 && mitexto < 5) {
+    txtA.removeClass('hidden');
+    txtB.removeClass('hidden');
+    txtC.removeClass('hidden');
+    txtD.removeClass('hidden');
+    txtE.addClass('hidden');
+  }
+
+  if (mitexto > 4 && mitexto < 6) {
+    txtA.removeClass('hidden');
+    txtB.removeClass('hidden');
+    txtC.removeClass('hidden');
+    txtD.removeClass('hidden');
+    txtE.removeClass('hidden');
+  }
 }
 
 function porRangoA1(){

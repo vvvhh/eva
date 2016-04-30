@@ -1,4 +1,6 @@
 //variables del select de temas
+var token = $('#token');
+
 var txtTema = $('#txtTema'),txtSubTema = $('#txtSubTema'),txtActivos = $('#txtActivos'),
     btnCancelarTem = $('#btnCancelarTem'),btnGuardarTem = $('#btnGuardarTem'),
     btnCancelarSub = $('#btnCancelarSub'),btnGuardarSub = $('#btnGuardarSub'),
@@ -6,7 +8,6 @@ var txtTema = $('#txtTema'),txtSubTema = $('#txtSubTema'),txtActivos = $('#txtAc
     btnSubtemas = $('#btnSubtemas'),btnTemaSi = $('#btnTemaSi'),btnTemaNo = $('#btnTemaNo'),
     btnTemaSiEx = $('#btnTemaSiEx'),btnTemaNoEx = $('#btnTemaNoEx'),
     btnTemaSiExsub = $('#btnTemaSiExsub'),btnTemaNoExsub = $('#btnTemaNoExsub'),btnTipo = $('#btnTipo'),
-    token = $('#token'),
     Combo = $('#Combo'),subCombo = $('#subCombo'),subtema = $('#subtema'),subtemaAg = $('#subtemaAg'),
     dg = $('#dg'),tema = $('#tema'),pnl1 = $('#pnl1'),temAceptar = $('#temAceptar'),
     subAceptar = $('#subAceptar'),lbltm = $('#lbltm'),lblSub = $('#lblSub'),
@@ -14,7 +15,7 @@ var txtTema = $('#txtTema'),txtSubTema = $('#txtSubTema'),txtActivos = $('#txtAc
     mosTem = $('#mosTem'),mosSub = $('#mosSub'),lblNombre = $('#lblNombre'),formselect = $('#formselect'),
     tipoPre = $('#tipoPre'),formopm = $('#formopm'),slctRes = $('#slctRes'), Nombre = $('#Nombre'),
     FechaEla = $('#FechaEla'),FechaApl = $('#FechaApl'),selTema = $('#selTema'),numPreC = $('#numPreC'),
-    btnRegresarTem = $('#btnRegresarTem');
+    btnRegresarTem = $('#btnRegresarTem'),selCombo = $('#selCombo');
 
 function temAgregar(){
   var editar = $.ajax({
@@ -101,97 +102,10 @@ function subAgregar(){
 
 function cancelarTem(){
   tema.addClass('hidden');
-  pnl1.removeClass('hidden');
 }
 
 function cancelarSub(){
-  subtemaAg.addClass('hidden');
-  subtema.removeClass('hidden');
-}
-
-function cancelar(){
-  location.reload();
-}
-
-function existe(){
-  swal({
-        title: '¡Tema existente!',
-        text: "¿Está seguro que es el tema que desea?",
-        type: 'info',
-        showCancelButton: true,
-        closeOnConfirm: false
-      },
-      function(isConfirm) {
-        if (isConfirm) {
-          swal(
-            'Este tema será utilizado para su cuestionario'
-          );
-          tema.addClass('hidden');
-          subtema.removeClass('hidden');
-          pnl1.addClass('hidden');
-          lbltm.removeClass('hidden');
-          btnRegresarTem.removeClass('hidden');
-        }
-  });
-    //obtención de selección del select
-    var combo = document.getElementById('selCombo');
-    var mitexto = $("#selCombo option:selected").text();
-    console.log("tema"+mitexto);
-    document.getElementById('temSel').innerHTML= mitexto; //valor asignado al id sleccionado
-}
-
-function noexiste(){
-  mosTem.removeClass('hidden');
-  pnl1.addClass('hidden');
-  temaAg.removeClass('hidden');
-}
-
-//subtema
-function existesub(){
-  swal({
-        title: '¡Subtema existente!',
-        text: "¿Está seguro que es el subtema que desea?",
-        type: 'info',
-        showCancelButton: true,
-        closeOnConfirm: false
-      },
-      function(isConfirm) {
-        if (isConfirm) {
-          swal(
-            'El subtema que selecciono sera el de su cuestionario.'
-          );
-          document.getElementById("selComboSub").disabled = false;
-          subtema.addClass('hidden');
-          lblSub.removeClass('hidden');
-          Nombre.removeClass('hidden');
-          FechaEla.removeClass('hidden');
-          FechaApl.removeClass('hidden');
-          btnRegresarTem.addClass('hidden');
-          btnRegresarSub.removeClass('hidden');
-        }
-  });
-  //obtención de selección del select
-  var combo = document.getElementById('selComboSub');
-  var mitexto = $("#selComboSub option:selected").text();
-  document.getElementById('subSel').innerHTML= mitexto; //valor asignado al id sleccionado
-}
-
-function noexistesub(){
   subtema.addClass('hidden');
-  mosSub.removeClass('hidden');
-  subtemaAg.removeClass('hidden');
-}
-
-function aceptado(){
-  subtema.removeClass('hidden');
-  pnl1.addClass('hidden');
-  lbltm.removeClass('hidden');
-}
-
-function sub(){
-  subtema.addClass('hidden');
-  lblSub.removeClass('hidden');
-  dg.removeClass('hidden');
 }
 
 //redirección de botones de inicio
@@ -269,19 +183,15 @@ function mostrarTema(){
 }
 
 
+
+
+
 label4.on('click',Tema);
 label5.on('click',subTema);
 btnTemas.on('click',Tema);
 btnSubtemas.on('click',subTema);
 btnCancelarSub.on('click',cancelarSub);
 btnGuardarSub.on('click',subAgregar);
-btnCancelarTem.on('click',cancelar);
-btnGuardarTem.on('click',temAgregar);
-
-btnTemaSiEx.on('click',existe);
-btnTemaNoEx.on('click',noexiste);
-btnTemaSiExsub.on('click',existesub);
-btnTemaNoExsub.on('click',noexistesub);
-temAceptar.on('click',aceptado);
-subAceptar.on('click',sub);
+btnCancelarTem.on('click',cancelarTem);
+btnGuardarTem.on('click',temAgregar)
 btnTipo.on('click',tipo);
