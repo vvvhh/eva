@@ -69,6 +69,7 @@
       return Response::json( $response );
     }
 
+  // Obtern ID del tema al agregarlo desde la vista de agregar datos generales
   public function getTemaAg(){
    $tema = 'txtTema.val()';
    $seleccionar = DB::select('SELECT temId FROM temas WHERE temTema = $tema');
