@@ -27,7 +27,7 @@ var btnGuardarTemAg = $('#btnGuardarTemAg'),btnGuardarSubAg = $('#btnGuardarSubA
     mosTem = $('#mosTem'),mosSub = $('#mosSub'),temaAg = $('#temaAg'), subtemaAg = $('#subtemaAg');
 
 var btnTemaSiEx = $('#btnTemaSiEx'),btnTemaNoEx = $('#btnTemaNoEx'),btnTemaSiExsub = $('#btnTemaSiExsub'),
-    btnTemaNoExsub = $('#btnTemaNoExsub');
+    btnTemaNoExsub = $('#btnTemaNoExsub'),txtNumPre = $('#txtNumPre');
 
 /*Ide desde el icono editar de la tabla*/
 function darBajaCues(){
@@ -607,24 +607,23 @@ function ingresoTemAg(){
       },
       function(isConfirm) {
         if (isConfirm) {
-          recargarSel();
           temaAg.addClass('hidden');
           mosTem.addClass('hidden');
           document.getElementById('temSel').innerHTML = txtTema.val();
           lbltm.removeClass('hidden');
-          subtema.removeClass('hidden');s
+          subtema.removeClass('hidden');
         }
   });
-    
-    else{
+    /*else{
       alert(resultado.message);
-    }
+    }*/
+  }
 }
 
 function ingresoSubAg(){
   // body...
   var editar = $.ajax({
-    url: 'subAgregar',
+    url: 'subAgregarAg',
     data: {
       token: token.val(),
       tema: selTema.val(),
@@ -655,7 +654,11 @@ function ingresoSubAg(){
       },
       function(isConfirm) {
         if (isConfirm) {
-          txtSubTema.val('');
+          subtemaAg.addClass('hidden');
+          mosSub.addClass('hidden');
+          document.getElementById('subSel').innerHTML = txtSubTema.val();
+          lblSub.removeClass('hidden');
+          Nombre.removeClass('hidden');
         }
   });
     }

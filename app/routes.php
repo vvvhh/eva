@@ -154,6 +154,7 @@ Route::post('/repFuentePer', array('uses' => 'NoticiasController@repFuentePer'))
 			Route::post('/subAgregar', array('uses' => 'TemaController@subAgregar'));
 			Route::post('/editarCues', array('uses' => 'CuestionarioController@editarCues'));
 			Route::post('/preCues', array('uses' => 'CuestionarioController@preCues'));
+			Route::post('/subAgregarAg', array('uses' => 'TemaController@subAgregarAg'));
 			Route::post('/darBajaCues', array('uses' => 'CuestionarioController@darBajaCues'));
 			Route::get('/imprimirFuentes', array('uses' => 'PdfController@imprimirFuentes'));
 

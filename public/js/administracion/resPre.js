@@ -2,23 +2,25 @@ var resA1 = $('#resA1'),resA2 = $('#resA2'),resB1 = $('#resB1'),resB2 = $('#resB
     resD1 = $('#resD1'),resD2 = $('#resD2'),resE1 = $('#resE1'),resE2 = $('#resE2'),col2 = $('#col2'),txtOpA = $('#txtOpA'),
     txtOpB = $('#txtOpB'),txtOpC = $('#txtOpC'),txtOpD = $('#txtOpD'),txtOpE = $('#txtOpE'),btnSigPre = $('#btnSigPre'),
     txtA = $('#txtA'),txtB = $('#txtB'),txtC = $('#txtC'),txtD = $('#txtD'),txtE = $('#txtE'),resAc1 = $('#resAc1'),
-    resAc2 = $('#resAc2'),resAc3 = $('#resAc3'),resAc4 = $('#resAc4'),resAc5 = $('#resAc5');
+    resAc2 = $('#resAc2'),resAc3 = $('#resAc3'),resAc4 = $('#resAc4'),resAc5 = $('#resAc5'),txtResA = $('#txtResA'),
+    txtResB = $('#txtResB'),txtResC = $('#txtResC'),txtResD = $('#txtResD'),txtResE = $('#txtResE');
 
 function agregarRes() {
     // body...
+    resetSelectElement(slctRes);
   var editar = $.ajax({
-    url: 'agregarPre',
+    url: 'agregarRes',
     data: {
       token: token.val(),
-      respuesta1: txtA.val(),
+      respuesta1: txtResA.val(),
       resActiva1: resAc1.val(),
-      respuesta2: txtB.val(),
+      respuesta2: txtResB.val(),
       resActiva2: resAc2.val(),
-      respuesta3: txtC.val(),
+      respuesta3: txtResC.val(),
       resActiva3: resAc3.val(),
-      respuesta4: txtD.val(),
+      respuesta4: txtResD.val(),
       resActiva4: resAc4.val(),
-      respuesta5: txtE.val(),
+      respuesta5: txtResE.val(),
       resActiva5: resAc5.val()
     },
     type: 'post',
@@ -232,6 +234,11 @@ function porPeriodoE2(){
     col2.addClass('hidden');
     txtOpE.addClass('hidden');    
   }
+}
+
+function resetSelectElement(slctRes) {
+    slctRes.selectedIndex = 0;  // first option is selected, or
+                                     // -1 for no option selected
 }
 
 btnSigPre.on('click',agregarRes);

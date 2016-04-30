@@ -22,7 +22,7 @@ class RespuestasController extends BaseController{
         'resAc5' => Input::get('resAc5')
       );
 
-     $validaciones = array('respuesta' => array('required','regex:/^([a-zA-ñÑZáéíóúñÁÉÍÓÚ\-\_\s\,\.\:\;\¿\?\¡\!])+$/'));
+     $validaciones = array('respuesta1' => array('required','regex:/^([a-zA-ñÑZáéíóúñÁÉÍÓÚ\-\_\s\,\.\:\;\¿\?\¡\!])+$/'));
 
      $validator = Validator::make($data , $validaciones);
 
@@ -41,10 +41,10 @@ class RespuestasController extends BaseController{
       else{
 
         $duplicado = respuesta::where('resRespuesta',$data['respuesta1'])
-        where('resRespuesta',$data['respuesta2'])
-        where('resRespuesta',$data['respuesta3'])
-        where('resRespuesta',$data['respuesta4'])
-        where('resRespuesta',$data['respuesta5'])
+          ->where('resRespuesta',$data['respuesta2'])
+          ->where('resRespuesta',$data['respuesta3'])
+          ->where('resRespuesta',$data['respuesta4'])
+          ->where('resRespuesta',$data['respuesta5'])
           ->get()
           ->toArray();
 
@@ -91,3 +91,4 @@ class RespuestasController extends BaseController{
     }
     return Response::json( $response );
   }
+}

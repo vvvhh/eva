@@ -58,6 +58,8 @@ function agregarPre() {
         showCancelButton: true,
         closeOnConfirm: false
       });
+      resetSelectElement(slctRes);
+      btnGuardarPre.addClass('hidden');
       btnIngresarRes.removeClass('hidden');
       btnModificarPre.removeClass('hidden');
       document.getElementById('txtPreg').disabled = true;
@@ -77,10 +79,13 @@ function Aceptar(){
 function modPre(){
   btnModificarPre.addClass('hidden');
   btnIngresarRes.addClass('hidden');
+  btnGuardarPre.removeClass('hidden');
   document.getElementById('txtPreg').disabled = false;
 }
 
 function btnIngresarResFun(){
+  btnModificarPre.addClass('hidden');
+  btnIngresarRes.addClass('hidden');
   pnlRes.removeClass('hidden');
   //txtPreg.html('');
 }

@@ -2,7 +2,7 @@ var btnGrdFchEl = $('#btnGrdFchEl'),btnGrdFchAp = $('#btnGrdFchAp'),valor=sessio
     btnModificarAg = $('#btnModificarAg'),btnGuardarAg = $('#btnGuardarAg'),btnCancelarAg = $('#btnCancelarAg'),
     infoCom = $('#infoCom'),pnlAgregar = $('#pnlAgregar'),pnlRes = $('#pnlRes'),btnRegresarTem = $('#btnRegresarTem'),
     btnRegresarSub = $('#btnRegresarSub'),btnDg = $('#btnDg'),btnRegresarTipo = $('#btnRegresarTipo'),
-    btnRegresarNumero = $('#btnRegresarNumero');
+    btnRegresarNumero = $('#btnRegresarNumero'),btnGrdNmb = $('#btnGrdNmb');
 
 function mostrarTema(){
   sessionStorage.setItem("visita", "1");

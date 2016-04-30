@@ -7,6 +7,10 @@
     <label for="txtNombreS" class="control-label">Número de preguntas del cuestionario:&nbsp;&nbsp;</label><label id="agPreNum"></label><br>
     <button id="btnRegresarNumero" class="btn btn-success hidden"><i class="fa fa-chevron-left" aria-hidden="true"></i> Regresar</button>
   </div>
+  <div class="hidden" id="pre">
+    <label for="txtNombreS" class="control-label" id="preAg">&nbsp;&nbsp;</label><label id="resCo"></label><br>
+    <button id="btnRegresarRes" class="btn btn-success hidden"><i class="fa fa-chevron-left" aria-hidden="true"></i> Regresar</button>
+  </div>
 
   <!-- Inicio del formulairo para ingresar preguntas de opción múltiple y abiertas-->
   <div class="form-horizontal hidden" id="formselect" name="formselect" novalidate>
@@ -46,7 +50,7 @@
   </div>
 
   <!-- formulario de preguntas con opción múltiple -->
-  <div class="form-horizontal " id="formopm" novalidate>
+  <div class="hidden" id="formopm" novalidate>
     <h2><i class="fa fa-plus-circle text-primary"></i> Agregar Pregunta</h2>
     <input type="hidden" id="txtCueId" value="">
     <div class="form-group">
@@ -72,7 +76,7 @@
                     </div>
                   </div>
                 </td>
-                <td>
+                <td><!-- codigo para mostrar la opción correcta -->
                   <input id="txtOpA" name="txtOp" type="text" class="form-control grisObscuro col-md-1 hidden" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+">
                   <input id="txtOpB" name="txtOp" type="text" class="form-control grisObscuro col-md-1 hidden" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+">
                   <input id="txtOpC" name="txtOp" type="text" class="form-control grisObscuro col-md-1 hidden" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+">
@@ -112,7 +116,7 @@
           <br>
             <tr id="txtA" class="hidden">
               <td><i>A: </i></td>
-              <td><textarea rows="6" cols="100"></textarea></td>
+              <td><textarea rows="6" cols="100" id="txtResA"></textarea></td>
               <td><input type="checkbox" value="resA1" id="resA1"><span class="glyphicon glyphicon-ok text-success" ></span>
               <input type="checkbox" value="resA2" id="resA2"><span class="glyphicon glyphicon-remove text-danger" ></span></td>
               <div class="form-group hidden">
@@ -126,7 +130,7 @@
             </tr>
             <tr id="txtB" class="hidden">
               <td><i>B: </i></td>
-              <td><textarea rows="6" cols="100"></textarea></td>
+              <td><textarea rows="6" cols="100" id="txtResB"></textarea></td>
               <td><input type="checkbox" value="resB1" id="resB1"><span class="glyphicon glyphicon-ok text-success"></span>
               <input type="checkbox" value="resB2" id="resB2" ><span class="glyphicon glyphicon-remove text-danger"></span></td>
               <div class="form-group hidden">
@@ -140,7 +144,7 @@
             </tr>
             <tr id="txtC" class="hidden">
               <td><i>C: </i></td>
-              <td><textarea rows="6" cols="100"></textarea></td>
+              <td><textarea rows="6" cols="100" id="txtResC"></textarea></td>
               <td><input type="checkbox" value="resC1" id="resC1"><span class="glyphicon glyphicon-ok text-success"></span>
               <input type="checkbox" value="resC2" id="resC2"><span class="glyphicon glyphicon-remove text-danger"></span></td>
               <div class="form-group hidden">
@@ -154,7 +158,7 @@
             </tr>
             <tr id="txtD" class="hidden">
               <td><i>D: </i></td>
-              <td><textarea rows="6" cols="100"></textarea></td>
+              <td><textarea rows="6" cols="100" id="txtResD"></textarea></td>
               <td><input type="checkbox" value="resD1" id="resD1"><span class="glyphicon glyphicon-ok text-success"></span>
               <input type="checkbox" value="resD2" id="resD2"><span class="glyphicon glyphicon-remove text-danger"></span></td>
               <div class="form-group hidden">
@@ -168,7 +172,7 @@
             </tr>
             <tr id="txtE" class="hidden">
               <td><i>E: </i></td>
-              <td><textarea rows="6" cols="100"></textarea></td>
+              <td><textarea rows="6" cols="100" id="txtResE"></textarea></td>
               <td><input type="checkbox" value="resE1" id="resE1"><span class="glyphicon glyphicon-ok text-success"></span>
               <input type="checkbox" value="resE2" id="resE2"><span class="glyphicon glyphicon-remove text-danger"></span></td>
               <div class="form-group hidden">
@@ -188,7 +192,8 @@
           </button>
         </center>
         <center>
-          <button id="btnGuardarRes" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
+          <button id="btnGuardarRes" class="btn btn-primary hidden"><i class="fa fa-floppy-o"></i> Guardar</button>
+          <button id="btnCancelarRes"  class="btn btn-danger hidden"><i class="fa fa-times-circle"></i> Cancelar</button>
         </center>
       </div>
 
