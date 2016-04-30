@@ -11,7 +11,6 @@ class CuestionarioController extends BaseController{
     if(isset($token)) {
       $data = array(
         'fecha' => Input::get('fecha'),
-        'tema' => Input::get('tema'),
         'subtema' => Input::get('subtema'),  //para subtema
         'nombre' => Input::get('nombre'),
         'fechaEla' => Input::get('fechaEla'),

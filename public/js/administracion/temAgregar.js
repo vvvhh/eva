@@ -44,13 +44,11 @@ function temAgregar(){
         text: "El Tema fue agragdo con exito",
         type: 'info',
         showCancelButton: true,
+        closeOnConfirm: true
       },
       function(isConfirm) {
         if (isConfirm) {
-          pnl1.addClass('hidden');
           txtTema.val('');
-          lblNombre.removeClass('hidden');
-          subtema.removeClass('hidden');
         }
   });
     }
@@ -88,13 +86,11 @@ function subAgregar(){
         text: "El subtema fue agragdo con exito",
         type: 'info',
         showCancelButton: true,
+        closeOnConfirm: true
       },
       function(isConfirm) {
         if (isConfirm) {
-          pnl1.addClass('hidden');
           txtSubTema.val('');
-          lblNombre.removeClass('hidden');
-
         }
   });
     }
@@ -113,29 +109,8 @@ function cancelarSub(){
   subtema.removeClass('hidden');
 }
 
-function rediTem(){
-  swal({
-        title: '¡Agregar tema!',
-        text: "¿Está seguro que desea agregar un tema nuevo?",
-        type: 'info',
-        showCancelButton: true,
-        closeOnConfirm: true
-      },
-      function(isConfirm) {
-        if (isConfirm) {
-          window.location.href = 'temAgregar#tema';
-        }
-  });
-}
-
-function habilitar(){
-  swal({
-        title: '¡Agregar tema!',
-        text: "¿Está seguro que desea agregar un tema nuevo?",
-        type: 'info',
-        showCancelButton: true,
-        closeOnConfirm: true
-      });
+function cancelar(){
+  location.reload();
 }
 
 function existe(){
@@ -151,7 +126,7 @@ function existe(){
           swal(
             'Este tema será utilizado para su cuestionario'
           );
-          tema.removeClass('hidden');
+          tema.addClass('hidden');
           subtema.removeClass('hidden');
           pnl1.addClass('hidden');
           lbltm.removeClass('hidden');
@@ -166,9 +141,9 @@ function existe(){
 }
 
 function noexiste(){
-  pnl1.addClass('hidden');
   mosTem.removeClass('hidden');
-  tema.removeClass('hidden');
+  pnl1.addClass('hidden');
+  temaAg.removeClass('hidden');
 }
 
 //subtema
@@ -202,7 +177,9 @@ function existesub(){
 }
 
 function noexistesub(){
-  window.location.href = 'temAgregar';
+  subtema.addClass('hidden');
+  mosSub.removeClass('hidden');
+  subtemaAg.removeClass('hidden');
 }
 
 function aceptado(){
@@ -298,12 +275,9 @@ btnTemas.on('click',Tema);
 btnSubtemas.on('click',subTema);
 btnCancelarSub.on('click',cancelarSub);
 btnGuardarSub.on('click',subAgregar);
-btnCancelarTem.on('click',cancelarTem);
+btnCancelarTem.on('click',cancelar);
 btnGuardarTem.on('click',temAgregar);
 
-btnTema.on('click',rediTem);
-btnTemaSi.on('click',rediTem);
-btnTemaNo.on('click',habilitar);
 btnTemaSiEx.on('click',existe);
 btnTemaNoEx.on('click',noexiste);
 btnTemaSiExsub.on('click',existesub);

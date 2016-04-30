@@ -21,7 +21,13 @@ var formselect = $('#formselect'),formprea = $('#formprea'),datosActivo = $('#da
 var dg = $('#dg'),lblDg = $('#lblDg'),lblNombre = $('#lblNombre'),lblFechaE = $('#lblFechaE'),lblFechaA = $('#lblFechaA'),
     selTipo = $('#selTipo'), agPre = $('#agPre'),tipoPreEle = $('#tipoPreEle'),lbltm = $('#lbltm'),tipoPre = $('#tipoPre'),
     btnGrdNmb = $('#btnGrdNmb'),Nombre = $('#Nombre'),Fechas = ('#FechaEla'),FechaApl = $('#FechasApl'),btnIngresarRes = $('#btnIngresarRes');
-/*var numPre;*/
+/*variales para tema y subtema*/
+var btnGuardarTemAg = $('#btnGuardarTemAg'),btnGuardarSubAg = $('#btnGuardarSubAg'),
+    btnCancelarTemAg = $('#btnCancelarTemAg'),btnCancelarSubAg = $('#btnCancelarSubAg'),
+    mosTem = $('#mosTem'),mosSub = $('#mosSub'),temaAg = $('#temaAg'), subtemaAg = $('#subtemaAg');
+
+var btnTemaSiEx = $('#btnTemaSiEx'),btnTemaNoEx = $('#btnTemaNoEx'),btnTemaSiExsub = $('#btnTemaSiExsub'),
+    btnTemaNoExsub = $('#btnTemaNoExsub');
 
 /*Ide desde el icono editar de la tabla*/
 function darBajaCues(){
@@ -67,7 +73,7 @@ function editarCues(){
       fecha:txtFechaA.val(),
       tema:selComdo.val(),
       subtema:selComboSub.val(),
-      nombre:txtNombreE.val(),
+      nombre:txtNombre.val(),
       activo:txtActivo.val(),
       i:txtCueId.val()
     },
@@ -270,6 +276,8 @@ function getCuesT(){
 /*******/
 
 function ingresoCuestionario(){
+  var texto = document.getElementById("temSel").innerHTML;
+  var texto1 = document.getElementById("subSel").innerHTML;
   var editar = $.ajax({
     url: 'ingresoCuestionario',
     data: {
@@ -581,6 +589,177 @@ function ingresar(){
   pnlRes.removeClass('hidden');
 }
 
+function ingresoTemAg(){
+  // body...
+  var editar = $.ajax({
+    url: 'temAgregar',
+    data: {
+      token: token.val(),
+      tema: txtTema.val(),
+      activo: txtActivot.val(),
+    },
+    type: 'post',
+    dataType:'json',
+      async:false
+    }).error(function(e){
+        alert('Ocurrio un error, intente de nuevo');
+    }).responseText;
+
+    var resultado;
+    try{
+      resultado = JSON.parse(editar);
+    }catch (e){
+        alert('Error JSON ' + e);
+    }
+
+    if ( resultado.status == 'OK' ){  
+      swal({
+        title: '¡Tema Agregado!',
+        text: "El Tema fue agragdo con exito",
+        type: 'info',
+        showCancelButton: true,
+        closeOnConfirm: true
+      },
+      function(isConfirm) {
+        if (isConfirm) {
+          txtTema.val('');
+        }
+  });
+    }
+    else{
+      alert(resultado.message);
+    }
+}
+
+function ingresoSubAg(){
+  // body...
+  var editar = $.ajax({
+    url: 'subAgregar',
+    data: {
+      token: token.val(),
+      tema: selTema.val(),
+      subtema: txtSubTema.val(),
+      activo: txtActivos.val(),
+    },
+    type: 'post',
+    dataType:'json',
+      async:false
+    }).error(function(e){
+        alert('Ocurrio un error, intente de nuevo');
+    }).responseText;
+
+    var resultado;
+    try{
+      resultado = JSON.parse(editar);
+    }catch (e){
+        alert('Error JSON ' + e);
+    }
+
+    if ( resultado.status == 'OK' ){  
+      swal({
+        title: '¡Subtema Agregado!',
+        text: "El subtema fue agragdo con exito",
+        type: 'info',
+        showCancelButton: true,
+        closeOnConfirm: true
+      },
+      function(isConfirm) {
+        if (isConfirm) {
+          txtSubTema.val('');
+        }
+  });
+    }
+    else{
+      alert(resultado.message);
+    }
+}
+
+function cancelarTemAg(){
+  mosTem.addClass('hidden');
+  temaAg.addClass('hidden');
+  pnl1.removeClass('hidden');
+}
+
+function cancelarSubAg(){
+  mosSub.addClass('hidden');
+  subtemaAg.addClass('hidden');
+  subtema.removeClass('hidden');
+}
+
+function existe(){
+  swal({
+        title: '¡Tema existente!',
+        text: "¿Está seguro que es el tema que desea?",
+        type: 'info',
+        showCancelButton: true,
+        closeOnConfirm: false
+      },
+      function(isConfirm) {
+        if (isConfirm) {
+          swal(
+            'Este tema será utilizado para su cuestionario'
+          );
+          tema.addClass('hidden');
+          subtema.removeClass('hidden');
+          pnl1.addClass('hidden');
+          lbltm.removeClass('hidden');
+          btnRegresarTem.removeClass('hidden');
+        }
+  });
+    //obtención de selección del select
+    var combo = document.getElementById('selCombo');
+    var mitexto = $("#selCombo option:selected").text();
+    console.log("tema"+mitexto);
+    document.getElementById('temSel').innerHTML= mitexto; //valor asignado al id sleccionado
+}
+
+function noexiste(){
+  mosTem.removeClass('hidden');
+  pnl1.addClass('hidden');
+  temaAg.removeClass('hidden');
+}
+
+//subtema
+function existesub(){
+  swal({
+        title: '¡Subtema existente!',
+        text: "¿Está seguro que es el subtema que desea?",
+        type: 'info',
+        showCancelButton: true,
+        closeOnConfirm: false
+      },
+      function(isConfirm) {
+        if (isConfirm) {
+          swal(
+            'El subtema que selecciono sera el de su cuestionario.'
+          );
+          document.getElementById("selComboSub").disabled = false;
+          subtema.addClass('hidden');
+          lblSub.removeClass('hidden');
+          Nombre.removeClass('hidden');
+          FechaEla.removeClass('hidden');
+          FechaApl.removeClass('hidden');
+          btnRegresarTem.addClass('hidden');
+          btnRegresarSub.removeClass('hidden');
+        }
+  });
+  //obtención de selección del select
+  var combo = document.getElementById('selComboSub');
+  var mitexto = $("#selComboSub option:selected").text();
+  document.getElementById('subSel').innerHTML= mitexto; //valor asignado al id sleccionado
+}
+
+function noexistesub(){
+  subtema.addClass('hidden');
+  mosSub.removeClass('hidden');
+  subtemaAg.removeClass('hidden');
+}
+
+btnTemaSiEx.on('click',existe);
+btnTemaNoEx.on('click',noexiste);
+btnTemaSiExsub.on('click',existesub);
+btnTemaNoExsub.on('click',noexistesub);
+
 btnEditar.on('click',editar);
 btnConsulta.on('click',consulta);
 btnAgregar.on('click',agregar);
@@ -595,3 +774,8 @@ btnGuardar.on('click',editarCues);
 
 btnGuardarAg.on('click',ingresoCuestionario);
 btnIngresarRes.on('click',ingresar);
+
+btnGuardarTemAg.on('click',ingresoTemAg);
+btnCancelarTemAg.on('click',cancelarTemAg);
+btnGuardarSubAg.on('click',ingresoSubAg);
+btnCancelarSubAg.on('click',cancelarSubAg);

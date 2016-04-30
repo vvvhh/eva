@@ -15,14 +15,18 @@ function cicloPre() {
   btnRegresarNumero.removeClass('hidden');
   agPre.removeClass('hidden');
   txtNumPre.val('');
-  formopm.removeClass('hidden');
   //ciclo para gregar pregunntas 
+  ciclo();
+}
+
+function ciclo(){
+  var q=txtNumPre.val();
   var i = 0;
     do {
-        //document.write(i + " ");
-        
-
+        //formopm.html('');
+        formopm.removeClass('hidden');
         i++;
+        console.log(i);
     } while (i < q);
 }
 

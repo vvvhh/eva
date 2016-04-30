@@ -1,16 +1,16 @@
 <?php
 
-class preguntas extends Eloquent
+class respuestas extends Eloquent
 {
   protected $table = 'preguntas';
   protected $primaryKey = 'preId';
   public $timestamps = false;
   public $incrementing = true;
   protected $fillable = array(
-    'preId',
-    'prePregunta',
-    'preCue',
-    'preActivo',
-    'preTipo'
+    'resId',
+    'resRespuesta',
+    'resCorrecto',
+    'resPreguntas',
+    'resActivo'
   );
 }

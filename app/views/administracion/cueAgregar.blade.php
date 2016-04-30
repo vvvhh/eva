@@ -19,151 +19,8 @@
 <div class="row">
   <div class="col-md-12">
     <div class="form-horizontal" id="pnlAgregar" name="pnlAgregar" class="hidden" novalidate>
-      <div id="lbltm" class="hidden">
-          <h3><i class="fa fa-plus-circle text-primary"></i> Datos generales del cuestionario</h3>
-          <label for="txtNombreS" class="control-label">Tema:&nbsp;&nbsp;</label><label id="temSel"></label>
-          <br>
-          <button id="btnRegresarTem" class="btn btn-success hidden"><i class="fa fa-chevron-left" aria-hidden="true"></i> Regresar</button>
-      </div>
 
-      <!--________________________Sección para agregar un tema nuevo desde agregar________________________-->
-       <center><h2 id="mosTem" class="hidden"><i class="fa fa-plus-circle text-primary"></i>Agregar Tema</h2></center>
-      <div class="row">
-        <div class="col-md-10">
-          <br>
-          <form class="form-horizontal hidden" id="tema" name="form" novalidate>
-            <div class="form-group">
-              <label for="txtNombreS" class="col-md-3 control-label">Tema: </label>
-              <div class="col-md-8">
-                <input id="txtTema" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Tema de donde se obtendrá la información" required>
-                <p class="text-danger formatoTexto14" id="spnNombre"> </p>
-                <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
-              </div>
-            </div>
-
-            <div class="form-group hidden">
-              <label for="txtActivot" class="col-md-3 control-label">Activo:</label>
-              <div class="col-md-8">
-                <select name="" id="txtActivot" class="form-control input-sm">
-                  <option value="1">Sí</option>
-                  <option value="0">No</option>
-                </select>
-              </div>
-            </div>
-
-            <center>
-              <button id="btnGuardarTem" class="btn btn-primary">
-                <i class="fa fa-floppy-o"></i> Guardar
-              </button>
-              <button id="btnCancelarTem"  class="btn btn-danger">
-                <i class="fa fa-times-circle"></i> Cancelar
-              </button>
-            </center>
-          </form>
-        </div>
-      </div>
-      <!--____________________Termina Sección para agregar un tema nuevo desde agregar____________________-->
-
-      <div id="pnl1" class="">
-        <h3><i class="fa fa-plus-circle text-primary"></i> Datos generales del cuestionario</h3>
-        <h4><b>Definición del Tema</b></h4>
-        <h5>Por favor verifique en el siguiente listado si el tema del cuestionario a ingresar existe, si existe seleccionelo y presione el boton <button class="btn-primary disabled">Aceptar</button>, en caso contrario presione el boton <button class="btn-primary disabled">Agregar</button> para adicionar un tema nuevo.</h5>
-          <div id="ComboInicio" class="form-group">
-              <label for="txtNombreS" class="col-md-3 control-label">Temas existentes: </label>
-                <div class="col-md-9" id="select">
-                  <SELECT id="selCombo" size=1 class="form-control grisObscuro">
-                  </SELECT>
-                  <p class="text-danger formatoTexto14" id="spnNombre"> </p>
-                  <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
-                </div>
-              </div>
-              <div class="form-group">
-                    <center><button id="btnTemaSiEx" class="btn btn-primary">Aceptar</button>
-                    <button id="btnTemaNoEx" class="btn btn-warning">Agregar</button></center>
-              <br>
-              </div>
-              <div id="Combo" class="form-group hidden">
-              <center><h5 class="col-md-12"> El tema que selecciono sera el tema de su cuestionario.</h5></center>
-                <div class="col-md-12" id="select">
-                  <center><button id="temAceptar" class="btn btn-primary">Aceptar</button></center>
-                  <p class="text-danger formatoTexto14" id="spnNombre"> </p>
-                  <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
-                </div>
-              </div>
-          </div>
-      </div>
-
-<div class="row">
-  <div class="col-md-10">
-    <br>
-    <form class="form-horizontal hidden" id="subtemaAg" name="form" novalidate>
-      <div class="form-group">
-        <label class="col-md-3 control-label">Subtema: </label>
-        <div class="col-md-8">
-          <input id="txtSubTema" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Subtema de donde se obtendrá la información" required>
-          <p class="text-danger formatoTexto14" id="spnNombre"> </p>
-          <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
-        </div>
-      </div>
-
-      <div class="form-group hidden">
-        <label for="txtActivos" class="col-md-3 control-label">Activo:</label>
-        <div class="col-md-8">
-          <select name="" id="txtActivos" class="form-control input-sm">
-            <option value="1">Sí</option>
-            <option value="0">No</option>
-          </select>
-        </div>
-      </div>
-
-      <center>
-        <button id="btnGuardarSub" class="btn btn-primary">
-          <i class="fa fa-floppy-o"></i> Guardar
-        </button>
-        <button id="btnCancelarSub"  class="btn btn-danger">
-          <i class="fa fa-times-circle"></i> Cancelar
-        </button>
-      </center>
-    </form>
-  </div>
-</div>
-
-    <div class="hidden" id="lblSub">
-      <label for="txtNombreS" class="control-label">Subtema:&nbsp;&nbsp;</label><label id="subSel"></label>
-      <br>
-      <button id="btnRegresarSub" class="btn btn-success hidden"><i class="fa fa-chevron-left" aria-hidden="true"></i> Regresar</button>
-    </div>
-
-    <div id="subtema" class="form-group hidden">
-        <h4><b>Definición del Subtema</b></h4>
-        <h5>Por favor verifique en el siguiente listado si el subtema del cuestionario a ingresar existe, si existe seleccionelo y presione el boton <button class="btn-primary disabled">Aceptar</button>, en caso contrario presione el boton <button class="btn-primary disabled">Agregar</button> para añadir un subtema nuevo.</h5>
-      <div id="ComboInicio" class="form-group">
-        <br><br>
-        <label for="txtNombreS" class="col-md-3 control-label">Subtemas existentes: </label>
-        <div class="col-md-7" id="select">
-          <SELECT id="selComboSub" size=1 class="form-control grisObscuro">
-          </SELECT>
-          <p class="text-danger formatoTexto14" id="spnNombre"> </p>
-          <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-md-12">
-            <center><button id="btnTemaSiExsub" class="btn btn-primary">Aceptar</button>
-            <button id="btnTemaNoExsub" class="btn btn-warning">Agregar</button></center>
-        </div>
-        <div id="subCombo" class="hidden">
-        <br><br><br>
-          <center><h5 class="col-md-12"> El subtema que selecciono sera el subtema de su cuestionario.</h5></center>
-          <div class="col-md-12">
-            <br>
-            <center><button id="subAceptar" class="btn btn-primary">Aceptar</button></center>
-            <p class="text-danger formatoTexto14" id="spnNombre"> </p>
-            <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
-          </div>
-        </div>
-      </div>
-    </div>
+    @include('administracion/agregarTemSub')
 
     <div class="hidden" id="lblDg">
       <label class="control-label">Nombre del cuestionario:&nbsp;&nbsp;</label><label id="lblNombre"></label><br>
@@ -366,34 +223,78 @@
               <td><textarea rows="6" cols="100"></textarea></td>
               <td><input type="checkbox" value="resA1" id="resA1"><span class="glyphicon glyphicon-ok text-success" ></span>
               <input type="checkbox" value="resA2" id="resA2"><span class="glyphicon glyphicon-remove text-danger" ></span></td>
+              <div class="form-group hidden">
+                <label class="col-md-3 control-label">Activo:</label>
+                <div class="col-md-2">
+                  <select name="" id="resAc1" class="form-control input-sm">
+                    <option value="1" selected>Sí</option>
+                  </select>
+                </div>
+              </div>
             </tr>
             <tr id="txtB" class="hidden">
               <td><i>B: </i></td>
               <td><textarea rows="6" cols="100"></textarea></td>
               <td><input type="checkbox" value="resB1" id="resB1"><span class="glyphicon glyphicon-ok text-success"></span>
               <input type="checkbox" value="resB2" id="resB2" ><span class="glyphicon glyphicon-remove text-danger"></span></td>
+              <div class="form-group hidden">
+                <label class="col-md-3 control-label">Activo:</label>
+                <div class="col-md-2">
+                  <select name="" id="resAc2" class="form-control input-sm">
+                    <option value="1" selected>Sí</option>
+                  </select>
+                </div>
+              </div>
             </tr>
             <tr id="txtC" class="hidden">
               <td><i>C: </i></td>
               <td><textarea rows="6" cols="100"></textarea></td>
               <td><input type="checkbox" value="resC1" id="resC1"><span class="glyphicon glyphicon-ok text-success"></span>
               <input type="checkbox" value="resC2" id="resC2"><span class="glyphicon glyphicon-remove text-danger"></span></td>
+              <div class="form-group hidden">
+                <label class="col-md-3 control-label">Activo:</label>
+                <div class="col-md-2">
+                  <select name="" id="resAc3" class="form-control input-sm">
+                    <option value="1" selected>Sí</option>
+                  </select>
+                </div>
+              </div>
             </tr>
             <tr id="txtD" class="hidden">
               <td><i>D: </i></td>
               <td><textarea rows="6" cols="100"></textarea></td>
               <td><input type="checkbox" value="resD1" id="resD1"><span class="glyphicon glyphicon-ok text-success"></span>
               <input type="checkbox" value="resD2" id="resD2"><span class="glyphicon glyphicon-remove text-danger"></span></td>
+              <div class="form-group hidden">
+                <label class="col-md-3 control-label">Activo:</label>
+                <div class="col-md-2">
+                  <select name="" id="resAc4" class="form-control input-sm">
+                    <option value="1" selected>Sí</option>
+                  </select>
+                </div>
+              </div>
             </tr>
             <tr id="txtE" class="hidden">
               <td><i>E: </i></td>
               <td><textarea rows="6" cols="100"></textarea></td>
               <td><input type="checkbox" value="resE1" id="resE1"><span class="glyphicon glyphicon-ok text-success"></span>
               <input type="checkbox" value="resE2" id="resE2"><span class="glyphicon glyphicon-remove text-danger"></span></td>
+              <div class="form-group hidden">
+                <label class="col-md-3 control-label">Activo:</label>
+                <div class="col-md-2">
+                  <select name="" id="resAc5" class="form-control input-sm">
+                    <option value="1" selected>Sí</option>
+                  </select>
+                </div>
+              </div>
             </tr>
         </table> 
         <p class="text-danger formatoTexto14" id="spnNombre"> </p>
         <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
+        <center> 
+          <button id="btnSigPre" class="btn btn-info">Siguiente <i class="fa fa-chevron-right" aria-hidden="true"></i>
+          </button>
+        </center>
         <center>
           <button id="btnGuardarRes" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
         </center>
@@ -405,9 +306,10 @@
       </div>
 
       <input type="hidden" name="_token" id="_token" value="<?php echo csrf_token(); ?>">
-  </div><!--/Fin del contenido de opción múltiple-->
+  </div>
+  <!--______________________________Fin del contenido de opción múltiple______________________________-->
 
-<!--________________________________Formulairo de preguntas abiertas________________________________-->
+  <!--________________________________Formulairo de preguntas abiertas________________________________-->
   <div class="form-horizontal hidden" id="formprea" novalidate>
     <div class="form-group">
         <div class="col-md-8">
@@ -419,9 +321,13 @@
           <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
         </div>
     </div>
+    
+    <center> 
+      <button id="btnSigAb" class="btn btn-primary hidden"><i class="fa fa-floppy-o"></i> Guardar</button>
+    </center>
 
-    <center><button id="btnPreAb" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
-    <button id="btnCancelarAb"  class="btn btn-danger"><i class="fa fa-times-circle"></i> Cancelar</button></center>
+    <center><button id="btnPreAb" class="btn btn-primary hidden"><i class="fa fa-floppy-o"></i> Guardar</button>
+    <button id="btnCancelarAb"  class="btn btn-danger hidden"><i class="fa fa-times-circle"></i> Cancelar</button></center>
   </div><!-- fin de formulairo de preguntas de opción múltiple -->
 </div>
 
