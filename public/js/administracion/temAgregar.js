@@ -182,10 +182,6 @@ function mostrarTema(){
     document.getElementById('selTema');
 }
 
-
-
-
-
 label4.on('click',Tema);
 label5.on('click',subTema);
 btnTemas.on('click',Tema);

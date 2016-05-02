@@ -350,6 +350,6 @@ btnCancelarAg.on('click',cancelarAg);
 btnGuardarAg.on('click',ingresoInvitado);
 
 
-btnEditar.on('click',mostrarEditar);
+//btnEditar.on('click',mostrarEditar);
 btnConsulta.on('click',mostrarConsulta);
 btnAgregar.on('click',mostrarAgregar);

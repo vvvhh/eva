@@ -348,11 +348,11 @@ btnGuardar.on('click',ingresoPeriodo);
 
 tblPeriodos.delegate('.glyphicon-edit', 'click', seleccionarPeriodo);
 tblPeriodos.delegate('.glyphicon-trash', 'click', darBajaPeriodo);
-btnEditar.on('click',editarPeriodo);
+//btnEditar.on('click',editarPeriodo);
 btnCancelarE.on('click',cancelarE);
 
 btnConsultaM.on('click',mostrarConsulta);
-btnEditarM.on('click',mostrarEditar);
+//btnEditarM.on('click',mostrarEditar);
 btnAgregarM.on('click',mostrarAgregar);
 
 txtDiasAgregar.change(seleccionarPer);

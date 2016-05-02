@@ -1,10 +1,10 @@
+var i = 1;
+
 var consultasTabla=$('#consultasTabla'),consultaTbody=$('#consultaTbody');
 
 var btnConsulta =$('#btnConsulta'),btnEditar = $('#btnEditar'),btnAgregarC = $('#btnAgregarC'),btnAgregar=$('#btnAgregar');
 
-var pnlAgregar =$('#pnlAgregar'),pnlConsulta = $('#pnlConsulta'),pnlInicio = $('#pnlInicio');
-
-var tblServicios = $('#tblServicios'),tblCue = $('#tblCue'),tbodyServicios = $('#tbodyServicios');
+var pnlAgregar =$('#pnlAgregar'),serviciosTabla = $('#serviciosTabla'),tblCue = $('#tblCue'),serviciosTbody = $('#serviciosTbody');
 
 var txtNombreFuente = $('#txtNombreFuente'),txtCueId = $('#txtCueId'),formEditarServ= $('#formEditarServ'),
     txtActivo = $('#txtActivo'),btnGuardar = $('#btnGuardar'),btnCancelar = $('#btnCancelar'),token = $('#_token');
@@ -92,7 +92,7 @@ function editarCues(){
 
     }
 
-    tbodyServicios.html('');
+    serviciosTbody.html('');
     if ( res.status == 'OK' ){
       limpiar();
       getTodosCuestionarios();
@@ -125,7 +125,7 @@ function getTodosCuestionarios(){
     }catch (e){
         alert('Error JSON ' + e);
     }
-    tbodyServicios.html('');
+    serviciosTbody.html('');
 
     if ( res.status == 'OK' ){
        var i = 1;
@@ -136,12 +136,12 @@ function getTodosCuestionarios(){
         else{
           status = '<span class="glyphicon glyphicon-remove" title="Inactivo"></span>';
         }
-        tbodyServicios.append(
+        serviciosTbody.append(
           '<tr>'+
             '<td >'+o.cueFechaEla+'</td>'+
             '<td >'+o.cueFechaAp+'</td>'+
             '<td >'+o.temTema+'</td>'+
-            '<td >'+o.subTema+'</td>'+
+            '<td >'+o.subSubtema+'</td>'+
             '<td >'+o.cueNombre+'</td>'+
             '<td class="text-center">'+status+'</td>'+
             '<td class="text-center">'+
@@ -158,9 +158,9 @@ function getTodosCuestionarios(){
       });
 
       }else{
-      tbodyServicios.html('<tr><td colspan="8" class="center"><h3>'+ res.message +'</h3></td></tr>');
+      serviciosTbody.html('<tr><td colspan="8" class="center"><h3>'+ res.message +'</h3></td></tr>');
     }
-    tblServicios.removeClass('hidden');
+    serviciosTabla.removeClass('hidden');
 }
 
 function getCues(){
@@ -216,63 +216,19 @@ function getCues(){
         txtFechaEla.val(o.cueFechaEla);
         datosActivo.val(o.cueActivo);
         formEditarServ.removeClass('hidden');
-        tblServicios.addClass('hidden');
+        serviciosTabla.addClass('hidden');
       i++;
       });
     }else{
-      tbodyServicios.html('<tr><td colspan="8" class="center"><h3>'+ res.message +'</h3></td></tr>');
+      serviciosTbody.html('<tr><td colspan="8" class="center"><h3>'+ res.message +'</h3></td></tr>');
     }
-    tbodyServicios.removeClass('hidden');
+    serviciosTabla.removeClass('hidden');
 }
 
 function limpiar(){
-  tblServicios.removeClass('hidden');
+  serviciosTabla.removeClass('hidden');
   formEditarServ.addClass('hidden');
 }
-
-/* Inicio de funcion par apoder visuzalizar el cuestionario completo*/
-function getCuesT(){
-  
-  tblServicios.addClass('hidden');
-  var datos = $.ajax({
-    url: 'getCuesT',
-    type: 'get',
-        dataType:'json',
-        async:false
-    }).error(function(e){
-        alert('Ocurrio un error, intente de nuevo');
-    }).responseText;
-
-    var res;
-    try{
-        res = JSON.parse(datos);
-    }catch (e){
-        alert('Error JSON ' + e);
-    }
-
-    tbodyConsulta.addClass('hidden');
-    tblCue.removeClass('hidden');
-    if ( res.status == 'OK' ){
-       var i = 1;
-      $.each(res.data, function(k,o){
-        tbodyConsulta.append(
-          '<tr>'+
-            '<td >'+o.temTema+'</td'+
-            '<td >'+ "" +'</td>'+
-            '<td >'+o.subTema+'</td>'+
-            '<td >'+o.cueNombre+'</td>'+
-            '<td >'+o.prePregunta+'</td>'+
-          '</tr>'
-      );
-      i++;
-      });
-    }else{
-      tbodyConsultaCue.html('<tr><td colspan="8" class="center"><h3>'+ res.message +'</h3></td></tr>');
-    }
-    tblConsultas.addClass('hidden');
-    tblCue.removeClass('hidden');
-}
-/* fin de función para ver el cuestionario */
 
 /*******/
 
@@ -344,12 +300,10 @@ function ingresoCuestionario(){
 window.onload=function()
 {
   getTema();
-  pnlAgregar;
   txtFechaApl.val('');
   txtFechaEla.val('');
   txtNombre.val('');
   txtNumPre.html('');
-  tblServicios.addClass('hidden');
   txtPreg.val('');
   
   tblCue.addClass('hidden');
@@ -468,17 +422,14 @@ function getCuestionarioConsultas(){
 
     consultaTbody.html('');
     if ( res.status == 'OK' ){
-      console.log('boduy consulta');
        var i = 1;
       $.each(res.data, function(k,o){
-        console.log('boduy consulta');
       if ( o.cueActivo == 1 ){
           status = '<span class="glyphicon glyphicon-ok text-success" title="Activo"></span>';
         }
         else{
           status = '<span class="glyphicon glyphicon-remove" title="Inactivo"></span>';
         }
-        console.log('boduy consulta');
         consultaTbody.append(
           '<tr>'+
             '<td >'+o.cueFechaEla+'</td>'+
@@ -501,11 +452,11 @@ function getCuestionarioConsultas(){
 
 //redirección de botones de inicio
 function editar() {
+      getTodosCuestionarios();
       pnlAgregar.addClass('hidden');
       pnl1.addClass('hidden');
-      tblServicios.removeClass('hidden');
-      tblConsultas.addClass('hidden');
-      getTodosCuestionarios();
+      serviciosTabla.removeClass('hidden');
+      consultasTabla.addClass('hidden');
       lbl1.addClass('hidden');
       lbl2.removeClass('hidden');
       lbl3.addClass('hidden');
@@ -532,7 +483,7 @@ function consulta() {
       consultasTabla.removeClass('hidden');
       lblSub.addClass('hidden');
       lblDg.addClass('hidden');
-      tblServicios.addClass('hidden');
+      serviciosTabla.addClass('hidden');
       lbl1.addClass('hidden');
       lbl2.addClass('hidden');
       lbl3.removeClass('hidden');
@@ -554,7 +505,7 @@ function agregar() {
       pnl1.removeClass('hidden');
       getTodosCuestionarios();
       pnlAgregar.removeClass('hidden');
-      tblServicios.addClass('hidden');
+      serviciosTabla.addClass('hidden');
       lbl1.removeClass('hidden');
       lbl2.addClass('hidden');
       lbl3.addClass('hidden');
@@ -563,7 +514,7 @@ function agregar() {
       lblDg.addClass('hidden');
       agPre.addClass('hidden');
       tipoPre.addClass('hidden');
-      tblConsultas.addClass('hidden');
+      consultasTabla.addClass('hidden');
 
       btnEditar.addClass('botonNoactivo');
       btnConsulta.addClass('botonNoactivo');
@@ -623,10 +574,6 @@ function ingresoTemAg(){
       alert(resultado.message);
     }*/
   }
-}
-
-function temaId(){
-  url: 'getTemaAg'
 }
 
 function ingresoSubAg(){
@@ -769,8 +716,8 @@ label1.on('click',agregar);
 label2.on('click',editar);
 label3.on('click',consulta);
 
-tblServicios.delegate('.glyphicon-edit', 'click', getCues);
-tblServicios.delegate('.glyphicon-trash', 'click', darBajaCues);
+serviciosTabla.delegate('.glyphicon-edit', 'click', getCues);
+serviciosTabla.delegate('.glyphicon-trash', 'click', darBajaCues);
 btnCancelar.on('click',limpiar);
 btnGuardar.on('click',editarCues);
 

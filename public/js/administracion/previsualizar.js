@@ -336,4 +336,4 @@ btnActualizarH.on('click',editarHora);
 tblPreliminar.delegate('.glyphicon-edit', 'click', seleccionarNoticia);
 tblPreliminar.delegate('.glyphicon-trash', 'click', eliminarNoticia);
 btnCalcelarDofE.on('click',cancelarE);
-btnEditar.on('click',editarNot);
+//btnEditar.on('click',editarNot);

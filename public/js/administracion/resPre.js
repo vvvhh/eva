@@ -7,7 +7,6 @@ var resA1 = $('#resA1'),resA2 = $('#resA2'),resB1 = $('#resB1'),resB2 = $('#resB
 
 function agregarRes() {
     // body...
-    resetSelectElement(slctRes);
   var editar = $.ajax({
     url: 'agregarRes',
     data: {
@@ -234,11 +233,6 @@ function porPeriodoE2(){
     col2.addClass('hidden');
     txtOpE.addClass('hidden');    
   }
-}
-
-function resetSelectElement(slctRes) {
-    slctRes.selectedIndex = 0;  // first option is selected, or
-                                     // -1 for no option selected
 }
 
 btnSigPre.on('click',agregarRes);
