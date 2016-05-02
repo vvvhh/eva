@@ -1,4 +1,4 @@
-var tblConsultas=$('#tblConsultas'),tbodyConsulta=$('#tbodyConsulta');
+var consultasTabla=$('#consultasTabla'),consultaTbody=$('#consultaTbody');
 
 var btnConsulta =$('#btnConsulta'),btnEditar = $('#btnEditar'),btnAgregarC = $('#btnAgregarC'),btnAgregar=$('#btnAgregar');
 
@@ -160,6 +160,7 @@ function getTodosCuestionarios(){
       }else{
       tbodyServicios.html('<tr><td colspan="8" class="center"><h3>'+ res.message +'</h3></td></tr>');
     }
+    tblServicios.removeClass('hidden');
 }
 
 function getCues(){
@@ -465,23 +466,26 @@ function getCuestionarioConsultas(){
         alert('Error JSON ' + e);
     }
 
-    tbodyConsulta.html('');
+    consultaTbody.html('');
     if ( res.status == 'OK' ){
+      console.log('boduy consulta');
        var i = 1;
       $.each(res.data, function(k,o){
+        console.log('boduy consulta');
       if ( o.cueActivo == 1 ){
           status = '<span class="glyphicon glyphicon-ok text-success" title="Activo"></span>';
         }
         else{
           status = '<span class="glyphicon glyphicon-remove" title="Inactivo"></span>';
         }
-        tbodyConsulta.append(
+        console.log('boduy consulta');
+        consultaTbody.append(
           '<tr>'+
             '<td >'+o.cueFechaEla+'</td>'+
             '<td >'+o.cueFechaAp+'</td>'+
             '<td >'+o.temTema+'</td'+
-            //'<td >'+ "" +'</td>'+
-            '<td >'+o.subTema+'</td>'+
+            '<td >'+ "" +'</td>'+
+            '<td >'+o.subSubtema+'</td>'+
             '<td >'+o.cueNombre+'</td>'+
             '<td class="text-center">'+status+'</td>'+
           '</tr>'
@@ -489,9 +493,10 @@ function getCuestionarioConsultas(){
       i++;
       });
     }else{
-      tbodyConsulta.html('<tr><td colspan="8" class="center"><h3>'+ res.message +'</h3></td></tr>');
+
+      consultaTbody.html('<tr><td colspan="8" class="center"><h3>'+ res.message +'</h3></td></tr>');
     }
-    tblConsulta.removeClass('hidden');
+    consultasTabla.removeClass('hidden');
 }
 
 //redirección de botones de inicio
@@ -524,7 +529,7 @@ function consulta() {
       getCuestionarioConsultas();
       pnl1.addClass('hidden');
       pnlAgregar.addClass('hidden');
-      tblConsultas.removeClass('hidden');
+      consultasTabla.removeClass('hidden');
       lblSub.addClass('hidden');
       lblDg.addClass('hidden');
       tblServicios.addClass('hidden');
@@ -618,6 +623,10 @@ function ingresoTemAg(){
       alert(resultado.message);
     }*/
   }
+}
+
+function temaId(){
+  url: 'getTemaAg'
 }
 
 function ingresoSubAg(){

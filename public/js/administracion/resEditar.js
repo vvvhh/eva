@@ -336,7 +336,7 @@ btnGuardarAg.on('click',ingresoResponsable);
 
 
 btnEditar.on('click',mostrarEditar);
-btnConsulta.on('click',mostrarConsulta);
+//btnConsulta.on('click',mostrarConsulta);
 btnAgregar.on('click',mostrarAgregar);
 
 function myFunction(elmnt,clr) {

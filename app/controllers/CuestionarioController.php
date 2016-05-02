@@ -245,8 +245,6 @@ public function editarCues(){
   }
   /*****************/
   static public function getCuetionarioConsultas(){
-   /* $seleccionar = cuestionarios::get()
-      ->toArray();*/
        $seleccionar = DB::select('SELECT c.cueId, c.cueNombre, c.cueFechaAp, c.cueFechaEla, c.cueActivo, t.temId, t.temTema, s.subId, s.subSubtema FROM cuestionarios c, temas t, subtema s WHERE c.cueSubtema = s.subId AND s.subTema = t.temId');
       return $seleccionar;
   }

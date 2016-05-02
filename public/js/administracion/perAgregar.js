@@ -351,8 +351,8 @@ tblPeriodos.delegate('.glyphicon-trash', 'click', darBajaPeriodo);
 btnEditar.on('click',editarPeriodo);
 btnCancelarE.on('click',cancelarE);
 
-btnConsulta.on('click',mostrarConsulta);
+btnConsultaM.on('click',mostrarConsulta);
 btnEditarM.on('click',mostrarEditar);
-btnAgregar.on('click',mostrarAgregar);
+btnAgregarM.on('click',mostrarAgregar);
 
 txtDiasAgregar.change(seleccionarPer);

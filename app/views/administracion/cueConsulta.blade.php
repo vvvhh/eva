@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <div id="tblConsultas" class="hidden">
+    <div id="consultasTabla" class="hidden">
       <h2><span class="glyphicon glyphicon-edit text-primary"></span> Consultar datos generales de Cuestionarios</h2>
       <input type="hidden" id="txtCueId" value="">
       <div class="table-responsive" >
@@ -15,7 +15,7 @@
               <th class="col-md-1 text-center">Estado</th>
             </tr>
           </thead>
-          <tbody id="tbodyConsulta"></tbody>
+          <tbody id="consultaTbody"></tbody>
         </table>
       </div>
     </div><!-- /Tabla de servicios -->
