@@ -26,6 +26,8 @@
       <label class="control-label">Nombre del cuestionario:&nbsp;&nbsp;</label><label id="lblNombre"></label><br>
       <label class="control-label">Fecha de elaboración:&nbsp;&nbsp;</label><label id="lblFechaE"></label><br>
       <label class="control-label">Fecha de aplicación:&nbsp;&nbsp;</label><label id="lblFechaA"></label>
+      <label class="control-label">Preguntas Ingresadas:&nbsp;&nbsp;</label><label id="lblPregIng"></label>
+      <label class="control-label">Preguntas por ingresar:&nbsp;&nbsp;</label><label id="lblPregPorIng"></label>
       <br>
       <button id="btnDg" class="btn btn-success hidden"><i class="fa fa-chevron-left" aria-hidden="true"></i> Regresar</button>
     </div>

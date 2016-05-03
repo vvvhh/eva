@@ -311,6 +311,14 @@ window.onload=function()
   btnAgregar.removeClass('disabled');
   btnConsulta.removeClass('disabled');
 
+  txtNumPre.val('');
+    document.getElementById('slctRes').value = 0;
+    txtResA.val('');
+    txtResB.val('');
+    txtResC.val('');
+    txtResD.val('');
+    txtResE.val('');
+
   document.getElementById('resA1').checked = false;
   document.getElementById('resA2').checked = false;
   document.getElementById('resB1').checked = false;

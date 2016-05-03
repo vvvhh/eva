@@ -11,6 +11,7 @@ function agregarRes() {
     url: 'agregarRes',
     data: {
       token: token.val(),
+      resCorrecta: col2.val(),
       respuesta1: txtResA.val(),
       resActiva1: resAc1.val(),
       respuesta2: txtResB.val(),
@@ -44,8 +45,16 @@ function agregarRes() {
         showCancelButton: true,
         closeOnConfirm: true
       });
-      //formopm.removeClass('hidden');
-      console.log('formopm.removeClass');
+      ciclo();
+      btnGuardarPre.removeClass('hidden');
+      document.getElementById('txtPreg').disabled = false;
+      txtNumPre.val('');
+      document.getElementById('slctRes').value = 0;
+      txtResA.val('');
+      txtResB.val('');
+      txtResC.val('');
+      txtResD.val('');
+      txtResE.val('');
    }
     else{
       alert(resultado.message);

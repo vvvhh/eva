@@ -50,7 +50,7 @@
   </div>
 
   <!-- formulario de preguntas con opción múltiple -->
-  <div class="" id="formopm" novalidate>
+  <div class="hidden" id="formopm" novalidate>
     <h2><i class="fa fa-plus-circle text-primary"></i> Agregar Pregunta</h2>
     <input type="hidden" id="txtCueId" value="">
     <div class="form-group">
@@ -94,7 +94,7 @@
         <button id="btnIngresarRes" class="btn btn-success hidden"><i class="fa fa-floppy-o"></i> Ingresar respuestas</button>
       </center>
       <br><br>
-      <div name="sendmail" method="get" class="form-group " id="pnlRes"> 
+      <div name="sendmail" method="get" class="form-group hidden" id="pnlRes"> 
         ¿Cuantas respuestas contendra tu pregunta?:
         <select name="numObject" onChange="howMany(this.form)" id="slctRes"> 
           <option value="0" selected>  </option> 

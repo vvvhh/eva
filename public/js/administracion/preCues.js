@@ -1,7 +1,8 @@
 var btnAceptarC = $('#btnAceptarC'),txtNumPre = $('#txtNumPre'),preAc = $('#preAc'),txtPreg = $('#txtPreg'),
 	btnGuardarPre = $('#btnGuardarPre'),pnlRes = $('#pnlRes'),agPreNum = $('#agPreNum'),numPreC = $('#numPreC'),
   agPre = $('#agPre'),chkAbierta = $('#chkAbierta'),chkMix = $('#chkMix'),chkOpMul = $('#chkOpMul'),
-  formopm = $('#formopm'),btnModificarPre = $('#btnModificarPre'),btnIngresarRes = $('#btnIngresarRes');
+  formopm = $('#formopm'),btnModificarPre = $('#btnModificarPre'),btnIngresarRes = $('#btnIngresarRes'),
+  txtResA = $('#txtResA'),txtResB = $('#txtResB'),txtResC = $('#txtResC'),txtResD = $('#txtResD'),txtResE = $('#txtResE');
 
 function cicloPre() {
 	// body...
@@ -11,20 +12,27 @@ function cicloPre() {
   btnRegresarTipo.addClass('hidden');
   btnRegresarNumero.removeClass('hidden');
   agPre.removeClass('hidden');
+  formopm.removeClass('hidden');
   txtNumPre.val('');
   //ciclo para gregar pregunntas 
-  ciclo();
 }
 
 function ciclo(){
-  var q=txtNumPre.val();
-  var i = 0;
-    do {
-        //formopm.html('');
-        formopm.removeClass('hidden');
-        i++;
-        console.log(i);
-    } while (i < q);
+  console.log('inicio ciclo');
+  nPreguntas=txtNumPre.val();
+  if ((nPreguntas>0)&&(i<nPreguntas)) {   /*checa que sea mayor a 0 y que i sea menor al total de preguntas*/
+
+    txtNumPre.val('');
+    document.getElementByYd('slctRes').value = 0;
+    txtResA.val('');
+    txtResB.val('');
+    txtResC.val('');
+    txtResD.val('');
+    txtResE.val('');
+
+    i++;          /*aumenta en 1 para ingresar una pregunta */
+    console.log(i);
+  }
 }
 
 function agregarPre() {
@@ -58,7 +66,6 @@ function agregarPre() {
         showCancelButton: true,
         closeOnConfirm: false
       });
-      resetSelectElement(slctRes);
       btnGuardarPre.addClass('hidden');
       btnIngresarRes.removeClass('hidden');
       btnModificarPre.removeClass('hidden');
