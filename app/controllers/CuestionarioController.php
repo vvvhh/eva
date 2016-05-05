@@ -182,7 +182,6 @@ public function editarCues(){
         }
         else{
               $editar = cuestionarios::where('cueId', $data['i'])
-                ->where('subId', $data['i'])
                 ->update(array(
                   'cueFechaAp' => $data['fecha'],
                   'cueFechaEla' => $data['fechaEla'],

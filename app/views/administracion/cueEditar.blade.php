@@ -34,7 +34,7 @@
               <div class="form-group">
             <label for="txtNombreS" class="col-md-3 control-label">*Tema: </label>
             <div class="col-md-7" id="select">
-              <SELECT id="selCombo" size=1 class="form-control grisObscuro">
+              <SELECT id="selComboE" size=1 class="form-control grisObscuro">
               </SELECT>
               <p class="text-danger formatoTexto14" id="spnNombre"> </p>
               <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
@@ -44,7 +44,7 @@
           <div class="form-group">
             <label for="txtSubTema" class="col-md-3 control-label">*Subtema: </label>
             <div class="col-md-7">
-              <SELECT id="selComboSub" size=1 class="form-control grisObscuro">
+              <SELECT id="selComboSubE" size=1 class="form-control grisObscuro">
               </SELECT>
               <p class="text-danger formatoTexto14" id="spnNombre"> </p>
               <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
@@ -54,7 +54,7 @@
           <div class="form-group">
             <label for="txtNombre" class="col-md-3 control-label">*Nombre: </label>
             <div class="col-md-7">
-              <input id="txtNombre" name="txtNombre" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Nombre que tendra el cuestionario" required>
+              <input id="txtNombreE" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Nombre que tendra el cuestionario" required>
               <p class="text-danger formatoTexto14" id="spnNombre"> </p>
               <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
             </div>
@@ -64,7 +64,7 @@
             <label for="txtFechaInicio" class="col-md-3 control-label">Fecha de elaboración: </label>
             <div class="col-md-3">
               <div class="input-group date" data-provide="datepicker">
-                <input type="text" class="form-control" id="fechaEla">
+                <input type="text" class="form-control" id="fechaElaE">
                 <div class="input-group-addon">
                   <i class="fa fa-calendar"></i>
                 </div>
@@ -76,7 +76,7 @@
             <label for="txtFechaInicio" class="col-md-3 control-label">Fecha de aplicación: </label>
             <div class="col-md-3">
               <div class="input-group date" data-provide="datepicker">
-                <input type="text" class="form-control" id="txtFechaApl">
+                <input type="text" class="form-control" id="fechaAplE">
                 <div class="input-group-addon">
                   <i class="fa fa-calendar"></i>
                 </div>
@@ -87,7 +87,7 @@
           <div class="form-group">
             <label for="txtActivo" class="col-md-3 control-label">Activo:</label>
             <div class="col-md-1">
-              <select name="" id="datosActivo" class="form-control input-sm">
+              <select name="" id="datosActivoE" class="form-control input-sm">
                 <option value="1">Sí</option>
                 <option value="0">No</option>
               </select>

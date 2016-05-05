@@ -27,6 +27,9 @@ var btnGuardarTemAg = $('#btnGuardarTemAg'),btnGuardarSubAg = $('#btnGuardarSubA
 
 var btnTemaSiEx = $('#btnTemaSiEx'),btnTemaNoEx = $('#btnTemaNoEx'),btnTemaSiExsub = $('#btnTemaSiExsub'),
     btnTemaNoExsub = $('#btnTemaNoExsub'),txtNumPre = $('#txtNumPre');
+/*  variables de la parte de editar */
+var txtNombreE = $('#txtNombreE'),selComboE = $('#selComboE'),selComboSubE = $('#selComboSubE'),
+    fechaElaE = $('#fechaElaE'),fechaAplE = $('#fechaAplE'),datosActivoE = $('#datosActivoE');
 
 /*Ide desde el icono editar de la tabla*/
 function darBajaCues(){
@@ -69,14 +72,15 @@ function editarCues(){
     url: 'editarCues',
     data: {
       token: token.val(),
-      fecha:txtFechaA.val(),
-      tema:selComdo.val(),
-      subtema:selComboSub.val(),
-      nombre:txtNombre.val(),
-      activo:datosActivo.val(),
+      fecha:fechaAplE.val(),
+      fechaEla:fechaElaE.val(),
+      tema:selComboE.val(),
+      subtema:selComboSubE.val(),
+      nombre:txtNombreE.val(),
+      activo:datosActivoE.val(),
       i:txtCueId.val()
     },
-    type: 'get',
+    type: 'post',
         dataType:'json',
         async:false
     }).error(function(e){
@@ -188,27 +192,27 @@ function getCues(){
       alert('Error JSON ' + e);
     }
 
-    if ( res.status == 'OK' ){
+    if ( res.status === 'OK' ){
        var i = 1;
       $.each(res.data, function(k,o){
-        datosActivo.find('option').each(function(){
+        datosActivoE.find('option').each(function(){
         if ( o.cueActivo == $(this).val() )
-          datosActivo.val(o.cueActivo);
+          datosActivoE.val(o.cueActivo);
         });
-
 
         selCombo.find('option').each(function(){
         if ( o.temTema == $(this).val() )
-        selCombo.val(o.temTema);
+        selComboE.val(o.temTema);
         });
 
         selComboSub.find('option').each(function(){
         if ( o.subSubtema == $(this).val() )
-        selComboSub.val(o.subSubtema);
+        selComboSubE.val(o.subSubtema);
         });
 
-        txtNombre.val(o.cueNombre);
-        txtFechaA.val(o.cueFechaAp);
+        txtNombreE.val(o.cueNombre);
+        fechaElaE.val(o.cueFechaEla);
+        fechaAplE.val(o.cueFechaAp);
       i++;
       });
     }else{
@@ -375,6 +379,52 @@ var datos = $.ajax({
         );
       });
     document.getElementById('selComboSub');
+
+var datos = $.ajax({
+    url: 'getTema',
+    type: 'get',
+        dataType:'json',
+        async:false
+    }).error(function(e){
+        alert('Ocurrio un error, intente de nuevo');
+    }).responseText;
+
+    var res;
+    try{
+        res = JSON.parse(datos);
+    }catch (e){
+        alert('Error JSON ' + e);
+    }
+      selComboE.html('');
+      $.each(res.data, function(k,o){
+        selComboE.append(
+          '<option value="'+o.temId+'">'+o.temTema+'</option>'
+        );
+      });
+    document.getElementById('selComboE');
+
+var datos = $.ajax({
+    url: 'getSubtema',
+    type: 'get',
+        dataType:'json',
+        async:false
+    }).error(function(e){
+        alert('Ocurrio un error, intente de nuevo');
+    }).responseText;
+
+    var res;
+    try{
+        res = JSON.parse(datos);
+    }catch (e){
+        alert('Error JSON ' + e);
+    }
+      selComboSubE.html('');
+      $.each(res.data, function(k,o){
+        selComboSubE.append(
+          '<option value="'+o.subId+'">'+o.subSubtema+'</option>'
+        );
+      });
+    document.getElementById('selComboSubE');
 
 var datos = $.ajax({
     url: 'getTipo',
