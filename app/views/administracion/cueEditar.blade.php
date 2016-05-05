@@ -25,7 +25,7 @@
 
     <!-- Panel editar -->
     <div class="row">
-      <div class="col-md-12" class="hidden">
+      <div class="col-md-12">
         <div class="well transparenteClaro hidden" id="formEditarServ">
           <div class="form-horizontal">
             <fieldset>
@@ -61,11 +61,11 @@
           </div>
 
           <div class="form-group">
-            <label for="txtFechaInicio" class="col-md-3 control-label"><br>Fecha de elaboración: </label>
-            <div class="col-md-6">
+            <label for="txtFechaInicio" class="col-md-3 control-label">Fecha de elaboración: </label>
+            <div class="col-md-3">
               <div class="input-group date" data-provide="datepicker">
                 <input type="text" class="form-control" id="fechaEla">
-                <div  id="calendario" class="input-group-addon">
+                <div class="input-group-addon">
                   <i class="fa fa-calendar"></i>
                 </div>
               </div>
@@ -74,7 +74,7 @@
 
           <div class="form-group" id="groupNueva2">
             <label for="txtFechaInicio" class="col-md-3 control-label">Fecha de aplicación: </label>
-            <div class="col-md-5">
+            <div class="col-md-3">
               <div class="input-group date" data-provide="datepicker">
                 <input type="text" class="form-control" id="txtFechaApl">
                 <div class="input-group-addon">
@@ -83,22 +83,21 @@
               </div>
             </div>
           </div>
-              <div class="form-group">
-                <label for="txtActivo" class="col-md-4 control-label">Activo:</label>
-                <div class="col-md-7">
-                  <select name="" id="txtActivo" class="form-control input-sm">
-                    <option value="1">Sí</option>
-                    <option value="0">No</option>
-                  </select>
-                </div>
-              </div>
 
-              <div class="form-group">
-                <div class="col-md-9 col-md-offset-3">
-                  <button class="btn btn-primary" id="btnGuardar"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar cambios</button>
-                  <button class="btn btn-danger " id="btnCancelar"><span class="glyphicon glyphicon-remove-sign"></span> Cancelar</button>
-                </div>
-              </div>
+          <div class="form-group">
+            <label for="txtActivo" class="col-md-3 control-label">Activo:</label>
+            <div class="col-md-1">
+              <select name="" id="datosActivo" class="form-control input-sm">
+                <option value="1">Sí</option>
+                <option value="0">No</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+              <center><button class="btn btn-primary" id="btnGuardar"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar cambios</button>
+              <button class="btn btn-danger " id="btnCancelar"><span class="glyphicon glyphicon-remove-sign"></span> Cancelar</button></center>
+          </div>
             </fieldset>
           </div>
         </div>

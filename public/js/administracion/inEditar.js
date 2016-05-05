@@ -472,6 +472,6 @@ btnCancelarAg.on('click',cancelarAg);
 btnGuardarAg.on('click',ingresoIntegrante);
 
 //btnEditar.on('click',mostrarEditar);
-btnConsulta.on('click',mostrarConsulta);
+
 btnAgregar.on('click',mostrarAgregar);
 btnEnviar.on('click',enviarEquipos);

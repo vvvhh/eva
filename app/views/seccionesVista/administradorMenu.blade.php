@@ -18,7 +18,7 @@
         </h4>
       </strong></a>
         <ul id="collapseMiembros" class="nav nav-sidebar colorNav collapse">
-          <li id="liAgregar"><!-- href="{{ URL::to('administracion/cueAgregar#pnlAgregar') }}" -->
+          <li id="liAgregar">
               <a class="grisClaro" href="{{ URL::to('administracion/cueAgregar') }}" id="label1">
                 <i class="fa fa-plus-circle"></i> Agregar
               </a>

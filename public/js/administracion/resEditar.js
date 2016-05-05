@@ -1,7 +1,6 @@
 var tbodyAgregar=$('#tbodyAgregar');
 var tblAgregar=$('#tblAgregar'),
 btnEditar=$('#btnEditar'),
-btnConsulta=$('#btnConsulta'),
 btnAgregar=$('#btnAgregar');
 var pnlInicio=$('#pnlInicio');
 
@@ -336,7 +335,6 @@ btnGuardarAg.on('click',ingresoResponsable);
 
 
 //btnEditar.on('click',mostrarEditar);
-//btnConsulta.on('click',mostrarConsulta);
 btnAgregar.on('click',mostrarAgregar);
 
 function myFunction(elmnt,clr) {

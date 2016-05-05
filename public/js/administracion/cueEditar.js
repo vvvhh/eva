@@ -1,10 +1,9 @@
 var i = 1;
 
-var consultasTabla=$('#consultasTabla'),consultaTbody=$('#consultaTbody');
+var TablaConsulta=$('#TablaConsulta'),Tbody=$('#Tbody'),btnConsulta =$('#btnConsulta'),btnEditar = $('#btnEditar'),
+    btnAgregarC = $('#btnAgregarC'),btnAgregar=$('#btnAgregar');
 
-var btnConsulta =$('#btnConsulta'),btnEditar = $('#btnEditar'),btnAgregarC = $('#btnAgregarC'),btnAgregar=$('#btnAgregar');
-
-var pnlAgregar =$('#pnlAgregar'),serviciosTabla = $('#serviciosTabla'),tblCue = $('#tblCue'),serviciosTbody = $('#serviciosTbody');
+var serviciosTabla = $('#serviciosTabla'),tblCue = $('#tblCue'),serviciosTbody = $('#serviciosTbody');
 
 var txtNombreFuente = $('#txtNombreFuente'),txtCueId = $('#txtCueId'),formEditarServ= $('#formEditarServ'),
     txtActivo = $('#txtActivo'),btnGuardar = $('#btnGuardar'),btnCancelar = $('#btnCancelar'),token = $('#_token');
@@ -14,9 +13,9 @@ var token = $('#token'),txtNombre = $('#txtNombre'),selCombo = $('#selCombo'),se
     tbodyConsultaCue=$('#tbodyConsultaCue');
 
 var formselect = $('#formselect'),formprea = $('#formprea'),datosActivo = $('#datosActivo'),formpom = $('#formpom'),
-    numPreC = $('#numPreC'),selPre = $('#selPre'),btnCaFe = $('#btnCaFe'),
-    temSel = $('#temSel'),subSel = $('#subSel'),pnl1 = $('#pnl1'),lbl1 = $('#lbl1'),lbl2 = $('#lbl2'),
-    lbl3 = $('#lbl3'),label1 = $('#label1'),label2 = $('#label2'),label3 = $('#label3');
+    numPreC = $('#numPreC'),selPre = $('#selPre'),btnCaFe = $('#btnCaFe'),temSel = $('#temSel'),subSel = $('#subSel'),
+    pnl1 = $('#pnl1'),divGeneral = $('#divGeneral'),lbl1 = $('#lbl1'),lbl2 = $('#lbl2'),lbl3 = $('#lbl3'),
+    label1 = $('#label1'),label2 = $('#label2'),label3 = $('#label3');
 
 var dg = $('#dg'),lblDg = $('#lblDg'),lblNombre = $('#lblNombre'),lblFechaE = $('#lblFechaE'),lblFechaA = $('#lblFechaA'),
     selTipo = $('#selTipo'), agPre = $('#agPre'),tipoPreEle = $('#tipoPreEle'),lbltm = $('#lbltm'),tipoPre = $('#tipoPre'),
@@ -74,7 +73,7 @@ function editarCues(){
       tema:selComdo.val(),
       subtema:selComboSub.val(),
       nombre:txtNombre.val(),
-      activo:txtActivo.val(),
+      activo:datosActivo.val(),
       i:txtCueId.val()
     },
     type: 'get',
@@ -164,6 +163,8 @@ function getTodosCuestionarios(){
 }
 
 function getCues(){
+  serviciosTabla.addClass('hidden');
+  formEditarServ.removeClass('hidden');
   var id = $(this).attr('id');
   if (id==="")
     return false;
@@ -190,39 +191,30 @@ function getCues(){
     if ( res.status == 'OK' ){
        var i = 1;
       $.each(res.data, function(k,o){
+        datosActivo.find('option').each(function(){
+        if ( o.cueActivo == $(this).val() )
+          datosActivo.val(o.cueActivo);
+        });
 
-        txtFechaA.val(o.cueFechaAp);
+
+        selCombo.find('option').each(function(){
+        if ( o.temTema == $(this).val() )
         selCombo.val(o.temTema);
+        });
 
-        selCombo.find('option').each(
-          function(){
-            if ( o.cueTema == $(this).val() )
-            selCombo.val(o.cueTema);
-          }
-        );
-
-        selComboSub.val(o.subTema);
-
-        selComboSub.find('option').each(
-          function(){
-            if ( o.subId == $(this).val() )
-            selComboSub.val(o.subId);
-          }
-        );
+        selComboSub.find('option').each(function(){
+        if ( o.subSubtema == $(this).val() )
+        selComboSub.val(o.subSubtema);
+        });
 
         txtNombre.val(o.cueNombre);
-        txtCueId.val(o.cueId);
-        
-        txtFechaEla.val(o.cueFechaEla);
-        datosActivo.val(o.cueActivo);
-        formEditarServ.removeClass('hidden');
-        serviciosTabla.addClass('hidden');
+        txtFechaA.val(o.cueFechaAp);
       i++;
       });
     }else{
       serviciosTbody.html('<tr><td colspan="8" class="center"><h3>'+ res.message +'</h3></td></tr>');
     }
-    serviciosTabla.removeClass('hidden');
+    serviciosTabla.addClass('hidden');
 }
 
 function limpiar(){
@@ -307,9 +299,6 @@ window.onload=function()
   txtPreg.val('');
   
   tblCue.addClass('hidden');
-  btnEditar.removeClass('disabled');
-  btnAgregar.removeClass('disabled');
-  btnConsulta.removeClass('disabled');
 
   txtNumPre.val('');
   document.getElementById('slctRes').value = 0;
@@ -428,7 +417,7 @@ function getCuestionarioConsultas(){
         alert('Error JSON ' + e);
     }
 
-    consultaTbody.html('');
+    Tbody.html('');
     if ( res.status == 'OK' ){
        var i = 1;
       $.each(res.data, function(k,o){
@@ -438,7 +427,7 @@ function getCuestionarioConsultas(){
         else{
           status = '<span class="glyphicon glyphicon-remove" title="Inactivo"></span>';
         }
-        consultaTbody.append(
+        Tbody.append(
           '<tr>'+
             '<td >'+o.cueFechaEla+'</td>'+
             '<td >'+o.cueFechaAp+'</td>'+
@@ -453,18 +442,17 @@ function getCuestionarioConsultas(){
       });
     }else{
 
-      consultaTbody.html('<tr><td colspan="8" class="center"><h3>'+ res.message +'</h3></td></tr>');
+      Tbody.html('<tr><td colspan="8" class="center"><h3>'+ res.message +'</h3></td></tr>');
     }
-    consultasTabla.removeClass('hidden');
+    TablaConsulta.removeClass('hidden');
 }
 
 //redirección de botones de inicio
 function editar() {
       getTodosCuestionarios();
-      pnlAgregar.addClass('hidden');
       pnl1.addClass('hidden');
       serviciosTabla.removeClass('hidden');
-      consultasTabla.addClass('hidden');
+      TablaConsulta.addClass('hidden');
       lbl1.addClass('hidden');
       lbl2.removeClass('hidden');
       lbl3.addClass('hidden');
@@ -485,20 +473,18 @@ function editar() {
 }
 
 function consulta() {
-      getCuestionarioConsultas();
       pnl1.addClass('hidden');
-      pnlAgregar.addClass('hidden');
-      consultasTabla.removeClass('hidden');
       lblSub.addClass('hidden');
       lblDg.addClass('hidden');
       serviciosTabla.addClass('hidden');
       lbl1.addClass('hidden');
       lbl2.addClass('hidden');
-      lbl3.removeClass('hidden');
       formEditarServ.addClass('hidden');
       agPre.addClass('hidden');
       lbltm.addClass('hidden');
       tipoPre.addClass('hidden');
+      TablaConsulta.removeClass('hidden');
+      lbl3.removeClass('hidden');
 
       btnEditar.addClass('botonNoactivo');
       btnConsulta.addClass('botonActivo');
@@ -507,12 +493,14 @@ function consulta() {
       btnEditar.removeClass('botonActivo');
       btnConsulta.removeClass('botonNoactivo');
       btnAgregar.removeClass('botonActivo');
+
+      getCuestionarioConsultas();
 }
 
 function agregar() {
+      divGeneral.removeClass('hidden');
       pnl1.removeClass('hidden');
       getTodosCuestionarios();
-      pnlAgregar.removeClass('hidden');
       serviciosTabla.addClass('hidden');
       lbl1.removeClass('hidden');
       lbl2.addClass('hidden');
@@ -522,7 +510,7 @@ function agregar() {
       lblDg.addClass('hidden');
       agPre.addClass('hidden');
       tipoPre.addClass('hidden');
-      consultasTabla.addClass('hidden');
+      TablaConsulta.addClass('hidden');
 
       btnEditar.addClass('botonNoactivo');
       btnConsulta.addClass('botonNoactivo');
@@ -741,9 +729,6 @@ btnTemaNoExsub.on('click',noexistesub);
 btnEditar.on('click',editar);
 btnConsulta.on('click',consulta);
 btnAgregar.on('click',agregar);
-label1.on('click',agregar);
-label2.on('click',editar);
-label3.on('click',consulta);
 
 serviciosTabla.delegate('.glyphicon-edit', 'click', getCues);
 serviciosTabla.delegate('.glyphicon-trash', 'click', darBajaCues);

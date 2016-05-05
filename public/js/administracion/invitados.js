@@ -1,7 +1,6 @@
 var tblAgregar=$('#tblAgregar'),
 tbodyAgregar=$('#tbodyAgregar');
-var btnConsulta=$('#btnConsulta'),
-btnEditar=$('#btnEditar'),
+var btnEditar=$('#btnEditar'),
 btnAgregar=$('#btnAgregar');
 
 var pnlAgregar=$('#pnlAgregar'),
@@ -306,10 +305,8 @@ function mostrarEditar(){
   getTodosInvitadosE();
   pnlInicio.addClass('hidden');
   btnEditar.addClass('botonActivo');
-  btnConsulta.addClass('botonNoactivo');
   btnAgregar.addClass('botonNoactivo');
   btnEditar.removeClass('botonNoactivo');
-  btnConsulta.removeClass('botonActivo');
   btnAgregar.removeClass('botonActivo');
 }
 function mostrarConsulta(){
@@ -351,5 +348,4 @@ btnGuardarAg.on('click',ingresoInvitado);
 
 
 //btnEditar.on('click',mostrarEditar);
-btnConsulta.on('click',mostrarConsulta);
 btnAgregar.on('click',mostrarAgregar);

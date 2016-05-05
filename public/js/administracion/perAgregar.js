@@ -285,10 +285,10 @@ function mostrarEditar(){
   getTodosPeriodos();
   pnlInicio.addClass('hidden');
   btnEditarM.addClass('botonActivo');
-  btnConsulta.addClass('botonNoactivo');
+  //btnConsulta.addClass('botonNoactivo');
   btnAgregar.addClass('botonNoactivo');
   btnEditarM.removeClass('botonNoactivo');
-  btnConsulta.removeClass('botonActivo');
+  //btnConsulta.removeClass('botonActivo');
   btnAgregar.removeClass('botonActivo');
 }
 function mostrarConsulta(){
@@ -298,10 +298,10 @@ function mostrarConsulta(){
   getMostrarConsulta();
   pnlInicio.addClass('hidden');
   btnEditarM.addClass('botonNoactivo');
-  btnConsulta.addClass('botonActivo');
+  //btnConsulta.addClass('botonActivo');
   btnAgregar.addClass('botonNoactivo');
   btnEditarM.removeClass('botonActivo');
-  btnConsulta.removeClass('botonNoactivo');
+  //btnConsulta.removeClass('botonNoactivo');
   btnAgregar.removeClass('botonActivo');
 }
 function mostrarAgregar(){
@@ -310,10 +310,10 @@ function mostrarAgregar(){
   tblServicios.addClass('hidden');
   pnlInicio.addClass('hidden');
   btnEditarM.addClass('botonNoactivo');
-  btnConsulta.addClass('botonNoactivo');
+  //btnConsulta.addClass('botonNoactivo');
   btnAgregar.addClass('botonActivo');
   btnEditarM.removeClass('botonActivo');
-  btnConsulta.removeClass('botonActivo');
+  //btnConsulta.removeClass('botonActivo');
   btnAgregar.removeClass('botonNoactivo');
 }
 
@@ -351,7 +351,6 @@ tblPeriodos.delegate('.glyphicon-trash', 'click', darBajaPeriodo);
 //btnEditar.on('click',editarPeriodo);
 btnCancelarE.on('click',cancelarE);
 
-btnConsultaM.on('click',mostrarConsulta);
 //btnEditarM.on('click',mostrarEditar);
 btnAgregarM.on('click',mostrarAgregar);
 

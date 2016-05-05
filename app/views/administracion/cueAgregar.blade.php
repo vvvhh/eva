@@ -18,96 +18,102 @@
 
 <div class="row">
   <div class="col-md-12">
-    <div class="form-horizontal" id="pnlAgregar" name="pnlAgregar" class="hidden" novalidate>
+    <div class="transparenteClaro hidden" id="divGeneral">
+      <div class="form-horizontal">
+        <fieldset>
 
-    @include('administracion/agregarTemSub')
+          @include('administracion/agregarTemSub')
 
-    <div class="hidden" id="lblDg">
-      <label class="control-label">Nombre del cuestionario:&nbsp;&nbsp;</label><label id="lblNombre"></label><br>
-      <label class="control-label">Fecha de elaboración:&nbsp;&nbsp;</label><label id="lblFechaE"></label><br>
-      <label class="control-label">Fecha de aplicación:&nbsp;&nbsp;</label><label id="lblFechaA"></label>
-      <label class="control-label">Preguntas Ingresadas:&nbsp;&nbsp;</label><label id="lblPregIng"></label>
-      <label class="control-label">Preguntas por ingresar:&nbsp;&nbsp;</label><label id="lblPregPorIng"></label>
-      <br>
-      <button id="btnDg" class="btn btn-success hidden"><i class="fa fa-chevron-left" aria-hidden="true"></i> Regresar</button>
-    </div>
-
-    <div id="Nombre" class="hidden">
-        <div class="form-group">
-          <label for="txtNombre" class="col-md-3 control-label">*Nombre: </label>
-          <div class="col-md-7">
-            <input id="txtNombre" name="txtNombre" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Nombre que tendra el cuestionario" required>
-            <p class="text-danger formatoTexto14" id="spnNombre"> </p>
-            <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
-            <center><button id="btnGrdNmb" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button></center>
+          <div class="hidden" id="lblDg">
+            <label class="control-label">Nombre del cuestionario:&nbsp;&nbsp;</label><label id="lblNombre"></label><br>
+            <label class="control-label">Fecha de elaboración:&nbsp;&nbsp;</label><label id="lblFechaE"></label><br>
+            <label class="control-label">Fecha de aplicación:&nbsp;&nbsp;</label><label id="lblFechaA"></label>
             <br>
+            <button id="btnDg" class="btn btn-success hidden"><i class="fa fa-chevron-left" aria-hidden="true"></i> Regresar</button>
           </div>
-        </div>
 
-      <div class="form-group hidden">
-        <label for="txtActivot" class="col-md-3 control-label">Activo:</label>
-        <div class="col-md-3">
-          <select name="" id="datosActivo" class="form-control input-sm">
-            <option value="1">Sí</option>
-            <option value="0">No</option>
-          </select>
-        </div>
-      </div>
-    </div>
+          <div id="Nombre" class="hidden">
+              <div class="form-group">
+                <label for="txtNombre" class="col-md-3 control-label">*Nombre: </label>
+                <div class="col-md-7">
+                  <input id="txtNombre" name="txtNombre" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Nombre que tendra el cuestionario" required>
+                  <p class="text-danger formatoTexto14" id="spnNombre"> </p>
+                  <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
+                  <center>
+                    <button id="btnGrdNmb" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
+                  </center>
+                  <br>
+                </div>
+              </div>
 
-  <div id="FechaEla" class="hidden">
-      <div class="form-group">
-        <label for="txtFechaInicio" class="col-md-3 control-label">*Elija fecha de elaboración: </label>
-        <div class="col-md-2">
-          <div class="input-group date" data-provide="datepicker">
-            <input type="text" class="form-control" id="txtFechaEla">
-            <div  id="calendario" class="input-group-addon">
-              <i class="fa fa-calendar"></i>
+            <div class="form-group hidden">
+              <label for="txtActivot" class="col-md-3 control-label">Activo:</label>
+              <div class="col-md-3">
+                <select name="" id="datosActivo" class="form-control input-sm">
+                  <option value="1" selected>Sí</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-2"></div>
-      </div>
-      <div class="form-group">
-        <div class=" col-md-12">
-          <br>
-          <center><button id="btnGrdFchEl" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button></center>
-        </div>
-      </div>
-    </div>
 
-    <div id="FechaApl" class="hidden">
-      <div class="form-group">
-        <label for="txtFechaInicio" class="col-md-3 control-label">*Elija fecha de aplicaión: </label>
-        <div class="col-md-2">
-          <div class="input-group date" data-provide="datepicker">
-            <input type="text" class="form-control" id="txtFechaApl">
-            <div class="input-group-addon">
-              <i class="fa fa-calendar" id></i>
+        <div id="FechaEla" class="hidden">
+            <div class="form-group">
+              <label for="txtFechaInicio" class="col-md-3 control-label">*Elija fecha de elaboración: </label>
+              <div class="col-md-3">
+                <div class="input-group date" data-provide="datepicker">
+                  <input type="text" class="form-control" id="txtFechaEla">
+                  <div  id="calendario" class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2"></div>
+            </div>
+            <div class="form-group">
+              <div class=" col-md-12">
+                <br>
+                <center><button id="btnGrdFchEl" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button></center>
+              </div>
             </div>
           </div>
-          <br>
-        </div>
-        <div class="form-group">
-        <div class=" col-md-12">
-          <br>
-          <center><button id="btnGrdFchAp" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button></center>
-          <br>
-        </div>
-      </div>
-      </div>
-        <div class="form-group">
-          <div class=" col-md-12">
-            <center>
-            <h4 class="hidden" id="infoCom">Información completada, los datos estan listos para ser insertados en la base de datos.</h4>
-              <button id="btnModificarAg" class="btn btn-warning hidden"><i class="fa fa-pencil-square-o"></i> Modificar</button>
-              <button id="btnGuardarAg" class="btn btn-primary hidden"><i class="fa fa-floppy-o"></i> Guardar Definitivo</button>
-              <button id="btnCancelarAg"  class="btn btn-danger hidden"><i class="fa fa-times-circle"></i> Cancelar</button>
-            </center>
+
+          <div id="FechaApl" class="hidden">
+            <div class="form-group">
+              <label for="txtFechaInicio" class="col-md-3 control-label">*Elija fecha de aplicaión: </label>
+              <div class="col-md-3">
+                <div class="input-group date" data-provide="datepicker">
+                  <input type="text" class="form-control" id="txtFechaApl">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar" id></i>
+                  </div>
+                </div>
+                <br>
+              </div>
+              <div class="form-group">
+              <div class=" col-md-12">
+                <br>
+                <center><button id="btnGrdFchAp" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button></center>
+                <br>
+              </div>
+            </div>
+            </div>
+              <div class="form-group">
+                <div class=" col-md-12">
+                  <center>
+                  <h4 class="hidden" id="infoCom">Información completada, los datos estan listos para ser insertados en la base de datos.</h4>
+                    <button id="btnModificarAg" class="btn btn-warning hidden"><i class="fa fa-pencil-square-o"></i> Modificar</button>
+                    <button id="btnGuardarAg" class="btn btn-primary hidden"><i class="fa fa-floppy-o"></i> Guardar Definitivo</button>
+                    <button id="btnCancelarAg"  class="btn btn-danger hidden"><i class="fa fa-times-circle"></i> Cancelar</button>
+                  </center>
+                </div>
+              </div>
           </div>
-        </div>
+        @include('administracion/pregRes')
+        </fieldset>
+      </div>
     </div>
-  @include('administracion/pregRes')
+  </div>
 </div>
 
 @include('administracion/cueEditar')

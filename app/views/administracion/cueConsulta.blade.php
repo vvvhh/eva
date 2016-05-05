@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <div id="consultasTabla" class="hidden">
+    <div id="TablaConsulta" class="hidden">
       <h2><span class="glyphicon glyphicon-edit text-primary"></span> Consultar datos generales de Cuestionarios</h2>
       <input type="hidden" id="txtCueId" value="">
       <div class="table-responsive" >
@@ -15,7 +15,7 @@
               <th class="col-md-1 text-center">Estado</th>
             </tr>
           </thead>
-          <tbody id="consultaTbody"></tbody>
+          <tbody id="Tbody"></tbody>
         </table>
       </div>
     </div><!-- /Tabla de servicios -->
@@ -25,8 +25,5 @@
     <div class="col-md-12" align="center">
     </div>
   </div>
-
   <input type="hidden" name="_token" id="_token" value="<?php echo csrf_token(); ?>">
-
-  </div>  <!--/columna10 contenido-->
-</div>
+</div>  <!--/columna10 contenido-->

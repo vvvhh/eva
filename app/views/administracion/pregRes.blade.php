@@ -5,6 +5,8 @@
   </div>
   <div class="hidden" id="agPre">
     <label for="txtNombreS" class="control-label">Número de preguntas del cuestionario:&nbsp;&nbsp;</label><label id="agPreNum"></label><br>
+    <label class="control-label">Preguntas Ingresadas:&nbsp;&nbsp;</label><label id="lblPregIng"></label><br>
+    <label class="control-label">Preguntas por ingresar:&nbsp;&nbsp;</label><label id="lblPregPorIng"></label><br>
     <button id="btnRegresarNumero" class="btn btn-success hidden"><i class="fa fa-chevron-left" aria-hidden="true"></i> Regresar</button>
   </div>
   <div class="hidden" id="pre">
@@ -50,7 +52,7 @@
   </div>
 
   <!-- formulario de preguntas con opción múltiple -->
-  <div class="" id="formopm" novalidate>
+  <div class="hidden" id="formopm" novalidate>
     <h2><i class="fa fa-plus-circle text-primary"></i> Agregar Pregunta</h2>
     <input type="hidden" id="txtCueId" value="">
     <div class="form-group">

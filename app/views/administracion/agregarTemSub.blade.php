@@ -67,7 +67,7 @@
     <br><br>
       <div class="form-group">
         <label for="txtNombreS" class="col-md-3 control-label">Temas existentes: </label>
-        <div class="col-md-9">
+        <div class="col-md-7">
           <SELECT id="selCombo" size=1 class="form-control grisObscuro">
           </SELECT>
           <p class="text-danger formatoTexto14" id="spnNombre"> </p>
