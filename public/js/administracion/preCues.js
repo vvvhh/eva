@@ -23,13 +23,12 @@ function ciclo(){
   if ((nPreguntas>0)&&(i<nPreguntas)) {   /*checa que sea mayor a 0 y que i sea menor al total de preguntas*/
 
     txtNumPre.val('');
-    document.getElementByYd('slctRes').value = 0;
+    document.getElementById('slctRes').value = 0;
     txtResA.val('');
     txtResB.val('');
     txtResC.val('');
     txtResD.val('');
     txtResE.val('');
-
     i++;          /*aumenta en 1 para ingresar una pregunta */
     console.log(i);
   }
@@ -66,6 +65,8 @@ function agregarPre() {
         showCancelButton: true,
         closeOnConfirm: false
       });
+      getPreId();
+      console.log('getPreId');
       btnGuardarPre.addClass('hidden');
       btnIngresarRes.removeClass('hidden');
       btnModificarPre.removeClass('hidden');
@@ -95,6 +96,27 @@ function btnIngresarResFun(){
   btnIngresarRes.addClass('hidden');
   pnlRes.removeClass('hidden');
   //txtPreg.html('');
+}
+
+function getPreId(){
+  var datos = $.ajax({
+    url: 'getPreId',
+    type: 'get',
+        dataType:'json',
+        async:false
+    }).error(function(e){
+        alert('Ocurrio un error, intente de nuevo');
+    }).responseText;
+
+    var res;
+    try{
+        res = JSON.parse(datos);
+    }catch (e){
+        alert('Error JSON ' + e);
+    }
+      $.each(res.data, function(k,o){
+        txtTemaId.val($ID);
+      });
 }
 
 btnAceptarC.on('click',cicloPre);

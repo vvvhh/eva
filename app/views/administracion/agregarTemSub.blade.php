@@ -13,9 +13,14 @@
     </div>
 
     <div class="hidden" id="lblSub">
-      <label for="txtNombreS" class="control-label">Subtema:&nbsp;&nbsp;</label><label id="subSel"></label>
+      <label for="txtNombreS" class="control-label">
+        Subtema:&nbsp;&nbsp;
+      </label>
+      <label id="subSel"></label>
       <br>
-      <button id="btnRegresarSub" class="btn btn-success hidden"><i class="fa fa-chevron-left" aria-hidden="true"></i> Regresar</button>
+      <button id="btnRegresarSub" class="btn btn-success hidden">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i> Regresar
+      </button>
     </div>
 
 <!--________________________Sección para agregar un tema nuevo desde agregar________________________-->

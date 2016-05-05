@@ -194,7 +194,6 @@ public function subAgregarAg(){ /**INGRESO Subtema**/
 
       if(isset($token)) {
         $data = array(
-          'tema' => Input::get('tema'),
           'subtema' => Input::get('subtema'),
         );
 
@@ -228,9 +227,8 @@ public function subAgregarAg(){ /**INGRESO Subtema**/
 
             else{
               $insert = subtema::insert(array(
-                'subTema' => trim($data['tema']),
                 'subSubtema' => trim($data['subtema']),
-                'subActivo' => true
+                'subActivo' => true,
               ));
 
             if ( $insert ){

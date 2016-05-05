@@ -12,8 +12,6 @@ class preCuesController extends BaseController{
       $data = array(
         'pregunta' => Input::get('pregunta'),
         'preActiva' => Input::get('preActiva')
-        //'tiempo' => Input::get('tiempo'),
-        //'idResponsable' => Input::get('idResponsable'),
       );
 
      $validaciones = array('pregunta' => array('required','regex:/^([a-zA-ñÑZáéíóúñÁÉÍÓÚ\-\_\s\,\.\:\;\¿\?\¡\!])+$/'));
@@ -47,14 +45,14 @@ class preCuesController extends BaseController{
             $insert = preguntas::insert(array(
               'prePregunta' => trim($data['pregunta']),
               'preActivo' => trim($data['preActiva'])
-              //'cueTiempo'=> $data['tiempo'],
-              //'cueSubTema'=> $data['subTema'],
-              //'cueResponsables'=> $data['idResponsable']
             ));
+
+      $seleccionar=preCuesController::getPreId($data['pregunta']);
 
               if ( $insert ){
                 $response = array(
                   'status' => 'OK',
+                  'data' => $seleccionar,
                   'message' => 'Pregunta agregada correctamente.');
 
               }
@@ -77,62 +75,10 @@ class preCuesController extends BaseController{
     return Response::json( $response );
   }
 
- /**DAR BAJA SERVICIO*/
-  public function darBajaCues(){   
-    if( !Sesion::isResponsable() ){
-      if( !Sesion::isAdmin() )
-      return Redirect::to('administracion/logout');
-    }
-
-      $token = Input::get('token');
-
-      if(isset($token)) {
-        $data = array(
-          'id' => Input::get('i')
-        );
-
-       $validaciones = array('id' => array('required', 'alpha_num')
-       );
-
-       $validator = Validator::make($data , $validaciones);
-
-       if ($validator->fails()){
-          $respuesta;
-          $mensajes = $validator->messages();
-          foreach ($mensajes->all() as $mensaje){
-              $respuesta = $mensaje;
-          }
-
-            $response = array(
-              'status' => 'ERROR',
-              'message' => $respuesta
-            );
-        }
-        else{
-              $editar = cuestionarios::where('cueId', $data['id'])
-                ->update(array(
-                  'cueActivo' => false
-                ));
-
-              if ( $editar )
-                $response = array(
-                  'status' => 'OK',
-                  'message' => 'Fuente actualizado'
-                  );
-              else
-                $response = array (
-                  'status' => 'ERROR',
-                  'message' => 'No se puede actualizar la fuente, intente de nuevo'
-                  );
-            }
-      }
-
-      else{
-        $response = array(
-          'status' => 'ERROR',
-          'message' => 'Vuelva a intentar en un momento'
-        );
-      }
-      return Response::json( $response );
+  public static function getPreId($gpregunta){
+    # code...
+    $ID = DB::select('SELECT preId FROM preguntas WHERE prePregunta = "'.$gpregunta.'";');
+      return $ID;
   }
+
 }

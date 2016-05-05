@@ -1,6 +1,5 @@
 <?php
 
-//Route::get('/', array('uses' => 'RssController@rssInicio'));
 Route::post('/login', array('uses' => 'UsuarioController@login'));
 Route::post('/loginA', array('uses' => 'UsuarioController@loginA'));
 Route::post('/loginU', array('uses' => 'UsuarioController@loginU'));
@@ -20,10 +19,6 @@ Route::post('/finalizarNot', array('uses' => 'NoticiasController@finalizarNot'))
 Route::get('/', function(){
 	return View::make('inicio');
 });
-
-/*Route::get('/', function(){
-	return View::make('sesion');
-});*/
 
 Route::get('/inicio2', function(){
 	return View::make('inicio2');

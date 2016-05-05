@@ -312,12 +312,12 @@ window.onload=function()
   btnConsulta.removeClass('disabled');
 
   txtNumPre.val('');
-    document.getElementById('slctRes').value = 0;
-    txtResA.val('');
-    txtResB.val('');
-    txtResC.val('');
-    txtResD.val('');
-    txtResE.val('');
+  document.getElementById('slctRes').value = 0;
+  txtResA.val('');
+  txtResB.val('');
+  txtResC.val('');
+  txtResD.val('');
+  txtResE.val('');
 
   document.getElementById('resA1').checked = false;
   document.getElementById('resA2').checked = false;
@@ -590,7 +590,6 @@ function ingresoSubAg(){
     url: 'subAgregarAg',
     data: {
       token: token.val(),
-      tema: selTema.val(),
       subtema: txtSubTema.val(),
       activo: txtActivos.val(),
     },
@@ -698,6 +697,7 @@ function existesub(){
           FechaApl.removeClass('hidden');
           btnRegresarTem.addClass('hidden');
           btnRegresarSub.removeClass('hidden');
+          btnSiguienteSub.removeClass('hidden');
         }
   });
   //obtención de selección del select
@@ -710,6 +710,27 @@ function noexistesub(){
   subtema.addClass('hidden');
   mosSub.removeClass('hidden');
   subtemaAg.removeClass('hidden');
+}
+
+function getPreId(){
+  var datos = $.ajax({
+    url: 'agregarPre',
+    type: 'post',
+        dataType:'json',
+        async:false
+    }).error(function(e){
+        alert('Ocurrio un error, intente de nuevo');
+    }).responseText;
+
+    var res;
+    try{
+        res = JSON.parse(datos);
+    }catch (e){
+        alert('Error JSON ' + e);
+    }
+      $.each(res.data, function(k,o){
+        txtTemaId.val($ID);
+      });
 }
 
 btnTemaSiEx.on('click',existe);

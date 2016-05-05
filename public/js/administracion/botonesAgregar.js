@@ -1,8 +1,8 @@
 var btnGrdFchEl = $('#btnGrdFchEl'),btnGrdFchAp = $('#btnGrdFchAp'),valor=sessionStorage.getItem("visita"),
     btnModificarAg = $('#btnModificarAg'),btnGuardarAg = $('#btnGuardarAg'),btnCancelarAg = $('#btnCancelarAg'),
     infoCom = $('#infoCom'),pnlAgregar = $('#pnlAgregar'),pnlRes = $('#pnlRes'),btnRegresarTem = $('#btnRegresarTem'),
-    btnRegresarSub = $('#btnRegresarSub'),btnDg = $('#btnDg'),btnRegresarTipo = $('#btnRegresarTipo'),
-    btnRegresarNumero = $('#btnRegresarNumero'),btnGrdNmb = $('#btnGrdNmb');
+    btnRegresarSub = $('#btnRegresarSub'),btnSiguienteSub = $('#btnSiguienteSub'),btnDg = $('#btnDg'),btnRegresarTipo = $('#btnRegresarTipo'),
+    btnRegresarNumero = $('#btnRegresarNumero'),btnGrdNmb = $('#btnGrdNmb'),btnSiguienteTem = $('#btnSiguienteTem');
 
 function mostrarTema(){
   sessionStorage.setItem("visita", "1");

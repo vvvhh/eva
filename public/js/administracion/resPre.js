@@ -120,6 +120,10 @@ function howMany(form){
 function porRangoA1(){
   if( resA1.prop('checked') ) {
     resA2.prop('checked', false);
+    resB2.prop('checked', true);
+    resC2.prop('checked', true);
+    resD2.prop('checked', true);
+    resE2.prop('checked', true);
     resB1.prop('checked', false);
     resC1.prop('checked', false);
     resD1.prop('checked', false);
