@@ -15,8 +15,6 @@ class CuestionarioController extends BaseController{
         'nombre' => Input::get('nombre'),
         'fechaEla' => Input::get('fechaEla'),
         'datosActivo' => Input::get('datosActivo')
-        //'tiempo' => Input::get('tiempo'),
-        //'idResponsable' => Input::get('idResponsable'),
       );
 
      $validaciones = array('nombre' => array('required','regex:/^([0-9a-zA-ñÑZáéíóúñÁÉÍÓÚ\-\s\,\.\?\¿\¡\!])+$/')
@@ -153,12 +151,12 @@ public function editarCues(){
 
       if(isset($token)) {
         $data = array(
+          'fecha' => Input::get('fecha'),
+          'fechaEla' => Input::get('fechaEla'),
           'tema' => Input::get('tema'),
           'subtema' => Input::get('subtema'),
           'nombre' => Input::get('nombre'),
           'activo' => Input::get('activo'),
-          'fecha' => Input::get('fecha'),
-          'fechaEla' => Input::get('fechaEla'),
           'i' => Input::get('i')
         );
 
@@ -181,12 +179,11 @@ public function editarCues(){
             );
         }
         else{
-              $editar = cuestionarios::where('cueId', $data['i'])
+              $editar = cuestionarios::where('cueId', $data['i']) 
                 ->update(array(
                   'cueFechaAp' => $data['fecha'],
                   'cueFechaEla' => $data['fechaEla'],
-                  'temTema' => $data['tema'],
-                  'subTema'=> $data['subtema'],
+                  'cueSubtema'=> $data['subtema'],
                   'cueNombre' => $data['nombre'],
                   'cueActivo' => $data['activo']
                 ));
@@ -238,7 +235,7 @@ public function editarCues(){
   }
   /*****************/
   static public function getCuetionarioConsultas(){
-       $seleccionar = DB::select('SELECT c.cueId, c.cueNombre, c.cueFechaAp, c.cueFechaEla, c.cueActivo, t.temId, t.temTema, s.subId, s.subSubtema FROM cuestionarios c, temas t, subtema s WHERE c.cueSubtema = s.subId');
+       $seleccionar = DB::select('SELECT c.cueId, c.cueNombre, c.cueFechaAp, c.cueFechaEla, c.cueActivo, t.temId, t.temTema, s.subId, s.subSubtema FROM cuestionarios c, temas t, subtema s WHERE c.cueSubtema = s.subId AND s.subTema = t.temId');
       return $seleccionar;
   }
 

@@ -86,7 +86,7 @@ function editarCues(){
     }).error(function(e){
         alert('Ocurrio un error, intente de nuevo');
     }).responseText;
-
+    console.log(txtCueId.val());
     var res;
     try{
         res = JSON.parse(datos);

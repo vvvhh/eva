@@ -65,7 +65,7 @@ function agregarPre() {
         showCancelButton: true,
         closeOnConfirm: false
       });
-      getPreId();
+      //getPreId();
       console.log('getPreId');
       btnGuardarPre.addClass('hidden');
       btnIngresarRes.removeClass('hidden');
