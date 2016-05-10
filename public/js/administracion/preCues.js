@@ -13,8 +13,9 @@ function cicloPre() {
   btnRegresarNumero.removeClass('hidden');
   agPre.removeClass('hidden');
   formopm.removeClass('hidden');
-  txtNumPre.val('');
+  //txtNumPre.val('');
   //ciclo para gregar pregunntas 
+  ciclo();
 }
 
 function ciclo(){
@@ -22,7 +23,7 @@ function ciclo(){
   nPreguntas=txtNumPre.val();
   if ((nPreguntas>0)&&(i<nPreguntas)) {   /*checa que sea mayor a 0 y que i sea menor al total de preguntas*/
 
-    txtNumPre.val('');
+    //txtNumPre.val('');
     document.getElementById('slctRes').value = 0;
     txtResA.val('');
     txtResB.val('');
@@ -58,6 +59,10 @@ function agregarPre() {
     }
 
     if ( resultado.status == 'OK' ){
+
+      //agregar forench para optener ID
+      //guardar en una variable global el ID
+
       swal({
         title: '¡Guardar Pregunta!',
         text: "¿Está seguro que desea guardar la pregunta?",
@@ -65,8 +70,6 @@ function agregarPre() {
         showCancelButton: true,
         closeOnConfirm: false
       });
-      //getPreId();
-      console.log('getPreId');
       btnGuardarPre.addClass('hidden');
       btnIngresarRes.removeClass('hidden');
       btnModificarPre.removeClass('hidden');
@@ -96,27 +99,6 @@ function btnIngresarResFun(){
   btnIngresarRes.addClass('hidden');
   pnlRes.removeClass('hidden');
   //txtPreg.html('');
-}
-
-function getPreId(){
-  var datos = $.ajax({
-    url: 'getPreId',
-    type: 'get',
-        dataType:'json',
-        async:false
-    }).error(function(e){
-        alert('Ocurrio un error, intente de nuevo');
-    }).responseText;
-
-    var res;
-    try{
-        res = JSON.parse(datos);
-    }catch (e){
-        alert('Error JSON ' + e);
-    }
-      $.each(res.data, function(k,o){
-        txtTemaId.val($ID);
-      });
 }
 
 btnAceptarC.on('click',cicloPre);

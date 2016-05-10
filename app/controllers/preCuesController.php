@@ -47,13 +47,19 @@ class preCuesController extends BaseController{
               'preActivo' => trim($data['preActiva'])
             ));
 
-      $seleccionar=preCuesController::getPreId($data['pregunta']);
+            $preagre = $data['pregunta'];
+           // $preagre = '46';
+
 
               if ( $insert ){
+
+                 $seleccionar=preCuesController::getPreId($preagre);
+              //  preCuesController::getPreId("46");
                 $response = array(
                   'status' => 'OK',
-                  'data' => $seleccionar,
-                  'message' => 'Pregunta agregada correctamente.');
+                  'message' => 'Pregunta agregada correctamente.',
+                  'data' => $seleccionar
+                  );
 
               }
               else
@@ -75,9 +81,9 @@ class preCuesController extends BaseController{
     return Response::json( $response );
   }
 
-  public static function getPreId($gpregunta){
+  public static function getPreId($pregunta){
     # code...
-    $ID = DB::select('SELECT preId FROM preguntas WHERE prePregunta = "'.$gpregunta.'";');
+    $ID = DB::select('SELECT preId FROM preguntas WHERE prePregunta = "'.$pregunta.'";');
       return $ID;
   }
 

@@ -117,6 +117,7 @@ function howMany(form){
   }
 }
 
+/* ---------------------------Inciso A--------------------------- */
 function porRangoA1(){
   if( resA1.prop('checked') ) {
     resA2.prop('checked', false);
@@ -137,19 +138,34 @@ function porRangoA1(){
     txtOpD.addClass('hidden');
     txtOpE.addClass('hidden');
   }
+  else{
+    txtOpA.val('');
+    resB2.prop('checked', false);
+    resC2.prop('checked', false);
+    resD2.prop('checked', false);
+    resE2.prop('checked', false);
+  }
 }
-
 function porPeriodoA2(){
   if( resA2.prop('checked') ) {
-    resA1.prop('checked', false); 
+    resA1.prop('checked', false);
+    resB2.prop('checked', false);
+    resC2.prop('checked', false);
+    resD2.prop('checked', false);
+    resE2.prop('checked', false); 
     col2.addClass('hidden');
     txtOpA.addClass('hidden');  
   }
 }
 
+/* ---------------------------Inciso B--------------------------- */
 function porRangoB1(){
   if( resB1.prop('checked') ) {
     resB2.prop('checked', false);
+    resA2.prop('checked', true);
+    resC2.prop('checked', true);
+    resD2.prop('checked', true);
+    resE2.prop('checked', true);
     resA1.prop('checked', false);
     resC1.prop('checked', false);
     resD1.prop('checked', false);
@@ -163,18 +179,34 @@ function porRangoB1(){
     txtOpD.addClass('hidden');
     txtOpE.addClass('hidden');    
   }
+  else{
+    txtOpB.val('');
+    resA2.prop('checked', false);
+    resC2.prop('checked', false);
+    resD2.prop('checked', false);
+    resE2.prop('checked', false);
+  }
 }
-
 function porPeriodoB2(){
   if( resB2.prop('checked') ) {
-    resB1.prop('checked', false);  
+    resB1.prop('checked', false);
+    resA2.prop('checked', false);
+    resC2.prop('checked', false);
+    resD2.prop('checked', false);
+    resE2.prop('checked', false);   
     col2.addClass('hidden');
     txtOpB.addClass('hidden');  
   }
 }
+
+/* ---------------------------Inciso C--------------------------- */
 function porRangoC1(){
   if( resC1.prop('checked') ) {
     resC2.prop('checked', false);
+    resA2.prop('checked', true);
+    resB2.prop('checked', true);
+    resD2.prop('checked', true);
+    resE2.prop('checked', true);
     resA1.prop('checked', false);
     resB1.prop('checked', false);
     resD1.prop('checked', false);
@@ -188,18 +220,34 @@ function porRangoC1(){
     txtOpD.addClass('hidden');
     txtOpE.addClass('hidden');   
   }
+  else{
+    txtOpC.val('');
+    resA2.prop('checked', false);
+    resB2.prop('checked', false);
+    resD2.prop('checked', false);
+    resE2.prop('checked', false);
+  }
 }
-
 function porPeriodoC2(){
   if( resC2.prop('checked') ) {
     resC1.prop('checked', false);
+    resA2.prop('checked', false);
+    resB2.prop('checked', false);
+    resD2.prop('checked', false);
+    resE2.prop('checked', false); 
     col2.addClass('hidden');
     txtOpC.addClass('hidden');    
   }
 }
+
+/* ---------------------------Inciso D--------------------------- */
 function porRangoD1(){
   if( resD1.prop('checked') ) {
     resD2.prop('checked', false);
+    resA2.prop('checked', true);
+    resB2.prop('checked', true);
+    resC2.prop('checked', true);
+    resE2.prop('checked', true);
     resA1.prop('checked', false);
     resB1.prop('checked', false);
     resC1.prop('checked', false);
@@ -213,18 +261,34 @@ function porRangoD1(){
     txtOpC.addClass('hidden');
     txtOpE.addClass('hidden');   
   }
+  else{
+    txtOpD.val('');
+    resA2.prop('checked', false);
+    resB2.prop('checked', false);
+    resC2.prop('checked', false);
+    resE2.prop('checked', false);
+  }
 }
-
 function porPeriodoD2(){
   if( resD2.prop('checked') ) {
     resD1.prop('checked', false);
+    resA2.prop('checked', false);
+    resB2.prop('checked', false);
+    resC2.prop('checked', false);
+    resE2.prop('checked', false);
     col2.addClass('hidden');
     txtOpD.addClass('hidden');  
   }
 }
+
+/* ---------------------------Inciso E--------------------------- */
 function porRangoE1(){
   if( resE1.prop('checked') ) {
-    resE2.prop('checked', false); 
+    resE2.prop('checked', false);
+    resA2.prop('checked', true);
+    resB2.prop('checked', true);
+    resC2.prop('checked', true);
+    resD2.prop('checked', true); 
     resA1.prop('checked', false);
     resB1.prop('checked', false);
     resC1.prop('checked', false);
@@ -238,11 +302,21 @@ function porRangoE1(){
     txtOpC.addClass('hidden');
     txtOpD.addClass('hidden');
   }
+  else{
+    txtOpE.val('');
+    resA2.prop('checked', false);
+    resB2.prop('checked', false);
+    resC2.prop('checked', false);
+    resD2.prop('checked', false);
+  }
 }
-
 function porPeriodoE2(){
   if( resE2.prop('checked') ) {
     resE1.prop('checked', false);
+    resA2.prop('checked', false);
+    resB2.prop('checked', false);
+    resC2.prop('checked', false);
+    resD2.prop('checked', false);
     col2.addClass('hidden');
     txtOpE.addClass('hidden');    
   }

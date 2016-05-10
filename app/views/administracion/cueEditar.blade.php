@@ -86,7 +86,7 @@
 
           <div class="form-group">
             <label for="txtActivo" class="col-md-3 control-label">Activo:</label>
-            <div class="col-md-1">
+            <div class="col-md-2">
               <select name="" id="datosActivoE" class="form-control input-sm">
                 <option value="1">Sí</option>
                 <option value="0">No</option>

@@ -1,8 +1,8 @@
 <?php
 
 class CuestionarioController extends BaseController{
-
-  public function ingresoCuestionario(){ /**INGRESO Servicio**/
+/**INGRESO DE CUESTIONARIO**/
+  public function ingresoCuestionario(){
       if( !Sesion::isAdmin() )
       return Redirect::to('administracion/logout');
 
@@ -11,6 +11,7 @@ class CuestionarioController extends BaseController{
     if(isset($token)) {
       $data = array(
         'fecha' => Input::get('fecha'),
+        'tema' => Input::get('tema'),
         'subtema' => Input::get('subtema'),  //para subtema
         'nombre' => Input::get('nombre'),
         'fechaEla' => Input::get('fechaEla'),
@@ -81,7 +82,7 @@ class CuestionarioController extends BaseController{
     return Response::json( $response );
   }
 
- /**DAR BAJA SERVICIO*/
+ /**DAR DE BAJA CUESTIONARIO*/
   public function darBajaCues(){   
     if( !Sesion::isResponsable() ){
       if( !Sesion::isAdmin() )
@@ -139,8 +140,7 @@ class CuestionarioController extends BaseController{
       }
       return Response::json( $response );
   }
-
-/**EDITAR SERVICIO*****/
+/**EDITAR DATOS DEL CUESTIONARIO**/
 public function editarCues(){ 
     if( !Sesion::isResponsable() ){
       if( !Sesion::isAdmin() )
@@ -157,11 +157,11 @@ public function editarCues(){
           'subtema' => Input::get('subtema'),
           'nombre' => Input::get('nombre'),
           'activo' => Input::get('activo'),
-          'i' => Input::get('i')
+          'id' => Input::get('i')
         );
 
      $validaciones = array('nombre' => array('required', 'regex:/^([0-9a-zA-ñÑZáéíóúñÁÉÍÓÚ\-\s\,\.\?\¿\¡\!])+$/'),
-                             'activo'     => array('required', 'boolean')
+                           'activo'     => array('required', 'boolean')
        );
 
        $validator = Validator::make($data , $validaciones);
@@ -172,14 +172,13 @@ public function editarCues(){
           foreach ($mensajes->all() as $mensaje){
               $respuesta = $mensaje;
           }
-
             $response = array(
               'status' => 'ERROR',
               'message' => $respuesta
             );
         }
         else{
-              $editar = cuestionarios::where('cueId', $data['i']) 
+              $editar = cuestionarios::where('cueId', $data['i'])
                 ->update(array(
                   'cueFechaAp' => $data['fecha'],
                   'cueFechaEla' => $data['fechaEla'],
@@ -191,12 +190,12 @@ public function editarCues(){
               if ( $editar )
                 $response = array(
                   'status' => 'OK',
-                  'message' => 'Fuente actualizada'
+                  'message' => 'Datos actualizados'
                   );
               else
                 $response = array (
                   'status' => 'ERROR',
-                  'message' => 'No se puede actualizar la fuente, intente de nuevo'
+                  'message' => 'No se pueden actualizar los datos, intente de nuevo'
                   );
             }
       }
@@ -208,7 +207,7 @@ public function editarCues(){
         );
       }
       return Response::json( $response );
-  }
+  }  
 
   /***********************/
   public function getCuestionarioConsultas(){
@@ -327,7 +326,6 @@ public function getCuesT(){
       $timestamp = time();
       $fechaHoy =  date($format, $timestamp);
 
-    //    $seleccionar=DB::select('SELECT f.fueId, f.fueNombre FROM fuentes f, asignaciones a WHERE a.asiResponsables = '.$data['i'].' AND a.asiFuentes=f.fueId;');
     $seleccionar=DB::select('SELECT f.fueId, f.fueNombre FROM fuentes f, asignaciones a, periodos p WHERE a.asiResponsables = '.$data['i'].' AND a.asiFuentes=f.fueId AND a.asiPeriodos = p.perId AND p.perInicio <= "'.$fechaHoy.'" AND p.perFin >= "'.$fechaHoy.'";');
 
 

@@ -52,7 +52,7 @@
   </div>
 
   <!-- formulario de preguntas con opción múltiple -->
-  <div class="hidden" id="formopm" novalidate>
+  <div class="" id="formopm" novalidate>
     <h2><i class="fa fa-plus-circle text-primary"></i> Agregar Pregunta</h2>
     <input type="hidden" id="txtCueId" value="">
     <div class="form-group">

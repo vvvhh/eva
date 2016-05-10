@@ -68,6 +68,10 @@ function darBajaCues(){
 }
 
 function editarCues(){
+  var id = $(this).attr('id');  
+  if (id==="")
+    return false;
+
   var datos = $.ajax({
     url: 'editarCues',
     data: {
@@ -78,7 +82,7 @@ function editarCues(){
       subtema:selComboSubE.val(),
       nombre:txtNombreE.val(),
       activo:datosActivoE.val(),
-      i:txtCueId.val()
+      i:id
     },
     type: 'post',
         dataType:'json',
@@ -86,7 +90,6 @@ function editarCues(){
     }).error(function(e){
         alert('Ocurrio un error, intente de nuevo');
     }).responseText;
-    console.log(txtCueId.val());
     var res;
     try{
         res = JSON.parse(datos);
@@ -169,7 +172,7 @@ function getTodosCuestionarios(){
 function getCues(){
   serviciosTabla.addClass('hidden');
   formEditarServ.removeClass('hidden');
-  var id = $(this).attr('id');
+  var id = $(this).attr('cueId');
   if (id==="")
     return false;
 
@@ -241,6 +244,7 @@ function ingresoCuestionario(){
       subtema: selComboSub.val(),
       nombre: txtNombre.val(),
       datosActivo: datosActivo.val()
+
     },
     type: 'post',
     dataType:'json',

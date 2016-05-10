@@ -85,7 +85,7 @@
                 <div class="input-group date" data-provide="datepicker">
                   <input type="text" class="form-control" id="txtFechaApl">
                   <div class="input-group-addon">
-                    <i class="fa fa-calendar" id></i>
+                    <i class="fa fa-calendar"></i>
                   </div>
                 </div>
                 <br>
