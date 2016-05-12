@@ -54,51 +54,44 @@ class RespuestasController extends BaseController{
             'message' => 'Ya existen estas respuestas, verifique'
           ));
           else{
-            /*$insert = respuestas::insert(array(
-              'resRespuesta' => trim($data['respuesta1']),
-              'resActivo' => trim($data['resAc1']),
-              'resRespuesta' => trim($data['respuesta2']),
-              'resActivo' => trim($data['resAc2']),
-              'resRespuesta' => trim($data['respuesta3']),
-              'resActivo' => trim($data['resAc3']),
-              'resRespuesta' => trim($data['respuesta4']),
-              'resActivo' => trim($data['resAc4']),
-              'resRespuesta' => trim($data['respuesta5']),
-              'resActivo' => trim($data['resAc5'])
-            ));*/
             if ($data['respuesta1']!="") {
               # code...
               $insert = respuestas::insert(array(
               'resRespuesta' => trim($data['respuesta1']),
-              'resActivo' => trim($data['resAc1'])
+              'resActivo' => trim($data['resAc1']),
+              'resPreguntas' => trim($data['pregunta'])
             ));
             }
             if ($data['respuesta2']!="") {
               # code...
               $insert2 = respuestas::insert(array(
                 'resRespuesta' => trim($data['respuesta2']),
-                'resActivo' => trim($data['resAc2'])
+                'resActivo' => trim($data['resAc2']),
+                'resPreguntas' => trim($data['pregunta'])
               ));
             }
             if ($data['respuesta3']!="") {
               # code...
               $insert3 = respuestas::insert(array(
                 'resRespuesta' => trim($data['respuesta3']),
-                'resActivo' => trim($data['resAc3'])
+                'resActivo' => trim($data['resAc3']),
+                'resPreguntas' => trim($data['pregunta'])
               ));
             }
             if ($data['respuesta4']!="") {
               # code...
               $insert4 = respuestas::insert(array(
                 'resRespuesta' => trim($data['respuesta4']),
-                'resActivo' => trim($data['resAc4'])
+                'resActivo' => trim($data['resAc4']),
+                'resPreguntas' => trim($data['pregunta'])
               ));
             }
             if ($data['respuesta5']!="") {
               # code...
               $insert5 = respuestas::insert(array(
                 'resRespuesta' => trim($data['respuesta5']),
-                'resActivo' => trim($data['resAc5'])
+                'resActivo' => trim($data['resAc5']),
+                'resPreguntas' => trim($data['pregunta'])
               ));
             }
 

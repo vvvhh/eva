@@ -157,7 +157,7 @@ public function editarCues(){
           'subtema' => Input::get('subtema'),
           'nombre' => Input::get('nombre'),
           'activo' => Input::get('activo'),
-          'id' => Input::get('i')
+          'i' => Input::get('i')
         );
 
      $validaciones = array('nombre' => array('required', 'regex:/^([0-9a-zA-ñÑZáéíóúñÁÉÍÓÚ\-\s\,\.\?\¿\¡\!])+$/'),

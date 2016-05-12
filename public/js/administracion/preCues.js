@@ -1,10 +1,13 @@
+var recorrerId = '<?php echo $seleccionar;?>';
+
 var btnAceptarC = $('#btnAceptarC'),txtNumPre = $('#txtNumPre'),preAc = $('#preAc'),txtPreg = $('#txtPreg'),
 	btnGuardarPre = $('#btnGuardarPre'),pnlRes = $('#pnlRes'),agPreNum = $('#agPreNum'),numPreC = $('#numPreC'),
   agPre = $('#agPre'),chkAbierta = $('#chkAbierta'),chkMix = $('#chkMix'),chkOpMul = $('#chkOpMul'),
   formopm = $('#formopm'),btnModificarPre = $('#btnModificarPre'),btnIngresarRes = $('#btnIngresarRes'),
-  txtResA = $('#txtResA'),txtResB = $('#txtResB'),txtResC = $('#txtResC'),txtResD = $('#txtResD'),txtResE = $('#txtResE');
+  txtResA = $('#txtResA'),txtResB = $('#txtResB'),txtResC = $('#txtResC'),txtResD = $('#txtResD'),txtResE = $('#txtResE'),
+  txtPreId = $('#txtPreId');
 
-function cicloPre() {
+/*function cicloPre() {
 	// body...
   var q=txtNumPre.val();
   document.getElementById('agPreNum').innerHTML= q;
@@ -16,13 +19,19 @@ function cicloPre() {
   //txtNumPre.val('');
   //ciclo para gregar pregunntas 
   ciclo();
-}
+}*/
 
-function ciclo(){
-  console.log('inicio ciclo');
+function cicloPre(){
+  var q=txtNumPre.val();
+  document.getElementById('agPreNum').innerHTML= q;
+  numPreC.addClass('hidden');
+  btnRegresarTipo.addClass('hidden');
+  btnRegresarNumero.removeClass('hidden');
+  agPre.removeClass('hidden');
+  formopm.removeClass('hidden');
   nPreguntas=txtNumPre.val();
+  console.log(i);
   if ((nPreguntas>0)&&(i<nPreguntas)) {   /*checa que sea mayor a 0 y que i sea menor al total de preguntas*/
-
     //txtNumPre.val('');
     document.getElementById('slctRes').value = 0;
     txtResA.val('');
@@ -42,7 +51,8 @@ function agregarPre() {
     data: {
       token: token.val(),
       pregunta: txtPreg.val(),
-      preActiva: preAc.val()
+      preActiva: preAc.val(),
+      txtPreId: txtPreId.val(),
     },
     type: 'post',
     dataType:'json',
@@ -59,10 +69,15 @@ function agregarPre() {
     }
 
     if ( resultado.status == 'OK' ){
-
       //agregar forench para optener ID
       //guardar en una variable global el ID
-
+        var i = 1;
+        console.log(recorrerId)
+        $.each(recorrerId.data, function(k,o){
+          recorrerId.val(o.preId);
+          console.log(recorrerId);
+          i++;
+        });
       swal({
         title: '¡Guardar Pregunta!',
         text: "¿Está seguro que desea guardar la pregunta?",

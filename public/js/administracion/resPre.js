@@ -3,7 +3,8 @@ var resA1 = $('#resA1'),resA2 = $('#resA2'),resB1 = $('#resB1'),resB2 = $('#resB
     txtOpB = $('#txtOpB'),txtOpC = $('#txtOpC'),txtOpD = $('#txtOpD'),txtOpE = $('#txtOpE'),btnSigPre = $('#btnSigPre'),
     txtA = $('#txtA'),txtB = $('#txtB'),txtC = $('#txtC'),txtD = $('#txtD'),txtE = $('#txtE'),resAc1 = $('#resAc1'),
     resAc2 = $('#resAc2'),resAc3 = $('#resAc3'),resAc4 = $('#resAc4'),resAc5 = $('#resAc5'),txtResA = $('#txtResA'),
-    txtResB = $('#txtResB'),txtResC = $('#txtResC'),txtResD = $('#txtResD'),txtResE = $('#txtResE');
+    txtResB = $('#txtResB'),txtResC = $('#txtResC'),txtResD = $('#txtResD'),txtResE = $('#txtResE'),
+    txtPreId = $('#txtPreId');
 
 function agregarRes() {
     // body...
@@ -21,7 +22,8 @@ function agregarRes() {
       respuesta4: txtResD.val(),
       resActiva4: resAc4.val(),
       respuesta5: txtResE.val(),
-      resActiva5: resAc5.val()
+      resActiva5: resAc5.val(),
+      pregunta: txtPreId.val()
     },
     type: 'post',
     dataType:'json',

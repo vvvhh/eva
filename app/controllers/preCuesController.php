@@ -48,13 +48,10 @@ class preCuesController extends BaseController{
             ));
 
             $preagre = $data['pregunta'];
-           // $preagre = '46';
-
 
               if ( $insert ){
 
-                 $seleccionar=preCuesController::getPreId($preagre);
-              //  preCuesController::getPreId("46");
+                $seleccionar=preCuesController::getPreId($preagre);
                 $response = array(
                   'status' => 'OK',
                   'message' => 'Pregunta agregada correctamente.',

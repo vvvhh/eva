@@ -5,8 +5,8 @@ var TablaConsulta=$('#TablaConsulta'),Tbody=$('#Tbody'),btnConsulta =$('#btnCons
 
 var serviciosTabla = $('#serviciosTabla'),tblCue = $('#tblCue'),serviciosTbody = $('#serviciosTbody');
 
-var txtNombreFuente = $('#txtNombreFuente'),txtCueId = $('#txtCueId'),formEditarServ= $('#formEditarServ'),
-    txtActivo = $('#txtActivo'),btnGuardar = $('#btnGuardar'),btnCancelar = $('#btnCancelar'),token = $('#_token');
+var txtNombreFuente = $('#txtNombreFuente'),formEditarServ= $('#formEditarServ'),txtActivo = $('#txtActivo'),
+    btnGuardar = $('#btnGuardar'),btnCancelar = $('#btnCancelar'),token = $('#_token');
 
 var token = $('#token'),txtNombre = $('#txtNombre'),selCombo = $('#selCombo'),selComboSub = $('#selComboSub'),
     txtFechaApl = $('#txtFechaApl'),txtFechaEla = $('#txtFechaEla'),btnGuardarAg =$('#btnGuardarAg'),txtFechaA =$('#txtFechaA'),
@@ -29,7 +29,7 @@ var btnTemaSiEx = $('#btnTemaSiEx'),btnTemaNoEx = $('#btnTemaNoEx'),btnTemaSiExs
     btnTemaNoExsub = $('#btnTemaNoExsub'),txtNumPre = $('#txtNumPre');
 /*  variables de la parte de editar */
 var txtNombreE = $('#txtNombreE'),selComboE = $('#selComboE'),selComboSubE = $('#selComboSubE'),
-    fechaElaE = $('#fechaElaE'),fechaAplE = $('#fechaAplE'),datosActivoE = $('#datosActivoE');
+    fechaElaE = $('#fechaElaE'),fechaAplE = $('#fechaAplE'),datosActivoE = $('#datosActivoE'),txtCueId = $('#txtCueId');
 
 /*Ide desde el icono editar de la tabla*/
 function darBajaCues(){
@@ -68,10 +68,6 @@ function darBajaCues(){
 }
 
 function editarCues(){
-  var id = $(this).attr('id');  
-  if (id==="")
-    return false;
-
   var datos = $.ajax({
     url: 'editarCues',
     data: {
@@ -82,7 +78,7 @@ function editarCues(){
       subtema:selComboSubE.val(),
       nombre:txtNombreE.val(),
       activo:datosActivoE.val(),
-      i:id
+      i:txtCueId.val()
     },
     type: 'post',
         dataType:'json',
@@ -216,6 +212,7 @@ function getCues(){
         txtNombreE.val(o.cueNombre);
         fechaElaE.val(o.cueFechaEla);
         fechaAplE.val(o.cueFechaAp);
+        txtCueId.val(o.cueId);
       i++;
       });
     }else{
@@ -243,7 +240,8 @@ function ingresoCuestionario(){
       tema: selCombo.val(),
       subtema: selComboSub.val(),
       nombre: txtNombre.val(),
-      datosActivo: datosActivo.val()
+      datosActivo: datosActivo.val(),
+      i:txtCueId.val()
 
     },
     type: 'post',

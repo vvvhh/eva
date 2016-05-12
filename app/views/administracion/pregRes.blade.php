@@ -68,6 +68,7 @@
               <tr>
                 <td>
                   <input id="txtPreg" name="txtPreg" type="text" class="form-control grisObscuro col-md-6" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Ingrese pregunta" required>
+                  <input type="hidden" name="txtPreId" id="txtPreId">
                   <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
                   <div class="form-group hidden">
                     <label class="col-md-3 control-label">Activo:</label>

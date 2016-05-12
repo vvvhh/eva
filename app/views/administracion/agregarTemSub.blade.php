@@ -33,7 +33,7 @@
           <label class="col-md-3 control-label">Tema: </label>
           <div class="col-md-8">
             <input id="txtTema" type="text" class="form-control grisObscuro" pattern="[ñÑZáéíóúñÁÉÍÓÚ  \d\w\s@._-]+"  placeholder="*Tema de donde se obtendrá la información" required>
-            <input type="hidden" id="txtCueId" value="">
+            <!--input type="hidden" id="txtCueId" value=""-->
             <p class="text-danger formatoTexto14" id="spnNombre"> </p>
             <input type="hidden" name="token" id="token" value="<?php echo csrf_token(); ?>">
           </div>
